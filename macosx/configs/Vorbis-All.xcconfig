@@ -3,7 +3,7 @@
 #include "Base-Framework.xcconfig"
 
 
-GCC_VERSION = 4.2
+// GCC_VERSION = 4.2
 INFOPLIST_FILE = Resources/vorbis/Info.plist
 PRODUCT_NAME = Vorbis
 HEADER_SEARCH_PATHS = $(inherited)
