@@ -17,52 +17,45 @@
 	along with Warzone 2100; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
-#include "imd.h"
+#include "wzm.h"
 #include "ivisdef.h"
 #include "tex.h"
 #include "pietypes.h"
 
-//*************************************************************************
-//*** free IMD shape memory
-//*
-//* pre		shape successfully allocated
-//*
-//* params	shape = pointer to IMD shape
-//*
-//******
-void iV_IMDRelease(iIMDShape *s)
+iIMDShape::iIMDShape():
+	texpages(static_cast<int>(WZM_TEX__LAST), iV_TEX_INVALID)
+{
+}
+
+iIMDShape::~iIMDShape()
 {
 	unsigned int i;
-	iIMDShape *d;
 
-	if (s)
+	if (next)
+		delete next;
+
+	if (points)
 	{
-		if (s->points)
+		free(points);
+	}
+	if (connectors)
+	{
+		free(connectors);
+	}
+	if (polys)
+	{
+		for (i = 0; i < npolys; ++i)
 		{
-			free(s->points);
-		}
-		if (s->connectors)
-		{
-			free(s->connectors);
-		}
-		if (s->polys)
-		{
-			for (i = 0; i < s->npolys; i++)
+			if (polys[i].texCoord)
 			{
-				if (s->polys[i].texCoord)
-				{
-					free(s->polys[i].texCoord);
-				}
+				free(polys[i].texCoord);
 			}
-			free(s->polys);
 		}
-		if (s->shadowEdgeList)
-		{
-			free(s->shadowEdgeList);
-			s->shadowEdgeList = NULL;
-		}
-		d = s->next;
-		free(s);
-		iV_IMDRelease(d);
+		free(polys);
+	}
+	if (shadowEdgeList)
+	{
+		free(shadowEdgeList);
+		shadowEdgeList = NULL;
 	}
 }

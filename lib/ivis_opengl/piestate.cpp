@@ -342,7 +342,7 @@ void pie_SetShaderStretchDepth(float stretch)
 
 void pie_ActivateFallback(SHADER_MODE, iIMDShape* shape, PIELIGHT teamcolour, PIELIGHT colour)
 {
-	if (shape->tcmaskpage == iV_TEX_INVALID)
+	if (shape->getTexturePage(WZM_TEX_TCMASK) == iV_TEX_INVALID)
 	{
 		return;
 	}
@@ -353,7 +353,7 @@ void pie_ActivateFallback(SHADER_MODE, iIMDShape* shape, PIELIGHT teamcolour, PI
 
 	// TU0
 	glActiveTexture(GL_TEXTURE0);
-	pie_SetTexturePage(shape->texpage);
+	pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,	GL_COMBINE);
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, tc_env_colour);
 
@@ -372,7 +372,7 @@ void pie_ActivateFallback(SHADER_MODE, iIMDShape* shape, PIELIGHT teamcolour, PI
 	// TU1
 	glActiveTexture(GL_TEXTURE1);
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, _TEX_PAGE[shape->tcmaskpage].id);
+	glBindTexture(GL_TEXTURE_2D, _TEX_PAGE[shape->getTexturePage(WZM_TEX_TCMASK)].id);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,	GL_COMBINE);
 
 	// TU1 RGB
@@ -412,8 +412,8 @@ void pie_DeactivateFallback()
 
 void pie_ActivateShader(SHADER_MODE shaderMode, iIMDShape* shape, PIELIGHT teamcolour, PIELIGHT colour)
 {
-	int maskpage = shape->tcmaskpage;
-	int normalpage = shape->normalpage;
+	int maskpage = shape->getTexturePage(WZM_TEX_TCMASK);
+	int normalpage = shape->getTexturePage(WZM_TEX_NORMALMAP);
 	GLfloat colour4f[4];
 
 	if (shaderMode != currentShaderMode)
@@ -441,7 +441,7 @@ void pie_ActivateShader(SHADER_MODE shaderMode, iIMDShape* shape, PIELIGHT teamc
 	}
 
 	glColor4ubv(colour.vector);
-	pie_SetTexturePage(shape->texpage);
+	pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
 
 	pal_PIELIGHTtoRGBA4f(&colour4f[0], teamcolour);
 	glUniform4fv(locTeam, 1, &colour4f[0]);

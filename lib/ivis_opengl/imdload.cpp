@@ -29,10 +29,7 @@
 #include "lib/framework/frameresource.h"
 #include "lib/framework/fixedpoint.h"
 #include "lib/ivis_opengl/piematrix.h"
-
-#include "ivisdef.h" // for imd structures
-#include "imd.h" // for imd structures
-#include "tex.h" // texture page loading
+#include "lib/ivis_opengl/tex.h" // texture page loading
 
 static bool AtEndOfFile(const char *CurPos, const char *EndOfFile)
 {
@@ -486,7 +483,7 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 	i = sscanf(pFileData, "%255s %n", buffer, &cnt);
 	ASSERT_OR_RETURN(NULL, i == 1, "Bad directive following LEVEL");
 
-	s = (iIMDShape*)malloc(sizeof(iIMDShape));
+	s = new iIMDShape;
 	if (s == NULL)
 	{
 		/* Failed to allocate memory for s */
@@ -503,9 +500,7 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 	s->next = NULL;
 	s->shadowEdgeList = NULL;
 	s->nShadowEdges = 0;
-	s->texpage = iV_TEX_INVALID;
-	s->tcmaskpage = iV_TEX_INVALID;
-	s->normalpage = iV_TEX_INVALID;
+
 	memset(s->material, 0, sizeof(s->material));
 	s->material[LIGHT_AMBIENT][3] = 1.0f;
 	s->material[LIGHT_DIFFUSE][3] = 1.0f;
@@ -787,8 +782,8 @@ iIMDShape *iV_ProcessIMD( const char **ppFileData, const char *FileDataEnd )
 		// assign tex page to levels
 		for (psShape = shape; psShape != NULL; psShape = psShape->next)
 		{
-			psShape->texpage = texpage;
-			psShape->normalpage = normalpage;
+			psShape->setTexturePage(WZM_TEX_DIFFUSE, texpage);
+			psShape->setTexturePage(WZM_TEX_NORMALMAP, normalpage);
 		}
 
 		// check if model should use team colour mask
@@ -806,7 +801,7 @@ iIMDShape *iV_ProcessIMD( const char **ppFileData, const char *FileDataEnd )
 			for (psShape = shape; psShape != NULL; psShape = psShape->next)
 			{
 				psShape->flags |= iV_IMD_TCMASK;
-				psShape->tcmaskpage = texpage_mask;
+				psShape->setTexturePage(WZM_TEX_TCMASK, texpage_mask);
 			}
 		}
 	}

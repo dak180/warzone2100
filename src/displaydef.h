@@ -24,7 +24,7 @@
 #ifndef __INCLUDED_DISPLAYDEF_H__
 #define __INCLUDED_DISPLAYDEF_H__
 
-#include "lib/ivis_opengl/imd.h"
+#include "lib/ivis_opengl/ivisdef.h"
 #include "lib/ivis_opengl/pieclip.h"
 
 #define	BOUNDARY_X			(22)

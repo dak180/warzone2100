@@ -26,7 +26,6 @@
 #include "lib/framework/frame.h"
 #include "lib/framework/opengl.h"
 #include "lib/ivis_opengl/ivisdef.h"
-#include "lib/ivis_opengl/imd.h"
 #include "lib/ivis_opengl/piefunc.h"
 #include "lib/ivis_opengl/tex.h"
 #include "lib/ivis_opengl/piedef.h"
@@ -220,7 +219,7 @@ static void pie_Draw3DShape2(iIMDShape *shape, int frame, PIELIGHT colour, PIELI
 	}
 
 	glColor4ubv(colour.vector);     // Only need to set once for entire model
-	pie_SetTexturePage(shape->texpage);
+	pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
 
 	frame %= MAX(1, shape->numFrames);
 

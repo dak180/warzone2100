@@ -55,6 +55,8 @@
 #define DT_TEXPAGE "TEXPAGE"
 #define DT_TCMASK "TCMASK"
 
+extern iIMDShape *iV_ProcessIMD(const char **ppFileData, const char *FileDataEnd );
+
 // whether a save game is currently being loaded
 static bool saveFlag = false;
 
@@ -702,6 +704,12 @@ static bool dataIMDBufferLoad(const char *pBuffer, UDWORD size, void **ppData)
 	return true;
 }
 
+static void dataIMDRelease(void *pData)
+{
+	iIMDShape *psIMD = static_cast<iIMDShape*>(pData);
+	if (psIMD)
+		delete psIMD;
+}
 
 /*!
  * Load an image from file
@@ -1119,7 +1127,7 @@ static const RES_TYPE_MIN_BUF BufferResourceTypes[] =
 	{"RSTRRES", bufferRSTRRESLoad, NULL},
 	{"RFUNC", bufferRFUNCLoad, NULL},
 	{"SMSG", bufferSMSGLoad, dataSMSGRelease},
-	{"IMD", dataIMDBufferLoad, (RES_FREE)iV_IMDRelease},
+	{"IMD", dataIMDBufferLoad, dataIMDRelease},
 };
 
 struct RES_TYPE_MIN_FILE

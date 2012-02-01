@@ -7,7 +7,6 @@ noinst_HEADERS = \
 	piematrix.h \
 	screen.h \
 	bitimage.h \
-	imd.h \
 	ivi.h \
 	ivisdef.h \
 	jpeg_encoder.h \
@@ -22,7 +21,8 @@ noinst_HEADERS = \
 	png_util.h \
 	rendmode.h \
 	tex.h \
-	textdraw.h
+	textdraw.h \
+	wzm.h
 
 libivis_opengl_a_SOURCES = \
 	ivi.cpp \
@@ -38,8 +38,8 @@ libivis_opengl_a_SOURCES = \
 	tex.cpp \
 	textdraw.cpp \
 	bitimage.cpp \
-	imd.cpp \
 	imdload.cpp \
 	jpeg_encoder.cpp \
 	pieclip.cpp \
-	png_util.cpp
+	png_util.cpp \
+	wzm.cpp

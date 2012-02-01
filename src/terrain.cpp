@@ -34,7 +34,6 @@
 #include "lib/framework/frame.h"
 #include "lib/framework/opengl.h"
 #include "lib/ivis_opengl/ivisdef.h"
-#include "lib/ivis_opengl/imd.h"
 #include "lib/ivis_opengl/piefunc.h"
 #include "lib/ivis_opengl/tex.h"
 #include "lib/ivis_opengl/piedef.h"

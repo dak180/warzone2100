@@ -374,7 +374,7 @@ void bucketAddTypeToList(RENDER_TYPE objectType, void* pObject)
 
 				case EFFECT_WAYPOINT:
 					pie = ((EFFECT*)pObject)->imd;
-					z = INT32_MAX - pie->texpage;
+					z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 					break;
 
 				default:
@@ -384,24 +384,24 @@ void bucketAddTypeToList(RENDER_TYPE objectType, void* pObject)
 			break;
 		case RENDER_DROID:
 			pie = BODY_IMD(((DROID*)pObject),0);
-			z = INT32_MAX - pie->texpage;
+			z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 			break;
 		case RENDER_STRUCTURE:
 			pie = ((STRUCTURE*)pObject)->sDisplay.imd;
-			z = INT32_MAX - pie->texpage;
+			z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 			break;
 		case RENDER_FEATURE:
 			pie = ((FEATURE*)pObject)->sDisplay.imd;
-			z = INT32_MAX - pie->texpage;
+			z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 			break;
 		case RENDER_ANIMATION:
 			pie = ((COMPONENT_OBJECT*)pObject)->psShape;
-			z = INT32_MAX - pie->texpage;
+			z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 			break;
 		case RENDER_DELIVPOINT:
 			pie = pAssemblyPointIMDs[((FLAG_POSITION*)pObject)->
 			factoryType][((FLAG_POSITION*)pObject)->factoryInc];
-			z = INT32_MAX - pie->texpage;
+			z = INT32_MAX - pie->getTexturePage(WZM_TEX_DIFFUSE);
 			break;
 		case RENDER_PARTICLE:
 			z = 0;

@@ -30,7 +30,14 @@
 #define _ivisdef_h
 
 #include "lib/framework/frame.h"
+#include "wzm.h"
 #include "pietypes.h"
+
+// How high up do we want to stop looking
+#define DROID_VIS_UPPER	100
+
+// How low do we stop looking?
+#define DROID_VIS_LOWER	10
 
 //*************************************************************************
 //
@@ -51,60 +58,6 @@ struct iSurface
 	int width;
 	int height;
 };
-
-//*************************************************************************
-//
-// imd structures
-//
-//*************************************************************************
-
-/// Stores the from and to verticles from an edge
-struct EDGE
-{
-	int from, to;
-};
-
-struct iIMDPoly
-{
-	uint32_t flags;
-	int32_t zcentre;
-	unsigned int npnts;
-	Vector3f normal;
-	int pindex[3];
-	Vector2f *texCoord;
-	Vector2f texAnim;
-};
-
-struct iIMDShape
-{
-	unsigned int flags;	
-	int texpage;
-	int tcmaskpage;
-	int normalpage;
-	int sradius, radius;
-	Vector3i min, max;
-
-	Vector3f ocen;
-	unsigned short numFrames;
-	unsigned short animInterval;
-
-	unsigned int npoints;
-	Vector3f *points;
-
-	unsigned int npolys;
-	iIMDPoly *polys;
-
-	unsigned int nconnectors;
-	Vector3i *connectors;
-
-	unsigned int nShadowEdges;
-	EDGE *shadowEdgeList;
-	float material[LIGHT_MAX][4];
-	float shininess;
-
-	iIMDShape *next;  // next pie in multilevel pies (NULL for non multilevel !)
-};
-
 
 //*************************************************************************
 //
