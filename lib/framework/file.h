@@ -29,8 +29,10 @@ extern PHYSFS_file* openSaveFile(const char* fileName);
 
 /** Load the file with name pointed to by pFileName into a memory buffer. */
 extern bool loadFile(const char *pFileName,		// The filename
-              char **ppFileData,	// A buffer containing the file contents
-              UDWORD *pFileSize);	// The size of this buffer
+		     char **ppFileData,                 // A buffer containing the file contents
+		     UDWORD *pFileSize,                 // The size of this buffer
+		     bool AllocateMem = true,
+		     bool hard_fail = true);
 
 /** Save the data in the buffer into the given file */
 extern bool saveFile(const char *pFileName, const char *pFileData, UDWORD fileSize);

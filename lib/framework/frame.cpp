@@ -180,8 +180,8 @@ PHYSFS_file* openLoadFile(const char* fileName, bool hard_fail)
 
   If hard_fail is true, we will assert and report on failures.
 ***************************************************************************/
-static bool loadFile2(const char *pFileName, char **ppFileData, UDWORD *pFileSize,
-                      bool AllocateMem, bool hard_fail)
+bool loadFile(const char *pFileName, char **ppFileData, UDWORD *pFileSize,
+	      bool AllocateMem, bool hard_fail)
 {
 	PHYSFS_file *pfile;
 	PHYSFS_sint64 filesize;
@@ -317,23 +317,18 @@ bool saveFile(const char *pFileName, const char *pFileData, UDWORD fileSize)
 	return true;
 }
 
-bool loadFile(const char *pFileName, char **ppFileData, UDWORD *pFileSize)
-{
-	return loadFile2(pFileName, ppFileData, pFileSize, true, true);
-}
-
 // load a file from disk into a fixed memory buffer
 bool loadFileToBuffer(const char *pFileName, char *pFileBuffer, UDWORD bufferSize, UDWORD *pSize)
 {
 	*pSize = bufferSize;
-	return loadFile2(pFileName, &pFileBuffer, pSize, false, true);
+	return loadFile(pFileName, &pFileBuffer, pSize, false, true);
 }
 
 // as above but returns quietly if no file found
 bool loadFileToBufferNoError(const char *pFileName, char *pFileBuffer, UDWORD bufferSize, UDWORD *pSize)
 {
 	*pSize = bufferSize;
-	return loadFile2(pFileName, &pFileBuffer, pSize, false, false);
+	return loadFile(pFileName, &pFileBuffer, pSize, false, false);
 }
 
 
