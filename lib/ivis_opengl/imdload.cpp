@@ -243,14 +243,15 @@ static bool _imd_load_points( const char **ppFileData, iIMDShape *s )
 		return false;
 	}
 
-	s->max.x = s->max.y = s->max.z = -FP12_MULTIPLIER;
-	s->min.x = s->min.y = s->min.z = FP12_MULTIPLIER;
-
-	vxmax.x = vymax.y = vzmax.z = -FP12_MULTIPLIER;
-	vxmin.x = vymin.y = vzmin.z = FP12_MULTIPLIER;
+	p = s->points;
+	if (s->npoints)
+	{
+		s->min = s->max = *p;
+		vxmax = vymax = vzmax = vxmin = vymin = vzmin = *p;
+	}
 
 	// set up bounding data for minimum number of vertices
-	for (p = s->points; p < s->points + s->npoints; p++)
+	for (; p < s->points + s->npoints; p++)
 	{
 		if (p->x > s->max.x)
 		{
@@ -599,10 +600,9 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
  * \return The shape, constructed from the data read
  */
 // ppFileData is incremented to the end of the file on exit!
-iIMDShape *iV_ProcessIMD( const char **ppFileData, const char *FileDataEnd )
+iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd )
 {
 	const char *pFileName = GetLastResourceFilename(); // Last loaded texture page filename
-	const char *pFileData = *ppFileData;
 	char buffer[PATH_MAX], texfile[PATH_MAX], normalfile[PATH_MAX];
 	int cnt, nlevels;
 	iIMDShape *shape, *psShape;
@@ -806,6 +806,5 @@ iIMDShape *iV_ProcessIMD( const char **ppFileData, const char *FileDataEnd )
 		}
 	}
 
-	*ppFileData = pFileData;
 	return shape;
 }

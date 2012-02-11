@@ -28,6 +28,7 @@
 
 #include "lib/framework/frame.h"
 #include "lib/framework/frameresource.h"
+#include "lib/framework/file.h"
 #include "lib/framework/strres.h"
 #include "lib/framework/crc.h"
 #include "lib/framework/resly.h"
@@ -52,10 +53,12 @@
 #include "text.h"
 #include "texture.h"
 
+#include <string>
+
 #define DT_TEXPAGE "TEXPAGE"
 #define DT_TCMASK "TCMASK"
 
-extern iIMDShape *iV_ProcessIMD(const char **ppFileData, const char *FileDataEnd );
+extern iIMDShape *iV_ProcessIMD(const char *pFileData, const char *FileDataEnd );
 
 // whether a save game is currently being loaded
 static bool saveFlag = false;
@@ -689,14 +692,54 @@ static void dataSMSGRelease(void *pData)
 }
 
 /* Load an imd */
-static bool dataIMDBufferLoad(const char *pBuffer, UDWORD size, void **ppData)
+static bool dataIMDLoad(const char *fileName, void **ppData)
 {
-	iIMDShape	*psIMD;
-	const char *pBufferPosition = pBuffer;
+	iIMDShape *psIMD;
+	UDWORD size;
+	char *bytes = NULL;
 
-	psIMD = iV_ProcessIMD( &pBufferPosition, pBufferPosition + size );
+	std::string fname(fileName);
+	size_t pos = fname.rfind(".pie");
+	if (pos != std::string::npos)
+	{
+		// try wzm first
+		//fname = fname.substr(0, pos) + ".wzm";
+		fname += ".wzm";
+
+		if (loadFile(fname.c_str(), &bytes, &size, true, false))
+		{
+			std::istringstream buffstream(std::string(bytes, size));
+			free(bytes);
+
+			psIMD = new iIMDShape;
+			if (!psIMD)
+				return false;
+
+			if (!psIMD->loadFromStream(buffstream))
+			{
+				debug(LOG_WARNING, "Failed to read WZM file \"%s\"", fname.c_str());
+			}
+
+			// uncomment on WZM draw-path completion
+			//*ppData = psIMD;
+			//return true;
+			delete psIMD;
+		}
+	}
+
+	// or usual PIE from here
+	if (!loadFile(fileName, &bytes, &size))
+	{
+		debug(LOG_ERROR, "Failed to load PIE file - %s", fileName);
+		return false;
+	}
+
+	psIMD = iV_ProcessIMD(bytes, bytes + size);
+
+	free(bytes);
+
 	if (psIMD == NULL) {
-		debug( LOG_ERROR, "IMD load failed - %s", GetLastResourceFilename() );
+		debug(LOG_ERROR, "IMD process failed - %s", fileName);
 		return false;
 	}
 
@@ -1127,7 +1170,6 @@ static const RES_TYPE_MIN_BUF BufferResourceTypes[] =
 	{"RSTRRES", bufferRSTRRESLoad, NULL},
 	{"RFUNC", bufferRFUNCLoad, NULL},
 	{"SMSG", bufferSMSGLoad, dataSMSGRelease},
-	{"IMD", dataIMDBufferLoad, dataIMDRelease},
 };
 
 struct RES_TYPE_MIN_FILE
@@ -1153,6 +1195,7 @@ static const RES_TYPE_MIN_FILE FileResourceTypes[] =
 	{"STR_RES", dataStrResLoad, dataStrResRelease},
 	{"RESEARCHMSG", dataResearchMsgLoad, dataSMSGRelease },
 	{"JAVASCRIPT", jsLoad, NULL},
+	{"IMD", dataIMDLoad, dataIMDRelease},
 };
 
 /* Pass all the data loading functions to the framework library */

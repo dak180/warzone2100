@@ -63,6 +63,14 @@ struct Vector3f
 
 	float x, y, z;
 };
+struct Vector4f
+{
+	Vector4f() {}
+	Vector4f(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+	Vector4f(Vector3f const &v) : x(v.x), y(v.y), z(v.z), w(1.) {}
+
+	float x, y, z, w;
+};
 struct Rotation
 {
 	Rotation() { direction = 0; pitch = 0; roll = 0; }
