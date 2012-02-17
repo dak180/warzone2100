@@ -993,10 +993,6 @@ static void drawTiles(iView *player)
 	// Not sure if should do this here or whenever using, since this transform seems to be done all over the place.
 	//actualCameraPosition -= Vector3i(-player->p.x, 0, player->p.z);
 
-	// this also detemines the length of the shadows
-	theSun = getTheSun();
-	pie_BeginLighting(&theSun, getDrawShadows());
-
 	// update the fog of war... FIXME: Remove this
 	for (i = -visibleTiles.y/2, idx=0; i <= visibleTiles.y/2; i++,++idx)
 	{
@@ -1033,8 +1029,13 @@ static void drawTiles(iView *player)
 	pie_SetFogStatus(true);
 
 	pie_MatBegin();
+
 	// also, make sure we can use world coordinates directly
 	pie_TRANSLATE(-player->p.x, 0, player->p.z);
+
+	// this also detemines the length of the shadows
+	theSun = getTheSun();
+	pie_BeginLighting(&theSun, getDrawShadows());
 
 	// and draw it
 	drawTerrain();
@@ -1099,7 +1100,7 @@ static void drawTiles(iView *player)
 bool init3DView(void)
 {
 	/* Arbitrary choice - from direct read! */
-	Vector3f theSun(225.0f, -600.0f, 450.0f);
+	Vector3f theSun(-425.0f, 600.0f, -450.0f);
 
 	setTheSun(theSun);
 
@@ -3714,6 +3715,7 @@ static iIMDShape *flattenImd(iIMDShape *imd, UDWORD structX, UDWORD structY, UDW
 {
 	UDWORD i, centreHeight;
 
+	ASSERT_OR_RETURN( imd, imd->npoints != 0, "flattenImd: no points in the PIE, WZM?" );
 	ASSERT( imd->npoints < iV_IMD_MAX_POINTS, "flattenImd: too many points in the PIE to flatten it" );
 
 	/* Get a copy of the points */
@@ -4317,6 +4319,7 @@ static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 {
 	Vector3i each;
 	Vector3f *point, pts[3];
+	Vector3f zeropoint(0., 0., 0.); // stub for wzm point getter
 	UDWORD	pointIndex;
 	SDWORD	realY;
 	Vector3i null, vec;
@@ -4333,8 +4336,15 @@ static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 
 	pts[0] = vec;
 
-	pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
-	point = &(psStructure->sDisplay.imd->points[pointIndex]);
+	if (psStructure->sDisplay.imd->isWZMFormat())
+	{
+		point = &zeropoint;
+	}
+	else
+	{
+		pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
+		point = &(psStructure->sDisplay.imd->points[pointIndex]);
+	}
 
 	each.x = psStructure->pos.x + point->x;
 	realY = structHeightScale(psStructure) * point->y;
@@ -4353,8 +4363,15 @@ static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 
 	pts[1] = vec;
 
-	pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
-	point = &(psStructure->sDisplay.imd->points[pointIndex]);
+	if (psStructure->sDisplay.imd->isWZMFormat())
+	{
+		point = &zeropoint;
+	}
+	else
+	{
+		pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
+		point = &(psStructure->sDisplay.imd->points[pointIndex]);
+	}
 
 	each.x = psStructure->pos.x + point->x;
 	realY = structHeightScale(psStructure) * point->y;

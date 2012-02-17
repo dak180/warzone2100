@@ -3747,9 +3747,18 @@ void structureUpdate(STRUCTURE *psBuilding, bool mission)
 				Vector3f *point;
 				SDWORD	realY;
 				UDWORD	pointIndex;
+				Vector3f zeropoint(0., 0., 0.); // stub for wzm point getter
 
-				pointIndex = rand()%(psBuilding->sDisplay.imd->npoints-1);
-				point = &(psBuilding->sDisplay.imd->points[pointIndex]);
+				if (psBuilding->sDisplay.imd->isWZMFormat())
+				{
+					point = &zeropoint;
+				}
+				else
+				{
+					pointIndex = rand()%(psBuilding->sDisplay.imd->npoints-1);
+					point = &(psBuilding->sDisplay.imd->points[pointIndex]);
+				}
+
 				position.x = psBuilding->pos.x + point->x;
 				realY = structHeightScale(psBuilding) * point->y;
 				position.y = psBuilding->pos.z + realY;

@@ -62,7 +62,7 @@ static void calcTileIllum(UDWORD tileX, UDWORD tileY);
 
 void setTheSun(Vector3f newSun)
 {
-	theSun = normalise(newSun) * FP12_MULTIPLIER;
+	theSun = newSun;
 }
 
 Vector3f getTheSun(void)
@@ -180,7 +180,7 @@ static void calcTileIllum(UDWORD tileX, UDWORD tileY)
 	/* The number or normals that we got is in numNormals*/
 	Vector3f finalVector(0.0f, 0.0f, 0.0f);
 	unsigned int i, val;
-	int dotProduct;
+	float dotProduct;
 
 	unsigned int numNormals = 0; // How many normals have we got?
 	Vector3f normals[8]; // Maximum 8 possible normals
@@ -217,9 +217,12 @@ static void calcTileIllum(UDWORD tileX, UDWORD tileY)
 		finalVector = finalVector + normals[i];
 	}
 
-	dotProduct = normalise(finalVector) * theSun;
+	// normalize all incoming vectors
+	Vector3f sn = normalise(theSun);
+	sn.z = -sn.z;
+	dotProduct = normalise(finalVector) * sn;
 
-	val = abs(dotProduct) / 16;
+	val = abs(dotProduct * 256);
 	if (val == 0) val = 1;
 	if (val > 254) val = 254;
 	mapTile(tileX, tileY)->illumination = val;

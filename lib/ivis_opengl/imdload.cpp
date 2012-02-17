@@ -467,7 +467,7 @@ static bool _imd_load_connectors(const char **ppFileData, iIMDShape *s)
  * \pre ppFileData loaded
  * \post s allocated
  */
-static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataEnd, int nlevels, int pieVersion)
+static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataEnd, int nlevels, int pieVersion, const char *fname)
 {
 	const char *pTmp, *pFileData = *ppFileData;
 	char buffer[PATH_MAX] = {'\0'};
@@ -491,6 +491,8 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 		debug(LOG_ERROR, "_imd_load_level: Memory allocation error");
 		return NULL;
 	}
+	s->m_resname = fname;
+
 	s->flags = 0;
 	s->nconnectors = 0; // Default number of connectors must be 0
 	s->npoints = 0;
@@ -572,7 +574,7 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 		if (strcmp(buffer, "LEVEL") == 0)
 		{
 			debug(LOG_3D, "imd[_load_level] = npoints %d, npolys %d", s->npoints, s->npolys);
-			s->next = _imd_load_level(&pFileData, FileDataEnd, nlevels - 1, pieVersion);
+			s->next = _imd_load_level(&pFileData, FileDataEnd, nlevels - 1, pieVersion, fname);
 		}
 		else if (strcmp(buffer, "CONNECTORS") == 0)
 		{
@@ -600,7 +602,7 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
  * \return The shape, constructed from the data read
  */
 // ppFileData is incremented to the end of the file on exit!
-iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd )
+iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd, const char *fname)
 {
 	const char *pFileName = GetLastResourceFilename(); // Last loaded texture page filename
 	char buffer[PATH_MAX], texfile[PATH_MAX], normalfile[PATH_MAX];
@@ -758,7 +760,7 @@ iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd )
 		return NULL;
 	}
 
-	shape = _imd_load_level(&pFileData, FileDataEnd, nlevels, imd_version);
+	shape = _imd_load_level(&pFileData, FileDataEnd, nlevels, imd_version, fname);
 	if (shape == NULL)
 	{
 		debug(LOG_ERROR, "iV_ProcessIMD %s unsuccessful", pFileName);

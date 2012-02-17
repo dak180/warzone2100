@@ -463,7 +463,11 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 		frame = team;
 	}
 
-	if (drawing_interface || !shadows)
+	if (shape->isWZMFormat())
+	{
+		shape->render(frame, colour, teamcolour, pieFlag, pieFlagData);
+	}
+	else if (drawing_interface || !shadows)
 	{
 		pie_Draw3DShape2(shape, frame, colour, teamcolour, pieFlag, pieFlagData);
 	}
@@ -498,13 +502,13 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 				{
 					float invmat[9], pos_light0[4];
 
+					glGetLightfv(GL_LIGHT0, GL_POSITION, pos_light0);
 					inverse_matrix( scshape.matrix, invmat );
 
 					// Calculate the light position relative to the object
-					glGetLightfv(GL_LIGHT0, GL_POSITION, pos_light0);
-					scshape.light.x = invmat[0] * pos_light0[0] + invmat[3] * pos_light0[1] + invmat[6] * pos_light0[2];
-					scshape.light.y = invmat[1] * pos_light0[0] + invmat[4] * pos_light0[1] + invmat[7] * pos_light0[2];
-					scshape.light.z = invmat[2] * pos_light0[0] + invmat[5] * pos_light0[1] + invmat[8] * pos_light0[2];
+					scshape.light.x = -(invmat[0] * pos_light0[0] + invmat[3] * pos_light0[1] + invmat[6] * pos_light0[2]);
+					scshape.light.y = -(invmat[1] * pos_light0[0] + invmat[4] * pos_light0[1] + invmat[7] * pos_light0[2]);
+					scshape.light.z = -(invmat[2] * pos_light0[0] + invmat[5] * pos_light0[1] + invmat[8] * pos_light0[2]);
 
 					scshape.shape = shape;
 					scshape.flag = pieFlag;

@@ -23,6 +23,8 @@
 #include "pietypes.h"
 
 #include "lib/framework/frame.h"
+#include "lib/ivis_opengl/piedef.h"
+#include "lib/ivis_opengl/piestate.h"
 
 #include <algorithm>
 
@@ -51,8 +53,6 @@ WZMesh::~WZMesh()
 
 void WZMesh::clear()
 {
-	//std::fill(m_texpages.begin(), m_texpages.end(), iV_TEX_INVALID);
-
 	m_vertexArray.clear();
 	m_textureArray.clear();
 	m_normalArray.clear();
@@ -198,7 +198,7 @@ bool WZMesh::loadFromStream(std::istream &in)
 
 	for(; indices > 0; --indices)
 	{
-		Vector3i tri;
+		Vector3us tri;
 
 		in >> tri.x >> tri.y >> tri.z;
 		if (in.fail())
@@ -247,34 +247,40 @@ iIMDShape::iIMDShape():
 
 iIMDShape::~iIMDShape()
 {
-	unsigned int i;
-
-	if (next)
-		delete next;
-
-	if (points)
+	if (isWZMFormat())
 	{
-		free(points);
+		if (connectors)
+			delete[] connectors;
 	}
-	if (connectors)
+	else
 	{
-		free(connectors);
-	}
-	if (polys)
-	{
-		for (i = 0; i < npolys; ++i)
+		unsigned int i;
+
+		if (next)
+			delete next;
+
+		if (points)
+			free(points);
+
+		if (connectors)
+			free(connectors);
+
+		if (polys)
 		{
-			if (polys[i].texCoord)
+			for (i = 0; i < npolys; ++i)
 			{
-				free(polys[i].texCoord);
+				if (polys[i].texCoord)
+				{
+					free(polys[i].texCoord);
+				}
 			}
+			free(polys);
 		}
-		free(polys);
-	}
-	if (shadowEdgeList)
-	{
-		free(shadowEdgeList);
-		shadowEdgeList = NULL;
+		if (shadowEdgeList)
+		{
+			free(shadowEdgeList);
+			shadowEdgeList = NULL;
+		}
 	}
 }
 
@@ -379,12 +385,14 @@ bool iIMDShape::loadFromStream(std::istream &in)
 
 	for(; meshes > 0; --meshes)
 	{
-		WZMesh mesh;
+		m_meshes.push_back(WZMesh());
+
+		WZMesh& mesh = m_meshes.back();
 		if (!mesh.loadFromStream(in))
 		{
+			m_meshes.pop_back();
 			return false;
 		}
-		m_meshes.push_back(mesh);
 	}
 
 	// get some compat values from the first mesh
@@ -401,5 +409,168 @@ bool iIMDShape::loadFromStream(std::istream &in)
 	max = mesh0.m_aabb_max;
 	ocen = mesh0.m_tightspherecenter;
 
+	nconnectors = mesh0.m_connectorArray.size();
+	if (nconnectors)
+	{
+		connectors = new Vector3i[nconnectors];
+
+		for (unsigned int i = 0; i < nconnectors; ++i)
+		{
+			connectors[i] = Vector3i(mesh0.m_connectorArray[i].x, mesh0.m_connectorArray[i].y, mesh0.m_connectorArray[i].z);
+		}
+	}
+
 	return true;
+}
+
+void iIMDShape::render(int frame, PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)
+{
+	bool light = true;
+	bool shaders = pie_GetShaderAvailability();
+	SHADER_MODE shaderMode;
+
+	glErrors();
+
+	pie_SetAlphaTest((pieFlag & pie_PREMULTIPLIED) == 0);
+
+	/* Set fog status */
+	if (!(pieFlag & pie_FORCE_FOG) &&
+		(pieFlag & pie_ADDITIVE || pieFlag & pie_TRANSLUCENT || pieFlag & pie_BUTTON || pieFlag & pie_PREMULTIPLIED))
+	{
+		pie_SetFogStatus(false);
+	}
+	else
+	{
+		pie_SetFogStatus(true);
+	}
+
+	/* Set tranlucency */
+	if (pieFlag & pie_ADDITIVE)
+	{
+		pie_SetRendMode(REND_ADDITIVE);
+		colour.byte.a = (UBYTE)pieFlagData;
+		light = false;
+	}
+	else if (pieFlag & pie_TRANSLUCENT)
+	{
+		pie_SetRendMode(REND_ALPHA);
+		colour.byte.a = (UBYTE)pieFlagData;
+		light = false;
+	}
+	else if (pieFlag & pie_PREMULTIPLIED)
+	{
+		pie_SetRendMode(REND_PREMULTIPLIED);
+		light = false;
+	}
+	else
+	{
+		if (pieFlag & pie_BUTTON)
+		{
+			shaderMode = SHADER_BUTTON;
+
+			pie_SetDepthBufferStatus(DEPTH_CMP_LEQ_WRT_ON);
+			light = false;
+			if (shaders)
+			{
+				pie_ActivateShader(shaderMode, this, teamcolour, colour);
+			}
+			else
+			{
+				pie_ActivateFallback(shaderMode, this, teamcolour, colour);
+			}
+		}
+		pie_SetRendMode(REND_OPAQUE);
+	}
+	if (pieFlag & pie_ECM)
+	{
+		pie_SetRendMode(REND_ALPHA);
+		light = true;
+		pie_SetShaderEcmEffect(true);
+	}
+
+	if (light)
+	{
+		shaderMode = SHADER_COMPONENT;
+
+		if (shaders)
+		{
+			pie_ActivateShader(shaderMode, this, teamcolour, colour);
+
+		}
+		else
+		{
+			pie_ActivateFallback(shaderMode, this, teamcolour, colour);
+		}
+	}
+
+	if (pieFlag & pie_HEIGHT_SCALED)	// construct
+	{
+		glScalef(1.0f, (float)pieFlagData / (float)pie_RAISE_SCALE, 1.0f);
+	}
+	if (pieFlag & pie_RAISE)		// collapse
+	{
+		glTranslatef(1.0f, (-max.y * (pie_RAISE_SCALE - pieFlagData)) * (1.0f / pie_RAISE_SCALE), 1.0f);
+	}
+
+	glColor4ubv(colour.vector);     // Only need to set once for entire model
+	pie_SetTexturePage(getTexturePage(WZM_TEX_DIFFUSE));
+
+	glPushAttrib(GL_TEXTURE_BIT);
+	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+
+	glClientActiveTexture(GL_TEXTURE0);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glErrors();
+
+	for (int i = 0; i < (int)m_meshes.size(); ++i)
+	{
+		const WZMesh& msh = m_meshes.front();
+
+		if (light)
+		{
+			glMaterialfv(GL_FRONT, GL_AMBIENT, msh.m_material[LIGHT_AMBIENT]);
+			glMaterialfv(GL_FRONT, GL_DIFFUSE, msh.m_material[LIGHT_DIFFUSE]);
+			glMaterialfv(GL_FRONT, GL_SPECULAR, msh.m_material[LIGHT_SPECULAR]);
+			glMaterialfv(GL_FRONT, GL_EMISSION, msh.m_material[LIGHT_EMISSIVE]);
+			glMaterialf(GL_FRONT, GL_SHININESS, msh.m_shininess);
+		}
+
+		if (shaders && shaderMode == SHADER_COMPONENT)
+		{
+			pie_SetShaderTangentAttribute(&msh.m_tangentArray[0]);
+		}
+
+		glTexCoordPointer(2, GL_FLOAT, 0, &msh.m_textureArray[0]);
+		glNormalPointer(GL_FLOAT, 0, &msh.m_normalArray[0]);
+		glVertexPointer(3, GL_FLOAT, 0, &msh.m_vertexArray[0]);
+
+		glDrawElements(GL_TRIANGLES, msh.m_indexArray.size() * 3, GL_UNSIGNED_SHORT, &msh.m_indexArray[0]);
+
+	}
+
+	glErrors();
+
+	glPopClientAttrib();
+	glPopAttrib();
+
+	if (light || (pieFlag & pie_BUTTON))
+	{
+		if (shaders)
+		{
+			pie_DeactivateShader();
+		}
+		else
+		{
+			pie_DeactivateFallback();
+		}
+	}
+	pie_SetShaderEcmEffect(false);
+
+	if (pieFlag & pie_BUTTON)
+	{
+		pie_SetDepthBufferStatus(DEPTH_CMP_ALWAYS_WRT_ON);
+	}
 }

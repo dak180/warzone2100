@@ -46,6 +46,12 @@ struct Vector2f
 
 	float x, y;
 };
+struct Vector3us
+{
+	Vector3us() {}
+	Vector3us(unsigned short x, unsigned short y, unsigned short z) : x(x), y(y), z(z) {}
+	unsigned short x, y, z;
+};
 struct Vector3i
 {
 	Vector3i() {}

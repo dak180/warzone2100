@@ -58,7 +58,7 @@
 #define DT_TEXPAGE "TEXPAGE"
 #define DT_TCMASK "TCMASK"
 
-extern iIMDShape *iV_ProcessIMD(const char *pFileData, const char *FileDataEnd );
+extern iIMDShape *iV_ProcessIMD(const char *pFileData, const char *FileDataEnd, const char *fname);
 
 // whether a save game is currently being loaded
 static bool saveFlag = false;
@@ -715,15 +715,15 @@ static bool dataIMDLoad(const char *fileName, void **ppData)
 			if (!psIMD)
 				return false;
 
+			psIMD->m_resname = fname;
+
 			if (!psIMD->loadFromStream(buffstream))
 			{
 				debug(LOG_WARNING, "Failed to read WZM file \"%s\"", fname.c_str());
 			}
 
-			// uncomment on WZM draw-path completion
-			//*ppData = psIMD;
-			//return true;
-			delete psIMD;
+			*ppData = psIMD;
+			return true;
 		}
 	}
 
@@ -734,7 +734,7 @@ static bool dataIMDLoad(const char *fileName, void **ppData)
 		return false;
 	}
 
-	psIMD = iV_ProcessIMD(bytes, bytes + size);
+	psIMD = iV_ProcessIMD(bytes, bytes + size, fname.c_str());
 
 	free(bytes);
 
@@ -751,7 +751,10 @@ static void dataIMDRelease(void *pData)
 {
 	iIMDShape *psIMD = static_cast<iIMDShape*>(pData);
 	if (psIMD)
+	{
 		delete psIMD;
+		psIMD = 0;
+	}
 }
 
 /*!

@@ -25,7 +25,7 @@
 #include <list>
 
 #include "lib/framework/frame.h"
-#include "pietypes.h"
+#include "lib/ivis_opengl/pietypes.h"
 
 
 //************************** PIE **************************************
@@ -83,13 +83,12 @@ class WZMesh
 	std::string m_name;
 	bool m_teamColours;
 
-	std::vector<int> m_texpages;
 	std::vector<Vector3f> m_vertexArray;
 	std::vector<Vector2f> m_textureArray;
 	std::vector<Vector3f> m_normalArray;
 	std::vector<Vector4f> m_tangentArray;
 
-	std::vector<Vector3i> m_indexArray;
+	std::vector<Vector3us> m_indexArray;
 
 	std::vector<Vector3f> m_connectorArray;
 
@@ -97,7 +96,6 @@ class WZMesh
 	float m_shininess;
 
 	Vector3f m_aabb_min, m_aabb_max, m_tightspherecenter;
-
 public:
 	WZMesh();
 	~WZMesh();
@@ -105,10 +103,9 @@ public:
 	void clear();
 
 	bool loadFromStream(std::istream& in);
-
-	int getTexturePage(const wzm_texture_type_t& type) const {return m_texpages[type];}
-	void setTexturePage(const wzm_texture_type_t& type, const int& texpage) {m_texpages[type] = texpage;}
 };
+
+union PIELIGHT;
 
 struct iIMDShape
 {
@@ -139,14 +136,17 @@ struct iIMDShape
 
 	// old stuff above ^^ REMOVE ON WZM COMPLETION
 
+	std::string m_resname; // for debug
 private:
 	std::vector<int> m_texpages;
 	std::list<WZMesh> m_meshes;
+
 public:
 	iIMDShape();
 	~iIMDShape();
 
 	void clear();
+	void render(int frame, PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData);
 
 	bool loadFromStream(std::istream& in);
 
