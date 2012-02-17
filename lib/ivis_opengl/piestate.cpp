@@ -39,7 +39,7 @@
 static bool shadersAvailable;
 static GLuint shaderProgram[SHADER_MAX];
 static GLfloat shaderStretch = 0;
-static GLint locTeam, locStretch, locTCMask, locFog, locNormalMap, locEcm, locTime;
+static GLint locTeam, locStretch, locTCMask, locFog, locNormalMap, locEcm, locTime, locTangent = 0;
 static SHADER_MODE currentShaderMode = SHADER_NONE;
 unsigned int pieStateCount = 0; // Used in pie_GetResetCounts
 static RENDER_STATE rendStates;
@@ -316,6 +316,11 @@ bool pie_LoadShaders()
 
 void pie_DeactivateShader(void)
 {
+	if (locTangent)
+	{
+		glDisableVertexAttribArray(locTangent);
+	}
+
 	currentShaderMode = SHADER_NONE;
 	glUseProgram(0);
 }
@@ -333,6 +338,14 @@ void pie_SetShaderTime(uint32_t shaderTime)
 void pie_SetShaderEcmEffect(bool value)
 {
 	ecmState = (int)value;
+}
+
+void pie_SetShaderTangentAttribute(const Vector4f* array)
+{
+	if (locTangent)
+	{
+		glVertexAttribPointer(locTangent, 4, GL_FLOAT, GL_FALSE, 0, array);
+	}
 }
 
 void pie_SetShaderStretchDepth(float stretch)
@@ -432,12 +445,21 @@ void pie_ActivateShader(SHADER_MODE shaderMode, iIMDShape* shape, PIELIGHT teamc
 		locEcm = glGetUniformLocation(shaderProgram[shaderMode], "ecmEffect");
 		locTime = glGetUniformLocation(shaderProgram[shaderMode], "graphicsCycle");
 
+		if (shape->isWZMFormat() && shaderMode == SHADER_COMPONENT)
+		{
+			locTangent = glGetAttribLocation(shaderProgram[shaderMode], "tangent");
+		}
+		else
+		{
+			locTangent = 0;
+		}
+
 		// These never change
 		glUniform1i(locTex0, 0);
 		glUniform1i(locTex1, 1);
 		glUniform1i(locTex2, 2);
 
-		currentShaderMode  = shaderMode;
+		currentShaderMode = shaderMode;
 	}
 
 	glColor4ubv(colour.vector);
@@ -451,6 +473,11 @@ void pie_ActivateShader(SHADER_MODE shaderMode, iIMDShape* shape, PIELIGHT teamc
 	glUniform1i(locFog, rendStates.fog);
 	glUniform1f(locTime, timeState);
 	glUniform1i(locEcm, ecmState);
+
+	if (shape->isWZMFormat() && locTangent)
+	{
+		glEnableVertexAttribArray(locTangent);
+	}
 
 	if (maskpage != iV_TEX_INVALID)
 	{

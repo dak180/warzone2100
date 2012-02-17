@@ -94,6 +94,7 @@ void pie_ActivateFallback(SHADER_MODE shaderMode, iIMDShape* shape, PIELIGHT tea
 void pie_SetShaderStretchDepth(float stretch);
 void pie_SetShaderTime(uint32_t shaderTime);
 void pie_SetShaderEcmEffect(bool value);
+void pie_SetShaderTangentAttribute(const Vector4f *array);
 
 /* Errors control routine */
 #define glErrors() \
