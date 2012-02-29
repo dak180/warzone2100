@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -723,11 +723,6 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 
 	ASSERT_OR_RETURN( , researchIndex < asResearch.size(), "Invalid research index %u", researchIndex);
 
-	if (!isInSync())
-	{
-		sendResearchStatus(NULL, researchIndex, player, false);
-	}
-
 	MakeResearchCompleted(&asPlayerResList[player][researchIndex]);
 
 	//check for structures to be made available
@@ -954,7 +949,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = apsDroidLists[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidSensorUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidSensorUpgrade);
 					}
@@ -962,7 +957,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = mission.apsDroidLists[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidSensorUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidSensorUpgrade);
 					}
@@ -970,7 +965,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = apsLimboDroids[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidSensorUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidSensorUpgrade);
 					}
@@ -993,7 +988,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = apsDroidLists[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidECMUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidECMUpgrade);
 					}
@@ -1001,7 +996,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = mission.apsDroidLists[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidECMUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidECMUpgrade);
 					}
@@ -1009,7 +1004,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = apsLimboDroids[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidECMUpgrade(psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidECMUpgrade);
 					}
@@ -1035,7 +1030,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = mission.apsDroidLists[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidBodyUpgrade(pFunction, psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidSensorUpgrade);
 					}
@@ -1043,7 +1038,7 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
 				for (psDroid = apsLimboDroids[player]; psDroid != NULL; psDroid = psDroid->psNext)
 				{
 					droidBodyUpgrade(pFunction, psDroid);
-					if (psDroid->droidType == DROID_TRANSPORTER)
+					if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 					{
 						upgradeTransporterDroids(psDroid, droidSensorUpgrade);
 					}
@@ -1201,16 +1196,16 @@ void researchResult(UDWORD researchIndex, UBYTE player, bool bDisplay, STRUCTURE
                 {
                     compInc++;
                 }
-                if (compInc >= 32)
+                if (compInc >= 128)
                 {
-					debug(LOG_ERROR, "researchResult - more than 32 weapons now available");
+					debug(LOG_ERROR, "researchResult - more than 128 weapons now available");
                    
 					//don't bother checking any more
                     break;
                 }
-                if (vtolCompInc >= 32)
+                if (vtolCompInc >= 128)
                 {
-					debug(LOG_ERROR, "researchResult - more than 32 vtol weapons now available");
+					debug(LOG_ERROR, "researchResult - more than 128 vtol weapons now available");
                     
 					//don't bother checking any more
                     break;
@@ -1338,7 +1333,7 @@ void cancelResearch(STRUCTURE *psBuilding, QUEUE_MODE mode)
 		if (mode == ModeQueue)
 		{
 			// Tell others that we want to stop researching something.
-			sendResearchStatus(NULL, topicInc, psBuilding->player, false);
+			sendResearchStatus(psBuilding, topicInc, psBuilding->player, false);
 			// Immediately tell the UI that we can research this now. (But don't change the game state.)
 			MakeResearchCancelledPending(pPlayerRes);
 			setStatusPendingCancel(*psResFac);
@@ -1819,8 +1814,6 @@ the research list next time the Research Facilty is selected */
 bool enableResearch(RESEARCH *psResearch, UDWORD player)
 {
 	UDWORD				inc;
-	STRUCTURE			*psStruct;
-	bool				resFree = false;
 
 	inc = psResearch->index;
 	if (inc > asResearch.size())
@@ -1829,25 +1822,15 @@ bool enableResearch(RESEARCH *psResearch, UDWORD player)
 		return false;
 	}
 
+	int prevState = intGetResearchState();
+
 	//found, so set the flag
 	MakeResearchPossible(&asPlayerResList[player][inc]);
 
-	if(player == selectedPlayer)
+	if (player == selectedPlayer)
 	{
 		//set the research reticule button to flash if research facility is free
-		for (psStruct = apsStructLists[selectedPlayer]; psStruct != NULL; psStruct=psStruct->psNext)
-		{
-			if (psStruct->pStructureType->type == REF_RESEARCH && psStruct->status == SS_BUILT &&
-				((RESEARCH_FACILITY *)psStruct->pFunctionality)->psSubject == NULL)
-			{
-				resFree = true;
-				break;
-			}
-		}
-		if (resFree)
-		{
-			flashReticuleButton(IDRET_RESEARCH);
-		}
+		intNotifyResearchButton(prevState);
 	}
 
 	return true;
@@ -1990,7 +1973,7 @@ void replaceDroidComponent(DROID *pList, UDWORD oldType, UDWORD oldCompInc,
 	{
 		switchComponent(psDroid, oldType, oldCompInc, newCompInc);
 		// Need to replace the units inside the transporter
-		if (psDroid->droidType == DROID_TRANSPORTER)
+		if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 		{
 			replaceTransDroidComponents(psDroid, oldType, oldCompInc, newCompInc);
 		}
@@ -2003,8 +1986,7 @@ void replaceTransDroidComponents(DROID *psTransporter, UDWORD oldType,
 {
     DROID       *psCurr;
 
-    ASSERT( psTransporter->droidType == DROID_TRANSPORTER,
-        "replaceTransUnitComponents: invalid unit type" );
+    ASSERT ((psTransporter->droidType == DROID_TRANSPORTER || psTransporter->droidType == DROID_SUPERTRANSPORTER), "invalid unit type" );
 
     for (psCurr = psTransporter->psGroup->psList; psCurr != NULL; psCurr =
         psCurr->psGrpNext)

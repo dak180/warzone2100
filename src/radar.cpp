@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -144,7 +144,7 @@ bool InitRadar(void)
 	colRadarMe = WZCOL_WHITE;
 	if (mapWidth < 150)	// too small!
 	{
-		RadarZoom = DEFAULT_RADARZOOM * 2;
+		RadarZoom = pie_GetVideoBufferWidth() <= 640 ? 14 : DEFAULT_RADARZOOM * 2;
 	}
 	pie_InitRadar();
 

@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -79,6 +79,13 @@
 #include "keybind.h"
 #include <time.h>
 
+#if defined(WZ_OS_MAC)
+// NOTE: Moving these defines is likely to (and has in the past) break the mac builds
+# include <CoreServices/CoreServices.h>
+# include <unistd.h>
+# include "cocoa_wrapper.h"
+#endif // WZ_OS_MAC
+
 /* Always use fallbacks on Windows */
 #if defined(WZ_OS_WIN)
 #  undef WZ_DATADIR
@@ -93,17 +100,6 @@ enum FOCUS_STATE
 	FOCUS_OUT,		// Window does not have the focus
 	FOCUS_IN,		// Window has got the focus
 };
-
-#if defined(WZ_OS_WIN)
-# define WZ_WRITEDIR "Warzone 2100 master"
-#elif defined(WZ_OS_MAC)
-# include <CoreServices/CoreServices.h>
-# include <unistd.h>
-# include "cocoa_wrapper.h"
-# define WZ_WRITEDIR "Warzone 2100 master"
-#else
-# define WZ_WRITEDIR ".warzone2100-master"
-#endif
 
 bool customDebugfile = false;		// Default false: user has NOT specified where to store the stdout/err file.
 
@@ -820,8 +816,8 @@ static void startGameLoop(void)
 	if (game.type == SKIRMISH)
 	{
 		eventFireCallbackTrigger((TRIGGER_TYPE)CALL_START_NEXT_LEVEL);
-		triggerEvent(TRIGGER_START_LEVEL);
 	}
+	triggerEvent(TRIGGER_START_LEVEL);
 	screen_disableMapPreview();
 }
 
@@ -883,6 +879,7 @@ static bool initSaveGameLoad(void)
 	}
 
 	screen_StopBackDrop();
+	closeLoadingScreen();
 
 	// Trap the cursor if cursor snapping is enabled
 	if (war_GetTrapCursor())

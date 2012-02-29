@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -57,6 +57,8 @@
 #define	IDDES_PARTFORM		5027		// Part buttons form
 #define IDDES_WEAPONS_A		5028		// The weapon TURRET_A button for the Component form (right)
 #define IDDES_WEAPONS_B		5029		// The weapon TURRET_B button for the Component form (right)
+#define IDDES_TABSCRL_LEFT	5030		// left scroll button
+#define IDDES_TABSCRL_RIGHT	5031		// right scroll button
 
 #define IDDES_STOREBUTTON	5905		// Stored template button
 

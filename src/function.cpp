@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -1230,7 +1230,7 @@ void droidBodyUpgrade(FUNCTION *pFunction, DROID *psDroid)
 		psDroid->originalBody = newBaseBody;
 	}
     //if a transporter droid then need to upgrade the contents
-    if (psDroid->droidType == DROID_TRANSPORTER)
+    if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
     {
         for (psCurr = psDroid->psGroup->psList; psCurr != NULL; psCurr =
             psCurr->psGrpNext)
@@ -1449,14 +1449,11 @@ void wallDefenceUpgrade(FUNCTION *pFunction, UBYTE player)
 void upgradeTransporterDroids(DROID *psTransporter,
                               void(*pUpgradeFunction)(DROID *psDroid))
 {
-    DROID   *psCurr;
-
-    ASSERT( psTransporter->droidType == DROID_TRANSPORTER,
-        "upgradeTransporterUnits: invalid unit type" );
+	// NOTE: may allow DROID_SUPERTRANSPORTER upgrades...
+    ASSERT (psTransporter->droidType == DROID_TRANSPORTER, "upgradeTransporterUnits: invalid unit type");
 
     //loop thru' each unit in the Transporter
-    for (psCurr = psTransporter->psGroup->psList; psCurr != NULL; psCurr =
-        psCurr->psGrpNext)
+    for (DROID *psCurr = psTransporter->psGroup->psList; psCurr != NULL; psCurr = psCurr->psGrpNext)
     {
         if (psCurr != psTransporter)
         {

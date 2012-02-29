@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -56,10 +56,14 @@ extern void screenDumpToDisk(const char* path);
 
 extern int wz_texture_compression;
 
+extern bool opengl_fallback_mode;
+
 extern void screenDoDumpToDiskIfRequired(void);
 
 void screen_enableMapPreview(char *name, int width, int height, Vector2i *playerpositions);
 void screen_disableMapPreview(void);
 bool screen_getMapPreview(void);
+
+void screen_EnableVBO();
 
 #endif

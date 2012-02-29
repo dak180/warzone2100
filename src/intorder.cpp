@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -558,7 +558,7 @@ static SECONDARY_STATE GetSecondaryStates(SECONDARY_ORDER sec)
 	{
 		for (unsigned i = 0; i < SelectedDroids.size(); ++i)
 		{
-			currState = secondaryGetState(SelectedDroids[i], sec);
+			currState = secondaryGetState(SelectedDroids[i], sec, ModeQueue);
 			if (bFirst)
 			{
 				state = currState;
@@ -1005,8 +1005,10 @@ static bool SetSecondaryState(SECONDARY_ORDER sec, unsigned State)
 		if (SelectedDroids[i])
 		{
 			//Only set the state if it's not a transporter.
-			if(SelectedDroids[i]->droidType != DROID_TRANSPORTER) {
-				if(!secondarySetState(SelectedDroids[i], sec, (SECONDARY_STATE)State)) {
+			if (SelectedDroids[i]->droidType != DROID_TRANSPORTER && SelectedDroids[i]->droidType != DROID_SUPERTRANSPORTER)
+			{
+				if (!secondarySetState(SelectedDroids[i], sec, (SECONDARY_STATE)State))
+				{
 					return false;
 				}
 			}

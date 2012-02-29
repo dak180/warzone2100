@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -185,6 +185,8 @@ enum
 	FE_P5,								// player 5 buton
 	FE_P6,								// player 6 buton
 	FE_P7,								// player 7 buton
+	FE_MP_PR,  // Multiplayer player random button
+	FE_MP_PMAX = FE_MP_PR + MAX_PLAYERS_IN_GUI,  // Multiplayer player blah button
 
 	FRONTEND_GAMEOPTIONS = 21000,           // Game Options menu
 	FRONTEND_LANGUAGE,
@@ -192,6 +194,7 @@ enum
 	FRONTEND_RADAR,
 	FRONTEND_RADAR_R,
 	FRONTEND_COLOUR,
+	FRONTEND_COLOUR_MP,
 	FRONTEND_DIFFICULTY,
 	FRONTEND_DIFFICULTY_R,
 	FRONTEND_SCROLLSPEED_SL,

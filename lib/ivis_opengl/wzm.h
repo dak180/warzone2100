@@ -37,10 +37,16 @@
 // PIE model flags
 #define iV_IMD_NOSTRETCH     0x00001000
 #define iV_IMD_TCMASK        0x00010000
+#define iV_IMD_TEX           0x00000200	// this is both a polygon and pie flag
+#define iV_IMD_TEXANIM       0x00004000 // iV_IMD_TEX must be set also
 
-#define iV_IMD_TEX 0x00000200		// this is both a polygon and pie flag
-#define iV_IMD_TEXANIM 0x00004000 // iV_IMD_TEX must be set also
-
+// premultiplied implies additive
+#define iV_IMD_NO_ADDITIVE     0x00000001
+#define iV_IMD_ADDITIVE        0x00000002
+#define iV_IMD_PREMULTIPLIED   0x00000004
+// pitch to camera implies roll to camera
+#define iV_IMD_ROLL_TO_CAMERA  0x00000010
+#define iV_IMD_PITCH_TO_CAMERA 0x00000020
 //*************************************************************************
 //
 // imd structures

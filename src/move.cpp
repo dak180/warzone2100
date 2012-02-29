@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -223,7 +223,7 @@ static bool moveDroidToBase(DROID *psDroid, UDWORD x, UDWORD y, bool bFormation,
 	CHECK_DROID(psDroid);
 
 	// in multiPlayer make Transporter move like the vtols
-	if ( psDroid->droidType == DROID_TRANSPORTER && game.maxPlayers == 0)
+	if ((psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER) && game.maxPlayers == 0)
 	{
 		fpathSetDirectRoute(psDroid, x, y);
 		psDroid->sMove.Status = MOVENAVIGATE;
@@ -231,7 +231,7 @@ static bool moveDroidToBase(DROID *psDroid, UDWORD x, UDWORD y, bool bFormation,
 		return true;
 	}
 	// NOTE: While Vtols can fly, then can't go through things, like the transporter.
-	else if ((game.maxPlayers > 0 && psDroid->droidType == DROID_TRANSPORTER))
+	else if ((game.maxPlayers > 0 && (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)))
 	{
 		fpathSetDirectRoute(psDroid, x, y);
 		retVal = FPR_OK;
@@ -487,7 +487,7 @@ void updateDroidOrientation(DROID *psDroid)
 	const int d = 20;
 	int32_t vX, vY;
 
-	if(psDroid->droidType == DROID_PERSON || cyborgDroid(psDroid) || psDroid->droidType == DROID_TRANSPORTER
+	if(psDroid->droidType == DROID_PERSON || cyborgDroid(psDroid) || psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER
 		|| isFlying(psDroid))
 	{
 		/* The ground doesn't affect the pitch/roll of these droids*/
@@ -1149,7 +1149,7 @@ static void moveCalcDroidSlide(DROID *psDroid, int *pmx, int *pmy)
 	{
 		if (psObj->type == OBJ_DROID)
 		{
-			if (((DROID *)psObj)->droidType == DROID_TRANSPORTER)
+			if (((DROID *)psObj)->droidType == DROID_TRANSPORTER || ((DROID *)psObj)->droidType == DROID_SUPERTRANSPORTER)
 			{
 				// ignore transporters
 				continue;
@@ -1270,7 +1270,7 @@ static Vector2i moveGetObstacleVector(DROID *psDroid, Vector2i dest)
 			continue;
 		}
 
-		if (psObstacle->droidType == DROID_TRANSPORTER ||
+		if ((psObstacle->droidType == DROID_TRANSPORTER || psObstacle->droidType == DROID_SUPERTRANSPORTER) ||
 		    (psObstacle->droidType == DROID_PERSON &&
 		     psObstacle->player != psDroid->player))
 		{
@@ -1359,7 +1359,7 @@ static uint16_t moveGetDirection(DROID *psDroid)
 	Vector2i dest = target - src;
 
 	// Transporters don't need to avoid obstacles, but everyone else should
-	if (psDroid->droidType != DROID_TRANSPORTER)
+	if (psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER)
 	{
 		dest = moveGetObstacleVector(psDroid, dest);
 	}
@@ -1478,8 +1478,7 @@ static void moveUpdateDroidDirection(DROID *psDroid, SDWORD *pSpeed, uint16_t di
 
 	int diff = angleDelta(direction - *pDroidDir);
 	// Turn while moving - slow down speed depending on target angle so that we can turn faster
-	int maxSpeed = std::max<int>(psDroid->baseSpeed * (iSpinAngle - abs(diff)) / iSpinAngle, 0);
-	*pSpeed = std::min(*pSpeed, maxSpeed);
+	*pSpeed = std::max<int>(*pSpeed * (iSpinAngle - abs(diff)) / iSpinAngle, 0);
 
 	// iTurnSpeed is turn speed at max velocity, increase turn speed up to iSpinSpeed when slowing down
 	int turnSpeed = std::min<int>(iTurnSpeed + int64_t(iSpinSpeed - iTurnSpeed) * abs(diff) / iSpinAngle, iSpinSpeed);
@@ -1626,8 +1625,8 @@ static void moveUpdateDroidPos(DROID *psDroid, int32_t dx, int32_t dy)
 	if ( worldOnMap( psDroid->pos.x, psDroid->pos.y ) == false )
 	{
 		/* transporter going off-world will trigger next map, and is ok */
-		ASSERT(psDroid->droidType == DROID_TRANSPORTER, "droid trying to move off the map!");
-		if (psDroid->droidType != DROID_TRANSPORTER)
+		ASSERT(psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER, "droid trying to move off the map!");
+		if (psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER)
 		{
 			/* dreadful last-ditch crash-avoiding hack - sort this! - GJ */
 			destroyDroid(psDroid, gameTime);
@@ -1637,7 +1636,7 @@ static void moveUpdateDroidPos(DROID *psDroid, int32_t dx, int32_t dy)
 
 	// lovely hack to keep transporters just on the map
 	// two weeks to go and the hacks just get better !!!
-	if (psDroid->droidType == DROID_TRANSPORTER)
+	if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 	{
 		if (psDroid->pos.x == 0)
 		{
@@ -1837,7 +1836,7 @@ static void moveUpdatePersonModel(DROID *psDroid, SDWORD speed, uint16_t directi
 static void moveAdjustVtolHeight(DROID * psDroid, int32_t iMapHeight)
 {
 	int32_t	iMinHeight, iMaxHeight, iLevelHeight;
-	if ( psDroid->droidType == DROID_TRANSPORTER && !bMultiPlayer )
+	if ((psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER) && !bMultiPlayer)
 	{
 		iMinHeight   = 2*VTOL_HEIGHT_MIN;
 		iLevelHeight = 2*VTOL_HEIGHT_LEVEL;
@@ -1895,7 +1894,7 @@ static void moveUpdateVtolModel(DROID *psDroid, SDWORD speed, uint16_t direction
 
 	moveCheckFinalWaypoint( psDroid, &speed );
 
-	if ( psDroid->droidType == DROID_TRANSPORTER )
+	if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 	{
 		moveUpdateDroidDirection(psDroid, &speed, direction, VTOL_SPIN_ANGLE, VTOL_SPIN_SPEED, VTOL_TURN_SPEED, &iDroidDir);
 	}
@@ -1914,7 +1913,7 @@ static void moveUpdateVtolModel(DROID *psDroid, SDWORD speed, uint16_t direction
 	moveGetDroidPosDiffs( psDroid, &dx, &dy );
 
 	/* set slide blocking tile for map edge */
-	if ( psDroid->droidType != DROID_TRANSPORTER )
+	if ( psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER)
 	{
 		moveCalcBlockingSlide(psDroid, &dx, &dy, direction, &slideDir);
 	}
@@ -2157,7 +2156,7 @@ bool moveCheckDroidMovingAndVisible( void *psObj )
 
 	/* check for dead, not moving or invisible to player */
 	if ( psDroid->died || moveDroidStopped( psDroid, 0 ) ||
-		 (psDroid->droidType == DROID_TRANSPORTER && psDroid->order.type == DORDER_NONE) ||
+		 ((psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER) && psDroid->order.type == DORDER_NONE) ||
 		 !(psDroid->visible[selectedPlayer])                                )
 	{
 		psDroid->iAudioID = NO_SOUND;
@@ -2188,7 +2187,7 @@ static void movePlayDroidMoveAudio( DROID *psDroid )
 		{
 			iAudioID = ID_SOUND_TREAD;
 		}
-		else if (psDroid->droidType == DROID_TRANSPORTER)
+		else if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 		{
 			iAudioID = ID_SOUND_BLIMP_FLIGHT;
 		}
@@ -2256,7 +2255,7 @@ static void movePlayAudio( DROID *psDroid, bool bStarted, bool bStoppedBefore, S
 			movePlayDroidMoveAudio( psDroid );
 			return;
 		}
-		else if ( psDroid->droidType == DROID_TRANSPORTER )
+		else if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 		{
 			iAudioID = ID_SOUND_BLIMP_TAKE_OFF;
 		}
@@ -2271,7 +2270,7 @@ static void movePlayAudio( DROID *psDroid, bool bStarted, bool bStoppedBefore, S
 				(psPropType->shutDownID != NO_SOUND) )
 	{
 		/* play stop audio */
-		if ( psDroid->droidType == DROID_TRANSPORTER )
+		if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 		{
 			iAudioID = ID_SOUND_BLIMP_LAND;
 		}
@@ -2644,7 +2643,7 @@ void moveUpdateDroid(DROID *psDroid)
 		objTrace(psDroid->id, "MOVETURNTOTARGET complete");
 	}
 
-	if( (psDroid->inFire && psDroid->droidType != DROID_PERSON) && psDroid->visible[selectedPlayer])
+	if (psDroid->burnStart != 0 && psDroid->droidType != DROID_PERSON && psDroid->visible[selectedPlayer])
 	{
 		pos.x = psDroid->pos.x + (18-rand()%36);
 		pos.z = psDroid->pos.y + (18-rand()%36);

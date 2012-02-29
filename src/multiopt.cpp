@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -56,12 +56,19 @@
 #include "template.h"
 #include "lib/framework/wzapp.h"
 
+extern bool		bHosted;
 
 // send complete game info set!
 void sendOptions()
 {
 	bool dummy = true;
 	unsigned int i;
+
+	if (!NetPlay.isHost || !bHosted)  // Only host should act, and only if the game hasn't started yet.
+	{
+		ASSERT(false, "Host only routine detected for client or not hosting yet!");
+		return;
+	}
 
 	NETbeginEncode(NETbroadcastQueue(), NET_OPTIONS);
 

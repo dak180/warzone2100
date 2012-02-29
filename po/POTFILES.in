@@ -15,6 +15,7 @@ data/base/messages/strings/resstrings.txt
 data/base/messages/strings/scrstrings.txt
 data/base/script/fastplay/fastdemo.slo
 data/base/script/fastplay/start.slo
+data/base/script/rules.js
 data/base/script/text/basic.slo
 data/base/script/text/brief.slo
 data/base/script/text/cam1-1-ai.slo
@@ -122,7 +123,6 @@ data/base/sequenceaudio/cam3/cam3_cn.txt
 data/base/sequenceaudio/devastation.txa
 data/base/sequenceaudio/devastation.txt
 data/base/sequenceaudio/outro.txt
-data/mods/multiplay/old-1.10-balance/messages/strings/names.txt
 data/mp/messages/strings/names.txt
 data/mp/messages/strings/resstrings.txt
 data/mp/multiplay/script/camtech.slo

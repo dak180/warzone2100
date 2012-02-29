@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -58,6 +58,7 @@ struct WARZONE_GLOBALS
 	bool		ColouredCursor;
 	bool		MusicEnabled;
 	int8_t		SPcolor;
+	int             MPcolour;
 };
 
 /***************************************************************************/
@@ -87,6 +88,7 @@ void war_SetDefaultStates(void)//Sets all states
 	war_SetPauseOnFocusLoss(false);
 	war_SetMusicEnabled(true);
 	war_SetSPcolor(0);		//default color is green
+	war_setMPcolour(-1);            // Default color is random.
 }
 
 void war_SetSPcolor(int color)
@@ -102,6 +104,16 @@ void war_SetSPcolor(int color)
 int8_t war_GetSPcolor(void)
 {
 	return warGlobs.SPcolor;
+}
+
+void war_setMPcolour(int colour)
+{
+	warGlobs.MPcolour = colour;
+}
+
+int war_getMPcolour()
+{
+	return warGlobs.MPcolour;
 }
 
 void war_setFullscreen(bool b)

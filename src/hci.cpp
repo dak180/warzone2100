@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -2591,6 +2591,7 @@ static void intProcessStats(UDWORD id)
 					{
 						if (psObjSelected->type == OBJ_STRUCTURE )
 						{
+							// TODO This call seems to be redundant, since cancelResearch is called from objSetStatsFunc==setResearchStats.
 							cancelResearch((STRUCTURE *)psObjSelected, ModeQueue);
 						}
 					}
@@ -3523,6 +3524,10 @@ bool intAddOptions(void)
 	{
 		return false;
 	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
+	}
 	sButInit.id = IDOPT_MAPSAVE;
 	sButInit.x += OPT_GAP + OPT_BUTWIDTH;
 	sButInit.pText = _("Save");
@@ -3530,6 +3535,10 @@ bool intAddOptions(void)
 	if (!widgAddButton(psWScreen, &sButInit))
 	{
 		return false;
+	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
 	}
 	sButInit.id = IDOPT_MAPNEW;
 	sButInit.x = OPT_GAP;
@@ -3539,6 +3548,10 @@ bool intAddOptions(void)
 	if (!widgAddButton(psWScreen, &sButInit))
 	{
 		return false;
+	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
 	}
 
 	/* Add the map size edit boxes */
@@ -3556,12 +3569,20 @@ bool intAddOptions(void)
 	{
 		return false;
 	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
+	}
 	sEdInit.id = IDOPT_MAPHEIGHT;
 	sEdInit.x += OPT_GAP + OPT_BUTWIDTH;
 	sprintf(aText, "%d", mapHeight);
 	if (!widgAddEditBox(psWScreen, &sEdInit))
 	{
 		return false;
+	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
 	}
 
 	/* Add the edit buttons */
@@ -3576,6 +3597,10 @@ bool intAddOptions(void)
 	if (!widgAddButton(psWScreen, &sButInit))
 	{
 		return false;
+	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
 	}
 
 	/* Add the add object buttons */
@@ -3605,6 +3630,10 @@ bool intAddOptions(void)
 	{
 		return false;
 	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
+	}
 
 	/* Edit pause */
 	sButInit.x = OPT_GAP;
@@ -3615,6 +3644,10 @@ bool intAddOptions(void)
 	if (!widgAddButton(psWScreen, &sButInit))
 	{
 		return false;
+	}
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
 	}
 	if (editMode)
 	{
@@ -3630,7 +3663,10 @@ bool intAddOptions(void)
 	{
 		return false;
 	}
-
+	if (NetPlay.bComms)
+	{
+		widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
+	}
 #ifdef EDIT_OPTIONS
 	/* Open the edit window - whatever that is supposed to be */
 	sButInit.x += OPT_GAP;
@@ -3699,7 +3735,10 @@ bool intAddOptions(void)
 		{
 			return false;
 		}
-
+		if (NetPlay.bComms)
+		{
+			widgSetButtonState(psWScreen, sButInit.id, WBUT_DISABLE);
+		}
 		/* Update the initialisation structure for the next button */
 		sButInit.id += 1;
 		sButInit.x += OPT_BUTWIDTH+OPT_GAP;
@@ -5422,7 +5461,6 @@ static bool setResearchStats(BASE_OBJECT *psObj, BASE_STATS *psStats)
 		else
 		{
 			cancelResearch(psBuilding, ModeQueue);
-			setStatusPendingCancel(*psResFacilty);
 		}
 		//stop the button from flashing once a topic has been chosen
 		stopReticuleButtonFlash(IDRET_RESEARCH);
@@ -6111,18 +6149,14 @@ void intCheckReticuleButtons(void)
 
 /*Checks to see if there are any research topics to do and flashes the button -
 only if research facility is free*/
-void intCheckResearchButton(void)
+int intGetResearchState()
 {
-	UWORD index, count;
-	STRUCTURE	*psStruct;
-	bool		resFree = false;
-
-	for (psStruct = interfaceStructList(); psStruct != NULL; psStruct =
-		psStruct->psNext)
+	bool resFree = false;
+	for (STRUCTURE *psStruct = interfaceStructList(); psStruct != NULL; psStruct = psStruct->psNext)
 	{
 		if (psStruct->pStructureType->type == REF_RESEARCH &&
 		    psStruct->status == SS_BUILT &&
-		    getResearchStats((BASE_OBJECT *)psStruct) == NULL)
+		    getResearchStats(psStruct) == NULL)
 		{
 			resFree = true;
 			break;
@@ -6130,20 +6164,43 @@ void intCheckResearchButton(void)
 
 	}
 
+	int count = 0;
 	if (resFree)
 	{
 		//set to value that won't be reached in fillResearchList
-		index = asResearch.size() + 1;
+		int index = asResearch.size() + 1;
 		//calculate the list
-		count = fillResearchList(pList,selectedPlayer, index, MAXRESEARCH);
-		if (count)
+		int preCount = fillResearchList(pList, selectedPlayer, index, MAXRESEARCH);
+		count = preCount;
+		for (int n = 0; n < preCount; ++n)
 		{
-			//set the research reticule button to flash
-			flashReticuleButton(IDRET_RESEARCH);
+			for (int player = 0; player < MAX_PLAYERS; ++player)
+			{
+				if (aiCheckAlliances(player, selectedPlayer) && IsResearchStarted(&asPlayerResList[player][pList[n]]))
+				{
+					--count;  // An ally is already researching this topic, so don't flash the button because of it.
+					break;
+				}
+			}
 		}
 	}
+
+	return count;
 }
 
+void intNotifyResearchButton(int prevState)
+{
+	int newState = intGetResearchState();
+	if (newState > prevState)
+	{
+		// Set the research reticule button to flash.
+		flashReticuleButton(IDRET_RESEARCH);
+	}
+	else if (newState == 0 && prevState > 0)
+	{
+		stopReticuleButtonFlash(IDRET_RESEARCH);
+	}
+}
 
 // see if a reticule button is enabled
 bool intCheckReticuleButEnabled(UDWORD id)
@@ -6256,28 +6313,34 @@ DROID *intGotoNextDroidType(DROID *CurrDroid,UDWORD droidType,bool AllowGroup)
 	DROID *psDroid;
 	bool Found = false;
 
-	if(CurrDroid != NULL) {
+	if(CurrDroid != NULL)
+	{
 		CurrentDroid = CurrDroid;
 	}
 
-	if( ((SWORD)droidType != CurrentDroidType) && (droidType != DROID_ANY)) {
+	if( ((SWORD)droidType != CurrentDroidType) && (droidType != DROID_ANY))
+	{
 		CurrentDroid = NULL;
 		CurrentDroidType = (SWORD)droidType;
 	}
 
-	if(CurrentDroid != NULL) {
+	if(CurrentDroid != NULL)
+	{
 		psDroid = CurrentDroid;
-	} else {
+	}
+	else
+	{
 		psDroid = apsDroidLists[selectedPlayer];
 	}
 
 	for(; psDroid != NULL; psDroid = psDroid->psNext)
 	{
-		if( ( ((UDWORD)psDroid->droidType == droidType) ||
-				  ((droidType == DROID_ANY) && (psDroid->droidType != DROID_TRANSPORTER)) ) &&
-				  ((psDroid->group == UBYTE_MAX) || AllowGroup) )
+		if ((((UDWORD)psDroid->droidType == droidType) ||
+				  ((droidType == DROID_ANY) && (psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER)) ) &&
+				  ((psDroid->group == UBYTE_MAX) || AllowGroup))
 		{
-			if(psDroid != CurrentDroid) {
+			if(psDroid != CurrentDroid)
+			{
 				clearSel();
 				SelectDroid(psDroid);
 				CurrentDroid = psDroid;
@@ -6288,14 +6351,16 @@ DROID *intGotoNextDroidType(DROID *CurrDroid,UDWORD droidType,bool AllowGroup)
 	}
 
 	// Start back at the begining?
-	if((!Found) && (CurrentDroid != NULL)) {
+	if((!Found) && (CurrentDroid != NULL))
+	{
 		for(psDroid = apsDroidLists[selectedPlayer]; (psDroid != CurrentDroid) && (psDroid != NULL); psDroid = psDroid->psNext)
 		{
 			if( ( ((UDWORD)psDroid->droidType == droidType) ||
-				  ((droidType == DROID_ANY) && (psDroid->droidType != DROID_TRANSPORTER)) ) &&
+				  ((droidType == DROID_ANY) && (psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER)) ) &&
 				  ((psDroid->group == UBYTE_MAX) || AllowGroup) )
 			{
-				if(psDroid != CurrentDroid) {
+				if(psDroid != CurrentDroid)
+				{
 					clearSel();
 					SelectDroid(psDroid);
 					CurrentDroid = psDroid;
@@ -6313,13 +6378,12 @@ DROID *intGotoNextDroidType(DROID *CurrDroid,UDWORD droidType,bool AllowGroup)
 		psCBSelectedDroid = NULL;
 
 		// Center it on screen.
-		if(CurrentDroid) {
+		if(CurrentDroid)
+		{
 			intSetMapPos(CurrentDroid->pos.x, CurrentDroid->pos.y);
 		}
-
 		return CurrentDroid;
 	}
-
 	return NULL;
 }
 

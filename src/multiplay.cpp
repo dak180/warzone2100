@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@
 #include "effects.h"
 #include "lib/gamelib/gtime.h"
 #include "keybind.h"
-
+#include "qtscript.h"
 #include "lib/script/script.h"				//Because of "ScriptTabs.h"
 #include "scripttabs.h"			//because of CALL_AI_MSG
 #include "scriptcb.h"			//for console callback
@@ -68,6 +68,8 @@
 #include "multistat.h"
 #include "multigifts.h"								// gifts and alliances.
 #include "multiint.h"
+#include "keymap.h"
+#include "cheat.h"
 
 // ////////////////////////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////////////////////////
@@ -241,6 +243,10 @@ bool multiPlayerLoop(void)
 					sendDataCheck();
 				}
 			}
+			if (NetPlay.bComms)
+			{
+				sendPing();
+			}
 			// Only have to do this on a true MP game
 			if (NetPlay.isHost && !ingame.isAllPlayersDataOK && NetPlay.bComms)
 			{
@@ -260,7 +266,7 @@ bool multiPlayerLoop(void)
 							NETlogEntry(msg, SYNC_FLAG, index);
 
 #ifndef DEBUG
-							kickPlayer(index, "it is not nice to cheat!", ERROR_CHEAT);
+							kickPlayer(index, "invalid data!", ERROR_INVALID);
 #endif
 							debug(LOG_WARNING, "Kicking Player %s (%u), they tried to bypass data integrity check!", getPlayerName(index), index);
 						}
@@ -569,23 +575,8 @@ bool recvMessage(void)
 			processedMessage1 = true;
 			switch(type)
 			{
-			case GAME_DROID:						// new droid of known type
-				recvDroid(queue);
-				break;
 			case GAME_DROIDINFO:					//droid update info
 				recvDroidInfo(queue);
-				break;
-			case GAME_DROIDDEST:					// droid destroy
-				recvDestroyDroid(queue);
-				break;
-			case GAME_CHECK_DROID:				// droid damage and position checks
-				recvDroidCheck(queue);
-				break;
-			case GAME_CHECK_STRUCT:				// structure damage checks.
-				recvStructureCheck(queue);
-				break;
-			case GAME_CHECK_POWER:				// Power level syncing.
-				recvPowerCheck(queue);
 				break;
 			case NET_TEXTMSG:					// simple text message
 				recvTextMessage(queue);
@@ -599,15 +590,6 @@ bool recvMessage(void)
 			case NET_BEACONMSG:					//beacon (blip) message
 				recvBeacon(queue);
 				break;
-			case GAME_BUILDFINISHED:				// a building is complete
-				recvBuildFinished(queue);
-				break;
-			case GAME_STRUCTDEST:				// structure destroy
-				recvDestroyStructure(queue);
-				break;
-			case GAME_DROIDEMBARK:
-				recvDroidEmbark(queue);              //droid has embarked on a Transporter
-				break;
 			case GAME_DROIDDISEMBARK:
 				recvDroidDisEmbark(queue);           //droid has disembarked from a Transporter
 				break;
@@ -616,6 +598,30 @@ bool recvMessage(void)
 				break;
 			case GAME_LASSAT:
 				recvLasSat(queue);
+				break;
+			case GAME_DEBUG_MODE:
+				recvProcessDebugMappings(queue);
+				break;
+			case GAME_DEBUG_ADD_DROID:
+				recvDroid(queue);
+				break;
+			case GAME_DEBUG_ADD_STRUCTURE:
+				recvBuildFinished(queue);
+				break;
+			case GAME_DEBUG_ADD_FEATURE:
+				recvMultiPlayerFeature(queue);
+				break;
+			case GAME_DEBUG_REMOVE_DROID:
+				recvDestroyDroid(queue);
+				break;
+			case GAME_DEBUG_REMOVE_STRUCTURE:
+				recvDestroyStructure(queue);
+				break;
+			case GAME_DEBUG_REMOVE_FEATURE:
+				recvDestroyFeature(queue);
+				break;
+			case GAME_DEBUG_FINISH_RESEARCH:
+				recvResearch(queue);
 				break;
 			default:
 				processedMessage1 = false;
@@ -633,17 +639,8 @@ bool recvMessage(void)
 		case GAME_TEMPLATEDEST:				// template destroy
 			recvDestroyTemplate(queue);
 			break;
-		case GAME_FEATUREDEST:				// feature destroy
-			recvDestroyFeature(queue);
-			break;
 		case NET_PING:						// diagnostic ping msg.
 			recvPing(queue);
-			break;
-		case GAME_DEMOLISH:					// structure demolished.
-			recvDemolishFinished(queue);
-			break;
-		case GAME_RESEARCH:					// some research has been done.
-			recvResearch(queue);
 			break;
 		case NET_OPTIONS:
 			recvOptions(queue);
@@ -658,9 +655,19 @@ bool recvMessage(void)
 			}
 			NETend();
 
+			if (whosResponsible(player_id) != queue.index && queue.index != NET_HOST_ONLY)
+			{
+				HandleBadParam("NET_PLAYER_DROPPED given incorrect params.", player_id, queue.index);
+				break;
+			}
+
 			debug(LOG_INFO,"** player %u has dropped!", player_id);
 
-			MultiPlayerLeave(player_id);		// get rid of their stuff
+			if (NetPlay.players[player_id].allocated)
+			{
+				MultiPlayerLeave(player_id);		// get rid of their stuff
+				NET_InitPlayer(player_id, false);
+			}
 			NETsetPlayerConnectionStatus(CONNECTIONSTATUS_PLAYER_DROPPED, player_id);
 			break;
 		}
@@ -705,9 +712,6 @@ bool recvMessage(void)
 		case GAME_ARTIFACTS:
 			recvMultiPlayerRandomArtifacts(queue);
 			break;
-		case GAME_FEATURES:
-			recvMultiPlayerFeature(queue);
-			break;
 		case GAME_ALLIANCE:
 			recvAlliance(queue, true);
 			break;
@@ -721,11 +725,20 @@ bool recvMessage(void)
 				NETuint32_t(&player_id);
 				NETstring(reason, MAX_KICK_REASON);
 				NETenum(&KICK_TYPE);
+				NETenum(&KICK_TYPE);
 			NETend();
 
 			if (player_id == NET_HOST_ONLY)
 			{
-				debug(LOG_ERROR, "someone tried to kick the host--check your netplay logs!");
+				char buf[250]= {'\0'};
+
+				ssprintf(buf, "Player %d (%s : %s) tried to kick %u", (int) queue.index, NetPlay.players[queue.index].name, NetPlay.players[queue.index].IPtextAddress, player_id);
+				NETlogEntry(buf, SYNC_FLAG, 0);
+				debug(LOG_ERROR, "%s", buf);
+				if (NetPlay.isHost)
+				{
+					NETplayerKicked((unsigned int) queue.index);
+				}
 				break;
 			}
 			else if (selectedPlayer == player_id)  // we've been told to leave.
@@ -772,13 +785,26 @@ bool recvMessage(void)
 	return true;
 }
 
+void HandleBadParam(const char *msg, const int from, const int actual)
+{
+	char buf[255];
+	LOBBY_ERROR_TYPES KICK_TYPE = ERROR_INVALID;
 
+	ssprintf(buf, "!!>Msg: %s, Actual: %d, Bad: %d", msg, actual, from);
+	NETlogEntry(buf, SYNC_FLAG, actual);
+	if (NetPlay.isHost)
+	{
+		ssprintf(buf, "Auto kicking player %s, invalid command received.", NetPlay.players[actual].name);
+		sendTextMessage(buf, true);
+		kickPlayer(actual, buf, KICK_TYPE);
+	}
+}
 // ////////////////////////////////////////////////////////////////////////////
 // Research Stuff. Nat games only send the result of research procedures.
 bool SendResearch(uint8_t player, uint32_t index, bool trigger)
 {
 	// Send the player that is researching the topic and the topic itself
-	NETbeginEncode(NETgameQueue(selectedPlayer), GAME_RESEARCH);
+	NETbeginEncode(NETgameQueue(selectedPlayer), GAME_DEBUG_FINISH_RESEARCH);
 		NETuint8_t(&player);
 		NETuint32_t(&index);
 	NETend();
@@ -793,18 +819,23 @@ static bool recvResearch(NETQUEUE queue)
 	uint32_t		index;
 	int				i;
 	PLAYER_RESEARCH	*pPlayerRes;
-	RESEARCH		*pResearch;
 
-	NETbeginDecode(queue, GAME_RESEARCH);
+	NETbeginDecode(queue, GAME_DEBUG_FINISH_RESEARCH);
 		NETuint8_t(&player);
 		NETuint32_t(&index);
 	NETend();
+
+	if (!getDebugMappingStatus() && bMultiPlayer)
+	{
+		debug(LOG_WARNING, "Failed to finish research for player %u.", NetPlay.players[queue.index].position);
+		return false;
+	}
 
 	syncDebug("player%d, index%u", player, index);
 
 	if (player >= MAX_PLAYERS || index >= asResearch.size())
 	{
-		debug(LOG_ERROR, "Bad GAME_RESEARCH received, player is %d, index is %u", (int)player, index);
+		debug(LOG_ERROR, "Bad GAME_DEBUG_FINISH_RESEARCH received, player is %d, index is %u", (int)player, index);
 		return false;
 	}
 
@@ -815,10 +846,6 @@ static bool recvResearch(NETQUEUE queue)
 	{
 		MakeResearchCompleted(pPlayerRes);
 		researchResult(index, player, false, NULL, true);
-
-		// Take off the power if available
-		pResearch = &asResearch[index];
-		usePower(player, pResearch->researchPower);
 	}
 
 	// Update allies research accordingly
@@ -904,6 +931,12 @@ bool recvResearchStatus(NETQUEUE queue)
 		return false;
 	}
 
+	int prevResearchState = 0;
+	if (aiCheckAlliances(selectedPlayer, player))
+	{
+		prevResearchState = intGetResearchState();
+	}
+
 	pPlayerRes = &asPlayerResList[player][index];
 
 	// psBuilding may be null if finishing
@@ -970,9 +1003,10 @@ bool recvResearchStatus(NETQUEUE queue)
 		}
 	}
 
-	if (alliances[selectedPlayer][player] == ALLIANCE_FORMED)
+	if (aiCheckAlliances(selectedPlayer, player))
 	{
 		intAlliedResearchChanged();
+		intNotifyResearchButton(prevResearchState);
 	}
 
 	return true;
@@ -991,16 +1025,6 @@ bool sendTextMessage(const char *pStr, bool all)
 	char				display[MAX_CONSOLE_STRING_LENGTH];
 	char				msg[MAX_CONSOLE_STRING_LENGTH];
 	char*				curStr = (char*)pStr;
-
-	if (!ingame.localOptionsReceived)
-	{
-		if(!bMultiPlayer)
-		{
-			// apparently we are not in a mp game, so dump the message to the console.
-			addConsoleMessage(curStr,LEFT_JUSTIFY, SYSTEM_MESSAGE);
-		}
-		return true;
-	}
 
 	memset(display,0x0, sizeof(display));	//clear buffer
 	memset(msg,0x0, sizeof(display));		//clear buffer
@@ -1032,7 +1056,7 @@ bool sendTextMessage(const char *pStr, bool all)
 				sstrcpy(display, _("(allies"));
 			}
 		}
-		for (; curStr[0] >= '0' && curStr[0] <= '7'; curStr++)		// for each 0..7 numeric char encountered
+		for (; curStr[0] >= '0' && curStr[0] <= '9'; ++curStr)  // for each 0..9 numeric char encountered
 		{
 			i = posTable[curStr[0]-'0'];
 			if (normal)
@@ -1145,6 +1169,8 @@ bool sendAIMessage(char *pStr, UDWORD player, UDWORD to)
 	//check if this is one of the local players, don't need net send then
 	if (to == selectedPlayer || myResponsibility(to))	//(the only) human on this machine or AI on this machine
 	{
+		triggerEventChat(player, to, pStr);
+
 		//Just show "him" the message
 		displayAIMessage(pStr, player, to);
 
@@ -1261,7 +1287,7 @@ bool recvTextMessage(NETQUEUE queue)
 		playerIndex = queue.index;  // Fix corrupted playerIndex.
 	}
 
-	if (playerIndex >= MAX_PLAYERS)
+	if (playerIndex >= MAX_PLAYERS || (!NetPlay.players[playerIndex].allocated && NetPlay.players[playerIndex].ai == AI_OPEN))
 	{
 		return false;
 	}
@@ -1316,6 +1342,7 @@ bool recvTextMessageAI(NETQUEUE queue)
 	//sstrcpy(msg, getPlayerName(sender));  // name
 	//sstrcat(msg, " : ");                  // seperator
 	sstrcpy(msg, newmsg);
+	triggerEventChat(sender, receiver, newmsg);
 
 	//Display the message and make the script callback
 	displayAIMessage(msg, sender, receiver);
@@ -1483,7 +1510,7 @@ static bool recvDestroyTemplate(NETQUEUE queue)
 // send a destruct feature message.
 bool SendDestroyFeature(FEATURE *pF)
 {
-	NETbeginEncode(NETgameQueue(selectedPlayer), GAME_FEATUREDEST);
+	NETbeginEncode(NETgameQueue(selectedPlayer), GAME_DEBUG_REMOVE_FEATURE);
 		NETuint32_t(&pF->id);
 	return NETend();
 }
@@ -1494,9 +1521,15 @@ bool recvDestroyFeature(NETQUEUE queue)
 	FEATURE *pF;
 	uint32_t	id;
 
-	NETbeginDecode(queue, GAME_FEATUREDEST);
+	NETbeginDecode(queue, GAME_DEBUG_REMOVE_FEATURE);
 		NETuint32_t(&id);
 	NETend();
+
+	if (!getDebugMappingStatus() && bMultiPlayer)
+	{
+		debug(LOG_WARNING, "Failed to remove feature for player %u.", NetPlay.players[queue.index].position);
+		return false;
+	}
 
 	pF = IdToFeature(id,ANYPLAYER);
 	if (pF == NULL)
@@ -1524,10 +1557,10 @@ bool recvMapFileRequested(NETQUEUE queue)
 	PHYSFS_sint64 fileSize_64;
 	PHYSFS_file	*pFileHandle;
 
-	// We are not the host, so we don't care. (in fact, this would be a error)
-	if(!NetPlay.isHost)
+	if(!NetPlay.isHost)				// only host should act
 	{
-		return true;
+		ASSERT(false, "Host only routine detected for client!");
+		return false;
 	}
 
 	//	Check to see who wants the file

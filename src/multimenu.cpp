@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -1032,8 +1032,18 @@ static void displayMultiPlayer(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset,
 		rotation.z = 0;
 		position.x = 0;
 		position.y = 0;
-		position.z = 2000;		//scale them!
-
+		if (displayDroid->droidType == DROID_SUPERTRANSPORTER)
+		{
+			position.z = 7850;
+		}
+		else if (displayDroid->droidType == DROID_TRANSPORTER)
+		{
+			position.z = 4100;
+		}
+		else
+		{
+			position.z = 2000;		//scale them!
+		}
 		displayComponentButtonObject(displayDroid, &rotation, &position, false, 100);
 	}
 	else if(apsDroidLists[player])
@@ -1512,6 +1522,22 @@ void intProcessMultiMenu(UDWORD id)
 	{
 		i = id - MULTIMENU_CHANNEL;
 		openchannels[i] = !openchannels[i];
+
+		if(mouseDown(MOUSE_RMB) && NetPlay.isHost) // both buttons....
+			{
+				char buf[250];
+
+				// Allow the host to kick the AI only in a MP game, or if they activated cheats in a skirmish game
+				if (NetPlay.bComms || Cheated)
+				{
+					ssprintf(buf, _("The host has kicked %s from the game!"), getPlayerName((unsigned int) i));
+					sendTextMessage(buf, true);
+					ssprintf(buf, _("kicked %s : %s from the game, and added them to the banned list!"), getPlayerName((unsigned int) i), NetPlay.players[i].IPtextAddress);
+					NETlogEntry(buf, SYNC_FLAG, (unsigned int) i);
+					kickPlayer((unsigned int) i, "you are unwanted by the host.", ERROR_KICKED);
+					return;
+				}
+			}
 	}
 
 	//radar gifts

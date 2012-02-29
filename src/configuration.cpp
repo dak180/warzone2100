@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -92,6 +92,7 @@ bool loadConfig()
 	seq_SetSubtitles(ini.value("subtitles", true).toBool());
 	setDifficultyLevel((DIFFICULTY_LEVEL)ini.value("difficulty", DL_NORMAL).toInt());
 	war_SetSPcolor(ini.value("colour", 0).toInt());	// default is green (0)
+	war_setMPcolour(ini.value("colourMP", -1).toInt());  // default is random (-1)
 	sstrcpy(game.name, ini.value("gameName", _("My Game")).toString().toUtf8().constData());
 	sstrcpy(sPlayer, ini.value("playerName", _("Player")).toString().toUtf8().constData());
 	if (ini.contains("mapName") && ini.contains("maxPlayers"))
@@ -212,6 +213,7 @@ bool saveConfig()
 		}
 		ini.setValue("playerName", (char*)sPlayer);		// player name
 	}
+	ini.setValue("colourMP", war_getMPcolour());
 	ini.sync();
 	return true;
 }

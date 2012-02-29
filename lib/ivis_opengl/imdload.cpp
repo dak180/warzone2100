@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -781,11 +781,12 @@ iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd, const 
 
 		ASSERT_OR_RETURN(NULL, texpage >= 0, "%s could not load tex page %s", pFileName, texfile);
 
-		// assign tex page to levels
+		// assign tex pages and flags to all levels
 		for (psShape = shape; psShape != NULL; psShape = psShape->next)
 		{
 			psShape->setTexturePage(WZM_TEX_DIFFUSE, texpage);
 			psShape->setTexturePage(WZM_TEX_NORMALMAP, normalpage);
+			psShape->flags = imd_flags;
 		}
 
 		// check if model should use team colour mask
@@ -802,7 +803,6 @@ iIMDShape *iV_ProcessIMD( const char *pFileData, const char *FileDataEnd, const 
 			// Propagate settings through levels
 			for (psShape = shape; psShape != NULL; psShape = psShape->next)
 			{
-				psShape->flags |= iV_IMD_TCMASK;
 				psShape->setTexturePage(WZM_TEX_TCMASK, texpage_mask);
 			}
 		}

@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ static const StringToEnum<DROID_TYPE> map_DROID_TYPE[] =
 	{"CYBORG_CONSTRUCT",    DROID_CYBORG_CONSTRUCT  },
 	{"CYBORG_REPAIR",       DROID_CYBORG_REPAIR     },
 	{"TRANSPORTER",         DROID_TRANSPORTER       },
+	{"SUPERTRANSPORTER",    DROID_SUPERTRANSPORTER  },
 	{"ZNULLDROID",          DROID_ANY               },
 	{"DROID",               DROID_DEFAULT           },
 };
@@ -71,6 +72,7 @@ bool researchedTemplate(DROID_TEMPLATE *psCurr, int player)
 	case DROID_CYBORG_CONSTRUCT:
 	case DROID_CYBORG_REPAIR:
 	case DROID_TRANSPORTER:
+	case DROID_SUPERTRANSPORTER:
 		return (apCompLists[player][COMP_BODY][psCurr->asParts[COMP_BODY]] == AVAILABLE);
 	default:
 		break; // now proceed to normal droids...
@@ -679,7 +681,7 @@ void fillTemplateList(std::vector<DROID_TEMPLATE *> &pList, STRUCTURE *psFactory
 	for (std::list<DROID_TEMPLATE>::iterator i = localTemplates.begin(); i != localTemplates.end(); ++i)
 	{
 		psCurr = &*i;
-		//must add Command Droid if currently in production
+		// Must add droids if currently in production.
 		if (!getProduction(psFactory, psCurr).quantity)
 		{
 			//can only have (MAX_CMDDROIDS) in the world at any one time
@@ -690,11 +692,12 @@ void fillTemplateList(std::vector<DROID_TEMPLATE *> &pList, STRUCTURE *psFactory
 					continue;
 				}
 			}
-		}
 
-		if (!psCurr->enabled || !validTemplateForFactory(psCurr, psFactory) || !researchedTemplate(psCurr, player))
-		{
-			continue;
+			if (!psCurr->enabled || !validTemplateForFactory(psCurr, psFactory, false)
+			    || !researchedTemplate(psCurr, player))
+			{
+				continue;
+			}
 		}
 
 		//check the factory can cope with this sized body

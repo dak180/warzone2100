@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -673,6 +673,7 @@ static void displayCompObj(DROID *psDroid, bool bButton)
 			{
 			case DROID_DEFAULT:
 			case DROID_TRANSPORTER:
+			case DROID_SUPERTRANSPORTER:
 			case DROID_CYBORG:
 			case DROID_CYBORG_SUPER:
 			case DROID_WEAPON:
@@ -1002,7 +1003,7 @@ void displayComponentObject(DROID *psDroid)
 	position.z = -(st.pos.y - player.p.z);
 	position.y = st.pos.z;
 
-	if(psDroid->droidType == DROID_TRANSPORTER)
+	if(psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 	{
 		position.y += bobTransporterHeight();
 	}

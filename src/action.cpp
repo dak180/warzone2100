@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -406,7 +406,7 @@ bool actionTargetTurret(BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, WEAPON *
 	{
 		DROID *psDroid = (DROID *)psAttacker;
 
-		if (psDroid->droidType == DROID_WEAPON || psDroid->droidType == DROID_TRANSPORTER
+		if (psDroid->droidType == DROID_WEAPON || psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER
 			|| psDroid->droidType == DROID_COMMAND || psDroid->droidType == DROID_CYBORG
 			|| psDroid->droidType == DROID_CYBORG_SUPER)
 		{
@@ -2220,7 +2220,7 @@ static void actionDroidBase(DROID *psDroid, DROID_ACTION_DATA *psAction)
 		// can't attack without a weapon
 		// or yourself
 		if ((psDroid->asWeaps[0].nStat == 0) ||
-			(psDroid->droidType == DROID_TRANSPORTER) ||
+			(psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER) ||
 			(psAction->psObj == psDroid))
 		{
 			break;
@@ -2241,7 +2241,7 @@ static void actionDroidBase(DROID *psDroid, DROID_ACTION_DATA *psAction)
 			//in multiPlayer cannot electronically attack a tranporter
 			if (bMultiPlayer
 			    && psAction->psObj->type == OBJ_DROID
-			    && ((DROID *)psAction->psObj)->droidType == DROID_TRANSPORTER)
+			    && (((DROID *)psAction->psObj)->droidType == DROID_TRANSPORTER || ((DROID *)psAction->psObj)->droidType == DROID_SUPERTRANSPORTER))
 			{
 				psDroid->action = DACTION_NONE;
 				break;

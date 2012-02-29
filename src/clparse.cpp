@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -232,6 +232,7 @@ typedef enum
 	CLI_CRASH,
 	CLI_TEXTURECOMPRESSION,
 	CLI_NOTEXTURECOMPRESSION,
+	CLI_FALLBACKMODE,
 } CLI_OPTIONS;
 
 static const struct poptOption* getOptionsTable(void)
@@ -263,6 +264,7 @@ static const struct poptOption* getOptionsTable(void)
 		{ "host",       '\0', POPT_ARG_NONE,   NULL, CLI_HOSTLAUNCH, N_("go directly to host screen"),        NULL },
 		{ "texturecompression", '\0', POPT_ARG_NONE, NULL, CLI_TEXTURECOMPRESSION, N_("Enable texture compression"), NULL },
 		{ "notexturecompression", '\0', POPT_ARG_NONE, NULL, CLI_NOTEXTURECOMPRESSION, N_("Disable texture compression"), NULL },
+		{ "fallback-mode", '\0', POPT_ARG_NONE, NULL, CLI_FALLBACKMODE, N_("Only use OpenGL 1.5"), NULL },
 		// Terminating entry
 		{ NULL,         '\0', 0,               NULL, 0,              NULL,                                    NULL },
 	};
@@ -594,6 +596,10 @@ bool ParseCommandLine(int argc, const char** argv)
 
 			case CLI_NOTEXTURECOMPRESSION:
 				wz_texture_compression = GL_RGBA;
+				break;
+
+			case CLI_FALLBACKMODE:
+				opengl_fallback_mode = true;
 				break;
 		};
 	}

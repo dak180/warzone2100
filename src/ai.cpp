@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -353,6 +353,7 @@ static SDWORD targetAttackWeight(BASE_OBJECT *psTarget, BASE_OBJECT *psAttacker,
 			case DROID_ECM:
 			case DROID_PERSON:
 			case DROID_TRANSPORTER:
+			case DROID_SUPERTRANSPORTER:
 			case DROID_DEFAULT:
 			case DROID_ANY:
 				break;
@@ -579,7 +580,7 @@ int aiBestNearestTarget(DROID *psDroid, BASE_OBJECT **ppsObj, int weapon_slot, i
 					// if not electronic then valid target
 					if (!electronic
 					    || (electronic
-					        && ((DROID *)targetInQuestion)->droidType != DROID_TRANSPORTER))
+					        && (((DROID *)targetInQuestion)->droidType != DROID_TRANSPORTER && ((DROID *)targetInQuestion)->droidType != DROID_SUPERTRANSPORTER)))
 					{
 						//only a valid target if NOT a transporter
 						psTarget = targetInQuestion;

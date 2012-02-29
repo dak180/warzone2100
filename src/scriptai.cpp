@@ -1,7 +1,7 @@
 /*
 	This file is part of Warzone 2100.
 	Copyright (C) 1999-2004  Eidos Interactive
-	Copyright (C) 2005-2011  Warzone 2100 Project
+	Copyright (C) 2005-2012  Warzone 2100 Project
 
 	Warzone 2100 is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ bool scrGroupAddDroid(void)
 			"scrGroupAdd: cannot add a command droid to a group" );
 		return false;
 	}
-	if (psDroid->droidType == DROID_TRANSPORTER)
+	if (psDroid->droidType == DROID_TRANSPORTER || psDroid->droidType == DROID_SUPERTRANSPORTER)
 	{
 		debug( LOG_ERROR,
 			"scrGroupAdd: cannot add a transporter to a group" );
@@ -115,7 +115,7 @@ bool scrGroupAddArea(void)
 		if (((SDWORD)psDroid->pos.x >= x1) && ((SDWORD)psDroid->pos.x <= x2) &&
 			((SDWORD)psDroid->pos.y >= y1) && ((SDWORD)psDroid->pos.y <= y2) &&
 			psDroid->droidType != DROID_COMMAND &&
-			psDroid->droidType != DROID_TRANSPORTER )
+			(psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER))
 
 		{
 			psGroup->add(psDroid);
@@ -153,7 +153,7 @@ bool scrGroupAddAreaNoGroup(void)
 		if (((SDWORD)psDroid->pos.x >= x1) && ((SDWORD)psDroid->pos.x <= x2) &&
 			((SDWORD)psDroid->pos.y >= y1) && ((SDWORD)psDroid->pos.y <= y2) &&
 			psDroid->droidType != DROID_COMMAND &&
-			psDroid->droidType != DROID_TRANSPORTER &&
+			(psDroid->droidType != DROID_TRANSPORTER && psDroid->droidType != DROID_SUPERTRANSPORTER) &&
 			psDroid->psGroup   == NULL)
 		{
 			psGroup->add(psDroid);
@@ -1069,6 +1069,7 @@ static UDWORD scrDroidTargetMask(DROID *psDroid)
 		mask |= SCR_DT_REPAIR;
 		break;
 	case DROID_TRANSPORTER:
+	case DROID_SUPERTRANSPORTER:
 		break;
 	case DROID_DEFAULT:
 	case DROID_ANY:
@@ -1395,7 +1396,7 @@ bool scrSkCanBuildTemplate(void)
 	}
 
 	// is factory big enough?
-	if(!validTemplateForFactory(psTempl, psStructure) )
+	if (!validTemplateForFactory(psTempl, psStructure, false))
 	{
 		goto failTempl;
 	}
@@ -1476,6 +1477,7 @@ bool scrSkCanBuildTemplate(void)
 
 	case DROID_PERSON:		        // person
 	case DROID_TRANSPORTER:	        // guess what this is!
+	case DROID_SUPERTRANSPORTER:
 	case DROID_DEFAULT:		        // Default droid
 	case DROID_ANY:
 	default:
