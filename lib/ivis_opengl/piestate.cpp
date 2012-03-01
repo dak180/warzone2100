@@ -299,7 +299,7 @@ bool pie_LoadShaders()
 
 	// TCMask shader for map-placed models with advanced lighting
 	debug(LOG_3D, "Loading shader: SHADER_COMPONENT");
-	result = loadShaders(&program, "", "shaders/tcmask.vert", "shaders/tcmask.frag");
+	result = loadShaders(&program, "", "shaders/component.vert", "shaders/component.frag");
 	ASSERT_OR_RETURN(false, result, "Failed to load component shader");
 	shaderProgram[SHADER_COMPONENT] = program;
 
