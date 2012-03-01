@@ -698,8 +698,7 @@ static bool dataIMDLoad(const char *fileName, void **ppData)
 	if (pos != std::string::npos)
 	{
 		// try wzm first
-		//fname = fname.substr(0, pos) + ".wzm";
-		fname += ".wzm";
+		fname = fname.substr(0, pos) + ".wzm";
 
 		if (loadFile(fname.c_str(), &bytes, &size, true, false))
 		{
