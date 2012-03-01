@@ -459,11 +459,11 @@ bool iIMDShape::loadFromStream(std::istream &in)
 	return true;
 }
 
-void iIMDShape::render(int frame, PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)
+void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)
 {
 	bool light = true;
 	bool shaders = pie_GetShaderAvailability();
-	SHADER_MODE shaderMode;
+	SHADER_MODE shaderMode = SHADER_NONE;
 
 	glErrors();
 

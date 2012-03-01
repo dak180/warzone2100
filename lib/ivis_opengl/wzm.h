@@ -149,7 +149,7 @@ public:
 	~iIMDShape();
 
 	void clear();
-	void render(int frame, PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData);
+	void render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData);
 
 	bool loadFromStream(std::istream& in);
 

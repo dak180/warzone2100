@@ -452,8 +452,6 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 
 	ASSERT_OR_RETURN(, shape, "Attempting to draw null sprite");
 
-	teamcolour = pal_GetTeamColour(team);
-
 	pieCount++;
 
 	ASSERT(frame >= 0, "Negative frame %d", frame);
@@ -463,9 +461,11 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 		frame = team;
 	}
 
+	teamcolour = pal_GetTeamColour(team);
+
 	if (shape->isWZMFormat())
 	{
-		shape->render(frame, colour, teamcolour, pieFlag, pieFlagData);
+		shape->render(colour, teamcolour, pieFlag, pieFlagData);
 	}
 	else if (drawing_interface || !shadows)
 	{
