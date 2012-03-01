@@ -98,9 +98,6 @@ class WZMesh
 
 	std::vector<Vector3f> m_connectorArray;
 
-	float m_material[LIGHT_MAX][4];
-	float m_shininess;
-
 	Vector3f m_aabb_min, m_aabb_max, m_tightspherecenter;
 public:
 	WZMesh();

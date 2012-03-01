@@ -31,6 +31,8 @@
 #define WZM_MODEL_DIRECTIVE_TEXTURE "TEXTURE"
 #define WZM_MODEL_DIRECTIVE_TCMASK "TCMASK"
 #define WZM_MODEL_DIRECTIVE_NORMALMAP "NORMALMAP"
+#define WZM_MODEL_DIRECTIVE_SPECULARMAP "SPECULARMAP"
+#define WZM_MODEL_DIRECTIVE_MATERIAL "MATERIAL"
 #define WZM_MODEL_DIRECTIVE_MESHES "MESHES"
 
 #define WZM_MESH_SIGNATURE "MESH"
@@ -57,23 +59,6 @@ void WZMesh::clear()
 	m_textureArray.clear();
 	m_normalArray.clear();
 	m_tangentArray.clear();
-
-	// Set default values
-	memset(m_material, 0, sizeof(m_material));
-
-	m_material[LIGHT_AMBIENT][0] = 1.0f;
-	m_material[LIGHT_AMBIENT][1] = 1.0f;
-	m_material[LIGHT_AMBIENT][2] = 1.0f;
-	m_material[LIGHT_AMBIENT][3] = 1.0f;
-	m_material[LIGHT_DIFFUSE][0] = 1.0f;
-	m_material[LIGHT_DIFFUSE][1] = 1.0f;
-	m_material[LIGHT_DIFFUSE][2] = 1.0f;
-	m_material[LIGHT_DIFFUSE][3] = 1.0f;
-	m_material[LIGHT_SPECULAR][0] = 1.0f;
-	m_material[LIGHT_SPECULAR][1] = 1.0f;
-	m_material[LIGHT_SPECULAR][2] = 1.0f;
-	m_material[LIGHT_SPECULAR][3] = 1.0f;
-	m_shininess = 10;
 
 	m_aabb_min = m_aabb_max = m_tightspherecenter = Vector3f(0., 0., 0.);
 }
@@ -243,6 +228,22 @@ iIMDShape::iIMDShape():
 	next(0),
 	m_texpages(static_cast<int>(WZM_TEX__LAST), iV_TEX_INVALID)
 {
+	// Set default values
+	memset(material, 0, sizeof(material));
+
+	material[LIGHT_AMBIENT][0] = 1.0f;
+	material[LIGHT_AMBIENT][1] = 1.0f;
+	material[LIGHT_AMBIENT][2] = 1.0f;
+	material[LIGHT_AMBIENT][3] = 1.0f;
+	material[LIGHT_DIFFUSE][0] = 1.0f;
+	material[LIGHT_DIFFUSE][1] = 1.0f;
+	material[LIGHT_DIFFUSE][2] = 1.0f;
+	material[LIGHT_DIFFUSE][3] = 1.0f;
+	material[LIGHT_SPECULAR][0] = 1.0f;
+	material[LIGHT_SPECULAR][1] = 1.0f;
+	material[LIGHT_SPECULAR][2] = 1.0f;
+	material[LIGHT_SPECULAR][3] = 1.0f;
+	shininess = 10;
 }
 
 iIMDShape::~iIMDShape()
@@ -363,6 +364,41 @@ bool iIMDShape::loadFromStream(std::istream &in)
 
 		m_texpages[WZM_TEX_NORMALMAP] = iV_GetTexture(str.c_str());
 		ASSERT_OR_RETURN(NULL, m_texpages[WZM_TEX_NORMALMAP] > iV_TEX_INVALID, "Could not load normalmap page %s", str.c_str());
+
+		// pre read next token
+		in >> str;
+	}
+
+	// SPECULARMAP ?
+	if (!str.compare(WZM_MODEL_DIRECTIVE_SPECULARMAP))
+	{
+		in >> str;
+		if (in.fail())
+		{
+			debug(LOG_WARNING, "WZM::read - Error reading SPECULARMAP name");
+			return false;
+		}
+
+		m_texpages[WZM_TEX_SPECULAR] = iV_GetTexture(str.c_str());
+		ASSERT_OR_RETURN(NULL, m_texpages[WZM_TEX_SPECULAR] > iV_TEX_INVALID, "Could not load specularmap page %s", str.c_str());
+
+		// pre read next token
+		in >> str;
+	}
+
+	// MATERIAL ?
+	if (!str.compare(WZM_MODEL_DIRECTIVE_MATERIAL))
+	{
+		in >> material[LIGHT_EMISSIVE][0] >> material[LIGHT_EMISSIVE][1] >> material[LIGHT_EMISSIVE][2] >>
+		      material[LIGHT_AMBIENT][0] >> material[LIGHT_AMBIENT][1] >> material[LIGHT_AMBIENT][2] >>
+		      material[LIGHT_DIFFUSE][0] >> material[LIGHT_DIFFUSE][1] >> material[LIGHT_DIFFUSE][2] >>
+		      material[LIGHT_SPECULAR][0] >> material[LIGHT_SPECULAR][1] >> material[LIGHT_SPECULAR][2] >>
+		      shininess;
+		if (in.fail())
+		{
+			debug(LOG_WARNING, "WZM::read - Error reading material values");
+			return false;
+		}
 
 		// pre read next token
 		in >> str;
@@ -525,18 +561,18 @@ void iIMDShape::render(int frame, PIELIGHT colour, PIELIGHT teamcolour, int pieF
 
 	glErrors();
 
+	if (light)
+	{
+		glMaterialfv(GL_FRONT, GL_AMBIENT, material[LIGHT_AMBIENT]);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, material[LIGHT_DIFFUSE]);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, material[LIGHT_SPECULAR]);
+		glMaterialfv(GL_FRONT, GL_EMISSION, material[LIGHT_EMISSIVE]);
+		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+	}
+
 	for (int i = 0; i < (int)m_meshes.size(); ++i)
 	{
 		const WZMesh& msh = m_meshes.front();
-
-		if (light)
-		{
-			glMaterialfv(GL_FRONT, GL_AMBIENT, msh.m_material[LIGHT_AMBIENT]);
-			glMaterialfv(GL_FRONT, GL_DIFFUSE, msh.m_material[LIGHT_DIFFUSE]);
-			glMaterialfv(GL_FRONT, GL_SPECULAR, msh.m_material[LIGHT_SPECULAR]);
-			glMaterialfv(GL_FRONT, GL_EMISSION, msh.m_material[LIGHT_EMISSIVE]);
-			glMaterialf(GL_FRONT, GL_SHININESS, msh.m_shininess);
-		}
 
 		if (shaders && shaderMode == SHADER_COMPONENT)
 		{
