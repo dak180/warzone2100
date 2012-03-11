@@ -570,9 +570,10 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 	}
 
-	for (int i = 0; i < (int)m_meshes.size(); ++i)
+
+	for (std::list<WZMesh>::iterator it = m_meshes.begin(); it != m_meshes.end(); ++it)
 	{
-		const WZMesh& msh = m_meshes.front();
+		const WZMesh& msh = *it;
 
 		if (shaders && shaderMode == SHADER_COMPONENT)
 		{
