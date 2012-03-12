@@ -1288,16 +1288,24 @@ void alignStructure(STRUCTURE *psBuilding)
 	{
 		iIMDShape *strImd = psBuilding->sDisplay.imd;
 
-		psBuilding->pos.z = TILE_MIN_HEIGHT;
-		psBuilding->foundationDepth = TILE_MAX_HEIGHT;
-
-		// Now we got through the shape looking for vertices on the edge
-                for (int i = 0; i < strImd->npoints; i++)
+		if (strImd->isWZMFormat())
 		{
-			int pointHeight = map_Height(psBuilding->pos.x + strImd->points[i].x, psBuilding->pos.y - strImd->points[i].z);
-			syncDebug("pointHeight=%d", pointHeight);  // Eeek, strImd->points[i] is a Vector3f! If this causes desynchs, need to fix!
-			psBuilding->pos.z = std::max(psBuilding->pos.z, pointHeight);
-			psBuilding->foundationDepth = std::min<float>(psBuilding->foundationDepth, pointHeight);
+			psBuilding->pos.z = map_Height(psBuilding->pos.x, psBuilding->pos.y);
+			psBuilding->foundationDepth = 0.0f;
+		}
+		else
+		{
+			psBuilding->pos.z = TILE_MIN_HEIGHT;
+			psBuilding->foundationDepth = TILE_MAX_HEIGHT;
+
+			// Now we got through the shape looking for vertices on the edge
+			for (int i = 0; i < strImd->npoints; i++)
+			{
+				int pointHeight = map_Height(psBuilding->pos.x + strImd->points[i].x, psBuilding->pos.y - strImd->points[i].z);
+				syncDebug("pointHeight=%d", pointHeight);  // Eeek, strImd->points[i] is a Vector3f! If this causes desynchs, need to fix!
+				psBuilding->pos.z = std::max(psBuilding->pos.z, pointHeight);
+				psBuilding->foundationDepth = std::min<float>(psBuilding->foundationDepth, pointHeight);
+			}
 		}
 	}
 }
