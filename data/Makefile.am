@@ -10,6 +10,7 @@ stamp:
 
 BASELIST = \
 	palette.txt \
+	3dview.ini \
 	anims \
 	audio \
 	components \
