@@ -23,6 +23,7 @@
 #include "pietypes.h"
 
 #include "lib/framework/frame.h"
+#include "lib/framework/wzconfig.h"
 #include "lib/ivis_opengl/piedef.h"
 #include "lib/ivis_opengl/piestate.h"
 
@@ -43,6 +44,42 @@
 #define WZM_MESH_DIRECTIVE_VERTEXARRAY "VERTEXARRAY"
 #define WZM_MESH_DIRECTIVE_INDEXARRAY "INDEXARRAY"
 #define WZM_MESH_DIRECTIVE_CONNECTORS "CONNECTORS"
+
+// Default material values
+static GLfloat mat_default_reflections[LIGHT_MAX][4];
+static GLfloat mat_default_shininess;
+
+bool wzm_loadDefaults(const char *pFileName)
+{
+	WzConfig ini(pFileName);
+	if (ini.status() != QSettings::NoError)
+	{
+		debug(LOG_ERROR, "Could not open %s", pFileName);
+		return false;
+	}
+
+	Vector3f vec;
+
+	vec = ini.vector3f("Lightning/DefaultMaterial_Ambient");
+	mat_default_reflections[LIGHT_AMBIENT][0] = vec.x; mat_default_reflections[LIGHT_AMBIENT][1] = vec.y; mat_default_reflections[LIGHT_AMBIENT][2] = vec.z;
+	mat_default_reflections[LIGHT_AMBIENT][3] = 1.0f;
+
+	vec = ini.vector3f("Lightning/DefaultMaterial_Diffuse");
+	mat_default_reflections[LIGHT_DIFFUSE][0] = vec.x; mat_default_reflections[LIGHT_DIFFUSE][1] = vec.y; mat_default_reflections[LIGHT_DIFFUSE][2] = vec.z;
+	mat_default_reflections[LIGHT_DIFFUSE][3] = 1.0f;
+
+	vec = ini.vector3f("Lightning/DefaultMaterial_Specular");
+	mat_default_reflections[LIGHT_SPECULAR][0] = vec.x; mat_default_reflections[LIGHT_SPECULAR][1] = vec.y; mat_default_reflections[LIGHT_SPECULAR][2] = vec.z;
+	mat_default_reflections[LIGHT_SPECULAR][3] = 1.0f;
+
+	vec = ini.vector3f("Lightning/DefaultMaterial_Emissive");
+	mat_default_reflections[LIGHT_EMISSIVE][0] = vec.x; mat_default_reflections[LIGHT_EMISSIVE][1] = vec.y; mat_default_reflections[LIGHT_EMISSIVE][2] = vec.z;
+	mat_default_reflections[LIGHT_EMISSIVE][3] = 1.0f;
+
+	mat_default_shininess = ini.value("Lightning/DefaultMaterial_Shininess").toFloat();
+
+	return true;
+}
 
 void WZMesh::mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int axis)
 {
@@ -347,21 +384,8 @@ void iIMDShape::clear()
 	std::fill_n(m_aabb, WZM_AABB_SIZE, Vector3f(0., 0., 0.));
 
 	// Set default values
-	memset(material, 0, sizeof(material));
-
-	material[LIGHT_AMBIENT][0] = 1.0f;
-	material[LIGHT_AMBIENT][1] = 1.0f;
-	material[LIGHT_AMBIENT][2] = 1.0f;
-	material[LIGHT_AMBIENT][3] = 1.0f;
-	material[LIGHT_DIFFUSE][0] = 1.0f;
-	material[LIGHT_DIFFUSE][1] = 1.0f;
-	material[LIGHT_DIFFUSE][2] = 1.0f;
-	material[LIGHT_DIFFUSE][3] = 1.0f;
-	material[LIGHT_SPECULAR][0] = 1.0f;
-	material[LIGHT_SPECULAR][1] = 1.0f;
-	material[LIGHT_SPECULAR][2] = 1.0f;
-	material[LIGHT_SPECULAR][3] = 1.0f;
-	shininess = 10;
+	memcpy(material, mat_default_reflections, sizeof(material));
+	shininess = mat_default_shininess;
 }
 
 bool iIMDShape::loadFromStream(std::istream &in)

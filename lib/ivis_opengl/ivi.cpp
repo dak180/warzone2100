@@ -22,14 +22,21 @@
 #include "lib/ivis_opengl/piemode.h"
 #include "lib/ivis_opengl/tex.h"
 #include "lib/ivis_opengl/textdraw.h"
+#include "lib/ivis_opengl/wzm.h"
 
 // pass in true to reset the palette too.
-void iV_Reset()
+bool iV_Reset()
 {
 	_TEX_INDEX = 0;
+	if (!wzm_loadDefaults("3dview.ini"))
+	{
+		return false;
+	}
+
+	return true;
 }
 
-void iV_ShutDown(void)
+void iV_ShutDown()
 {
 	pie_ShutDown();
 	pie_TexShutDown();

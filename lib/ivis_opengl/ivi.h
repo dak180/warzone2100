@@ -25,7 +25,7 @@
 
 #include "piedef.h"
 
-extern void iV_Reset(void);
-extern void iV_ShutDown(void);
+bool iV_Reset();
+void iV_ShutDown();
 
 #endif

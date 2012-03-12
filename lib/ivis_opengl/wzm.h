@@ -76,6 +76,8 @@ struct iIMDPoly
 
 struct iIMDShape;
 
+bool wzm_loadDefaults(const char *pFileName);
+
 #define WZM_AABB_SIZE 8
 
 #define WZM_MODEL_SIGNATURE "WZM"

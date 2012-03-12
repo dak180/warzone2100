@@ -626,7 +626,10 @@ bool frontendInitialise(const char *ResourceFile)
 		return false;
 	}
 
-	iV_Reset();								// Reset the IV library.
+	if (!iV_Reset())					// Reset the IV library.
+	{
+		return false;
+	}
 
 	if (!scrTabInitialise())				// Initialise the script system
 	{
