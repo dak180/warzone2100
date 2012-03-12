@@ -28,6 +28,7 @@
 #include "lib/framework/opengl.h"
 #include "lib/framework/math_ext.h"
 #include "lib/framework/stdio_ext.h"
+#include "lib/framework/wzconfig.h"
 
 /* Includes direct access to render library */
 #include "lib/ivis_opengl/pieblitfunc.h"
@@ -1101,13 +1102,48 @@ static void drawTiles(iView *player)
 	locateMouse();
 }
 
+bool disp3d_load3DViewParams(const char *pFileName)
+{
+	WzConfig ini(pFileName);
+	if (ini.status() != QSettings::NoError)
+	{
+		debug(LOG_ERROR, "Could not open %s", pFileName);
+		return false;
+	}
+
+	float value[4];
+	value[3] = 1.0f; // const value
+	Vector3f vec;
+
+	vec = ini.vector3f("Lightning/Global_Ambient");
+	value[0] = vec.x; value[1] = vec.y; value[2] = vec.z;
+	pie_Lighting0(LIGHT_EMISSIVE, value);
+
+	vec = ini.vector3f("Lightning/Sun_Ambient");
+	value[0] = vec.x; value[1] = vec.y; value[2] = vec.z;
+	pie_Lighting0(LIGHT_AMBIENT, value);
+
+	vec = ini.vector3f("Lightning/Sun_Diffuse");
+	value[0] = vec.x; value[1] = vec.y; value[2] = vec.z;
+	pie_Lighting0(LIGHT_DIFFUSE, value);
+
+	vec = ini.vector3f("Lightning/Sun_Specular");
+	value[0] = vec.x; value[1] = vec.y; value[2] = vec.z;
+	pie_Lighting0(LIGHT_SPECULAR, value);
+
+	vec = ini.vector3f("Lightning/Sun_Position");
+	setTheSun(vec);
+
+	return true;
+}
+
 /// Initialise the fog, skybox and some other stuff
 bool init3DView(void)
 {
-	/* Arbitrary choice - from direct read! */
-	Vector3f theSun(-425.0f, 600.0f, -450.0f);
-
-	setTheSun(theSun);
+	if (!disp3d_load3DViewParams("3dview.ini"))
+	{
+		return false;
+	}
 
 	// the world centre - used for decaying lighting etc
 	gridCentreX = player.p.x;
