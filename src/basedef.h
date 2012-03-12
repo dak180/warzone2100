@@ -111,6 +111,9 @@ struct BASE_OBJECT : public SIMPLE_OBJECT
 
 	NEXTOBJ             psNext;                     ///< Pointer to the next object in the object list
 	NEXTOBJ             psNextFunc;                 ///< Pointer to the next object in the function list
+
+public:
+	Vector3f getRandomAABBpoint() const;
 };
 
 /// Space-time coordinate, including orientation.

@@ -4331,9 +4331,8 @@ static	void	doConstructionLines( void )
 static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 {
 	Vector3i each;
-	Vector3f *point, pts[3];
-	Vector3f zeropoint(0., 0., 0.); // stub for wzm point getter
-	UDWORD	pointIndex;
+	Vector3f point;
+	Vector3f pts[3];
 	SDWORD	realY;
 	Vector3i null, vec;
 	PIELIGHT colour;
@@ -4349,20 +4348,12 @@ static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 
 	pts[0] = vec;
 
-	if (psStructure->sDisplay.imd->isWZMFormat())
-	{
-		point = &zeropoint;
-	}
-	else
-	{
-		pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
-		point = &(psStructure->sDisplay.imd->points[pointIndex]);
-	}
+	point = psStructure->getRandomAABBpoint();
 
-	each.x = psStructure->pos.x + point->x;
-	realY = structHeightScale(psStructure) * point->y;
+	each.x = psStructure->pos.x + point.x;
+	realY = structHeightScale(psStructure) * point.y;
 	each.y = psStructure->pos.z + realY;
-	each.z = psStructure->pos.y - point->z;
+	each.z = psStructure->pos.y - point.z;
 
 	if (rand()%250 < deltaGraphicsTime)
 	{
@@ -4376,20 +4367,12 @@ static void addConstructionLine(DROID *psDroid, STRUCTURE *psStructure)
 
 	pts[1] = vec;
 
-	if (psStructure->sDisplay.imd->isWZMFormat())
-	{
-		point = &zeropoint;
-	}
-	else
-	{
-		pointIndex = rand()%(psStructure->sDisplay.imd->npoints-1);
-		point = &(psStructure->sDisplay.imd->points[pointIndex]);
-	}
+	point = psStructure->getRandomAABBpoint();
 
-	each.x = psStructure->pos.x + point->x;
-	realY = structHeightScale(psStructure) * point->y;
+	each.x = psStructure->pos.x + point.x;
+	realY = structHeightScale(psStructure) * point.y;
 	each.y = psStructure->pos.z + realY;
-	each.z = psStructure->pos.y - point->z;
+	each.z = psStructure->pos.y - point.z;
 
 	vec.x = each.x - player.p.x;
 	vec.z = -(each.z - player.p.z);

@@ -3747,25 +3747,13 @@ void structureUpdate(STRUCTURE *psBuilding, bool mission)
 			if(bMultiPlayer && ONEINTEN && !mission)
 			{
 				Vector3i position;
-				Vector3f *point;
 				SDWORD	realY;
-				UDWORD	pointIndex;
-				Vector3f zeropoint(0., 0., 0.); // stub for wzm point getter
+				const Vector3f point = psBuilding->getRandomAABBpoint();
 
-				if (psBuilding->sDisplay.imd->isWZMFormat())
-				{
-					point = &zeropoint;
-				}
-				else
-				{
-					pointIndex = rand()%(psBuilding->sDisplay.imd->npoints-1);
-					point = &(psBuilding->sDisplay.imd->points[pointIndex]);
-				}
-
-				position.x = psBuilding->pos.x + point->x;
-				realY = structHeightScale(psBuilding) * point->y;
+				position.x = psBuilding->pos.x + point.x;
+				realY = structHeightScale(psBuilding) * point.y;
 				position.y = psBuilding->pos.z + realY;
-				position.z = psBuilding->pos.y - point->z;
+				position.z = psBuilding->pos.y - point.z;
 
 				effectSetSize(30);
 				addEffect(&position, EFFECT_EXPLOSION, EXPLOSION_TYPE_SPECIFIED, true, getImdFromIndex(MI_PLASMA), 0, gameTime - deltaGameTime + rand()%deltaGameTime);

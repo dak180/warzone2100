@@ -111,6 +111,31 @@ BASE_OBJECT::~BASE_OBJECT()
 #endif //DEBUG
 }
 
+Vector3f BASE_OBJECT::getRandomAABBpoint() const
+{
+	Vector3f point;
+
+	if (sDisplay.imd->isWZMFormat())
+	{
+		point = sDisplay.imd->getAABBpoint( rand()%(WZM_AABB_SIZE-1) );
+	}
+	else
+	{
+		point = sDisplay.imd->points[ rand()%(sDisplay.imd->npoints-1) ];
+	}
+
+	// Check for rotation
+	if (rot.direction)
+	{
+		Vector2f rotvec(point.x, point.z);
+		rotvec = Vector2f_Rotate2f(rotvec, rot.direction);
+		point.x = rotvec.x;
+		point.z = rotvec.y;
+	}
+
+	return point;
+}
+
 void checkObject(const SIMPLE_OBJECT *psObject, const char *const location_description, const char *function, const int recurse)
 {
 	if (recurse < 0)
