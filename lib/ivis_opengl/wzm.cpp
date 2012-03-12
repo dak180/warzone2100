@@ -44,6 +44,21 @@
 #define WZM_MESH_DIRECTIVE_INDEXARRAY "INDEXARRAY"
 #define WZM_MESH_DIRECTIVE_CONNECTORS "CONNECTORS"
 
+void WZMesh::mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int axis)
+{
+	switch (axis)
+	{
+	case 0:
+		vertex.x = -vertex.x + 2 * point.x;
+		break;
+	case 1:
+		vertex.y = -vertex.y + 2 * point.y;
+		break;
+	default:
+		vertex.z = -vertex.z + 2 * point.z;
+	}
+}
+
 WZMesh::WZMesh():
 	m_teamColours(false)
 {
@@ -60,15 +75,14 @@ void WZMesh::clear()
 	m_normalArray.clear();
 	m_tangentArray.clear();
 
-	m_aabb_min = m_aabb_max = m_tightspherecenter = Vector3f(0., 0., 0.);
+	m_tightspherecenter = Vector3f(0., 0., 0.);
+	std::fill_n(m_aabb, WZM_AABB_SIZE, Vector3f(0., 0., 0.));
 }
 
 bool WZMesh::loadFromStream(std::istream &in)
 {
 	std::string str;
 	unsigned i, vertices, indices;
-
-	clear();
 
 	in >> str >> m_name;
 	if (in.fail() || str.compare(WZM_MESH_SIGNATURE) != 0)
@@ -92,14 +106,31 @@ bool WZMesh::loadFromStream(std::istream &in)
 	}
 	else
 	{
-		in >> m_aabb_min.x >> m_aabb_min.y >> m_aabb_min.z
-		   >> m_aabb_max.x >> m_aabb_max.y >> m_aabb_max.z
-		   >> m_tightspherecenter.x >> m_tightspherecenter.y >> m_tightspherecenter.z;
+		Vector3f vec;
+		in >> vec.x >> vec.y >> vec.z;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading minmaxtspcen values");
+			debug(LOG_WARNING, "WZMesh - Error reading minmaxtspcen min value");
 			return false;
 		}
+		setAABBminmax(true, vec);
+
+		in >> vec.x >> vec.y >> vec.z;
+		if (in.fail())
+		{
+			debug(LOG_WARNING, "WZMesh - Error reading minmaxtspcen max value");
+			return false;
+		}
+		setAABBminmax(false, vec);
+
+		in >> m_tightspherecenter.x >> m_tightspherecenter.y >> m_tightspherecenter.z;
+		if (in.fail())
+		{
+			debug(LOG_WARNING, "WZMesh - Error reading minmaxtspcen tspcen value");
+			return false;
+		}
+
+		recalcAABB();
 	}
 
 	in >> str >> vertices;
@@ -217,6 +248,46 @@ bool WZMesh::loadFromStream(std::istream &in)
 	return true;
 }
 
+inline void WZMesh::setAABBminmax(bool ismin, const Vector3f &value)
+{
+	if (ismin)
+	{
+		m_aabb[0] = value;
+	}
+	else
+	{
+		m_aabb[4] = value;
+	}
+}
+
+void WZMesh::recalcAABB()
+{
+	Vector3f center = getAABBcenter();
+
+	m_aabb[3] = m_aabb[2] = m_aabb[1] = m_aabb[0];
+	mirrorVertexFromPoint(m_aabb[1], center, 0);
+	mirrorVertexFromPoint(m_aabb[2], center, 1);
+	mirrorVertexFromPoint(m_aabb[3], center, 2);
+
+	m_aabb[7] = m_aabb[6] = m_aabb[5] = m_aabb[4];
+	mirrorVertexFromPoint(m_aabb[5], center, 0);
+	mirrorVertexFromPoint(m_aabb[6], center, 1);
+	mirrorVertexFromPoint(m_aabb[7], center, 2);
+}
+
+Vector3f WZMesh::getAABBcenter()
+{
+	Vector3f center;
+
+	center.x = (m_aabb[0].x + m_aabb[4].x) / 2;
+	center.y = (m_aabb[0].y + m_aabb[4].y) / 2;
+	center.z = (m_aabb[0].z + m_aabb[4].z) / 2;
+
+	return center;
+}
+
+/// iIMDShape ********************************************************
+
 iIMDShape::iIMDShape():
 	flags(0), numFrames(0), animInterval(1),
 
@@ -228,22 +299,7 @@ iIMDShape::iIMDShape():
 	next(0),
 	m_texpages(static_cast<int>(WZM_TEX__LAST), iV_TEX_INVALID)
 {
-	// Set default values
-	memset(material, 0, sizeof(material));
-
-	material[LIGHT_AMBIENT][0] = 1.0f;
-	material[LIGHT_AMBIENT][1] = 1.0f;
-	material[LIGHT_AMBIENT][2] = 1.0f;
-	material[LIGHT_AMBIENT][3] = 1.0f;
-	material[LIGHT_DIFFUSE][0] = 1.0f;
-	material[LIGHT_DIFFUSE][1] = 1.0f;
-	material[LIGHT_DIFFUSE][2] = 1.0f;
-	material[LIGHT_DIFFUSE][3] = 1.0f;
-	material[LIGHT_SPECULAR][0] = 1.0f;
-	material[LIGHT_SPECULAR][1] = 1.0f;
-	material[LIGHT_SPECULAR][2] = 1.0f;
-	material[LIGHT_SPECULAR][3] = 1.0f;
-	shininess = 10;
+	clear(); // FIXME: remove when PIE is no more, should be called on purpose, such as loading from stream
 }
 
 iIMDShape::~iIMDShape()
@@ -288,6 +344,24 @@ iIMDShape::~iIMDShape()
 void iIMDShape::clear()
 {
 	std::fill(m_texpages.begin(), m_texpages.end(), iV_TEX_INVALID);
+	std::fill_n(m_aabb, WZM_AABB_SIZE, Vector3f(0., 0., 0.));
+
+	// Set default values
+	memset(material, 0, sizeof(material));
+
+	material[LIGHT_AMBIENT][0] = 1.0f;
+	material[LIGHT_AMBIENT][1] = 1.0f;
+	material[LIGHT_AMBIENT][2] = 1.0f;
+	material[LIGHT_AMBIENT][3] = 1.0f;
+	material[LIGHT_DIFFUSE][0] = 1.0f;
+	material[LIGHT_DIFFUSE][1] = 1.0f;
+	material[LIGHT_DIFFUSE][2] = 1.0f;
+	material[LIGHT_DIFFUSE][3] = 1.0f;
+	material[LIGHT_SPECULAR][0] = 1.0f;
+	material[LIGHT_SPECULAR][1] = 1.0f;
+	material[LIGHT_SPECULAR][2] = 1.0f;
+	material[LIGHT_SPECULAR][3] = 1.0f;
+	shininess = 10;
 }
 
 bool iIMDShape::loadFromStream(std::istream &in)
@@ -295,7 +369,6 @@ bool iIMDShape::loadFromStream(std::istream &in)
 	std::string str;
 	int i, meshes;
 
-	clear();
 	in >> str;
 	if (in.fail() || str.compare(WZM_MODEL_SIGNATURE) != 0)
 	{
@@ -435,14 +508,17 @@ bool iIMDShape::loadFromStream(std::istream &in)
 
 	WZMesh& mesh0 = m_meshes.front();
 
-	float xmax = MAX(mesh0.m_aabb_max.x, -mesh0.m_aabb_min.x);
-	float ymax = MAX(mesh0.m_aabb_max.y, -mesh0.m_aabb_min.y);
-	float zmax = MAX(mesh0.m_aabb_max.z, -mesh0.m_aabb_min.z);
+	// FIXME: should be derived from all sub-meshes
+	memcpy(m_aabb, mesh0.m_aabb, sizeof(m_aabb));
+
+	float xmax = MAX(getAABBminmax(false).x, -getAABBminmax(true).x);
+	float ymax = MAX(getAABBminmax(false).y, -getAABBminmax(true).y);
+	float zmax = MAX(getAABBminmax(false).z, -getAABBminmax(true).z);
 
 	radius = MAX(xmax, MAX(ymax, zmax));
 	sradius = sqrtf(xmax*xmax + ymax*ymax + zmax*zmax);
-	min = mesh0.m_aabb_min;
-	max = mesh0.m_aabb_max;
+	min = getAABBminmax(true);
+	max = getAABBminmax(false);
 	ocen = mesh0.m_tightspherecenter;
 
 	nconnectors = mesh0.m_connectorArray.size();
@@ -457,6 +533,17 @@ bool iIMDShape::loadFromStream(std::istream &in)
 	}
 
 	return true;
+}
+
+Vector3f iIMDShape::getAABBcenter()
+{
+	Vector3f center;
+
+	center.x = (m_aabb[0].x + m_aabb[4].x) / 2;
+	center.y = (m_aabb[0].y + m_aabb[4].y) / 2;
+	center.z = (m_aabb[0].z + m_aabb[4].z) / 2;
+
+	return center;
 }
 
 void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)

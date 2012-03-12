@@ -76,6 +76,8 @@ struct iIMDPoly
 
 struct iIMDShape;
 
+#define WZM_AABB_SIZE 8
+
 #define WZM_MODEL_SIGNATURE "WZM"
 #define WZM_MODEL_VERSION_FD 3 // First draft version
 
@@ -98,7 +100,12 @@ class WZMesh
 
 	std::vector<Vector3f> m_connectorArray;
 
-	Vector3f m_aabb_min, m_aabb_max, m_tightspherecenter;
+	Vector3f m_tightspherecenter;
+	Vector3f m_aabb[WZM_AABB_SIZE];
+
+	void setAABBminmax(bool ismin, const Vector3f& value);
+	void recalcAABB();
+
 public:
 	WZMesh();
 	~WZMesh();
@@ -106,6 +113,12 @@ public:
 	void clear();
 
 	bool loadFromStream(std::istream& in);
+
+	const Vector3f& getAABBminmax(bool ismin) const {return (ismin) ? m_aabb[0] : m_aabb[4];}
+	Vector3f getAABBcenter();
+	const Vector3f& getAABBpoint(unsigned int idx) const {return m_aabb[idx];}
+
+	static void mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int axis); // x == 0, y == 1, z == 2
 };
 
 union PIELIGHT;
@@ -144,6 +157,8 @@ private:
 	std::vector<int> m_texpages;
 	std::list<WZMesh> m_meshes;
 
+	Vector3f m_aabb[WZM_AABB_SIZE];
+
 public:
 	iIMDShape();
 	~iIMDShape();
@@ -155,6 +170,10 @@ public:
 
 	int getTexturePage(wzm_texture_type_t type) const {return m_texpages[type];}
 	void setTexturePage(wzm_texture_type_t type, int texpage) {m_texpages[type] = texpage;}
+
+	const Vector3f& getAABBminmax(bool ismin) const {return (ismin) ? m_aabb[0] : m_aabb[4];}
+	Vector3f getAABBcenter();
+	const Vector3f& getAABBpoint(unsigned int idx) const {return m_aabb[idx];}
 
 	bool isWZMFormat() const {return !m_meshes.empty();}
 };
