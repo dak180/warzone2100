@@ -728,7 +728,7 @@ static bool dataIMDLoad(const char *fileName, void **ppData)
 		return false;
 	}
 
-	psIMD = iV_ProcessIMD(bytes, bytes + size, fname.c_str());
+	psIMD = iV_ProcessIMD(bytes, bytes + size, fileName);
 
 	free(bytes);
 
