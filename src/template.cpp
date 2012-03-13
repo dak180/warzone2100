@@ -38,6 +38,7 @@
 #include "hci.h"
 #include "multiplay.h"
 #include "projectile.h"
+#include "main.h"
 
 /* default droid design template */
 extern DROID_TEMPLATE	sDefaultDesignTemplate;
@@ -95,10 +96,10 @@ bool researchedTemplate(DROID_TEMPLATE *psCurr, int player)
 
 bool initTemplates()
 {
-	WzConfig ini("templates.ini");
+	WzConfig ini("userdata/" + QString(rulesettag) + "/storedtemplates.ini");
 	if (ini.status() != QSettings::NoError)
 	{
-		debug(LOG_FATAL, "Could not open templates.ini");
+		debug(LOG_FATAL, "Could not open storedtemplates.ini");
 		return false;
 	}
 	QStringList list = ini.childGroups();
@@ -168,10 +169,10 @@ bool initTemplates()
 bool storeTemplates()
 {
 	// Write stored templates (back) to file
-	WzConfig ini("templates.ini");
+	WzConfig ini("userdata/" + QString(rulesettag) + "/storedtemplates.ini");
 	if (ini.status() != QSettings::NoError || !ini.isWritable())
 	{
-		debug(LOG_FATAL, "Could not open templates.ini");
+		debug(LOG_FATAL, "Could not open storedtemplates.ini");
 		return false;
 	}
 	for (DROID_TEMPLATE *psCurr = apsDroidTemplates[selectedPlayer]; psCurr != NULL; psCurr = psCurr->psNext)
@@ -622,19 +623,10 @@ void deleteTemplateFromProduction(DROID_TEMPLATE *psTemplate, unsigned player, Q
 					syncDebugStructure(psStruct, '<');
 					syncDebug("Clearing production");
 
-					// Clear the factory's subject.
-					psFactory->psSubject = NULL;
-
-					if (player == productionPlayer)
-					{
-						//check to see if anything left to produce
-						DROID_TEMPLATE *psNextTemplate = factoryProdUpdate(psStruct, NULL);
-						//power is returned by factoryProdAdjust()
-						if (psNextTemplate)
-						{
-							structSetManufacture(psStruct, psNextTemplate, ModeQueue);  // ModeQueue because production lists aren't synchronised.
-						}
-					}
+					// Clear the factory's subject, and returns power.
+					cancelProduction(psStruct, ModeImmediate, false);
+					// Check to see if anything left to produce. (Also calls cancelProduction again, if nothing left to produce, which is a no-op. But if other things are left to produce, doesn't call cancelProduction, so wouldn't return power without the explicit cancelProduction call above.)
+					doNextProduction(psStruct, NULL, ModeImmediate);
 
 					//tell the interface
 					intManufactureFinished(psStruct);

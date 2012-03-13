@@ -73,6 +73,8 @@ struct bindNode
 	QScriptEngine *engine;
 };
 
+#define MAX_MS 50
+
 /// Bind functions to primary object functions.
 static QHash<int, bindNode> bindings;
 
@@ -98,8 +100,13 @@ static bool callFunction(QScriptEngine *engine, const QString &function, const Q
 		debug(LOG_WARNING, "function (%s) not defined?", function.toUtf8().constData());
 		return false;
 	}
-
+	int ticks = wzGetTicks();
 	QScriptValue result = value.call(QScriptValue(), args);
+	ticks = wzGetTicks() - ticks;
+	if (ticks > MAX_MS)
+	{
+		debug(LOG_SCRIPT, "%s took %d ms at time %d", function.toAscii().constData(), ticks, wzGetTicks());
+	}
 	if (engine->hasUncaughtException())
 	{
 		int line = engine->uncaughtExceptionLineNumber();
@@ -409,6 +416,8 @@ bool loadPlayerScript(QString path, int player, int difficulty)
 	engine->globalObject().setProperty("mapWidth", mapWidth, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	//== \item[mapHeight] Height of map in tiles.
 	engine->globalObject().setProperty("mapHeight", mapHeight, QScriptValue::ReadOnly | QScriptValue::Undeletable);
+	//== \item[scavengerPlayer] Index of scavenger player. (3.2+ only)
+	engine->globalObject().setProperty("scavengerPlayer", scavengerPlayer(), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 
 	// Regular functions
 	registerFunctions(engine);
@@ -569,6 +578,7 @@ bool triggerEvent(SCRIPT_TRIGGER_TYPE trigger)
 			callFunction(engine, "eventGameInit", QScriptValueList());
 			break;
 		case TRIGGER_START_LEVEL:
+			processVisibility(); // make sure we initialize visibility first
 			callFunction(engine, "eventStartLevel", QScriptValueList());
 			break;
 		case TRIGGER_LAUNCH_TRANSPORTER:

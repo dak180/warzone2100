@@ -834,10 +834,13 @@ void processMouseClickInput(void)
 					item = MT_ENEMYDROID;
 				}
 			}
-			else if (selection == SC_DROID_DEMOLISH && ObjAllied)
+			else if (selection == SC_DROID_DEMOLISH)
 			{
-				// Can't demolish allied objects
-				item = MT_BLOCKING;
+				// Can't demolish allied objects, or something that isn't built yet
+				if (ObjAllied || (ObjUnderMouse && ObjUnderMouse->type == OBJ_STRUCTURE && ((STRUCTURE *)ObjUnderMouse)->status != SS_BUILT))
+				{
+					item = MT_BLOCKING;
+				}
 			}
 			// in multiPlayer check for what kind of unit can use it (TODO)
 			else if (bMultiPlayer && item == MT_TRANDROID)
@@ -1595,7 +1598,7 @@ static void dealWithLMBDroid(DROID* psDroid, SELECTION_TYPE selection)
 #ifdef DEBUG
 		if (getDebugMappingStatus())
 		{
-			CONPRINTF(ConsoleString, (ConsoleString, "(Enemy!) %s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %hu - ECM %u - pitch %.0f",
+			CONPRINTF(ConsoleString, (ConsoleString, "(Enemy!) %s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %d - ECM %d - pitch %.0f",
 						droidGetName(psDroid), 	100 - clip(PERCENT(psDroid->body, psDroid->originalBody), 0, 100), psDroid->id,
 						psDroid->experience/65536.f, getDroidLevelName(psDroid), getDroidOrderName(psDroid->order.type), getDroidActionName(psDroid->action),
 						droidSensorRange(psDroid), droidConcealment(psDroid), UNDEG(psDroid->rot.pitch)));
@@ -1743,7 +1746,7 @@ static void dealWithLMBDroid(DROID* psDroid, SELECTION_TYPE selection)
 		if (getDebugMappingStatus()) // cheating on, so output debug info
 		{
 			CONPRINTF(ConsoleString, (ConsoleString,
-						"%s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %hu - ECM %u - pitch %.0f",
+						"%s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %d - ECM %d - pitch %.0f",
 						droidGetName(psDroid),
 						100 - clip(PERCENT(psDroid->body, psDroid->originalBody), 0, 100), psDroid->id,
 						psDroid->experience/65536.f, getDroidLevelName(psDroid), getDroidOrderName(psDroid->order.type), getDroidActionName(psDroid->action),
@@ -2294,7 +2297,7 @@ static void dealWithRMB( void )
 						if (getDebugMappingStatus()) // cheating on, so output debug info
 						{
 							CONPRINTF(ConsoleString, (ConsoleString,
-										"%s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %hu - ECM %u",
+										"%s - Damage %d%% - ID %d - experience %f, %s - order %s - action %s - sensor range %d - ECM %d",
 										droidGetName(psDroid),
 										100 - clip(PERCENT(psDroid->body, psDroid->originalBody), 0, 100), psDroid->id,
 										psDroid->experience/65536.f, getDroidLevelName(psDroid), getDroidOrderName(psDroid->order.type), getDroidActionName(psDroid->action),
@@ -2797,11 +2800,6 @@ SELECTION_TYPE	selectionClass;
 	selectionClass = SC_INVALID;
 	CurrWeight = UBYTE_MAX;
 
-	if (intDemolishSelectMode())
-	{
-		return SC_DROID_DEMOLISH;
-	}
-
 	for(psDroid = apsDroidLists[selectedPlayer];
 			psDroid /*&& !atLeastOne*/; psDroid = psDroid->psNext)
 	{
@@ -2885,6 +2883,10 @@ SELECTION_TYPE	selectionClass;
 
 		case DROID_CONSTRUCT:
 		case DROID_CYBORG_CONSTRUCT:
+			if (intDemolishSelectMode())
+			{
+				return SC_DROID_DEMOLISH;
+			}
 			selectionClass = SC_DROID_CONSTRUCT;
 			break;
 

@@ -104,41 +104,15 @@ bool combFire(WEAPON *psWeap, BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, in
 		return false;
 	}
 
-	/* Check we can see the target */
-	if (psAttacker->type == OBJ_DROID && !isVtolDroid((DROID *)psAttacker)
-	    && (proj_Direct(psStats) || actionInsideMinRange((DROID *)psAttacker, psTarget, psStats)))
+	/* Check we can hit the target */
+	bool tall = (psAttacker->type == OBJ_DROID && isVtolDroid((DROID *)psAttacker))
+		    || (psAttacker->type == OBJ_STRUCTURE && ((STRUCTURE *)psAttacker)->pStructureType->height > 1);
+	if (proj_Direct(psStats) && !lineOfFire(psAttacker, psTarget, weapon_slot, tall))
 	{
-		if(!lineOfFire(psAttacker, psTarget, weapon_slot, true))
-		{
-			// Can't see the target - can't hit it with direct fire
-			objTrace(psAttacker->id, "combFire(%u[%s]->%u): Droid has no direct line of sight to target",
-			      psAttacker->id, ((DROID *)psAttacker)->aName, psTarget->id);
-			return false;
-		}
-	}
-	else if ((psAttacker->type == OBJ_STRUCTURE) &&
-			 (((STRUCTURE *)psAttacker)->pStructureType->height == 1) &&
-			 proj_Direct(psStats))
-	{
-		// a bunker can't shoot through walls
-		if (!lineOfFire(psAttacker, psTarget, weapon_slot, true))
-		{
-			// Can't see the target - can't hit it with direct fire
-			objTrace(psAttacker->id, "combFire(%u[%s]->%u): Structure has no direct line of sight to target",
-			      psAttacker->id, ((STRUCTURE *)psAttacker)->pStructureType->pName, psTarget->id);
-			return false;
-		}
-	}
-	else if ( proj_Direct(psStats) )
-	{
-		// VTOL or tall building
-		if (!lineOfFire(psAttacker, psTarget, weapon_slot, false))
-		{
-			// Can't see the target - can't hit it with direct fire
-			objTrace(psAttacker->id, "combFire(%u[%s]->%u): Tall object has no direct line of sight to target",
-			      psAttacker->id, psStats->pName, psTarget->id);
-			return false;
-		}
+		// Can't see the target - can't hit it with direct fire
+		objTrace(psAttacker->id, "combFire(%u[%s]->%u): No direct line of sight to target",
+		         psAttacker->id, objInfo(psAttacker), psTarget->id);
+		return false;
 	}
 
 	Vector3i deltaPos = psTarget->pos - psAttacker->pos;
@@ -158,9 +132,8 @@ bool combFire(WEAPON *psWeap, BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, in
 	int dist = iHypot(removeZ(deltaPos));
 	longRange = proj_GetLongRange(psStats);
 
-	/* modification by CorvusCorax - calculate shooting angle */
 	int min_angle = 0;
-	// only calculate for indirect shots
+	// Calculate angle for indirect shots
 	if (!proj_Direct(psStats) && dist > 0)
 	{
 		min_angle = arcOfFire(psAttacker,psTarget,weapon_slot,true);
@@ -180,15 +153,12 @@ bool combFire(WEAPON *psWeap, BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, in
 	}
 
 	int baseHitChance = 0;
-	if ((dist <= psStats->shortRange)  && (dist >= psStats->minRange))
+	if (dist <= psStats->shortRange && dist >= psStats->minRange)
 	{
 		// get weapon chance to hit in the short range
 		baseHitChance = weaponShortHit(psStats,psAttacker->player);
 	}
-	else if ((dist <= longRange && dist >= psStats->minRange)
-	         || (psAttacker->type == OBJ_DROID
-	             && !proj_Direct(psStats)
-	             && actionInsideMinRange((DROID *)psAttacker, psTarget, psStats)))
+	else if (dist <= longRange && dist >= psStats->minRange)
 	{
 		// get weapon chance to hit in the long range
 		baseHitChance = weaponLongHit(psStats,psAttacker->player);
@@ -271,7 +241,7 @@ bool combFire(WEAPON *psWeap, BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, in
 	Vector3i predict = psTarget->pos;
 
 	//Watermelon:Target prediction
-	if (isDroid(psTarget))
+	if (isDroid(psTarget) && castDroid(psTarget)->sMove.bumpTime == 0)
 	{
 		DROID *psDroid = castDroid(psTarget);
 
@@ -351,55 +321,33 @@ void counterBatteryFire(BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget)
 	projectile is sent - we may have to cater for these at some point*/
 	// also ignore cases where you attack your own player
 	// Also ignore cases where there are already 1000 missiles heading towards the attacker.
-	if ((psTarget == NULL) ||
-		((psAttacker != NULL) && (psAttacker->player == psTarget->player)) ||
-		aiObjectIsProbablyDoomed(psAttacker))
+	if (psTarget == NULL
+	    || (psAttacker != NULL && psAttacker->player == psTarget->player)
+	    || aiObjectIsProbablyDoomed(psAttacker))
 	{
 		return;
 	}
 
 	CHECK_OBJECT(psTarget);
 
-	gridStartIterate(psTarget->pos.x, psTarget->pos.y, PREVIOUS_DEFAULT_GRID_SEARCH_RADIUS);
-	for (psViewer = gridIterate(); psViewer != NULL; psViewer = gridIterate())
+	for (psViewer = apsSensorList[0]; psViewer; psViewer = psViewer->psNextFunc)
 	{
-		STRUCTURE	*psStruct;
-		DROID		*psDroid;
-		SDWORD		sensorRange = 0;
-
-		if (psViewer->player != psTarget->player)
+		if (aiCheckAlliances(psTarget->player, psViewer->player))
 		{
-			//ignore non target players' objects
-			continue;
-		}
-		if (psViewer->type == OBJ_STRUCTURE)
-		{
-			psStruct = (STRUCTURE *)psViewer;
-			//check if have a sensor of correct type
-			if (structCBSensor(psStruct) || structVTOLCBSensor(psStruct))
+			if ((psViewer->type == OBJ_STRUCTURE && !structCBSensor((STRUCTURE *)psViewer))
+			    || (psViewer->type == OBJ_DROID && !cbSensorDroid((DROID *)psViewer)))
 			{
-				sensorRange = psStruct->pStructureType->pSensor->range;
+				continue;
 			}
-		}
-		else if (psViewer->type == OBJ_DROID)
-		{
-			psDroid = (DROID *)psViewer;
-			//must be a CB sensor
-			if (cbSensorDroid(psDroid))
-			{
-				sensorRange = asSensorStats[psDroid->asBits[COMP_SENSOR].
-					nStat].range;
-			}
-		}
-		//check sensor distance from target
-		if (sensorRange)
-		{
-			SDWORD	xDiff = (SDWORD)psViewer->pos.x - (SDWORD)psTarget->pos.x;
-			SDWORD	yDiff = (SDWORD)psViewer->pos.y - (SDWORD)psTarget->pos.y;
+			const int sensorRange = objSensorRange(psViewer);
 
-			if (xDiff*xDiff + yDiff*yDiff < sensorRange * sensorRange)
+			// Check sensor distance from target
+			const int xDiff = psViewer->pos.x - psTarget->pos.x;
+			const int yDiff = psViewer->pos.y - psTarget->pos.y;
+
+			if (xDiff * xDiff + yDiff * yDiff < sensorRange * sensorRange)
 			{
-				//inform viewer of target
+				// Inform viewer of target
 				if (psViewer->type == OBJ_DROID)
 				{
 					orderDroidObj((DROID *)psViewer, DORDER_OBSERVE, psAttacker, ModeImmediate);

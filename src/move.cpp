@@ -2302,10 +2302,8 @@ static bool pickupOilDrum(int toPlayer, int fromPlayer)
 // use to pick up oil, etc..
 static void checkLocalFeatures(DROID *psDroid)
 {
-	BASE_OBJECT		*psObj;
-
 	// NOTE: Why not do this for AI units also?
-	if (!isHumanPlayer(psDroid->player) || isVtolDroid(psDroid))  // VTOLs can't pick up features!
+	if ((!isHumanPlayer(psDroid->player) && psDroid->order.type != DORDER_RECOVER) || isVtolDroid(psDroid))  // VTOLs can't pick up features!
 	{
 		return;
 	}
@@ -2313,7 +2311,7 @@ static void checkLocalFeatures(DROID *psDroid)
 	// scan the neighbours
 #define DROIDDIST ((TILE_UNITS*5)/2)
 	gridStartIterate(psDroid->pos.x, psDroid->pos.y, DROIDDIST);
-	for (psObj = gridIterate(); psObj != NULL; psObj = gridIterate())
+	for (BASE_OBJECT *psObj = gridIterate(); psObj != NULL; psObj = gridIterate())
 	{
 		bool pickedUp = false;
 
@@ -2418,7 +2416,11 @@ void moveUpdateDroid(DROID *psDroid)
 	case MOVEWAITROUTE:
 		moveDroidTo(psDroid, psDroid->sMove.destination.x, psDroid->sMove.destination.y);
 		moveSpeed = MAX(0, psDroid->sMove.speed - 1);
-		break;
+		if (psDroid->sMove.Status != MOVENAVIGATE)
+		{
+			break;
+		}
+		// No break.
 	case MOVENAVIGATE:
 		// Get the next control point
 		if (!moveNextTarget(psDroid))
@@ -2450,7 +2452,7 @@ void moveUpdateDroid(DROID *psDroid)
 			bStarted = true;
 		}
 
-		break;
+		// No break.
 	case MOVEPOINTTOPOINT:
 	case MOVEPAUSE:
 		// moving between two way points

@@ -271,7 +271,7 @@ bool actionInRange(DROID *psDroid, BASE_OBJECT *psObj, int weapon_slot)
 
 
 // check if a target is inside minimum weapon range
-bool actionInsideMinRange(DROID *psDroid, BASE_OBJECT *psObj, WEAPON_STATS *psStats)
+static bool actionInsideMinRange(DROID *psDroid, BASE_OBJECT *psObj, WEAPON_STATS *psStats)
 {
 	SDWORD	dx, dy, radSq, rangeSq, minRange;
 
@@ -446,10 +446,8 @@ bool actionTargetTurret(BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, WEAPON *
 	}
 	onTarget = abs(angleDelta(targetRotation - (tRotation + psAttacker->rot.direction))) <= rotationTolerance;
 
-	/* set muzzle pitch if direct fire */
-	if (!bRepair && (proj_Direct(psWeapStats) || ((psAttacker->type == OBJ_DROID)
-													  && !proj_Direct(psWeapStats)
-												  && actionInsideMinRange((DROID *)psAttacker, psTarget, psWeapStats))))
+	/* Set muzzle pitch if not repairing or outside minimum range */
+	if (!bRepair && objPosDiffSq(psAttacker, psTarget) > psWeapStats->minRange * psWeapStats->minRange)
 	{
 		dx = psTarget->pos.x - psAttacker->pos.x;
 		dy = psTarget->pos.y - psAttacker->pos.y;
@@ -459,19 +457,11 @@ bool actionTargetTurret(BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, WEAPON *
 		dxy = iHypot(dx, dy);
 
 		targetPitch = iAtan2(dz, dxy);
-
-		/* invert calculations for bottom-mounted weapons (i.e. for vtols) */
-		//if (bInvert) { why do anything here? }
-
 		pitchError = angleDelta(targetPitch - tPitch);
 
 		tPitch += clip(pitchError, -pitchRate, pitchRate);  // Addition wrapping intended.
 		tPitch = (uint16_t)clip(angleDelta(tPitch), pitchLowerLimit, pitchUpperLimit);  // Cast wrapping intended.
 		onTarget = onTarget && targetPitch == tPitch;
-
-		/* re-invert result for bottom-mounted weapons (i.e. for vtols) */
-		//if (bInvert) { why do anything here? }
-
 	}
 
 	psWeapon->rot.direction = tRotation;
@@ -484,60 +474,20 @@ bool actionTargetTurret(BASE_OBJECT *psAttacker, BASE_OBJECT *psTarget, WEAPON *
 // return whether a droid can see a target to fire on it
 bool actionVisibleTarget(DROID *psDroid, BASE_OBJECT *psTarget, int weapon_slot)
 {
-	WEAPON_STATS	*psStats;
-	int compIndex;
-
 	CHECK_DROID(psDroid);
 	ASSERT_OR_RETURN(false, psTarget != NULL, "Target is NULL");
-
-	if (psDroid->numWeaps == 0)
+	if (!psTarget->visible[psDroid->player])
 	{
-		if ( visibleObject(psDroid, psTarget, false) )
-		{
-			return true;
-		}
-	}
-
-	if (isVtolDroid(psDroid))
-	{
-		if ( visibleObject(psDroid, psTarget, false) )
-		{
-			return true;
-		}
 		return false;
 	}
-	compIndex = psDroid->asWeaps[weapon_slot].nStat;
-	ASSERT_OR_RETURN( false, compIndex < numWeaponStats, "Invalid range referenced for numWeaponStats, %d > %d", compIndex, numWeaponStats);
-	psStats = asWeaponStats + compIndex;
-
-	if (lineOfFire(psDroid, psTarget, weapon_slot, true))
+	if ((psDroid->numWeaps == 0 || isVtolDroid(psDroid)) && visibleObject(psDroid, psTarget, false))
 	{
-		if (proj_Direct(psStats))
-		{
-			return true;
-		}
-		else
-		{
-			// indirect can only attack things they can see unless attacking
-			// through a sensor droid - see DORDER_FIRESUPPORT
-			if (orderState(psDroid, DORDER_FIRESUPPORT))
-			{
-				if (psTarget->visible[psDroid->player])
-				{
-					return true;
-				}
-			}
-			else
-			{
-				if (visibleObject(psDroid, psTarget, false))
-				{
-					return true;
-				}
-			}
-		}
+		return true;
 	}
-
-	return false;
+	const int compIndex = psDroid->asWeaps[weapon_slot].nStat;
+	ASSERT_OR_RETURN( false, compIndex < numWeaponStats, "Invalid range referenced for numWeaponStats, %d > %d", compIndex, numWeaponStats);
+	return (orderState(psDroid, DORDER_FIRESUPPORT)	|| visibleObject(psDroid, psTarget, false))
+	       && lineOfFire(psDroid, psTarget, weapon_slot, true);
 }
 
 static void actionAddVtolAttackRun( DROID *psDroid )
@@ -1440,7 +1390,7 @@ void actionUpdateDroid(DROID *psDroid)
 						}
 					}
 				}
-				else
+				else // too far away
 				{
 					// try to close the range
 					moveDroidTo(psDroid, psDroid->psActionTarget[0]->pos.x, psDroid->psActionTarget[0]->pos.y);
@@ -1538,7 +1488,7 @@ void actionUpdateDroid(DROID *psDroid)
 					objTrace(psDroid->id, "DACTION_MOVETOBUILD: !validLocation");
 					cancelBuild(psDroid);
 				}
-				else
+				else // too far away
 				{
 					syncDebug("Reached build target: build");
 					psDroid->action = DACTION_BUILD_FOUNDATION;

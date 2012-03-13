@@ -186,7 +186,12 @@ static BASE_OBJECT *aiSearchSensorTargets(BASE_OBJECT *psObj, int weapon_slot, W
 			DROID		*psDroid = (DROID *)psSensor;
 
 			ASSERT_OR_RETURN(NULL, psDroid->droidType == DROID_SENSOR, "A non-sensor droid in a sensor list is non-sense");
-			psTemp = psDroid->order.psObj;
+			// Skip non-observing droids.
+			if (psDroid->action != DACTION_OBSERVE)
+			{
+				continue;
+			}
+			psTemp = psDroid->psActionTarget[0];
 			isCB = cbSensorDroid(psDroid);
 			isRD = objRadarDetector((BASE_OBJECT *)psDroid);
 		}
@@ -480,7 +485,8 @@ static SDWORD targetAttackWeight(BASE_OBJECT *psTarget, BASE_OBJECT *psAttacker,
 }
 
 
-// Find the best nearest target for a droid
+// Find the best nearest target for a droid.
+// If extraRange is higher than zero, then this is the range it accepts for movement to target.
 // Returns integer representing target priority, -1 if failed
 int aiBestNearestTarget(DROID *psDroid, BASE_OBJECT **ppsObj, int weapon_slot, int extraRange)
 {
@@ -634,10 +640,8 @@ int aiBestNearestTarget(DROID *psDroid, BASE_OBJECT **ppsObj, int weapon_slot, i
 					tmpOrigin = ORIGIN_ALLY;
 					bestTarget = psTarget;
 				}
-
 			}
 		}
-
 	}
 
 	if (bestTarget)
@@ -746,7 +750,6 @@ bool aiChooseTarget(BASE_OBJECT *psObj, BASE_OBJECT **ppsTarget, int weapon_slot
 		*targetOrigin = ORIGIN_UNKNOWN;
 	}
 		
-	/* Get the sensor range */
 	switch (psObj->type)
 	{
 	case OBJ_DROID:
@@ -754,12 +757,14 @@ bool aiChooseTarget(BASE_OBJECT *psObj, BASE_OBJECT **ppsTarget, int weapon_slot
 		{
 			return false;
 		}
-
 		if (((DROID *)psObj)->asWeaps[0].nStat == 0 &&
 			((DROID *)psObj)->droidType != DROID_SENSOR)
 		{
-			// Can't attack without a weapon
-			return false;
+			return false;	// Can't target without a weapon or sensor
+		}
+		if (secondaryGetState((DROID *)psObj, DSO_HALTTYPE) == DSS_HALT_HOLD)
+		{
+			return false;	// Not sure why we check this here...
 		}
 		break;
 	case OBJ_STRUCTURE:
@@ -793,7 +798,7 @@ bool aiChooseTarget(BASE_OBJECT *psObj, BASE_OBJECT **ppsTarget, int weapon_slot
 		        || curTargetWeight <= 0		// attacker had no valid target, use new one
 			|| newTargetWeight > curTargetWeight + OLD_TARGET_THRESHOLD)	// updating and new target is better
 		    && validTarget(psObj, psTarget, weapon_slot)
-		    && (aiDroidHasRange((DROID *)psObj, psTarget, weapon_slot) || (secondaryGetState((DROID *)psObj, DSO_HALTTYPE) != DSS_HALT_HOLD)))
+		    && aiDroidHasRange((DROID *)psObj, psTarget, weapon_slot))
 		{
 			ASSERT(!isDead(psTarget), "aiChooseTarget: Droid found a dead target!");
 			*ppsTarget = psTarget;
@@ -853,8 +858,16 @@ bool aiChooseTarget(BASE_OBJECT *psObj, BASE_OBJECT **ppsTarget, int weapon_slot
 		{
 			int targetValue = -1;
 			int tarDist = INT32_MAX;
+			int srange = longRange;
 
-			gridStartIterate(psObj->pos.x, psObj->pos.y, std::min(longRange, PREVIOUS_DEFAULT_GRID_SEARCH_RADIUS));
+			if (!proj_Direct(psWStats) && srange > objSensorRange(psObj))
+			{
+				// search radius of indirect weapons limited by their sight, unless they use
+				// external sensors to provide fire designation
+				srange = objSensorRange(psObj);
+			}
+
+			gridStartIterate(psObj->pos.x, psObj->pos.y, srange);
 			for (BASE_OBJECT *psCurr = gridIterate(); psCurr != NULL; psCurr = gridIterate())
 			{
 				// Prefer targets that aren't walls, then prefer finished targets to unfinished targets.
@@ -938,7 +951,7 @@ bool aiChooseSensorTarget(BASE_OBJECT *psObj, BASE_OBJECT **ppsTarget)
 		BASE_OBJECT	*psCurr, *psTemp = NULL;
 		int		tarDist = SDWORD_MAX;
 
-		gridStartIterate(psObj->pos.x, psObj->pos.y, PREVIOUS_DEFAULT_GRID_SEARCH_RADIUS);
+		gridStartIterate(psObj->pos.x, psObj->pos.y, objSensorRange(psObj));
 		psCurr = gridIterate();
 		while (psCurr != NULL)
 		{
