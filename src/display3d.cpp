@@ -133,6 +133,7 @@ static PIELIGHT getBlueprintColour(STRUCT_STATES state);
 static void NetworkDisplayPlainForm(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset, WZ_DECL_UNUSED PIELIGHT *pColours);
 static void NetworkDisplayImage(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset, WZ_DECL_UNUSED PIELIGHT *pColours);
 void NotifyUserOfError(char *msg);
+extern bool writeGameInfo(const char *pFileName); // Used to help debug issues when we have fatal errors & crash handler testing.
 /********************  Variables  ********************/
 // Should be cleaned up properly and be put in structures.
 
@@ -859,6 +860,7 @@ void draw3DScene( void )
 		ASSERT(false, "Yes, this is a assert.  This should not happen on release builds! Use --noassert to bypass in debug builds.");
 		debug(LOG_WARNING, " *** Warning!  You have compiled in debug mode! ***");
 #endif
+		writeGameInfo("WZdebuginfo.txt");		//also test writing out this file.
 		debug(LOG_FATAL, "Forcing a segfault! (crash handler test)");
 		// and here comes the crash
 		*crash = 0x3;
@@ -2277,12 +2279,7 @@ void	renderStructure(STRUCTURE *psStructure)
 
 	dv.x = structX - player.p.x;
 	dv.z = -(structY - player.p.z);
-	if (defensive || structureIsBlueprint(psStructure))
-	{
-		dv.y = psStructure->pos.z;
-	} else {
-		dv.y = map_TileHeight(map_coord(structX), map_coord(structY));
-	}
+	dv.y = psStructure->pos.z;
 	/* Push the indentity matrix */
 	pie_MatBegin();
 
@@ -2335,7 +2332,7 @@ void	renderStructure(STRUCTURE *psStructure)
 	}
 
 	//first check if partially built - ANOTHER HACK!
-	if (psStructure->status == SS_BEING_BUILT || psStructure->status == SS_BEING_DEMOLISHED)
+	if (psStructure->status == SS_BEING_BUILT)
 	{
 		if (psStructure->prebuiltImd != NULL)
 		{
@@ -2691,7 +2688,7 @@ static bool	renderWallSection(STRUCTURE *psStructure)
 		/* Establish where it is in the world */
 		dv.x = structX - player.p.x;
 		dv.z = -(structY - player.p.z);
-		dv.y = map_Height(structX, structY);
+		dv.y = psStructure->pos.z;
 
 		if (psStructure->pStructureType->type == REF_GATE && psStructure->state == SAS_OPEN)
 		{
@@ -2716,9 +2713,7 @@ static bool	renderWallSection(STRUCTURE *psStructure)
 		pie_MatRotY(-rotation);
 
 		/* Actually render it */
-		if ( (psStructure->status == SS_BEING_BUILT ) ||
-			(psStructure->status == SS_BEING_DEMOLISHED ) ||
-			(psStructure->status == SS_BEING_BUILT && psStructure->pStructureType->type == REF_RESOURCE_EXTRACTOR) )
+		if (psStructure->status == SS_BEING_BUILT)
 		{
 			pie_Draw3DShape(psStructure->sDisplay.imd, 0, getPlayerColour(psStructure->player),
 					brightness, pie_HEIGHT_SCALED|pie_SHADOW|ecmFlag, structHeightScale(psStructure) * pie_RAISE_SCALE);
@@ -3164,11 +3159,8 @@ static void	drawStructureSelections( void )
 		if (mouseDown(getRightClickOrders()?MOUSE_LMB:MOUSE_RMB))
 		{
 			psStruct = (STRUCTURE*)psClickedOn;
-			if(psStruct->status==SS_BUILT)
-			{
-				drawStructureHealth(psStruct);
-			}
-			else if(psStruct->status == SS_BEING_BUILT)
+			drawStructureHealth(psStruct);
+			if(psStruct->status == SS_BEING_BUILT)
 			{
 				drawStructureBuildProgress(psStruct);
 			}

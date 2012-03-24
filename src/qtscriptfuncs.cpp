@@ -102,7 +102,7 @@ QScriptValue convResearch(RESEARCH *psResearch, QScriptEngine *engine, int playe
 //;; Describes a structure (building). It inherits all the properties of the base object (see below).
 //;; In addition, the following properties are defined:
 //;; \begin{description}
-//;; \item[status] The completeness status of the structure. It will be one of BEING_BUILT, BUILT and BEING_DEMOLISHED.
+//;; \item[status] The completeness status of the structure. It will be one of BEING_BUILT and BUILT.
 //;; \item[type] The type will always be STRUCTURE.
 //;; \item[cost] What it would cost to build this structure. (3.2+ only)
 //;; \item[stattype] The stattype defines the type of structure. It will be one of HQ, FACTORY, POWER_GEN, RESOURCE_EXTRACTOR, 
@@ -256,6 +256,8 @@ QScriptValue convFeature(FEATURE *psFeature, QScriptEngine *engine)
 //;; \item[isRadarDetector] True if the droid has radar detector ability. (3.2+ only)
 //;; \item[hasIndirect] One or more of the droid's weapons are indirect. (3.2+ only)
 //;; \item[range] Maximum range of its weapons. (3.2+ only)
+//;; \item[body] The body component of the droid. (3.2+ only)
+//;; \item[propulsion] The propulsion component of the droid. (3.2+ only)
 //;; \end{description}
 QScriptValue convDroid(DROID *psDroid, QScriptEngine *engine)
 {
@@ -309,6 +311,8 @@ QScriptValue convDroid(DROID *psDroid, QScriptEngine *engine)
 	value.setProperty("droidType", (int)type, QScriptValue::ReadOnly);
 	value.setProperty("experience", (double)psDroid->experience / 65536.0, QScriptValue::ReadOnly);
 	value.setProperty("health", 100.0 / (double)psDroid->originalBody * (double)psDroid->body, QScriptValue::ReadOnly);
+	value.setProperty("body", asBodyStats[psDroid->asBits[COMP_BODY].nStat].pName);
+	value.setProperty("propulsion", asBodyStats[psDroid->asBits[COMP_PROPULSION].nStat].pName);
 	if (isVtolDroid(psDroid))
 	{
 		value.setProperty("armed", 100.0 / (double)MAX(asWeaponStats[psDroid->asWeaps[0].nStat].numRounds, 1)
@@ -347,6 +351,7 @@ QScriptValue convDroid(DROID *psDroid, QScriptEngine *engine)
 //;; \item[health] Percentage that this object is damaged (where 100% means not damaged at all).
 //;; \item[armour] Amount of armour points that protect against kinetic weapons.
 //;; \item[thermal] Amount of thermal protection that protect against heat based weapons.
+//;; \item[born] The game time at which this object was produced or came into the world. (3.2+ only)
 //;; \end{description}
 QScriptValue convObj(BASE_OBJECT *psObj, QScriptEngine *engine)
 {
@@ -362,6 +367,7 @@ QScriptValue convObj(BASE_OBJECT *psObj, QScriptEngine *engine)
 	value.setProperty("type", psObj->type, QScriptValue::ReadOnly);
 	value.setProperty("selected", psObj->selected, QScriptValue::ReadOnly);
 	value.setProperty("name", objInfo(psObj), QScriptValue::ReadOnly);
+	value.setProperty("born", psObj->born, QScriptValue::ReadOnly);
 	return value;
 }
 
@@ -2425,7 +2431,6 @@ bool registerFunctions(QScriptEngine *engine)
 	engine->globalObject().setProperty("ALLIANCES_TEAMS", ALLIANCES_TEAMS, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	engine->globalObject().setProperty("BEING_BUILT", SS_BEING_BUILT, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	engine->globalObject().setProperty("BUILT", SS_BUILT, QScriptValue::ReadOnly | QScriptValue::Undeletable);
-	engine->globalObject().setProperty("BEING_DEMOLISHED", SS_BEING_DEMOLISHED, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	engine->globalObject().setProperty("DROID_CONSTRUCT", DROID_CONSTRUCT, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	engine->globalObject().setProperty("DROID_WEAPON", DROID_WEAPON, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	engine->globalObject().setProperty("DROID_PERSON", DROID_PERSON, QScriptValue::ReadOnly | QScriptValue::Undeletable);
@@ -2467,7 +2472,7 @@ bool registerFunctions(QScriptEngine *engine)
 	// Static knowledge about players
 	//== \item[playerData] An array of information about the players in a game. Each item in the array is an object
 	//== containing the following variables: difficulty (see \emph{difficulty} global constant), colour, position, 
-	//== team, and (3.2+ only) name.
+	//== isAI (3.2+ only), name (3.2+ only), and team.
 	QScriptValue playerData = engine->newArray(game.maxPlayers);
 	for (int i = 0; i < game.maxPlayers; i++)
 	{
@@ -2477,6 +2482,7 @@ bool registerFunctions(QScriptEngine *engine)
 		vector.setProperty("colour", NetPlay.players[i].colour, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 		vector.setProperty("position", NetPlay.players[i].position, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 		vector.setProperty("team", NetPlay.players[i].team, QScriptValue::ReadOnly | QScriptValue::Undeletable);
+		vector.setProperty("isAI", !NetPlay.players[i].allocated && NetPlay.players[i].ai >= 0, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 		playerData.setProperty(i, vector, QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	}
 	engine->globalObject().setProperty("playerData", playerData, QScriptValue::ReadOnly | QScriptValue::Undeletable);

@@ -691,6 +691,7 @@ bool runGraphicsOptionsMenu(void)
 				widgSetString(psWScreen, FRONTEND_SCANLINES_R, _("Off"));
 				break;
 		}
+		break;
 
 	case FRONTEND_RADAR_R:
 		rotateRadar = !rotateRadar;
@@ -1204,7 +1205,7 @@ static bool startGameOptionsMenu(void)
 	addTextButton(FRONTEND_LANGUAGE_R,  FRONTEND_POS2M - 25, FRONTEND_POS2Y, getLanguageName(), 0);
 
 	// Difficulty
-	addTextButton(FRONTEND_DIFFICULTY, FRONTEND_POS3X-25, FRONTEND_POS3Y, _("Difficulty"), 0);
+	addTextButton(FRONTEND_DIFFICULTY, FRONTEND_POS3X-25, FRONTEND_POS3Y, _("Campaign Difficulty"), 0);
 	switch (getDifficultyLevel())
 	{
 		case DL_EASY:
@@ -1279,8 +1280,9 @@ bool runGameOptionsMenu(void)
 		widgSetString(psWScreen, FRONTEND_SIDETEXT, _("GAME OPTIONS"));
 		widgSetTipText(widgGetFromID(psWScreen, FRONTEND_QUIT), P_("menu", "Return"));
 		widgSetString(psWScreen, FRONTEND_LANGUAGE, _("Language"));
-		widgSetString(psWScreen, FRONTEND_COLOUR, _("Unit Colour (SP)"));
-		widgSetString(psWScreen, FRONTEND_COLOUR_MP, _("Unit Colour (MP)"));
+		widgSetString(psWScreen, FRONTEND_COLOUR, _("Unit Colour:"));
+		widgSetString(psWScreen, FRONTEND_COLOUR_CAM, _("Campaign"));
+		widgSetString(psWScreen, FRONTEND_COLOUR_MP, _("Skirmish/Multiplayer"));
 		widgSetString(psWScreen, FRONTEND_DIFFICULTY, _("Difficulty"));
 		widgSetString(psWScreen, FRONTEND_SCROLLSPEED, _("Scroll Speed"));
 		widgSetString(psWScreen, FRONTEND_RADAR, _("Radar"));

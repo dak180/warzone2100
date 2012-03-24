@@ -338,7 +338,8 @@ static PathCoord fpathAStarExplore(PathfindContext &context, PathCoord tileF)
 	unsigned        nearestDist = 0xFFFFFFFF;
 
 	// search for a route
-	while (!context.nodes.empty())
+	bool foundIt = false;
+	while (!context.nodes.empty() && !foundIt)
 	{
 		PathNode node = fpathTakeNode(context.nodes);
 		if (context.map[node.p.x + node.p.y*mapWidth].visited)
@@ -358,12 +359,16 @@ static PathCoord fpathAStarExplore(PathfindContext &context, PathCoord tileF)
 		{
 			// reached the target
 			nearestCoord = node.p;
-			break;
+			foundIt = true;  // Break out of loop, but not before inserting neighbour nodes, since the neighbours may be important if the context gets reused.
 		}
 
 		// loop through possible moves in 8 directions to find a valid move
 		for (unsigned dir = 0; dir < ARRAY_SIZE(aDirOffset); ++dir)
 		{
+			// Try a new location
+			int x = node.p.x + aDirOffset[dir].x;
+			int y = node.p.y + aDirOffset[dir].y;
+
 			/*
 			   5  6  7
 			     \|/
@@ -372,7 +377,7 @@ static PathCoord fpathAStarExplore(PathfindContext &context, PathCoord tileF)
 			   3  2  1
 			   odd:orthogonal-adjacent tiles even:non-orthogonal-adjacent tiles
 			*/
-			if (dir % 2 != 0)
+			if (dir % 2 != 0 && !context.dstIgnore.isNonblocking(node.p.x, node.p.y) && !context.dstIgnore.isNonblocking(x, y))
 			{
 				int x, y;
 
@@ -390,10 +395,6 @@ static PathCoord fpathAStarExplore(PathfindContext &context, PathCoord tileF)
 					continue;
 				}
 			}
-
-			// Try a new location
-			int x = node.p.x + aDirOffset[dir].x;
-			int y = node.p.y + aDirOffset[dir].y;
 
 			// See if the node is a blocking tile
 			if (context.isBlocked(x, y))
