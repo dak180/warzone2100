@@ -33,6 +33,7 @@
 
 #include "lib/framework/frame.h"
 #include "lib/framework/string_ext.h"
+#include "ivisdef.h"
 #include "piedef.h"
 
 /***************************************************************************/

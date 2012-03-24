@@ -24,11 +24,16 @@
 #include "lib/ivis_opengl/textdraw.h"
 #include "lib/ivis_opengl/wzm.h"
 
+extern WZRenderer g_wzmRenderer;
+
 // pass in true to reset the palette too.
 bool iV_Reset()
 {
 	_TEX_INDEX = 0;
-	if (!wzm_loadDefaults("3dview.ini"))
+
+	// Reset WZM renderer
+	g_wzmRenderer.shutdown();
+	if ( !(g_wzmRenderer.init() && g_wzmRenderer.loadMaterialDefaults("3dview.ini")) )
 	{
 		return false;
 	}
@@ -38,6 +43,7 @@ bool iV_Reset()
 
 void iV_ShutDown()
 {
+	g_wzmRenderer.shutdown();
 	pie_ShutDown();
 	pie_TexShutDown();
 	iV_TextShutdown();

@@ -30,6 +30,7 @@
 #include "lib/framework/fixedpoint.h"
 #include "lib/ivis_opengl/piematrix.h"
 #include "lib/ivis_opengl/tex.h" // texture page loading
+#include "lib/ivis_opengl/wzm.h"
 
 static bool AtEndOfFile(const char *CurPos, const char *EndOfFile)
 {
@@ -504,10 +505,6 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 	s->shadowEdgeList = NULL;
 	s->nShadowEdges = 0;
 
-	memset(s->material, 0, sizeof(s->material));
-	s->material[LIGHT_AMBIENT][3] = 1.0f;
-	s->material[LIGHT_DIFFUSE][3] = 1.0f;
-	s->material[LIGHT_SPECULAR][3] = 1.0f;
 	if (strcmp(buffer, "MATERIALS") == 0)
 	{
 		i = sscanf(pFileData, "%255s %f %f %f %f %f %f %f %f %f %f%n", buffer,
@@ -520,17 +517,6 @@ static iIMDShape *_imd_load_level(const char **ppFileData, const char *FileDataE
 	}
 	else
 	{
-		// Set default values
-		s->material[LIGHT_AMBIENT][0] = 1.0f;
-		s->material[LIGHT_AMBIENT][1] = 1.0f;
-		s->material[LIGHT_AMBIENT][2] = 1.0f;
-		s->material[LIGHT_DIFFUSE][0] = 1.0f;
-		s->material[LIGHT_DIFFUSE][1] = 1.0f;
-		s->material[LIGHT_DIFFUSE][2] = 1.0f;
-		s->material[LIGHT_SPECULAR][0] = 1.0f;
-		s->material[LIGHT_SPECULAR][1] = 1.0f;
-		s->material[LIGHT_SPECULAR][2] = 1.0f;
-		s->shininess = 10;
 		pFileData = pTmp;
 	}
 

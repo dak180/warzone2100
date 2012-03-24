@@ -52,6 +52,12 @@ struct Vector3us
 	Vector3us(unsigned short x, unsigned short y, unsigned short z) : x(x), y(y), z(z) {}
 	unsigned short x, y, z;
 };
+struct Vector3ui
+{
+	Vector3ui() {}
+	Vector3ui(unsigned int x, unsigned int y, unsigned int z) : x(x), y(y), z(z) {}
+	unsigned int x, y, z;
+};
 struct Vector3i
 {
 	Vector3i() {}

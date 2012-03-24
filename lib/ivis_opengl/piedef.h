@@ -33,7 +33,7 @@
 
 #include "lib/framework/frame.h"
 #include "lib/framework/vector.h"
-#include "ivisdef.h"
+//#include "ivisdef.h"
 #include "pietypes.h"
 
 /***************************************************************************/
@@ -70,6 +70,8 @@ struct PIEIMAGE  ///< An area of texture.
  *	Global ProtoTypes
  */
 /***************************************************************************/
+class iIMDShape;
+
 extern void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int pieFlag, int pieFlagData);
 extern void pie_DrawImage(const PIEIMAGE *image, const PIERECT *dest);
 void pie_DrawImage(const PIEIMAGE *image, const PIERECT *dest, PIELIGHT colour);

@@ -45,11 +45,10 @@
 #define WZM_MESH_DIRECTIVE_INDEXARRAY "INDEXARRAY"
 #define WZM_MESH_DIRECTIVE_CONNECTORS "CONNECTORS"
 
-// Default material values
-static GLfloat mat_default_reflections[LIGHT_MAX][4];
-static GLfloat mat_default_shininess;
+// Global WZM renderer instance
+WZRenderer g_wzmRenderer;
 
-bool wzm_loadDefaults(const char *pFileName)
+bool WZRenderer::loadMaterialDefaults(const char *pFileName)
 {
 	WzConfig ini(pFileName);
 	if (ini.status() != QSettings::NoError)
@@ -81,6 +80,94 @@ bool wzm_loadDefaults(const char *pFileName)
 	return true;
 }
 
+bool WZRenderer::init()
+{
+	return true;
+}
+
+void WZRenderer::shutdown()
+{
+	debug(LOG_3D, "WZRenderer - shutdown, geometry count was %d", (int)m_vertexArray.size());
+
+	resetDrawList();
+
+	m_vertexArray.clear();
+	m_textureArray.clear();
+	m_normalArray.clear();
+	m_tangentArray.clear();
+}
+
+void WZRenderer::addNodeToDrawList(const WZRenderListNode &node)
+{
+	m_drawList.push_back(node);
+}
+
+void WZRenderer::resetDrawList()
+{
+	m_drawList.clear();
+}
+
+void WZRenderer::renderDrawList()
+{
+	bool shaders = pie_GetShaderAvailability();
+
+	if (m_drawList.empty())
+		return;
+
+	std::sort(m_drawList.begin(), m_drawList.end());
+	WZRenderListNode& node = m_drawList.front();
+
+	glErrors();
+
+	glPushAttrib(GL_TEXTURE_BIT);
+	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+
+	glClientActiveTexture(GL_TEXTURE0);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glTexCoordPointer(2, GL_FLOAT, 0, &m_textureArray[0]);
+	glNormalPointer(GL_FLOAT, 0, &m_normalArray[0]);
+	glVertexPointer(3, GL_FLOAT, 0, &m_vertexArray[0]);
+
+	if (shaders)
+	{
+		pie_ActivateShader(SHADER_COMPONENT, node.shape, node.teamcolour, node.colour);
+		pie_SetShaderTangentAttribute(&m_tangentArray[0]);
+	}
+	else
+	{
+		pie_ActivateFallback(SHADER_COMPONENT, node.shape, node.teamcolour, node.colour);
+	}
+
+	pie_SetAlphaTest(true);
+	pie_SetFogStatus(true);
+	pie_SetRendMode(REND_OPAQUE);
+
+	glErrors();
+
+	for (std::vector<WZRenderListNode>::const_iterator nodeit = m_drawList.begin(); nodeit != m_drawList.end(); ++nodeit)
+	{
+		glLoadMatrixf(nodeit->matrix);
+		nodeit->shape->drawFast(nodeit->colour, nodeit->teamcolour, nodeit->flag);
+	}
+
+	if (shaders)
+	{
+		pie_DeactivateShader();
+	}
+	else
+	{
+		pie_DeactivateFallback();
+	}
+
+	glErrors();
+
+	glPopClientAttrib();
+	glPopAttrib();
+}
+
 void WZMesh::mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int axis)
 {
 	switch (axis)
@@ -97,7 +184,7 @@ void WZMesh::mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int 
 }
 
 WZMesh::WZMesh():
-	m_teamColours(false)
+	m_teamColours(false), m_vertices_count(0)
 {
 }
 
@@ -107,19 +194,21 @@ WZMesh::~WZMesh()
 
 void WZMesh::clear()
 {
-	m_vertexArray.clear();
-	m_textureArray.clear();
-	m_normalArray.clear();
-	m_tangentArray.clear();
+	m_name.clear();
+	m_teamColours = false;
+	m_vertices_count = 0;
 
 	m_tightspherecenter = Vector3f(0., 0., 0.);
 	std::fill_n(m_aabb, WZM_AABB_SIZE, Vector3f(0., 0., 0.));
+
+	m_indexArray.clear();
+	m_connectorArray.clear();
 }
 
-bool WZMesh::loadFromStream(std::istream &in)
+bool WZMesh::loadHeader(std::istream &in)
 {
 	std::string str;
-	unsigned i, vertices, indices;
+	unsigned indices;
 
 	in >> str >> m_name;
 	if (in.fail() || str.compare(WZM_MESH_SIGNATURE) != 0)
@@ -170,7 +259,7 @@ bool WZMesh::loadFromStream(std::istream &in)
 		recalcAABB();
 	}
 
-	in >> str >> vertices;
+	in >> str >> m_vertices_count;
 	if (in.fail() || str.compare(WZM_MESH_DIRECTIVE_VERTICES) != 0)
 	{
 		debug(LOG_WARNING, "WZMesh - Expected %s directive found %s", WZM_MESH_DIRECTIVE_VERTICES, str.c_str());
@@ -191,92 +280,109 @@ bool WZMesh::loadFromStream(std::istream &in)
 		return false;
 	}
 
-	m_vertexArray.reserve(vertices);
-	m_textureArray.reserve(vertices);
-	m_normalArray.reserve(vertices);
-	m_tangentArray.reserve(vertices);
+	m_indexArray.resize(indices);
 
-	Vector3f vert, normal;
+	return true;
+}
+
+bool WZMesh::loadGeometry(std::istream &in, WZRenderer& renderer)
+{
+	Vector3f vert, normal, con;
 	Vector4f tangent;
 	Vector2f uv;
+	Vector3ui tri;
+	std::string str;
+	unsigned i;
 
-	for (; vertices > 0; --vertices)
+	// Here we merge geometry data from all meshes into continuos arrays
+	// FIXME: check if m_vertexArray.size() overflows unsigned int!
+	unsigned int indicesoffset = renderer.m_vertexArray.size();
+
+	m_index_min = indicesoffset;
+	m_index_max = indicesoffset + m_vertices_count - 1;
+
+	renderer.m_vertexArray.reserve(indicesoffset + m_vertices_count);
+	renderer.m_textureArray.reserve(indicesoffset + m_vertices_count);
+	renderer.m_normalArray.reserve(indicesoffset + m_vertices_count);
+	renderer.m_tangentArray.reserve(indicesoffset + m_vertices_count);
+
+	for (unsigned int i = m_vertices_count; i > 0; --i)
 	{
 		in >> vert.x >> vert.y >> vert.z;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading vertex");
+			debug(LOG_WARNING, "loadGeometry - Error reading vertex");
 			return false;
 		}
-		m_vertexArray.push_back(vert);
+		renderer.m_vertexArray.push_back(vert);
 
 		in >> uv.x >> uv.y;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading uv coords.");
+			debug(LOG_WARNING, "loadGeometry - Error reading uv coords.");
 			return false;
 		}
 		else if (uv.x > 1 || uv.y > 1)
 		{
-			debug(LOG_WARNING, "WZMesh - Error uv coords out of range");
+			debug(LOG_WARNING, "loadGeometry - Error uv coords out of range");
 			return false;
 		}
-		m_textureArray.push_back(uv);
+		renderer.m_textureArray.push_back(uv);
 
 		in >> normal.x >> normal.y >> normal.z;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading normal");
+			debug(LOG_WARNING, "loadGeometry - Error reading normal");
 			return false;
 		}
-		m_normalArray.push_back(normal);
+		renderer.m_normalArray.push_back(normal);
 
 		in >> tangent.x >> tangent.y >> tangent.z >> tangent.w;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading tangent");
+			debug(LOG_WARNING, "loadGeometry - Error reading tangent");
 			return false;
 		}
-		m_tangentArray.push_back(tangent);
+		renderer.m_tangentArray.push_back(tangent);
 	}
 
 	in >> str;
 	if (str.compare(WZM_MESH_DIRECTIVE_INDEXARRAY) != 0)
 	{
-		debug(LOG_WARNING, "WZMesh - Expected %s directive found %s", WZM_MESH_DIRECTIVE_INDEXARRAY, str.c_str());
+		debug(LOG_WARNING, "loadGeometry - Expected %s directive found %s", WZM_MESH_DIRECTIVE_INDEXARRAY, str.c_str());
 		return false;
 	}
 
-	m_indexArray.reserve(indices);
-
-	for(; indices > 0; --indices)
+	for (unsigned indices = 0; indices < m_indexArray.size(); ++indices)
 	{
-		Vector3us tri;
-
 		in >> tri.x >> tri.y >> tri.z;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading indices");
+			debug(LOG_WARNING, "loadGeometry - Error reading indices");
 			return false;
 		}
-		m_indexArray.push_back(tri);
+
+		tri.x += indicesoffset;
+		tri.y += indicesoffset;
+		tri.z += indicesoffset;
+
+		m_indexArray[indices] = tri;
 	}
 
 	in >> str >> i;
 	if (in.fail() || str.compare(WZM_MESH_DIRECTIVE_CONNECTORS) != 0)
 	{
-		debug(LOG_WARNING, "WZMesh - Expected %s directive found %s", WZM_MESH_DIRECTIVE_CONNECTORS, str.c_str());
+		debug(LOG_WARNING, "loadGeometry - Expected %s directive found %s", WZM_MESH_DIRECTIVE_CONNECTORS, str.c_str());
 		return false;
 	}
 
-	if (i > 0)
-	{
-		Vector3f con;
 
+	for(; i > 0; --i)
+	{
 		in >> con.x >> con.y >> con.z;
 		if (in.fail())
 		{
-			debug(LOG_WARNING, "WZMesh - Error reading connectors");
+			debug(LOG_WARNING, "loadGeometry - Error reading connectors");
 			return false;
 		}
 		m_connectorArray.push_back(con);
@@ -384,8 +490,8 @@ void iIMDShape::clear()
 	std::fill_n(m_aabb, WZM_AABB_SIZE, Vector3f(0., 0., 0.));
 
 	// Set default values
-	memcpy(material, mat_default_reflections, sizeof(material));
-	shininess = mat_default_shininess;
+	memcpy(material, g_wzmRenderer.mat_default_reflections, sizeof(material));
+	shininess = g_wzmRenderer.mat_default_shininess;
 }
 
 bool iIMDShape::loadFromStream(std::istream &in)
@@ -500,6 +606,12 @@ bool iIMDShape::loadFromStream(std::istream &in)
 		// pre read next token
 		in >> str;
 	}
+	else
+	{
+		// Set default values
+		memcpy(material, g_wzmRenderer.mat_default_reflections, sizeof(material));
+		shininess = g_wzmRenderer.mat_default_shininess;
+	}
 
 	// token was pre read here
 	// MESHES %u
@@ -519,9 +631,10 @@ bool iIMDShape::loadFromStream(std::istream &in)
 	for(; meshes > 0; --meshes)
 	{
 		m_meshes.push_back(WZMesh());
-
 		WZMesh& mesh = m_meshes.back();
-		if (!mesh.loadFromStream(in))
+
+		if ( !(mesh.loadHeader(in) &&
+		      mesh.loadGeometry(in, g_wzmRenderer)) ) // FIXME: renderer should be a property?
 		{
 			m_meshes.pop_back();
 			return false;
@@ -570,7 +683,7 @@ Vector3f iIMDShape::getAABBcenter()
 	return center;
 }
 
-void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)
+void iIMDShape::draw(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData)
 {
 	bool light = true;
 	bool shaders = pie_GetShaderAvailability();
@@ -614,9 +727,10 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 		if (pieFlag & pie_BUTTON)
 		{
 			shaderMode = SHADER_BUTTON;
+			light = false;
 
 			pie_SetDepthBufferStatus(DEPTH_CMP_LEQ_WRT_ON);
-			light = false;
+
 			if (shaders)
 			{
 				pie_ActivateShader(shaderMode, this, teamcolour, colour);
@@ -649,6 +763,11 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 			pie_ActivateFallback(shaderMode, this, teamcolour, colour);
 		}
 	}
+	else
+	{
+		glColor4ubv(colour.vector);     // Only need to set once for entire model
+		pie_SetTexturePage(getTexturePage(WZM_TEX_DIFFUSE));
+	}
 
 	if (pieFlag & pie_HEIGHT_SCALED)	// construct
 	{
@@ -658,9 +777,6 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 	{
 		glTranslatef(1.0f, (-max.y * (pie_RAISE_SCALE - pieFlagData)) * (1.0f / pie_RAISE_SCALE), 1.0f);
 	}
-
-	glColor4ubv(colour.vector);     // Only need to set once for entire model
-	pie_SetTexturePage(getTexturePage(WZM_TEX_DIFFUSE));
 
 	glPushAttrib(GL_TEXTURE_BIT);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -681,22 +797,18 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 	}
 
+	if (shaders && shaderMode == SHADER_COMPONENT)
+	{
+		pie_SetShaderTangentAttribute(&g_wzmRenderer.m_tangentArray[0]);
+	}
+	glTexCoordPointer(2, GL_FLOAT, 0, &g_wzmRenderer.m_textureArray[0]);
+	glNormalPointer(GL_FLOAT, 0, &g_wzmRenderer.m_normalArray[0]);
+	glVertexPointer(3, GL_FLOAT, 0, &g_wzmRenderer.m_vertexArray[0]);
 
 	for (std::list<WZMesh>::iterator it = m_meshes.begin(); it != m_meshes.end(); ++it)
 	{
 		const WZMesh& msh = *it;
-
-		if (shaders && shaderMode == SHADER_COMPONENT)
-		{
-			pie_SetShaderTangentAttribute(&msh.m_tangentArray[0]);
-		}
-
-		glTexCoordPointer(2, GL_FLOAT, 0, &msh.m_textureArray[0]);
-		glNormalPointer(GL_FLOAT, 0, &msh.m_normalArray[0]);
-		glVertexPointer(3, GL_FLOAT, 0, &msh.m_vertexArray[0]);
-
-		glDrawElements(GL_TRIANGLES, msh.m_indexArray.size() * 3, GL_UNSIGNED_SHORT, &msh.m_indexArray[0]);
-
+		glDrawElements(GL_TRIANGLES, msh.m_indexArray.size() * 3, GL_UNSIGNED_INT, &msh.m_indexArray[0]);
 	}
 
 	glErrors();
@@ -720,5 +832,43 @@ void iIMDShape::render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pi
 	if (pieFlag & pie_BUTTON)
 	{
 		pie_SetDepthBufferStatus(DEPTH_CMP_ALWAYS_WRT_ON);
+	}
+}
+
+void iIMDShape::drawFast(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag)
+{
+	bool shaders = pie_GetShaderAvailability();
+
+	if (shaders)
+	{
+		pie_ActivateShader(SHADER_COMPONENT, this, teamcolour, colour);
+	}
+	else
+	{
+		pie_ActivateFallback(SHADER_COMPONENT, this, teamcolour, colour);
+	}
+
+	if (pieFlag & pie_ECM)
+	{
+		pie_SetRendMode(REND_ALPHA);
+		pie_SetShaderEcmEffect(true);
+	}
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, material[LIGHT_AMBIENT]);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, material[LIGHT_DIFFUSE]);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, material[LIGHT_SPECULAR]);
+	glMaterialfv(GL_FRONT, GL_EMISSION, material[LIGHT_EMISSIVE]);
+	glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+
+	for (std::list<WZMesh>::const_iterator mshit = m_meshes.begin(); mshit != m_meshes.end(); ++mshit)
+	{
+		const WZMesh& msh = *mshit;
+		glDrawRangeElements(GL_TRIANGLES, msh.m_index_min, msh.m_index_max, msh.m_indexArray.size() * 3, GL_UNSIGNED_INT, &msh.m_indexArray[0]);
+	}
+
+	if (pieFlag & pie_ECM)
+	{
+		pie_SetRendMode(REND_OPAQUE);
+		pie_SetShaderEcmEffect(false);
 	}
 }

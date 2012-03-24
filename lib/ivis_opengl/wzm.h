@@ -25,8 +25,7 @@
 #include <list>
 
 #include "lib/framework/frame.h"
-#include "lib/ivis_opengl/pietypes.h"
-
+#include "lib/ivis_opengl/piedef.h"
 
 //************************** PIE **************************************
 
@@ -72,11 +71,61 @@ struct iIMDPoly
 
 // old stuff above ^^ REMOVE ON WZM COMPLETION
 
-//************************** WZM **************************************
 
+//************************** WZRenderer **************************************
+
+/*
+*    Whole WZRenderer-iIMDShape thingy is NOT thread safe currently :(
+*    Shouln't be a big problem for now as res loading is sequential from primary thread.
+*/
+
+//union PIELIGHT;
 struct iIMDShape;
 
-bool wzm_loadDefaults(const char *pFileName);
+struct WZRenderListNode
+{
+	float		matrix[16];
+	iIMDShape*	shape;
+	PIELIGHT	colour;
+	PIELIGHT	teamcolour;
+	int		flag;
+	int		flag_data;
+
+	bool operator < (const WZRenderListNode& rhs) const
+	{
+		if (shape < rhs.shape)
+			return true;
+		else
+			return false;
+	}
+};
+
+struct WZRenderer
+{
+	std::vector<WZRenderListNode> m_drawList;
+
+	std::vector<Vector3f> m_vertexArray;
+	std::vector<Vector2f> m_textureArray;
+	std::vector<Vector3f> m_normalArray;
+	std::vector<Vector4f> m_tangentArray;
+
+	// Default material values
+	float mat_default_reflections[LIGHT_MAX][4];
+	float mat_default_shininess;
+
+public:
+	bool loadMaterialDefaults(const char *pFileName);
+
+	bool init();
+	void shutdown();
+
+	void addNodeToDrawList(const WZRenderListNode& node);
+	void resetDrawList();
+
+	void renderDrawList();
+};
+
+//************************** WZM **************************************
 
 #define WZM_AABB_SIZE 8
 
@@ -92,14 +141,11 @@ class WZMesh
 
 	std::string m_name;
 	bool m_teamColours;
+	unsigned int m_vertices_count;
 
-	std::vector<Vector3f> m_vertexArray;
-	std::vector<Vector2f> m_textureArray;
-	std::vector<Vector3f> m_normalArray;
-	std::vector<Vector4f> m_tangentArray;
+	unsigned int m_index_min, m_index_max;
 
-	std::vector<Vector3us> m_indexArray;
-
+	std::vector<Vector3ui> m_indexArray;
 	std::vector<Vector3f> m_connectorArray;
 
 	Vector3f m_tightspherecenter;
@@ -114,7 +160,8 @@ public:
 
 	void clear();
 
-	bool loadFromStream(std::istream& in);
+	bool loadHeader(std::istream& in);
+	bool loadGeometry(std::istream &in, WZRenderer& renderer);
 
 	const Vector3f& getAABBminmax(bool ismin) const {return (ismin) ? m_aabb[0] : m_aabb[4];}
 	Vector3f getAABBcenter();
@@ -122,8 +169,6 @@ public:
 
 	static void mirrorVertexFromPoint(Vector3f &vertex, const Vector3f &point, int axis); // x == 0, y == 1, z == 2
 };
-
-union PIELIGHT;
 
 struct iIMDShape
 {
@@ -166,7 +211,8 @@ public:
 	~iIMDShape();
 
 	void clear();
-	void render(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData);
+	void draw(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag, int pieFlagData);
+	void drawFast(PIELIGHT colour, PIELIGHT teamcolour, int pieFlag);
 
 	bool loadFromStream(std::istream& in);
 

@@ -31,7 +31,6 @@
 
 #include "lib/framework/frame.h"
 #include "wzm.h"
-#include "pietypes.h"
 
 // How high up do we want to stop looking
 #define DROID_VIS_UPPER	100

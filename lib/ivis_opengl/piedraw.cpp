@@ -50,6 +50,7 @@
 #define TRIANGLES_PER_TILE 2
 #define VERTICES_PER_TILE (TRIANGLES_PER_TILE * VERTICES_PER_TRIANGLE)
 
+extern WZRenderer g_wzmRenderer;
 extern bool drawing_interface;
 
 /*
@@ -208,6 +209,11 @@ static void pie_Draw3DShape2(iIMDShape *shape, int frame, PIELIGHT colour, PIELI
 			pie_ActivateFallback(SHADER_COMPONENT, shape, teamcolour, colour);
 		}
 	}
+	else
+	{
+		glColor4ubv(colour.vector);     // Only need to set once for entire model
+		pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
+	}
 
 	if (pieFlag & pie_HEIGHT_SCALED)	// construct
 	{
@@ -217,9 +223,6 @@ static void pie_Draw3DShape2(iIMDShape *shape, int frame, PIELIGHT colour, PIELI
 	{
 		glTranslatef(1.0f, (-shape->max.y * (pie_RAISE_SCALE - pieFlagData)) * (1.0f / pie_RAISE_SCALE), 1.0f);
 	}
-
-	glColor4ubv(colour.vector);     // Only need to set once for entire model
-	pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
 
 	frame %= MAX(1, shape->numFrames);
 
@@ -463,16 +466,9 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 
 	teamcolour = pal_GetTeamColour(team);
 
-	if (shape->isWZMFormat())
+	if (!drawing_interface)
 	{
-		shape->render(colour, teamcolour, pieFlag, pieFlagData);
-	}
-	else if (drawing_interface || !shadows)
-	{
-		pie_Draw3DShape2(shape, frame, colour, teamcolour, pieFlag, pieFlagData);
-	}
-	else
-	{
+		// Bucket renderer for various blended shapes
 		if (pieFlag & (pie_ADDITIVE | pie_TRANSLUCENT | pie_PREMULTIPLIED) && !(pieFlag & pie_FORCE_IMMEDIATE))
 		{
 			TranslucentShape tshape;
@@ -483,43 +479,66 @@ void pie_Draw3DShape(iIMDShape *shape, int frame, int team, PIELIGHT colour, int
 			tshape.flag = pieFlag;
 			tshape.flag_data = pieFlagData;
 			tshapes.push_back(tshape);
+			return;
+		}
+
+		// Shadows for PIEs
+		if (shadows && (pieFlag & pie_SHADOW || pieFlag & pie_STATIC_SHADOW) && !shape->isWZMFormat())
+		{
+			float distance;
+
+			// draw a shadow
+			ShadowcastingShape scshape;
+			glGetFloatv(GL_MODELVIEW_MATRIX, scshape.matrix);
+			distance = scshape.matrix[12] * scshape.matrix[12];
+			distance += scshape.matrix[13] * scshape.matrix[13];
+			distance += scshape.matrix[14] * scshape.matrix[14];
+
+			// if object is too far in the fog don't generate a shadow.
+			if (distance < SHADOW_END_DISTANCE)
+			{
+				float invmat[9], pos_light0[4];
+
+				glGetLightfv(GL_LIGHT0, GL_POSITION, pos_light0);
+				inverse_matrix( scshape.matrix, invmat );
+
+				// Calculate the light position relative to the object
+				scshape.light.x = -(invmat[0] * pos_light0[0] + invmat[3] * pos_light0[1] + invmat[6] * pos_light0[2]);
+				scshape.light.y = -(invmat[1] * pos_light0[0] + invmat[4] * pos_light0[1] + invmat[7] * pos_light0[2]);
+				scshape.light.z = -(invmat[2] * pos_light0[0] + invmat[5] * pos_light0[1] + invmat[8] * pos_light0[2]);
+
+				scshape.shape = shape;
+				scshape.flag = pieFlag;
+				scshape.flag_data = pieFlagData;
+
+				scshapes.push_back(scshape);
+			}
+		}
+	}
+
+	// Draw it
+	if (shape->isWZMFormat())
+	{
+		// Add white-listed shapes to bucket renderer or draw it slowly
+		if ( !(pieFlag & ~(pie_SHADOW | pie_STATIC_SHADOW | pie_ECM)) ) // | pie_HEIGHT_SCALED | pie_RAISE
+		{
+			WZRenderListNode node;
+			glGetFloatv(GL_MODELVIEW_MATRIX, node.matrix);
+			node.shape = shape;
+			node.colour = colour;
+			node.teamcolour = teamcolour;
+			node.flag = pieFlag;
+			node.flag_data = pieFlagData;
+			g_wzmRenderer.addNodeToDrawList(node);
 		}
 		else
 		{
-			if(pieFlag & pie_SHADOW || pieFlag & pie_STATIC_SHADOW)
-			{
-				float distance;
-
-				// draw a shadow
-				ShadowcastingShape scshape;
-				glGetFloatv(GL_MODELVIEW_MATRIX, scshape.matrix);
-				distance = scshape.matrix[12] * scshape.matrix[12];
-				distance += scshape.matrix[13] * scshape.matrix[13];
-				distance += scshape.matrix[14] * scshape.matrix[14];
-
-				// if object is too far in the fog don't generate a shadow.
-				if (distance < SHADOW_END_DISTANCE)
-				{
-					float invmat[9], pos_light0[4];
-
-					glGetLightfv(GL_LIGHT0, GL_POSITION, pos_light0);
-					inverse_matrix( scshape.matrix, invmat );
-
-					// Calculate the light position relative to the object
-					scshape.light.x = -(invmat[0] * pos_light0[0] + invmat[3] * pos_light0[1] + invmat[6] * pos_light0[2]);
-					scshape.light.y = -(invmat[1] * pos_light0[0] + invmat[4] * pos_light0[1] + invmat[7] * pos_light0[2]);
-					scshape.light.z = -(invmat[2] * pos_light0[0] + invmat[5] * pos_light0[1] + invmat[8] * pos_light0[2]);
-
-					scshape.shape = shape;
-					scshape.flag = pieFlag;
-					scshape.flag_data = pieFlagData;
-
-					scshapes.push_back(scshape);
-				}
-			}
-
-			pie_Draw3DShape2(shape, frame, colour, teamcolour, pieFlag, pieFlagData);
+			shape->draw(colour, teamcolour, pieFlag, pieFlagData);
 		}
+	}
+	else
+	{
+		pie_Draw3DShape2(shape, frame, colour, teamcolour, pieFlag, pieFlagData);
 	}
 }
 
@@ -638,8 +657,15 @@ static void pie_DrawRemainingTransShapes(void)
 	for (unsigned i = 0; i < tshapes.size(); ++i)
 	{
 		glLoadMatrixf(tshapes[i].matrix);
-		pie_Draw3DShape2(tshapes[i].shape, tshapes[i].frame, tshapes[i].colour, tshapes[i].colour,
-				 tshapes[i].flag, tshapes[i].flag_data);
+		if (tshapes[i].shape->isWZMFormat())
+		{
+			tshapes[i].shape->draw(tshapes[i].colour, tshapes[i].colour, tshapes[i].flag, tshapes[i].flag_data);
+		}
+		else
+		{
+			pie_Draw3DShape2(tshapes[i].shape, tshapes[i].frame, tshapes[i].colour, tshapes[i].colour,
+					 tshapes[i].flag, tshapes[i].flag_data);
+		}
 	}
 	glPopMatrix();
 
@@ -648,6 +674,11 @@ static void pie_DrawRemainingTransShapes(void)
 
 void pie_RemainingPasses(void)
 {
+	glPushMatrix();
+	g_wzmRenderer.renderDrawList();
+	g_wzmRenderer.resetDrawList();
+	glPopMatrix();
+
 	if(shadows)
 	{
 		pie_DrawShadows();

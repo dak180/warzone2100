@@ -355,12 +355,17 @@ void pie_SetShaderStretchDepth(float stretch)
 
 void pie_ActivateFallback(SHADER_MODE, iIMDShape* shape, PIELIGHT teamcolour, PIELIGHT colour)
 {
+	// Set model color
+	glColor4ubv(colour.vector);
+
 	if (shape->getTexturePage(WZM_TEX_TCMASK) == iV_TEX_INVALID)
 	{
+		// Simple diffuse texture
+		pie_SetTexturePage(shape->getTexturePage(WZM_TEX_DIFFUSE));
 		return;
 	}
 
-	//Set the environment colour with tcmask
+	// Set the environment colour with tcmask
 	GLfloat tc_env_colour[4];
 	pal_PIELIGHTtoRGBA4f(&tc_env_colour[0], teamcolour);
 
