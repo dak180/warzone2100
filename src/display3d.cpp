@@ -1053,7 +1053,7 @@ static void drawTiles(iView *player)
 				pos.y = map_TileHeight(playerXTile + j, playerZTile + i);
 				setTileColour(playerXTile + j, playerZTile + i, pal_SetBrightness(psTile->level));
 			}
-			tileScreenInfo[idx][jdx].z = pie_Project(&pos, &screen);
+			tileScreenInfo[idx][jdx].z = pie_Project(pos, &screen);
 			tileScreenInfo[idx][jdx].x = screen.x;
 			tileScreenInfo[idx][jdx].y = screen.y;
 		}
@@ -1237,7 +1237,7 @@ static void	calcFlagPosScreenCoords(SDWORD *pX, SDWORD *pY, SDWORD *pR)
 	UDWORD	radius = 22;
 
 	/* Pop matrices and get the screen coordinates for last point*/
-	pie_Project( &center3d, &center2d );
+	pie_Project(center3d, &center2d );
 
 	/*store the coords*/
 	*pX = center2d.x;
@@ -1489,7 +1489,7 @@ void	renderAnimComponent( const COMPONENT_OBJECT *psObj )
 
 			brightness = structureBrightness(psStructure);
 
-			pie_Project( &zero, &s );
+			pie_Project(zero, &s );
 			psStructure->sDisplay.screenX = s.x;
 			psStructure->sDisplay.screenY = s.y;
 		}
@@ -2072,7 +2072,7 @@ void	renderFeature(FEATURE *psFeature)
 
 	Vector3i zero(0, 0, 0);
 	Vector2i s(0, 0);
-	pie_Project(&zero, &s);
+	pie_Project(zero, &s);
 	psFeature->sDisplay.screenX = s.x;
 	psFeature->sDisplay.screenY = s.y;
 
@@ -2576,14 +2576,12 @@ void	renderStructure(STRUCTURE *psStructure)
 		}
 	}
 
-	{
-		Vector3i zero(0, 0, 0);
-		Vector2i s(0, 0);
+	Vector3i zero(0, 0, 0);
+	Vector2i s(0, 0);
 
-		pie_Project(&zero, &s);
-		psStructure->sDisplay.screenX = s.x;
-		psStructure->sDisplay.screenY = s.y;
-	}
+	pie_Project(zero, &s);
+	psStructure->sDisplay.screenX = s.x;
+	psStructure->sDisplay.screenY = s.y;
 
 	pie_MatEnd();
 }
@@ -2721,7 +2719,7 @@ static bool	renderWallSection(STRUCTURE *psStructure)
 			Vector3i zero(0, 0, 0);
 			Vector2i s(0, 0);
 
-			pie_Project( &zero, &s );
+			pie_Project( zero, &s );
 			psStructure->sDisplay.screenX = s.x;
 			psStructure->sDisplay.screenY = s.y;
 		}
@@ -3572,36 +3570,13 @@ static void	drawDroidCmndNo(DROID *psDroid)
 void calcScreenCoords(DROID *psDroid)
 {
 	/* Get it's absolute dimensions */
-	const BODY_STATS *psBStats = asBodyStats + psDroid->asBits[COMP_BODY].nStat;
-	Vector3i origin;
-	Vector2i center;
-	int wsRadius = 22; // World space radius, 22 = magic minimum
-	float radius;
+	iIMDShape *psBodyImd = BODY_IMD(psDroid, psDroid->player);
+	const Vector3i origin(0, 0, 0);
+	Vector2i center(0, 0);
+	int radius = psBodyImd? psBodyImd->radius : 22;
 
-	// NOTE: This only takes into account body, but seems "good enough"
-	if (psBStats && psBStats->pIMD)
-	{
-		wsRadius = MAX(wsRadius, psBStats->pIMD->radius);
-	}
-
-	origin = Vector3i(0, wsRadius, 0); // take the center of the object
-
-	/* get the screen coordinates */
-	// FP12_SHIFT-STRETCHED_Z_SHIFT is the shift of the scaling on the depth returned
-	const float cZ = pie_Project(&origin, &center) / (float) (1 << (FP12_SHIFT-STRETCHED_Z_SHIFT));
-
-	//Watermelon:added a crash protection hack...
-	if (cZ >= 0)
-	{
-		// 330 is the near plane depth from pie_PerspectiveBegin
-		// not sure where magic comes from, could be another 1<<FP12_SHIFT-STRETCHED_Z_SHIFT
-		const int magic = 4;
-		radius = (wsRadius * 330 * magic) / cZ;
-	}
-	else
-	{
-		radius = 1; // 1 just in case some other code assumes radius != 0
-	}
+	/* get the screen corrdinates */
+	pie_ProjectSphere(origin, radius, &center);
 
 	/* Deselect all the droids if we've released the drag box */
 	if(dragBox3D.status == DRAG_RELEASED)
