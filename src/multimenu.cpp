@@ -842,10 +842,10 @@ static void displayExtraGubbins(UDWORD height)
 
 static void displayMultiPlayer(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset, PIELIGHT *pColours)
 {
-	char str[128];
-	int x = xOffset + psWidget->x;
-	int y = yOffset + psWidget->y;
-	unsigned player = psWidget->UserData;  // Get the in game player number.
+	char		str[128];
+	UDWORD		x		= xOffset + psWidget->x;
+	UDWORD		y		= yOffset + psWidget->y;
+	UDWORD		player = psWidget->UserData; //get the in game player number.
 
 	if (responsibleFor(player, 0))
 	{
@@ -985,25 +985,14 @@ static void displayMultiPlayer(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset,
 	}
 	if (displayDroid)
 	{
-		Vector3i rotation(-15, 45, 0);
+		Vector2i  bounds(MULTIMENU_C1, MULTIMENU_PLAYER_H); // Just a guess
+		Vector2i rotation(-15, 45);
 		Position position;
 		position.x = MULTIMENU_FORM_X+MULTIMENU_C1;
 		position.y = y+MULTIMENU_PLAYER_H;
-		// Scale them.
-		if (displayDroid->droidType == DROID_SUPERTRANSPORTER)
-		{
-			position.z = 7850;
-		}
-		else if (displayDroid->droidType == DROID_TRANSPORTER)
-		{
-			position.z = 4100;
-		}
-		else
-		{
-			position.z = BUTTON_DEPTH;
-		}
+		position.z = BUTTON_DEPTH;
 
-		displayComponentButtonObject(displayDroid, &rotation, &position, false, 100);
+		displayComponentButtonObject(displayDroid, rotation, position, bounds, false);
 	}
 	else if (apsDroidLists[player])
 	{
