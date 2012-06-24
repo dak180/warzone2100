@@ -481,7 +481,7 @@ FPATH_RETVAL fpathDroidRoute(DROID* psDroid, SDWORD tX, SDWORD tY, FPATH_MOVETYP
 	// Check whether the start and end points of the route are blocking tiles and find an alternative if they are.
 	Position startPos = psDroid->pos;
 	Position endPos = Position(tX, tY, 0);
-	BASE_OBJECT *dstStructure = worldTile(endPos)->psObject;
+	BASE_OBJECT *dstStructure = worldTile(removeZ(endPos))->psObject;
 	startPos = findNonblockingPosition(startPos, getPropulsionStats(psDroid)->propulsionType, psDroid->player, moveType);
 	if (dstStructure == NULL)  // If there's a structure over the destination, ignore it, otherwise pathfind from somewhere around the obstruction.
 	{
