@@ -2149,49 +2149,40 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 	UDWORD basePlateSize;
 	SDWORD scale;
 
+	Rotation.x = -30;
+	Rotation.y = (UDWORD) Buffer->ImdRotation;
+	Rotation.z = 0;
+
+	Position.z = BUTTON_DEPTH;
+
 	if(Down)
 	{
-		ox = oy = 2;
-	}
-	else
-	{
-		ox = oy = 0;
-	}
-
-	if ((IMDType == IMDTYPE_DROID) || (IMDType == IMDTYPE_DROIDTEMPLATE))
-	{	// The case where we have to render a composite droid.
-		if(Down)
+		if (buttonType == TOPBUTTON)
 		{
-			//the top button is smaller than the bottom button
-			if (buttonType == TOPBUTTON)
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_DOWN)/2) + ButtonDrawXOffset + 2,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_DOWN)/2) + 2 + 8 + ButtonDrawYOffset);
-			}
-			else
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUTB0_DOWN)/2) + ButtonDrawXOffset + 2,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_DOWN)/2) + 2 + 12 + ButtonDrawYOffset);
-			}
+			Position.x = (ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_DOWN)/2) + ButtonDrawXOffset + 2;
+			Position.y = (ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_DOWN)/2) + 2 + 8 + ButtonDrawYOffset;
 		}
 		else
 		{
-			//the top button is smaller than the bottom button
-			if (buttonType == TOPBUTTON)
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_UP)/2) + ButtonDrawXOffset,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_UP)/2) + 8  + ButtonDrawYOffset);
-			}
-			else
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_UP)/2) + ButtonDrawXOffset,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_UP)/2) + 12  + ButtonDrawYOffset);
-			}
+			Position.x = (ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUTB0_DOWN)/2) + ButtonDrawXOffset + 2;
+			Position.y = (ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_DOWN)/2) + 2 + 12 + ButtonDrawYOffset;
 		}
+	}
+	else
+	{
+		if (buttonType == TOPBUTTON)
+		{
+			Position.x = (ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_UP)/2) + ButtonDrawXOffset;
+			Position.y = (ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_UP)/2) + 8  + ButtonDrawYOffset;
+		}
+		else
+		{
+			Position.x = (ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUTB0_UP)/2) + ButtonDrawXOffset;
+			Position.y = (ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_UP)/2) + 12  + ButtonDrawYOffset;
+		}
+	}
+
+	if((IMDType == IMDTYPE_DROID) || (IMDType == IMDTYPE_DROIDTEMPLATE)) {	// The case where we have to render a composite droid.
 
 		if (IMDType == IMDTYPE_DROID)
 		{
@@ -2208,17 +2199,11 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 
 		ClearButton(Down, Size, buttonType);
 
-		Rotation.x = -30;
-		Rotation.y = (UDWORD) Buffer->ImdRotation;
-		Rotation.z = 0;
-
 		if(IMDType == IMDTYPE_DROID)
 		{
 			if (((DROID*)Object)->droidType == DROID_TRANSPORTER || ((DROID*)Object)->droidType == DROID_SUPERTRANSPORTER)
 			{
-				Position.x = 0;
-				Position.y = 0;//BUT_TRANSPORTER_ALT;
-				Position.z = BUTTON_DEPTH;
+				// Position.y =  BUT_TRANSPORTER_ALT;
 				if (((DROID*)Object)->droidType == DROID_TRANSPORTER)
 				{
 					scale = DROID_BUT_SCALE/2;
@@ -2228,19 +2213,12 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 					scale = DROID_BUT_SCALE/3;
 				}
 			}
-			else
-			{
-				Position.x = Position.y = 0;
-				Position.z = BUTTON_DEPTH;
-			}
 		}
 		else//(IMDType == IMDTYPE_DROIDTEMPLATE)
 		{
 			if (((DROID_TEMPLATE*)Object)->droidType == DROID_TRANSPORTER || ((DROID_TEMPLATE*)Object)->droidType == DROID_SUPERTRANSPORTER)
 			{
-				Position.x = 0;
-				Position.y = 0;//BUT_TRANSPORTER_ALT;
-				Position.z = BUTTON_DEPTH;
+				// Position.y = BUT_TRANSPORTER_ALT;
 				if (((DROID_TEMPLATE*)Object)->droidType == DROID_TRANSPORTER)
 				{
 					scale = DROID_BUT_SCALE/2;
@@ -2249,11 +2227,6 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 				{
 					scale = DROID_BUT_SCALE/3;
 				}
-			}
-			else
-			{
-				Position.x = Position.y = 0;
-				Position.z = BUTTON_DEPTH;
 			}
 		}
 
@@ -2269,37 +2242,6 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 	}
 	else
 	{	// Just drawing a single IMD.
-
-		if(Down)
-		{
-			if (buttonType == TOPBUTTON)
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_DOWN)/2) + ButtonDrawXOffset + 2,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_DOWN)/2) + 2 + 8 + ButtonDrawYOffset);
-			}
-			else
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUTB0_DOWN)/2) + ButtonDrawXOffset + 2,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_DOWN)/2) + 2 + 12 + ButtonDrawYOffset);
-			}
-		}
-		else
-		{
-			if (buttonType == TOPBUTTON)
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUT0_UP)/2) + ButtonDrawXOffset,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUT0_UP)/2) + 8  + ButtonDrawYOffset);
-			}
-			else
-			{
-				pie_SetGeometricOffset(
-					(ButXPos + iV_GetImageWidth(IntImages,IMAGE_BUTB0_UP)/2) + ButtonDrawXOffset,
-					(ButYPos + iV_GetImageHeight(IntImages,IMAGE_BUTB0_UP)/2) + 12  + ButtonDrawYOffset);
-			}
-		}
 
 	// Decide which button grid size to use.
 		if(IMDType == IMDTYPE_COMPONENT)
@@ -2408,13 +2350,16 @@ void CreateIMDButton(IMAGEFILE *ImageFile, UWORD ImageID, void *Object, UDWORD P
 
 		ClearButton(Down,Size, buttonType);
 
-		Rotation.x = -30;
-		Rotation.y = (UWORD ) Buffer->ImdRotation;
-		Rotation.z = 0;
+		//was 		Position.z = Radius*30;
 
-		Position.x = 0;
-		Position.y = 0;
-		Position.z = BUTTON_DEPTH; //was 		Position.z = Radius*30;
+		if (Down)
+		{
+			ox = oy = 2;
+		}
+		else
+		{
+			ox = oy = 0;
+		}
 
 		if (ImageFile)
 		{

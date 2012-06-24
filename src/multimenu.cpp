@@ -985,9 +985,11 @@ static void displayMultiPlayer(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset,
 	}
 	if (displayDroid)
 	{
-		pie_SetGeometricOffset( MULTIMENU_FORM_X+MULTIMENU_C1 ,y+MULTIMENU_PLAYER_H);
 		Vector3i rotation(-15, 45, 0);
-		Position position(0, 0, BUTTON_DEPTH);  // Scale them.
+		Position position;
+		position.x = MULTIMENU_FORM_X+MULTIMENU_C1;
+		position.y = y+MULTIMENU_PLAYER_H;
+		// Scale them.
 		if (displayDroid->droidType == DROID_SUPERTRANSPORTER)
 		{
 			position.z = 7850;
@@ -995,6 +997,10 @@ static void displayMultiPlayer(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset,
 		else if (displayDroid->droidType == DROID_TRANSPORTER)
 		{
 			position.z = 4100;
+		}
+		else
+		{
+			position.z = BUTTON_DEPTH;
 		}
 
 		displayComponentButtonObject(displayDroid, &rotation, &position, false, 100);
