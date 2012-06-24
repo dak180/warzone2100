@@ -102,7 +102,7 @@ static void	drawDroidGroupNumber(DROID *psDroid);
 static void	trackHeight(float desiredHeight);
 static void	renderSurroundings(void);
 static void	locateMouse(void);
-static bool	renderWallSection(STRUCTURE *psStructure);
+static void	renderWallSection(STRUCTURE *psStructure);
 static void	drawDragBox(void);
 static void	calcFlagPosScreenCoords(Vector3i * const screenPos, int32_t &radius);
 static void	displayTerrain(void);
@@ -1514,23 +1514,24 @@ void displayStaticObjects( void )
 			/* Worth rendering the structure? */
 			if(clipXY(psStructure->pos.x,psStructure->pos.y))
 			{
-				if ( psStructure->pStructureType->type == REF_RESOURCE_EXTRACTOR &&
-					psStructure->psCurAnim == NULL &&
-					(psStructure->currentBuildPts > (SDWORD)psStructure->pStructureType->buildPoints) )
+				/* No point in adding it if you can't see it? */
+				if (psStructure->visible[selectedPlayer] || demoGetStatus())
 				{
-					psStructure->psCurAnim = animObj_Add( psStructure, ID_ANIM_DERIK, 0, 0 );
-				}
+					if ( psStructure->pStructureType->type == REF_RESOURCE_EXTRACTOR &&
+						psStructure->psCurAnim == NULL &&
+						(psStructure->currentBuildPts > (SDWORD)psStructure->pStructureType->buildPoints) )
+					{
+						psStructure->psCurAnim = animObj_Add( psStructure, ID_ANIM_DERIK, 0, 0 );
+					}
 
-				if ( psStructure->psCurAnim == NULL ||
-						psStructure->psCurAnim->bVisible == false ||
-						(psAnimObj = animObj_Find( psStructure,
-						psStructure->psCurAnim->uwID )) == NULL )
-				{
-					renderStructure(psStructure);
-				}
-				else
-				{
-					if ( psStructure->visible[selectedPlayer] )
+					if ( psStructure->psCurAnim == NULL ||
+							psStructure->psCurAnim->bVisible == false ||
+							(psAnimObj = animObj_Find( psStructure,
+							psStructure->psCurAnim->uwID )) == NULL )
+					{
+						renderStructure(psStructure);
+					}
+					else
 					{
 						//check not a resource extractors
 						if (psStructure->pStructureType->type !=
@@ -1555,7 +1556,6 @@ void displayStaticObjects( void )
 							displayAnimation( psAnimObj, true );
 							audio_StopObjTrack(psStructure, ID_SOUND_OIL_PUMP_2);
 						}
-
 					}
 				}
 			}
@@ -2194,7 +2194,7 @@ void	renderStructure(STRUCTURE *psStructure)
 		return;
 	}
 	// If the structure is not truly visible, but we know there is something there, we will instead draw a blip
-	if (psStructure->visible[selectedPlayer] < UBYTE_MAX && psStructure->visible[selectedPlayer] > 0 && !demoGetStatus())
+	if (psStructure->visible[selectedPlayer] < UBYTE_MAX && !demoGetStatus())
 	{
 		dv.x = psStructure->pos.x - player.p.x;
 		dv.z = psStructure->pos.y - player.p.z;
@@ -2204,10 +2204,6 @@ void	renderStructure(STRUCTURE *psStructure)
 		int frame = graphicsTime / BLIP_ANIM_DURATION + psStructure->id % 8192;  // de-sync the blip effect, but don't overflow the int
 		pie_Draw3DShape(getImdFromIndex(MI_BLIP), frame, 0, WZCOL_WHITE, pie_ADDITIVE, psStructure->visible[selectedPlayer] / 2);
 		pie_MatEnd();
-		return;
-	}
-	else if (!psStructure->visible[selectedPlayer] && !demoGetStatus())
-	{
 		return;
 	}
 	else if (psStructure->pStructureType->type == REF_DEFENSE)
@@ -2621,89 +2617,81 @@ void	renderDeliveryPoint(FLAG_POSITION *psPosition, bool blueprint)
 }
 
 /// Draw a piece of wall
-static bool	renderWallSection(STRUCTURE *psStructure)
+static void	renderWallSection(STRUCTURE *psStructure)
 {
-	int			structX, structY, ecmFlag = 0;
+	int			structX, structY;
 	PIELIGHT		brightness;
-	SDWORD			rotation;
 	Vector3i			dv;
 	int				pieFlag, pieFlagData;
 	MAPTILE			*psTile = worldTile(psStructure->pos.x, psStructure->pos.y);
 
-	if(psStructure->visible[selectedPlayer] || demoGetStatus())
+	if (psStructure->status == SS_BEING_BUILT)
 	{
-		if (psTile->jammerBits & alliancebits[psStructure->player])
+		pieFlag = pie_HEIGHT_SCALED|pie_SHADOW;
+		pieFlagData = structHeightScale(psStructure) * pie_RAISE_SCALE;
+	}
+	else
+	{
+		if (structureIsBlueprint(psStructure))
 		{
-			ecmFlag = pie_ECM;
-		}
-
-		psStructure->sDisplay.frameNumber = currentGameFrame;
-		/* Get it's x and y coordinates so we don't have to deref. struct later */
-		structX = psStructure->pos.x;
-		structY = psStructure->pos.y;
-
-		brightness = structureBrightness(psStructure);
-		pie_SetShaderStretchDepth(psStructure->pos.z - psStructure->foundationDepth);
-
-		/* Establish where it is in the world */
-		dv.x = structX - player.p.x;
-		dv.z = structY - player.p.z;
-		dv.y = psStructure->pos.z;
-
-		dv.y -= gateCurrentOpenHeight(psStructure, graphicsTime, 1);  // Make gate stick out by 1 unit, so that the tops of ┼ gates can safely have heights differing by 1 unit.
-
-		/* Push the indentity matrix */
-		pie_MatBegin();
-
-		/* Translate */
-		pie_TRANSLATE(dv.x,dv.y,dv.z);
-
-		rotation = psStructure->rot.direction;
-		pie_MatRotY(rotation);
-
-		/* Actually render it */
-		if (psStructure->status == SS_BEING_BUILT)
-		{
-			pie_Draw3DShape(psStructure->sDisplay.imd, 0, getPlayerColour(psStructure->player),
-					brightness, pie_HEIGHT_SCALED|pie_SHADOW|ecmFlag, structHeightScale(psStructure) * pie_RAISE_SCALE);
+			pieFlag = pie_TRANSLUCENT;
+			pieFlagData = BLUEPRINT_OPACITY;
 		}
 		else
 		{
-			if (structureIsBlueprint(psStructure))
+			pieFlagData = 0;
+			if (psStructure->pStructureType->type == REF_WALL || psStructure->pStructureType->type == REF_GATE)
 			{
-				pieFlag = pie_TRANSLUCENT;
-				pieFlagData = BLUEPRINT_OPACITY;
+				// walls can be rotated, so use a dynamic shadow for them
+				pieFlag = pie_SHADOW;
 			}
 			else
 			{
-				if (psStructure->pStructureType->type == REF_WALL || psStructure->pStructureType->type == REF_GATE)
-				{
-					// walls can be rotated, so use a dynamic shadow for them
-					pieFlag = pie_SHADOW;
-				}
-				else
-				{
-					pieFlag = pie_STATIC_SHADOW;
-				}
-				pieFlagData = 0;
+				pieFlag = pie_STATIC_SHADOW;
 			}
-			pie_Draw3DShape(psStructure->sDisplay.imd, 0, getPlayerColour(psStructure->player), brightness, pieFlag|ecmFlag, pieFlagData);
 		}
-
-		{
-			Vector3i s;
-
-			pie_Project(&s);
-			psStructure->sDisplay.screenX = s.x;
-			psStructure->sDisplay.screenY = s.y;
-		}
-
-		pie_SetShaderStretchDepth(0);
-		pie_MatEnd();
-
-		return(true);
 	}
-	return false;
+	if (psTile->jammerBits & alliancebits[psStructure->player])
+	{
+		pieFlag |= pie_ECM;
+	}
+
+	psStructure->sDisplay.frameNumber = currentGameFrame;
+	/* Get it's x and y coordinates so we don't have to deref. struct later */
+	structX = psStructure->pos.x;
+	structY = psStructure->pos.y;
+
+	brightness = structureBrightness(psStructure);
+	pie_SetShaderStretchDepth(psStructure->pos.z - psStructure->foundationDepth);
+
+	/* Establish where it is in the world */
+	dv.x = structX - player.p.x;
+	dv.z = structY - player.p.z;
+	dv.y = psStructure->pos.z;
+
+	dv.y -= gateCurrentOpenHeight(psStructure, graphicsTime, 1);  // Make gate stick out by 1 unit, so that the tops of ┼ gates can safely have heights differing by 1 unit.
+
+	/* Push the indentity matrix */
+	pie_MatBegin();
+
+	/* Translate */
+	pie_TRANSLATE(dv.x,dv.y,dv.z);
+
+	pie_MatRotY(psStructure->rot.direction);
+
+	/* Actually render it */
+	pie_Draw3DShape(psStructure->sDisplay.imd, 0, getPlayerColour(psStructure->player), brightness, pieFlag, pieFlagData);
+
+	{
+		Vector3i s;
+
+		pie_Project(&s);
+		psStructure->sDisplay.screenX = s.x;
+		psStructure->sDisplay.screenY = s.y;
+	}
+
+	pie_SetShaderStretchDepth(0);
+	pie_MatEnd();
 }
 
 /// Draws a shadow under a droid
