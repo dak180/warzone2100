@@ -1060,7 +1060,7 @@ static void drawTiles(iView *player)
 				pos.y = map_TileHeight(playerXTile + j, playerZTile + i);
 				setTileColour(playerXTile + j, playerZTile + i, pal_SetBrightness(psTile->level));
 			}
-			tileScreenInfo[idx][jdx].z = pie_RotateProject(&pos, &screen);
+			tileScreenInfo[idx][jdx].z = pie_Project(&pos, &screen);
 			tileScreenInfo[idx][jdx].x = screen.x;
 			tileScreenInfo[idx][jdx].y = screen.y;
 		}
@@ -1252,7 +1252,7 @@ static void	calcFlagPosScreenCoords(SDWORD *pX, SDWORD *pY, SDWORD *pR)
 	UDWORD	radius = 22;
 
 	/* Pop matrices and get the screen coordinates for last point*/
-	pie_RotateProject( &center3d, &center2d );
+	pie_Project( &center3d, &center2d );
 
 	/*store the coords*/
 	*pX = center2d.x;
@@ -1508,7 +1508,7 @@ void	renderAnimComponent( const COMPONENT_OBJECT *psObj )
 
 			brightness = structureBrightness(psStructure);
 
-			pie_RotateProject( &zero, &s );
+			pie_Project( &zero, &s );
 			psStructure->sDisplay.screenX = s.x;
 			psStructure->sDisplay.screenY = s.y;
 		}
@@ -2091,7 +2091,7 @@ void	renderFeature(FEATURE *psFeature)
 
 	Vector3i zero(0, 0, 0);
 	Vector2i s(0, 0);
-	pie_RotateProject(&zero, &s);
+	pie_Project(&zero, &s);
 	psFeature->sDisplay.screenX = s.x;
 	psFeature->sDisplay.screenY = s.y;
 
@@ -2596,7 +2596,7 @@ void	renderStructure(STRUCTURE *psStructure)
 		Vector3i zero(0, 0, 0);
 		Vector2i s(0, 0);
 
-		pie_RotateProject(&zero, &s);
+		pie_Project(&zero, &s);
 		psStructure->sDisplay.screenX = s.x;
 		psStructure->sDisplay.screenY = s.y;
 	}
@@ -2737,7 +2737,7 @@ static bool	renderWallSection(STRUCTURE *psStructure)
 			Vector3i zero(0, 0, 0);
 			Vector2i s(0, 0);
 
-			pie_RotateProject( &zero, &s );
+			pie_Project( &zero, &s );
 			psStructure->sDisplay.screenX = s.x;
 			psStructure->sDisplay.screenY = s.y;
 		}
@@ -3604,7 +3604,7 @@ void calcScreenCoords(DROID *psDroid)
 
 	/* get the screen coordinates */
 	// FP12_SHIFT-STRETCHED_Z_SHIFT is the shift of the scaling on the depth returned
-	const float cZ = pie_RotateProject(&origin, &center) / (float) (1 << (FP12_SHIFT-STRETCHED_Z_SHIFT));
+	const float cZ = pie_Project(&origin, &center) / (float) (1 << (FP12_SHIFT-STRETCHED_Z_SHIFT));
 
 	//Watermelon:added a crash protection hack...
 	if (cZ >= 0)
