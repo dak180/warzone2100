@@ -4,6 +4,7 @@
 #include "lib/framework/utf.h"
 #include "lib/framework/opengl.h"
 #include "lib/ivis_opengl/pieclip.h"
+#include "lib/ivis_opengl/piematrix.h"
 #include "lib/gamelib/gtime.h"
 #include "src/warzoneconfig.h"
 #include <SDL.h>
@@ -1186,10 +1187,11 @@ bool wzMain2()
 	}
 
 	glViewport(0, 0, width, height);
+	pie_SetViewport(0, 0, width, height); // FIXME: the viewport data should be centralized and this call moved there
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	glOrtho(0, width, height, 0, 1, -1);
+	glOrtho(0, width, height, 0, -1, 1); // Top left origin for 2D coords
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
