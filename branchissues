@@ -1,13 +1,7 @@
 todos:
 ------
-* Switch the eigen matrix format to 4x4 single precision floats
-	Rationale:
-		- Since replacing querying opengl with retrieving the matrix from the stack, it will save any conversion overhead (i.e. the conversion from 4x3 double to 4x4 float)
-		- Consideration for 32 bit computers
 
 * Make the far plane distance dynamic, so that using a precise frustum representation for culling, etc, is actually effective, we must use a resonably sized frustum! The current hardcoded value is for a huge frustum! It should be dynamic to take into account zoom: Z = zoom + length of vector colinear with forward vector which also intersects with XY plane + some constant for gui + skybox consideration/factor.
-
- * Implied todo: Undo changes which changed depth value variables (i.e. ) from float to int, because the range is dynamic, it is easier to simply use floats. Also, to reiterate, graphics code should not be used for game state, so graphics code not being deterministic is not the problem, game state code using gfx stuff is the problem!
 
 * Pass a (const reference) of the camera object around to all the rendering functions so that they can set the appropriate offset (i.e. for camera relative rendering)
 

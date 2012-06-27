@@ -104,7 +104,7 @@ static void	renderSurroundings(void);
 static void	locateMouse(void);
 static void	renderWallSection(STRUCTURE *psStructure);
 static void	drawDragBox(void);
-static void	calcFlagPosScreenCoords(Vector3i * const screenPos, int32_t &radius);
+static void	calcFlagPosScreenCoords(Vector3f * const screenPos, float &radius);
 static void	displayTerrain(void);
 static iIMDShape *flattenImd(iIMDShape *imd, UDWORD structX, UDWORD structY, UDWORD direction, bool allPoints = false);
 static void	drawTiles(void);
@@ -1197,7 +1197,7 @@ bool clipXY(SDWORD x, SDWORD y)
  * intelligence screen buttons.
  * Radius is an input and output argument.
  */
-static void calcFlagPosScreenCoords(Vector3i * const screenPos, int32_t &radius)
+static void calcFlagPosScreenCoords(Vector3f * const screenPos, float &radius)
 {
 	/* Get the screen coordinates for current origin*/
 	pie_ProjectSphere(radius, screenPos);
@@ -1972,7 +1972,7 @@ void	renderFeature(FEATURE *psFeature)
 
 	pie_Draw3DShape(psFeature->sDisplay.imd, 0, 0, brightness, shadowFlags, 0);
 
-	Vector3i s;
+	Vector3f s;
 	pie_Project(&s);
 	psFeature->sDisplay.screenX = s.x;
 	psFeature->sDisplay.screenY = s.y;
@@ -1985,8 +1985,8 @@ void renderProximityMsg(PROXIMITY_DISPLAY *psProxDisp)
 {
 	Vector3i		dv(0,0,0);
 	VIEW_PROXIMITY	*pViewProximity = NULL;
-	Vector3i		screenPos;
-	int32_t			radius;
+	Vector3f		screenPos;
+	float			radius;
 	iIMDShape		*proxImd = NULL;
 
 	//store the frame number for when deciding what has been clicked on
@@ -2472,7 +2472,7 @@ void	renderStructure(STRUCTURE *psStructure)
 		}
 	}
 
-	Vector3i s;
+	Vector3f s;
 
 	pie_Project(&s);
 	psStructure->sDisplay.screenX = s.x;
@@ -2485,8 +2485,8 @@ void	renderStructure(STRUCTURE *psStructure)
 void	renderDeliveryPoint(FLAG_POSITION *psPosition, bool blueprint)
 {
 	Vector3i	dv = swapYZ(psPosition->coords);
-	Vector3i	screenPos;
-	int32_t		radius;
+	Vector3f	screenPos;
+	float		radius;
 	Vector3f*	temp = NULL;
 	int pieFlag, pieFlagData;
 	PIELIGHT colour;
@@ -2604,7 +2604,7 @@ static void	renderWallSection(STRUCTURE *psStructure)
 	pie_Draw3DShape(psStructure->sDisplay.imd, 0, getPlayerColour(psStructure->player), brightness, pieFlag, pieFlagData);
 
 	{
-		Vector3i s;
+		Vector3f s;
 
 		pie_Project(&s);
 		psStructure->sDisplay.screenX = s.x;
@@ -3440,8 +3440,8 @@ void calcScreenCoords(DROID *psDroid)
 {
 	/* Get it's absolute dimensions */
 	iIMDShape *psBodyImd = BODY_IMD(psDroid, psDroid->player);
-	int radius = psBodyImd? psBodyImd->radius : 22;
-	Vector3i proj;
+	float radius = psBodyImd? psBodyImd->radius : 22;
+	Vector3f proj;
 
 	/* get the screen corrdinates */
 	pie_ProjectSphere(radius, &proj);
@@ -3449,7 +3449,7 @@ void calcScreenCoords(DROID *psDroid)
 	/* Deselect all the droids if we've released the drag box */
 	if(dragBox3D.status == DRAG_RELEASED)
 	{
-		Vector2i screenCoords(proj.r_xy());
+		Vector2i screenCoords(Vector2f_To2i(proj.r_xy()));
 		if(inQuad(&screenCoords, &dragQuad) && psDroid->player == selectedPlayer)
 		{
 			//don't allow Transporter Droids to be selected here
@@ -3489,7 +3489,7 @@ static void locateMouse(void)
 	int i, j;
 	Vector2i tileOffset;
 	QUAD match;
-	int nearestZ = INT_MAX;
+	float nearestZ = std::numeric_limits< float >::infinity();
 
 	if (min.x >= mapWidth)	min.x = mapWidth-1;
 	else if (min.x < 0)		min.x = 0;
@@ -3509,7 +3509,9 @@ static void locateMouse(void)
 			MAPTILE *psTile = mapTile(j, i);
 			Vector3f pos(world_coord(j), psTile->height, world_coord(i));
 			onScreenTile tile;
-			tile.clipped = pie_Project(pos, &tile.px);
+			Vector3f px = tile.px;
+			tile.clipped = pie_Project(pos, &px);
+			tile.px = Vector3f_To3i(px);
 			tileScreenInfo.push_back(tile);
 		}
 	}
@@ -3555,15 +3557,15 @@ static void locateMouse(void)
 		}
 	}
 
-	if (nearestZ == INT_MAX) // If no match is found, atleast ensure good behaviour
-	{
-		memset(mouseInQuad.coords,0,sizeof(mouseInQuad.coords));
-		mousePos = Vector2i(player.p.x, player.p.z);
-	}
-	else
+	if (nearestZ < std::numeric_limits<float>::infinity())
 	{
 		mouseInQuad = match;
 		mousePos = world_coord(min) + world_coord(tileOffset) + positionInQuad(pt, match);
+	}
+	else // If no match is found, atleast ensure good behaviour
+	{
+		memset(mouseInQuad.coords,0,sizeof(mouseInQuad.coords));
+		mousePos = Vector2i(player.p.x, player.p.z);
 	}
 
 	mouseTileX = map_coord(mousePos.x);
