@@ -29,6 +29,7 @@
 #define _pieMatrix_h
 
 #include "lib/ivis_opengl/piedef.h"
+#include "lib/ivis_opengl/camera.h"
 
 //*************************************************************************
 
@@ -42,7 +43,7 @@
 static inline WZ_DECL_CONST WZ_DECL_WARN_UNUSED_RESULT
 		Vector3f pie_SurfaceNormal3fv(const Vector3f p1, const Vector3f p2, const Vector3f p3)
 {
-	return normalise(crossProduct(p3 - p1, p2 - p1));
+	return normalize(crossProduct(p3 - p1, p2 - p1));
 }
 
 //*************************************************************************
@@ -51,6 +52,9 @@ extern void pie_MatInit(void);
 
 // Note: Can be called before pie_MatInit
 extern void pie_SetViewport(int x, int y, int width, int height);
+
+/// Set the camera for perspective view transformation (Mandatory!)
+extern void pie_SetCamera(Camera * camera);
 
 //*************************************************************************
 
@@ -77,6 +81,9 @@ extern void pie_MatRotY(uint16_t y);
 extern void pie_MatRotZ(uint16_t z);
 extern void pie_MatIdentity(void);
 
+// loads the view matrix from the camera
+extern void pie_MatLoadView(Eye::ViewMatrixType viewMatType);
+
 //*************************************************************************
 // Functions for projecting geometry onto the screen
 // Note: They are only for use with perspective projection!
@@ -99,8 +106,12 @@ extern bool pie_ProjectSphere(int32_t &radius, Vector3i *proj); // Overload opti
  * Set the projection matrix to a
  * bottom left origin orthographic projection
  * (currently used mostly for the 3D scene)
+ *
+ * Argument is the type of view matrix to load from
+ * the camera.
  */
 extern void pie_SetPerspectiveProj(void);
+
 /*
  * Set the projection matrix to a orthographic projection
  * The argument chooses between an upper left origin and
@@ -108,6 +119,6 @@ extern void pie_SetPerspectiveProj(void);
  * The former is currently used mostly for the UI/widgets
  * The latter is currently used mostly for the droids/structures in the UI
  */
-extern void pie_SetOrthoProj(bool originAtTheTop);
+extern void pie_SetOrthoProj(bool originAtTheTop, float nearDepth, float farDepth);
 
 #endif

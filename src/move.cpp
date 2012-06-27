@@ -1332,7 +1332,7 @@ static Vector2i moveGetObstacleVector(DROID *psDroid, Vector2i dest)
 /*!
  * Get a direction for a droid to avoid obstacles etc.
  * \param psDroid Which droid to examine
- * \return The normalised direction vector
+ * \return The normalized direction vector
  */
 static uint16_t moveGetDirection(DROID *psDroid)
 {
@@ -1763,6 +1763,7 @@ static void moveUpdatePersonModel(DROID *psDroid, SDWORD speed, uint16_t directi
 	psDroid->pos.z = map_Height(psDroid->pos.x, psDroid->pos.y);//jps 21july96
 
 	/* update anim if moving and not on fire */
+#if 0 // MOVE TO GFX CODE
 	if ( psDroid->droidType == DROID_PERSON && speed != 0 &&
 		 psDroid->order.type != DORDER_RUNBURN )
 	{
@@ -1801,6 +1802,7 @@ static void moveUpdatePersonModel(DROID *psDroid, SDWORD speed, uint16_t directi
 	{
 		psDroid->psCurAnim->bVisible = true;
 	}
+#endif
 	CHECK_DROID(psDroid);
 }
 
