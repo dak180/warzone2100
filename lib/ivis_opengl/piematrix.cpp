@@ -436,10 +436,7 @@ bool pie_ProjectSphere(Vector3f const &obj, float &radius, Vector3f *proj)
 		// This is probably more precise/complex than we need
 		const double x = 1.3333*(proj->x - viewport[0][0]) / viewport[0][1];
 		const double y = (proj->y - viewport[1][0]) / viewport[1][1];
-		const Vector2f v = normalize(Vector2f(x,y));
-		Vector3f max = ptOnSphere;
-		max += cam->getEyeL()*v.x*radius;
-		max += cam->getEyeU()*v.y*radius;
+		Vector3f max = ptOnSphere + normalize(cam->getEyeL()*x + cam->getEyeU()*y)*radius;
 		pie_Project(max, &ptOnSphereProj);
 		Vector2f hypotTmp = ptOnSphereProj.r_xy() - proj->r_xy();
 		radius = sqrt(hypotTmp*hypotTmp);
@@ -465,10 +462,7 @@ bool pie_ProjectSphere(float &radius, Vector3f *proj)
 	{
 		const double x = 1.3333*(proj->x - viewport[0][0]) / viewport[0][1];
 		const double y = (proj->y - viewport[1][0]) / viewport[1][1];
-		const Vector2f v = normalize(Vector2f(x,y));
-		Vector3f max = ptOnSphere;
-		max += cam->getEyeL()*v.x*radius;
-		max += cam->getEyeU()*v.y*radius;
+		Vector3f max = ptOnSphere + normalize(cam->getEyeL()*x + cam->getEyeU()*y)*radius;
 		pie_Project(max, &ptOnSphereProj);
 		Vector2f hypotTmp = ptOnSphereProj.r_xy() - proj->r_xy();
 		radius = sqrt(hypotTmp*hypotTmp);
