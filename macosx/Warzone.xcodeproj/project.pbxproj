@@ -583,6 +583,8 @@
 		43E189A711441134000870EB /* tsearch.c in Sources */ = {isa = PBXBuildFile; fileRef = 43E188F311440CC9000870EB /* tsearch.c */; };
 		43E189A811441135000870EB /* vasnprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = 022B2F930BD55B50002E64E3 /* vasnprintf.c */; };
 		43E189A911441136000870EB /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 022B2F670BD55AE3002E64E3 /* version.c */; };
+		43F178D5159B606C00F87653 /* ba2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F178D0159B606C00F87653 /* ba2d.cpp */; };
+		43F178D6159B606D00F87653 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F178D2159B606C00F87653 /* camera.cpp */; };
 		43F1D9801343F1C5001478EC /* QtScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F1D96B1343F196001478EC /* QtScript.framework */; };
 		43F1D99A1343F1DE001478EC /* QtScript.framework in Copy frameworks */ = {isa = PBXBuildFile; fileRef = 43F1D96B1343F196001478EC /* QtScript.framework */; };
 		43F1D9D21343F542001478EC /* qtscript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43F1D9CE1343F542001478EC /* qtscript.cpp */; };
@@ -1818,6 +1820,11 @@
 		43E188F411440CC9000870EB /* tsearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tsearch.h; path = "external/gettext/gettext-runtime/intl/tsearch.h"; sourceTree = SOURCE_ROOT; };
 		43E1897311441009000870EB /* os2compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = os2compat.c; path = "external/gettext/gettext-runtime/intl/os2compat.c"; sourceTree = SOURCE_ROOT; };
 		43E189781144104B000870EB /* intl-exports.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "intl-exports.c"; path = "external/gettext/gettext-runtime/intl/intl-exports.c"; sourceTree = SOURCE_ROOT; };
+		43F178D0159B606C00F87653 /* ba2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ba2d.cpp; path = ../lib/ivis_opengl/ba2d.cpp; sourceTree = SOURCE_ROOT; };
+		43F178D1159B606C00F87653 /* ba2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ba2d.h; path = ../lib/ivis_opengl/ba2d.h; sourceTree = SOURCE_ROOT; };
+		43F178D2159B606C00F87653 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = ../lib/ivis_opengl/camera.cpp; sourceTree = SOURCE_ROOT; };
+		43F178D3159B606C00F87653 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = ../lib/ivis_opengl/camera.h; sourceTree = SOURCE_ROOT; };
+		43F178D4159B606C00F87653 /* plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plane.h; path = ../lib/ivis_opengl/plane.h; sourceTree = SOURCE_ROOT; };
 		43F1D96B1343F196001478EC /* QtScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtScript.framework; path = external/QT/QtScript.framework; sourceTree = SOURCE_ROOT; };
 		43F1D9CE1343F542001478EC /* qtscript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = qtscript.cpp; path = ../src/qtscript.cpp; sourceTree = SOURCE_ROOT; };
 		43F1D9CF1343F542001478EC /* qtscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = qtscript.h; path = ../src/qtscript.h; sourceTree = SOURCE_ROOT; };
@@ -2238,6 +2245,11 @@
 		0246A1090BD3CC2D004D1C70 /* Ivis OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				43F178D0159B606C00F87653 /* ba2d.cpp */,
+				43F178D1159B606C00F87653 /* ba2d.h */,
+				43F178D2159B606C00F87653 /* camera.cpp */,
+				43F178D3159B606C00F87653 /* camera.h */,
+				43F178D4159B606C00F87653 /* plane.h */,
 				43A29BF51503C9F700E66094 /* piestate.h */,
 				43A29BF61503C9F700E66094 /* pietypes.h */,
 				0246A0EA0BD3CC29004D1C70 /* bitimage.cpp */,
@@ -4697,6 +4709,8 @@
 				437487CF14AE41C100ABC9C7 /* template.cpp in Sources */,
 				43CCE06514BA636900B21363 /* netjoin_stub.cpp in Sources */,
 				437DABE714C3345B00DB5F94 /* swapinterval.mm in Sources */,
+				43F178D5159B606C00F87653 /* ba2d.cpp in Sources */,
+				43F178D6159B606D00F87653 /* camera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
