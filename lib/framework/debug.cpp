@@ -34,6 +34,7 @@
 #include "lib/gamelib/gtime.h"
 #include <map>
 #include <string>
+#include "src/warzoneconfig.h"	// for checking FS or not
 
 #ifdef WZ_OS_LINUX
 #include <execinfo.h>  // Nonfatal runtime backtraces.
@@ -203,7 +204,7 @@ bool debug_callback_file_init(void **data)
 	}
 
 	setbuf(logfile, NULL);
-	fprintf(logfile, "\n--- Starting log ---\n");
+	fprintf(logfile, "\n--- Starting log [%s]---\n", WZDebugfilename);
 	*data = logfile;
 
 	return true;
@@ -315,7 +316,7 @@ void debug_register_callback( debug_callback_fn callback, debug_callback_init in
 	if (tmpCallback->init
 	 && !tmpCallback->init(&tmpCallback->data))
 	{
-		debug(LOG_ERROR, "Failed to initialise debug callback");
+		fprintf(stderr, "Failed to initialise debug callback, debugfile set to [%s]!\n", WZDebugfilename);
 		free(tmpCallback);
 		return;
 	}
@@ -459,6 +460,10 @@ void _debug( int line, code_part part, const char *function, const char *str, ..
 		// Throw up a dialog box for users since most don't have a clue to check the dump file for information. Use for (duh) Fatal errors, that force us to terminate the game.
 		if (part == LOG_FATAL)
 		{
+			if (war_getFullscreen())
+			{
+				wzToggleFullscreen();
+			}
 #if defined(WZ_OS_WIN)
 			char wbuf[512];
 			ssprintf(wbuf, "%s\n\nPlease check the file (%s) in your configuration directory for more details. \
@@ -471,6 +476,7 @@ void _debug( int line, code_part part, const char *function, const char *str, ..
 			               2, "Show Log Files & Open Bug Reporter", "Ignore", NULL);
 			if (clickedIndex == 0)
 			{
+				cocoaOpenURL("http://developer.wz2100.net/newticket");
 				if (WZDebugfilename == NULL) {
 					cocoaShowAlert("Unable to open debug log.",
 					               "The debug log subsystem has not yet been initialised.",
@@ -479,7 +485,6 @@ void _debug( int line, code_part part, const char *function, const char *str, ..
 					cocoaSelectFileInFinder(WZDebugfilename);
 				}
 				cocoaOpenUserCrashReportFolder();
-				cocoaOpenURL("http://developer.wz2100.net/newticket");
 			}
 #else
 			const char* popupBuf = useInputBuffer1 ? inputBuffer[1] : inputBuffer[0];

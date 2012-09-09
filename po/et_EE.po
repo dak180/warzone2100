@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warzone2100\n"
 "Report-Msgid-Bugs-To: warzone2100-project@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-03-19 00:49+0100\n"
+"POT-Creation-Date: 2012-08-18 12:42+0200\n"
 "PO-Revision-Date: 2010-05-10 16:59+0200\n"
 "Last-Translator: erlando <erlando112@hotmail.com>\n"
 "Language-Team: Estonian <ee@li.org>\n"
@@ -10293,7 +10293,7 @@ msgstr "Remontimiskiirus +100%"
 
 #: data/mp/messages/resmessages1.rmsg:235
 #, fuzzy, c-format
-msgid "Factory output speed +100% per module"
+msgid "Factory output speed +100%% per module"
 msgstr "Tehase tootmiskiirus +100% mooduli kohta"
 
 #: data/mp/messages/resmessages1.rmsg:245
@@ -11904,29 +11904,25 @@ msgstr "VTOL Retribution Täispommitus"
 msgid "System locale"
 msgstr "Süsteemi Asukoht"
 
-#: lib/ivis_opengl/screen.cpp:145
-msgid "OpenGL 2.0 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
+#: lib/ivis_opengl/screen.cpp:187
+msgid "OpenGL GLSL shader version 1.20 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
 msgstr ""
 
-#: lib/ivis_opengl/screen.cpp:152
-msgid "OpenGL 1.5/2.0 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
+#: lib/ivis_opengl/screen.cpp:193
+msgid "OpenGL 1.2 + VBO + TEC is not supported by your system. The game requires this. Please upgrade your graphics drivers/hardware, if possible."
 msgstr ""
 
-#: lib/ivis_opengl/screen.cpp:159
-msgid "OpenGL 1.4 + VBO extension is not supported by your system. The game requires this. Please upgrade your graphics drivers/hardware, if possible."
-msgstr ""
-
-#: lib/netplay/netplay.cpp:193
-#: lib/netplay/netplay.cpp:1052
+#: lib/netplay/netplay.cpp:204
+#: lib/netplay/netplay.cpp:1059
 msgid "Enter password here"
 msgstr "Sisesta salasõna siia"
 
-#: lib/netplay/netplay.cpp:2114
+#: lib/netplay/netplay.cpp:2115
 #, c-format
 msgid "Could not resolve masterserver name (%s)!"
 msgstr "Ei suuda peaserveri nime lahendada (%s)!"
 
-#: lib/netplay/netplay.cpp:2136
+#: lib/netplay/netplay.cpp:2137
 #, c-format
 msgid ""
 "Error connecting to the lobby server: %s.\n"
@@ -11935,7 +11931,7 @@ msgid ""
 " or to forward the port to your system."
 msgstr ""
 
-#: lib/netplay/netplay.cpp:2801
+#: lib/netplay/netplay.cpp:2810
 msgid "Failed to get a lobby response!"
 msgstr ""
 
@@ -11985,37 +11981,37 @@ msgid "Strategy Game"
 msgstr "Salvesta Mäng"
 
 #: src/challenge.cpp:222
-#: src/hci.cpp:918
-#: src/hci.cpp:3362
-#: src/hci.cpp:3485
-#: src/hci.cpp:3922
-#: src/hci.cpp:4926
+#: src/hci.cpp:915
+#: src/hci.cpp:3375
+#: src/hci.cpp:3498
+#: src/hci.cpp:3935
+#: src/hci.cpp:4939
 #: src/intelmap.cpp:531
 #: src/intorder.cpp:727
-#: src/loadsave.cpp:240
-#: src/multimenu.cpp:498
-#: src/multimenu.cpp:1349
-#: src/transporter.cpp:278
-#: src/transporter.cpp:359
-#: src/transporter.cpp:822
+#: src/loadsave.cpp:250
+#: src/multimenu.cpp:502
+#: src/multimenu.cpp:1369
+#: src/transporter.cpp:266
+#: src/transporter.cpp:348
+#: src/transporter.cpp:808
 msgid "Close"
 msgstr "Sulge"
 
-#: src/cheat.cpp:161
+#: src/cheat.cpp:165
 #, c-format
 msgid "%s wants to enable debug mode. Enabled: %s, Disabled: %s."
 msgstr ""
 
-#: src/cheat.cpp:165
+#: src/cheat.cpp:169
 #, c-format
 msgid "%s wants to disable debug mode. Enabled: %s, Disabled: %s."
 msgstr ""
 
-#: src/cheat.cpp:171
+#: src/cheat.cpp:175
 msgid "Debug mode now enabled!"
 msgstr ""
 
-#: src/cheat.cpp:176
+#: src/cheat.cpp:180
 #, fuzzy
 msgid "Debug mode now disabled!"
 msgstr "Debug menüü on avatud"
@@ -12160,6 +12156,10 @@ msgstr ""
 
 #: src/clparse.cpp:267
 msgid "Only use OpenGL 1.5"
+msgstr ""
+
+#: src/cmddroid.cpp:110
+msgid "Commander needs a higher level to command more units"
 msgstr ""
 
 #: src/configuration.cpp:96
@@ -12312,12 +12312,12 @@ msgid "Water Speed"
 msgstr "Kiirus Vees"
 
 #: src/design.cpp:2028
-#: src/hci.cpp:4949
+#: src/hci.cpp:4962
 msgid "Tab Scroll left"
 msgstr "Tab Scroll left"
 
 #: src/design.cpp:2043
-#: src/hci.cpp:4964
+#: src/hci.cpp:4977
 msgid "Tab Scroll right"
 msgstr "Tab Scroll right"
 
@@ -12333,34 +12333,34 @@ msgstr "Süsteemid"
 msgid "Delete Template"
 msgstr ""
 
-#: src/display3d.cpp:657
+#: src/display3d.cpp:656
 msgid "Player left"
 msgstr "Mängija lahkus"
 
-#: src/display3d.cpp:661
+#: src/display3d.cpp:660
 msgid "Player dropped"
 msgstr "Mängija Väjavisatud"
 
-#: src/display3d.cpp:665
-#: src/multiint.cpp:2262
+#: src/display3d.cpp:664
+#: src/multiint.cpp:2312
 msgid "Waiting for other players"
 msgstr "Teiste mängijate ootamine"
 
-#: src/display3d.cpp:670
+#: src/display3d.cpp:669
 msgid "Out of sync"
 msgstr ""
 
-#: src/display.cpp:1587
+#: src/display.cpp:1566
 msgid "Cannot Build. Oil Resource Burning."
 msgstr "EI Saa Ehitada. Naftaresurss Põleb."
 
-#: src/display.cpp:1775
-#: src/display.cpp:2326
+#: src/display.cpp:1753
+#: src/display.cpp:2250
 #, fuzzy, c-format
 msgid "%s - Damage %d%% - Experience %.1f, %s"
 msgstr "%s - Kahju %d%% - Kogemus %d, %s"
 
-#: src/display.cpp:1791
+#: src/display.cpp:1769
 #, c-format
 msgid "%s - Allied - Damage %d%% - Experience %d, %s"
 msgstr "%s -Liitlane - Kahju %d%% - Kogemus %d, %s"
@@ -12369,650 +12369,673 @@ msgstr "%s -Liitlane - Kahju %d%% - Kogemus %d, %s"
 msgid "Unit Lost!"
 msgstr "Üksus Kaotatud!"
 
-#: src/droid.cpp:1274
+#: src/droid.cpp:1276
 msgid "Structure Restored"
 msgstr "Ehitis taastatud"
 
-#: src/droid.cpp:2246
+#: src/droid.cpp:2239
 #, c-format
 msgid "Group %u selected - %u Unit"
 msgid_plural "Group %u selected - %u Units"
 msgstr[0] "Grupp %u valitud - %u Üksus"
 msgstr[1] "Grupp %u valitud - %u Üksust"
 
-#: src/droid.cpp:2259
+#: src/droid.cpp:2252
 #, c-format
 msgid "%u unit assigned to Group %u"
 msgid_plural "%u units assigned to Group %u"
 msgstr[0] "%u üksus määratud gruppi %u"
 msgstr[1] "%u Üksust määratud Gruppi %u"
 
-#: src/droid.cpp:2272
+#: src/droid.cpp:2265
 #, c-format
 msgid "Centered on Group %u - %u Unit"
 msgid_plural "Centered on Group %u - %u Units"
 msgstr[0] "Grupi %u Vaade - %u Üksus"
 msgstr[1] "Grupi %u Vaade - %u Üksust"
 
-#: src/droid.cpp:2276
+#: src/droid.cpp:2269
 #, c-format
 msgid "Aligning with Group %u - %u Unit"
 msgid_plural "Aligning with Group %u - %u Units"
 msgstr[0] "Aligning with Group %u - %u Unit"
 msgstr[1] "Aligning with Group %u - %u Units"
 
-#: src/droid.cpp:2458
+#: src/droid.cpp:2451
 msgid "Rookie"
 msgstr "Uustulnuk"
 
-#: src/droid.cpp:2459
+#: src/droid.cpp:2452
 msgctxt "rank"
 msgid "Green"
 msgstr "Algaja"
 
-#: src/droid.cpp:2460
+#: src/droid.cpp:2453
 msgid "Trained"
 msgstr "Treenitud"
 
-#: src/droid.cpp:2461
+#: src/droid.cpp:2454
 msgid "Regular"
 msgstr "Regulaar"
 
-#: src/droid.cpp:2462
+#: src/droid.cpp:2455
 msgid "Professional"
 msgstr "Professionaal"
 
-#: src/droid.cpp:2463
+#: src/droid.cpp:2456
 msgid "Veteran"
 msgstr "Veteran"
 
-#: src/droid.cpp:2464
+#: src/droid.cpp:2457
 msgid "Elite"
 msgstr "Eliit"
 
-#: src/droid.cpp:2465
+#: src/droid.cpp:2458
 msgid "Special"
 msgstr "Eriline"
 
-#: src/droid.cpp:2466
+#: src/droid.cpp:2459
 msgid "Hero"
 msgstr "Kangelane"
 
-#: src/droid.cpp:3424
+#: src/droid.cpp:3393
 #, c-format
 msgid "%s wanted to give you a %s but you have too many!"
 msgstr ""
 
-#: src/droid.cpp:3428
+#: src/droid.cpp:3397
 #, c-format
 msgid "You wanted to give %s a %s but they have too many!"
 msgstr ""
 
-#: src/frontend.cpp:107
+#: src/frontend.cpp:108
 msgid "Single Player"
 msgstr "Üksik Mäng"
 
-#: src/frontend.cpp:108
+#: src/frontend.cpp:109
 msgid "Multi Player"
 msgstr "Mitmik Mäng"
 
-#: src/frontend.cpp:109
-#: src/frontend.cpp:186
+#: src/frontend.cpp:110
+#: src/frontend.cpp:187
 msgid "Tutorial"
 msgstr "Õpetus"
 
-#: src/frontend.cpp:110
-#: src/hci.cpp:3471
+#: src/frontend.cpp:111
+#: src/hci.cpp:3484
 msgid "Options"
 msgstr "Seaded"
 
-#: src/frontend.cpp:111
+#: src/frontend.cpp:112
 msgid "View Intro"
 msgstr "Näita Sissejuhatust"
 
-#: src/frontend.cpp:113
+#: src/frontend.cpp:114
 msgid "Quit Game"
 msgstr "Välju Mängust"
 
-#: src/frontend.cpp:114
+#: src/frontend.cpp:115
 msgid "MAIN MENU"
 msgstr "PEA MENÜÜ"
 
-#: src/frontend.cpp:116
-msgid "Visit our official site: http://wz2100.net"
+#: src/frontend.cpp:117
+msgid "Warzone 2100 is completely free and open source (FLOSS). Official site: http://wz2100.net/"
 msgstr ""
 
-#: src/frontend.cpp:187
+#: src/frontend.cpp:188
 msgid "Fast Play"
 msgstr "Kiir Mäng"
 
-#: src/frontend.cpp:188
+#: src/frontend.cpp:189
 msgid "TUTORIALS"
 msgstr "ÕPETUSED"
 
 #. TRANSLATORS: "Return", in this context, means "return to previous screen/menu"
-#: src/frontend.cpp:190
-#: src/frontend.cpp:250
-#: src/frontend.cpp:381
-#: src/frontend.cpp:451
-#: src/frontend.cpp:592
-#: src/frontend.cpp:738
-#: src/frontend.cpp:872
-#: src/frontend.cpp:1107
-#: src/frontend.cpp:1261
-#: src/frontend.cpp:1281
+#: src/frontend.cpp:191
+#: src/frontend.cpp:253
+#: src/frontend.cpp:399
+#: src/frontend.cpp:471
+#: src/frontend.cpp:612
+#: src/frontend.cpp:758
+#: src/frontend.cpp:904
+#: src/frontend.cpp:1161
+#: src/frontend.cpp:1315
+#: src/frontend.cpp:1335
 msgctxt "menu"
 msgid "Return"
 msgstr "Tagasi"
 
-#: src/frontend.cpp:244
+#: src/frontend.cpp:246
 msgid "New Campaign"
 msgstr "Uus Kampaania"
 
-#: src/frontend.cpp:245
+#: src/frontend.cpp:247
 msgid "Start Skirmish Game"
 msgstr "Alusta Üksillahingut"
 
-#: src/frontend.cpp:246
+#: src/frontend.cpp:248
 msgid "Challenges"
 msgstr "Väljakutse"
 
-#: src/frontend.cpp:247
-#: src/ingameop.cpp:273
-msgid "Load Game"
-msgstr "Laadi Mäng"
-
 #: src/frontend.cpp:249
+#, fuzzy
+msgid "Load Campaign Game"
+msgstr "Laadi Kampaania"
+
+#: src/frontend.cpp:250
+#, fuzzy
+msgid "Load Skirmish Game"
+msgstr "Alusta Üksillahingut"
+
+#: src/frontend.cpp:252
 msgid "SINGLE PLAYER"
 msgstr "ÜKSIK MÄNG"
 
-#: src/frontend.cpp:322
-#: src/ingameop.cpp:494
-#: src/mission.cpp:2493
-#: src/mission.cpp:2594
-msgid "Load Saved Game"
+#: src/frontend.cpp:257
+msgid "Campaign videos are missing! Get them from http://wz2100.net"
+msgstr ""
+
+#: src/frontend.cpp:334
+#: src/ingameop.cpp:504
+#, fuzzy
+msgid "Load Campaign Saved Game"
 msgstr "Laadi Salvestatud Mäng"
 
-#: src/frontend.cpp:376
+#: src/frontend.cpp:340
+#: src/ingameop.cpp:508
+#, fuzzy
+msgid "Load Skirmish Saved Game"
+msgstr "Laadi Salvestatud Mäng"
+
+#: src/frontend.cpp:394
 msgid "MULTI PLAYER"
 msgstr "MITMIKMÄNG"
 
-#: src/frontend.cpp:378
+#: src/frontend.cpp:396
 msgid "Host Game"
 msgstr "Võõrusta Mängu"
 
-#: src/frontend.cpp:379
+#: src/frontend.cpp:397
 msgid "Join Game"
 msgstr "Liitu Mängu"
 
-#: src/frontend.cpp:384
+#: src/frontend.cpp:402
 msgid "TCP PORT 2100 MUST BE OPENED IN YOUR FIREWALL / ROUTER TO HOST GAMES!"
 msgstr ""
 
-#: src/frontend.cpp:444
-#: src/multiint.cpp:1398
+#: src/frontend.cpp:464
+#: src/multiint.cpp:1442
 msgid "OPTIONS"
 msgstr "SEADED"
 
-#: src/frontend.cpp:445
+#: src/frontend.cpp:465
 msgid "Game Options"
 msgstr "Mängu Seaded"
 
-#: src/frontend.cpp:446
+#: src/frontend.cpp:466
 msgid "Graphics Options"
 msgstr "Graafika Seaded"
 
-#: src/frontend.cpp:447
+#: src/frontend.cpp:467
 msgid "Video Options"
 msgstr "Video Seaded"
 
-#: src/frontend.cpp:448
+#: src/frontend.cpp:468
 #: src/ingameop.cpp:268
 msgid "Audio Options"
 msgstr "Audio Seaded"
 
-#: src/frontend.cpp:449
+#: src/frontend.cpp:469
 msgid "Mouse Options"
 msgstr "Hiire Seaded"
 
-#: src/frontend.cpp:450
+#: src/frontend.cpp:470
 msgid "Key Mappings"
 msgstr "Nuppude Vasted"
 
-#: src/frontend.cpp:510
+#: src/frontend.cpp:530
 msgid "Video Playback"
 msgstr "Video Taasesitus"
 
-#: src/frontend.cpp:514
-#: src/frontend.cpp:666
+#: src/frontend.cpp:534
+#: src/frontend.cpp:686
 msgid "1X"
 msgstr "1X"
 
-#: src/frontend.cpp:518
-#: src/frontend.cpp:656
+#: src/frontend.cpp:538
+#: src/frontend.cpp:676
 msgid "2X"
 msgstr "2X"
 
-#: src/frontend.cpp:522
-#: src/frontend.cpp:661
-#: src/frontend.cpp:812
-#: src/frontend.cpp:895
+#: src/frontend.cpp:542
+#: src/frontend.cpp:681
+#: src/frontend.cpp:832
+#: src/frontend.cpp:927
 msgid "Fullscreen"
 msgstr "Täisaken"
 
-#: src/frontend.cpp:531
+#: src/frontend.cpp:551
 msgid "Scanlines"
 msgstr ""
 
-#: src/frontend.cpp:535
-#: src/frontend.cpp:556
-#: src/frontend.cpp:564
-#: src/frontend.cpp:580
-#: src/frontend.cpp:610
-#: src/frontend.cpp:628
-#: src/frontend.cpp:646
-#: src/frontend.cpp:691
-#: src/frontend.cpp:837
-#: src/frontend.cpp:847
-#: src/frontend.cpp:919
-#: src/frontend.cpp:980
-#: src/frontend.cpp:1023
-#: src/frontend.cpp:1064
-#: src/frontend.cpp:1076
-#: src/frontend.cpp:1088
-#: src/frontend.cpp:1123
-#: src/frontend.cpp:1136
-#: src/frontend.cpp:1150
+#: src/frontend.cpp:555
+#: src/frontend.cpp:576
+#: src/frontend.cpp:584
+#: src/frontend.cpp:600
+#: src/frontend.cpp:630
+#: src/frontend.cpp:648
+#: src/frontend.cpp:666
+#: src/frontend.cpp:711
+#: src/frontend.cpp:857
+#: src/frontend.cpp:867
+#: src/frontend.cpp:897
+#: src/frontend.cpp:951
+#: src/frontend.cpp:1012
+#: src/frontend.cpp:1055
+#: src/frontend.cpp:1068
+#: src/frontend.cpp:1118
+#: src/frontend.cpp:1130
+#: src/frontend.cpp:1142
+#: src/frontend.cpp:1177
+#: src/frontend.cpp:1190
+#: src/frontend.cpp:1204
 msgid "Off"
 msgstr "Väljas"
 
-#: src/frontend.cpp:539
-#: src/frontend.cpp:681
+#: src/frontend.cpp:559
+#: src/frontend.cpp:701
 msgid "50%"
 msgstr ""
 
-#: src/frontend.cpp:543
-#: src/frontend.cpp:686
-#: src/multiplay.cpp:1971
+#: src/frontend.cpp:563
+#: src/frontend.cpp:706
+#: src/multiplay.cpp:1981
 msgid "Black"
 msgstr "Must"
 
-#: src/frontend.cpp:549
+#: src/frontend.cpp:569
 msgid "Screen Shake"
 msgstr "Ekraani Värin"
 
-#: src/frontend.cpp:552
-#: src/frontend.cpp:568
-#: src/frontend.cpp:576
-#: src/frontend.cpp:615
-#: src/frontend.cpp:633
-#: src/frontend.cpp:642
-#: src/frontend.cpp:833
-#: src/frontend.cpp:985
-#: src/frontend.cpp:1019
-#: src/frontend.cpp:1060
-#: src/frontend.cpp:1072
-#: src/frontend.cpp:1084
-#: src/frontend.cpp:1128
-#: src/frontend.cpp:1141
-#: src/frontend.cpp:1155
+#: src/frontend.cpp:572
+#: src/frontend.cpp:588
+#: src/frontend.cpp:596
+#: src/frontend.cpp:635
+#: src/frontend.cpp:653
+#: src/frontend.cpp:662
+#: src/frontend.cpp:853
+#: src/frontend.cpp:893
+#: src/frontend.cpp:1017
+#: src/frontend.cpp:1051
+#: src/frontend.cpp:1073
+#: src/frontend.cpp:1114
+#: src/frontend.cpp:1126
+#: src/frontend.cpp:1138
+#: src/frontend.cpp:1182
+#: src/frontend.cpp:1195
+#: src/frontend.cpp:1209
 msgid "On"
 msgstr "Sees"
 
-#: src/frontend.cpp:561
+#: src/frontend.cpp:581
 msgid "Subtitles"
 msgstr "Suptiitrid"
 
-#: src/frontend.cpp:573
+#: src/frontend.cpp:593
 msgid "Shadows"
 msgstr "Varjud"
 
-#: src/frontend.cpp:584
-#: src/frontend.cpp:1288
+#: src/frontend.cpp:604
+#: src/frontend.cpp:1342
 msgid "Radar"
 msgstr ""
 
-#: src/frontend.cpp:585
-#: src/frontend.cpp:698
-#: src/frontend.cpp:1289
+#: src/frontend.cpp:605
+#: src/frontend.cpp:718
+#: src/frontend.cpp:1343
 #, fuzzy
 msgid "Rotating"
 msgstr "Keera Paremale"
 
-#: src/frontend.cpp:585
-#: src/frontend.cpp:698
-#: src/frontend.cpp:1289
+#: src/frontend.cpp:605
+#: src/frontend.cpp:718
+#: src/frontend.cpp:1343
 msgid "Fixed"
 msgstr ""
 
-#: src/frontend.cpp:588
+#: src/frontend.cpp:608
 msgid "GRAPHICS OPTIONS"
 msgstr "GRAAFIKA SEADED"
 
-#: src/frontend.cpp:726
+#: src/frontend.cpp:746
 #: src/ingameop.cpp:168
 msgid "Voice Volume"
 msgstr "Hääle Volüüm"
 
-#: src/frontend.cpp:730
+#: src/frontend.cpp:750
 #: src/ingameop.cpp:173
 msgid "FX Volume"
 msgstr "FX Volüüm"
 
-#: src/frontend.cpp:734
+#: src/frontend.cpp:754
 #: src/ingameop.cpp:178
 msgid "Music Volume"
 msgstr "Muusika Volüüm"
 
-#: src/frontend.cpp:741
+#: src/frontend.cpp:761
 msgid "AUDIO OPTIONS"
 msgstr "HELI SEADED"
 
-#: src/frontend.cpp:805
+#: src/frontend.cpp:825
 msgid "* Takes effect on game restart"
 msgstr "* Võtab efekti kui mäng uuesti käivitatakse"
 
-#: src/frontend.cpp:808
+#: src/frontend.cpp:828
 msgid "Graphics Mode*"
 msgstr "Graafika Mode*"
 
-#: src/frontend.cpp:816
-#: src/frontend.cpp:890
+#: src/frontend.cpp:836
+#: src/frontend.cpp:922
 msgid "Windowed"
 msgstr "Akendatud"
 
-#: src/frontend.cpp:820
+#: src/frontend.cpp:840
 msgid "Resolution*"
 msgstr "Resolution*"
 
-#: src/frontend.cpp:825
+#: src/frontend.cpp:845
 msgid "Texture size"
 msgstr "Tekstuuri suurus"
 
-#: src/frontend.cpp:829
+#: src/frontend.cpp:849
 #, fuzzy
 msgid "Vertical sync"
 msgstr "Vertical sync*"
 
-#: src/frontend.cpp:864
-#: src/frontend.cpp:925
+#: src/frontend.cpp:884
+#: src/frontend.cpp:957
 #, fuzzy
 msgid "Unsupported"
 msgstr "Transporter"
 
-#: src/frontend.cpp:869
+#: src/frontend.cpp:889
+#, fuzzy
+msgid "Shaders"
+msgstr "Varjud"
+
+#: src/frontend.cpp:901
 msgid "VIDEO OPTIONS"
 msgstr "VIDEO SEADED"
 
-#: src/frontend.cpp:1057
+#: src/frontend.cpp:1111
 msgid "Reverse Rotation"
 msgstr "Tagasipööre"
 
-#: src/frontend.cpp:1068
+#: src/frontend.cpp:1122
 msgid "Trap Cursor"
 msgstr "Püüniskursor"
 
-#: src/frontend.cpp:1081
+#: src/frontend.cpp:1135
 msgid "Switch Mouse Buttons"
 msgstr "Vahetatud Hiire Nupud"
 
-#: src/frontend.cpp:1093
+#: src/frontend.cpp:1147
 #, fuzzy
 msgid "Rotate Screen"
 msgstr "Keera Vasakule"
 
-#: src/frontend.cpp:1096
-#: src/frontend.cpp:1169
+#: src/frontend.cpp:1150
+#: src/frontend.cpp:1223
 msgid "Middle Mouse"
 msgstr ""
 
-#: src/frontend.cpp:1100
-#: src/frontend.cpp:1164
+#: src/frontend.cpp:1154
+#: src/frontend.cpp:1218
 msgid "Right Mouse"
 msgstr ""
 
-#: src/frontend.cpp:1104
+#: src/frontend.cpp:1158
 msgid "MOUSE OPTIONS"
 msgstr "HIIRE SEADED"
 
-#: src/frontend.cpp:1204
-#: src/frontend.cpp:1282
+#: src/frontend.cpp:1258
+#: src/frontend.cpp:1336
 msgid "Language"
 msgstr "Keel"
 
-#: src/frontend.cpp:1208
-#: src/frontend.cpp:1286
+#: src/frontend.cpp:1262
+#: src/frontend.cpp:1340
 msgid "Difficulty"
 msgstr "Raskusaste"
 
-#: src/frontend.cpp:1212
-#: src/frontend.cpp:1293
-#: src/frontend.cpp:1325
-#: src/multiint.cpp:213
+#: src/frontend.cpp:1266
+#: src/frontend.cpp:1347
+#: src/frontend.cpp:1379
+#: src/multiint.cpp:214
 msgid "Easy"
 msgstr "Kerge"
 
-#: src/frontend.cpp:1215
-#: src/frontend.cpp:1296
-#: src/frontend.cpp:1317
+#: src/frontend.cpp:1269
+#: src/frontend.cpp:1350
+#: src/frontend.cpp:1371
 msgid "Normal"
 msgstr "Normaalne"
 
-#: src/frontend.cpp:1219
-#: src/frontend.cpp:1299
-#: src/frontend.cpp:1321
-#: src/multiint.cpp:213
+#: src/frontend.cpp:1273
+#: src/frontend.cpp:1353
+#: src/frontend.cpp:1375
+#: src/multiint.cpp:214
 msgid "Hard"
 msgstr "Raske"
 
-#: src/frontend.cpp:1224
-#: src/frontend.cpp:1287
+#: src/frontend.cpp:1278
+#: src/frontend.cpp:1341
 msgid "Scroll Speed"
 msgstr "Kerimiskiirus"
 
-#: src/frontend.cpp:1228
-#: src/frontend.cpp:1283
+#: src/frontend.cpp:1282
+#: src/frontend.cpp:1337
 #, fuzzy
 msgid "Unit Colour:"
 msgstr "Üksuse Värv"
 
-#: src/frontend.cpp:1248
-#: src/frontend.cpp:1284
+#: src/frontend.cpp:1302
+#: src/frontend.cpp:1338
 #, fuzzy
 msgid "Campaign"
 msgstr "Uus Kampaania"
 
-#: src/frontend.cpp:1258
-#: src/frontend.cpp:1285
+#: src/frontend.cpp:1312
+#: src/frontend.cpp:1339
 #, fuzzy
 msgid "Skirmish/Multiplayer"
 msgstr "Mitmik Mäng"
 
-#: src/frontend.cpp:1264
-#: src/frontend.cpp:1280
+#: src/frontend.cpp:1318
+#: src/frontend.cpp:1334
 msgid "GAME OPTIONS"
 msgstr "MÄNGU SEADED"
 
-#: src/frontend.cpp:1425
-#: src/multiint.cpp:2526
+#: src/frontend.cpp:1479
+#: src/multiint.cpp:2580
 msgid "Mod: "
 msgstr "Mod:"
 
-#: src/hci.cpp:1232
+#: src/hci.cpp:1234
 msgid "MAP SAVED!"
 msgstr "KAART SALVESTATUD!"
 
-#: src/hci.cpp:1554
-#: src/loop.cpp:255
-#: src/loop.cpp:271
+#: src/hci.cpp:1561
+#: src/loop.cpp:258
+#: src/loop.cpp:274
 #, fuzzy
 msgid "GAME SAVED: "
 msgstr "MÄNG SALVESTATUD!"
 
-#: src/hci.cpp:1969
+#: src/hci.cpp:1983
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new structure: %s."
 msgstr "Mängija %u teeb sohki (debug menu) Talle uus ehitis: %s."
 
-#: src/hci.cpp:1984
+#: src/hci.cpp:1998
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new feature: %s."
 msgstr "Mängija %u teeb sohki (debug menu) talle uus tunnus: %s."
 
-#: src/hci.cpp:2006
+#: src/hci.cpp:2021
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new droid: %s."
 msgstr "Mängija %u teeb sohki(debug menu) talle uus droid: %s."
 
-#: src/hci.cpp:2019
+#: src/hci.cpp:2034
 #, fuzzy, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new droid."
 msgstr "Mängija %u teeb sohki(debug menu) talle uus droid: %s."
 
-#: src/hci.cpp:3282
+#: src/hci.cpp:3295
 msgid "Commanders (F6)"
 msgstr "Komandörid (F6)"
 
-#: src/hci.cpp:3295
+#: src/hci.cpp:3308
 msgid "Intelligence Display (F5)"
 msgstr "Intelligentsus Ekraan (F5)"
 
-#: src/hci.cpp:3308
+#: src/hci.cpp:3321
 msgid "Manufacture (F1)"
 msgstr "Tootmine (F1)"
 
-#: src/hci.cpp:3321
+#: src/hci.cpp:3334
 msgid "Design (F4)"
 msgstr "Konstrueerimine (F4)"
 
-#: src/hci.cpp:3334
+#: src/hci.cpp:3347
 msgid "Research (F2)"
 msgstr "Uurimine (F2)"
 
-#: src/hci.cpp:3347
+#: src/hci.cpp:3360
 msgid "Build (F3)"
 msgstr "Ehitamine (F3)"
 
-#: src/hci.cpp:3418
-#: src/multiint.cpp:1502
-#: src/multimenu.cpp:799
+#: src/hci.cpp:3431
+#: src/multiint.cpp:1552
+#: src/multimenu.cpp:804
 msgid "Power"
 msgstr "Energia"
 
-#: src/hci.cpp:3509
+#: src/hci.cpp:3522
 msgid "Map:"
 msgstr ""
 
-#: src/hci.cpp:3522
+#: src/hci.cpp:3535
 #, fuzzy
 msgid "Load"
 msgstr "Laadi Mäng"
 
-#: src/hci.cpp:3523
+#: src/hci.cpp:3536
 #, fuzzy
 msgid "Load Map File"
 msgstr "Laadi Mäng"
 
-#: src/hci.cpp:3534
+#: src/hci.cpp:3547
 #, fuzzy
 msgid "Save"
 msgstr "Salvesta Mäng"
 
-#: src/hci.cpp:3535
+#: src/hci.cpp:3548
 #, fuzzy
 msgid "Save Map File"
 msgstr "Salvesta Mäng"
 
-#: src/hci.cpp:3547
+#: src/hci.cpp:3560
 msgid "New"
 msgstr ""
 
-#: src/hci.cpp:3548
+#: src/hci.cpp:3561
 msgid "New Blank Map"
 msgstr ""
 
-#: src/hci.cpp:3596
+#: src/hci.cpp:3609
 msgid "Tile"
 msgstr "Tile"
 
-#: src/hci.cpp:3597
+#: src/hci.cpp:3610
 msgid "Place tiles on map"
 msgstr "Place tiles on map"
 
-#: src/hci.cpp:3610
+#: src/hci.cpp:3623
 msgid "Unit"
 msgstr "Üksus"
 
-#: src/hci.cpp:3611
+#: src/hci.cpp:3624
 msgid "Place Unit on map"
 msgstr "Paiguta kaartile üksus"
 
-#: src/hci.cpp:3619
+#: src/hci.cpp:3632
 msgid "Struct"
 msgstr "Ehitis"
 
-#: src/hci.cpp:3620
+#: src/hci.cpp:3633
 msgid "Place Structures on map"
 msgstr "Paiguta kaartile ehitis"
 
-#: src/hci.cpp:3628
+#: src/hci.cpp:3641
 msgid "Feat"
 msgstr "Saavutus"
 
-#: src/hci.cpp:3629
+#: src/hci.cpp:3642
 msgid "Place Features on map"
 msgstr "Place Features on map"
 
-#: src/hci.cpp:3643
+#: src/hci.cpp:3656
 msgid "Pause"
 msgstr ""
 
-#: src/hci.cpp:3644
+#: src/hci.cpp:3657
 msgid "Pause or unpause the game"
 msgstr "Paus või Pausi mahavõtmine"
 
-#: src/hci.cpp:3662
+#: src/hci.cpp:3675
 msgid "Align height of all map objects"
 msgstr "Align height of all map objects"
 
-#: src/hci.cpp:3675
+#: src/hci.cpp:3688
 msgid "Edit"
 msgstr ""
 
-#: src/hci.cpp:3676
+#: src/hci.cpp:3689
 #, fuzzy
 msgid "Start Edit Mode"
 msgstr "Alusta Baasideta"
 
-#: src/hci.cpp:3690
+#: src/hci.cpp:3703
 #: src/ingameop.cpp:113
 #: src/ingameop.cpp:257
 #: src/ingameop.cpp:261
 msgid "Quit"
 msgstr "Välju"
 
-#: src/hci.cpp:3691
+#: src/hci.cpp:3704
 msgid "Exit Game"
 msgstr "Välju Mängust"
 
-#: src/hci.cpp:3717
+#: src/hci.cpp:3730
 #, fuzzy
 msgid "Current Player:"
 msgstr "Mitmik Mäng"
 
-#: src/hci.cpp:3999
+#: src/hci.cpp:4012
 msgid "Progress Bar"
 msgstr "Progressi Riba"
 
-#: src/hci.cpp:4851
+#: src/hci.cpp:4864
 msgid "Factory Delivery Point"
 msgstr "Tehase Saatmis Koht"
 
-#: src/hci.cpp:4869
+#: src/hci.cpp:4882
 msgid "Loop Production"
 msgstr "Tsükkel tootmine"
 
-#: src/hci.cpp:5193
+#: src/hci.cpp:5206
 #, fuzzy
 msgid "Ally progress"
 msgstr "Ehitamispunktid"
@@ -13028,35 +13051,49 @@ msgid "WARNING: You're the host. If you quit, the game ends for everyone!"
 msgstr "HOIATUS: sa oled võõrustaja. Kui sa lahkud, lõpeb mäng kõigi jaoks"
 
 #: src/ingameop.cpp:187
-#: src/ingameop.cpp:522
+#: src/ingameop.cpp:538
 msgid "Tactical UI (Target Origin Icon): Show"
 msgstr ""
 
 #: src/ingameop.cpp:192
-#: src/ingameop.cpp:526
+#: src/ingameop.cpp:542
 msgid "Tactical UI (Target Origin Icon): Hide"
 msgstr ""
 
 #: src/ingameop.cpp:275
-#: src/ingameop.cpp:498
-#: src/mission.cpp:2480
-#: src/mission.cpp:2597
+#: src/ingameop.cpp:282
+msgid "Load Game"
+msgstr "Laadi Mäng"
+
+#: src/ingameop.cpp:277
+#: src/ingameop.cpp:284
+#: src/mission.cpp:2551
 msgid "Save Game"
 msgstr "Salvesta Mäng"
 
-#: src/ingameop.cpp:339
+#: src/ingameop.cpp:349
 msgid "Host has quit the game!"
 msgstr "Võõrustaja lahkus mängust!"
 
-#: src/ingameop.cpp:345
+#: src/ingameop.cpp:355
 msgid "The game can't continue without the host."
 msgstr "Mäng ei saa ilma võõrustajata jätkuda."
 
-#: src/ingameop.cpp:351
+#: src/ingameop.cpp:361
 msgid "-->  QUIT  <--"
 msgstr "--> LOOBU <--"
 
-#: src/init.cpp:423
+#: src/ingameop.cpp:512
+#, fuzzy
+msgid "Save Campaign Game"
+msgstr "Uus Kampaania"
+
+#: src/ingameop.cpp:516
+#, fuzzy
+msgid "Save Skirmish Game"
+msgstr "Alusta Üksillahingut"
+
+#: src/init.cpp:421
 #, c-format
 msgid ""
 "The required mod could not be loaded: %s\n"
@@ -13089,7 +13126,7 @@ msgid "Need more resources!"
 msgstr ""
 
 #: src/intelmap.cpp:242
-#: src/keybind.cpp:1327
+#: src/keybind.cpp:1397
 msgid "PAUSED"
 msgstr "PAUSED"
 
@@ -13216,255 +13253,268 @@ msgstr "Määra VTOL Tehase Tootmine"
 msgid "Circle"
 msgstr "Ring"
 
-#: src/keybind.cpp:137
+#: src/keybind.cpp:138
 msgid "Sorry, that cheat is disabled in multiplayer games."
 msgstr "Sorry, see sohk on mitmikmängust eemaltatud."
 
-#: src/keybind.cpp:143
+#: src/keybind.cpp:171
 msgid "Warning! This cheat is buggy.  We recommend to NOT use it."
 msgstr "Hoiatus! See sohk on vigane. Me soovitame seda mitte kasutada."
 
-#: src/keybind.cpp:227
+#: src/keybind.cpp:228
+msgid "Ouch! Droid's health is down 20%!"
+msgstr ""
+
+#: src/keybind.cpp:244
+msgid "Ouch! Structure's health is down 20%!"
+msgstr ""
+
+#: src/keybind.cpp:299
 msgid "Lets us see what you see!"
 msgstr "Lase meil näha mida saa näed!"
 
-#: src/keybind.cpp:229
+#: src/keybind.cpp:301
 msgid "Fine, weapon & sensor display is off!"
 msgstr "Suurepärane, relva & sensori kuvar on väljas!"
 
-#: src/keybind.cpp:402
-#: src/keybind.cpp:432
-#: src/keybind.cpp:449
-#: src/keybind.cpp:493
-#: src/keybind.cpp:601
-#: src/keybind.cpp:641
-#: src/keybind.cpp:747
-#: src/keybind.cpp:1274
-#: src/keybind.cpp:1381
-#: src/keybind.cpp:1510
-#: src/keybind.cpp:1868
-#: src/keybind.cpp:1909
+#: src/keybind.cpp:423
+#, fuzzy, c-format
+msgid "Player %u is cheating a new droid army of: %s."
+msgstr "Mängija %u teeb sohki, tehes endale uue %s(de) armee."
+
+#: src/keybind.cpp:461
+#: src/keybind.cpp:491
+#: src/keybind.cpp:508
+#: src/keybind.cpp:552
+#: src/keybind.cpp:661
+#: src/keybind.cpp:701
+#: src/keybind.cpp:807
+#: src/keybind.cpp:1344
+#: src/keybind.cpp:1451
+#: src/keybind.cpp:1580
+#: src/keybind.cpp:1938
+#: src/keybind.cpp:1979
 #, c-format
 msgid "(Player %u) is using cheat :%s"
 msgstr "(Mängija %u) teeb sohki:%s"
 
-#: src/keybind.cpp:403
+#: src/keybind.cpp:462
 msgid "Hard as nails!!!"
 msgstr "Hard as nails!!!"
 
-#: src/keybind.cpp:417
+#: src/keybind.cpp:476
 msgid "Takings thing easy!"
 msgstr "Takings thing easy!"
 
-#: src/keybind.cpp:433
+#: src/keybind.cpp:492
 msgid "1000 big ones!!!"
 msgstr "1000 big ones!!!"
 
-#: src/keybind.cpp:450
+#: src/keybind.cpp:509
 msgid "Power overwhelming"
 msgstr "Power overwhelming"
 
-#: src/keybind.cpp:465
+#: src/keybind.cpp:524
 msgid "Back to normality!"
 msgstr "Back to normality!"
 
-#: src/keybind.cpp:478
+#: src/keybind.cpp:537
 msgid "Getting tricky!"
 msgstr "Getting tricky!"
 
-#: src/keybind.cpp:494
+#: src/keybind.cpp:553
 msgid "Twice as nice!"
 msgstr "Twice as nice!"
 
-#: src/keybind.cpp:505
+#: src/keybind.cpp:564
 msgid "FPS display is enabled."
 msgstr "FPS display is enabled."
 
-#: src/keybind.cpp:509
+#: src/keybind.cpp:568
 msgid "FPS display is disabled."
 msgstr "FPS display is disabled."
 
-#: src/keybind.cpp:566
+#: src/keybind.cpp:626
 #, c-format
 msgid "(Player %u) is using a cheat :Num Droids: %d  Num Structures: %d  Num Features: %d"
 msgstr "(Player %u) kasutab pettust :Num Droids: %d  Num Structures: %d  Num Features: %d"
 
-#: src/keybind.cpp:602
+#: src/keybind.cpp:662
 msgid "Infinite power disabled"
 msgstr "Infinite power disabled"
 
-#: src/keybind.cpp:602
+#: src/keybind.cpp:662
 msgid "Infinite power enabled"
 msgstr "Infinite power enabled"
 
-#: src/keybind.cpp:642
+#: src/keybind.cpp:702
 msgid "All items made available"
 msgstr "All items made available"
 
-#: src/keybind.cpp:748
+#: src/keybind.cpp:808
 msgid "Fog on"
 msgstr "Fog on"
 
-#: src/keybind.cpp:748
+#: src/keybind.cpp:808
 msgid "Fog off"
 msgstr "Fog off"
 
-#: src/keybind.cpp:1159
+#: src/keybind.cpp:1229
 #, c-format
 msgid "Warning!  This cheat can cause dire problems later on! [%s]"
 msgstr "Warning!  This cheat can cause dire problems later on! [%s]"
 
-#: src/keybind.cpp:1159
+#: src/keybind.cpp:1229
 msgid "Ending Mission."
 msgstr "Missiooni Lõpp"
 
-#: src/keybind.cpp:1275
+#: src/keybind.cpp:1345
 msgid "God Mode ON"
 msgstr "Jumala mode sees"
 
-#: src/keybind.cpp:1275
+#: src/keybind.cpp:1345
 msgid "God Mode OFF"
 msgstr "Jumala mode väljas"
 
-#: src/keybind.cpp:1287
+#: src/keybind.cpp:1357
 msgid "View Aligned to North"
 msgstr "View Aligned to North"
 
-#: src/keybind.cpp:1296
+#: src/keybind.cpp:1366
 #, c-format
 msgid "Trap cursor %s"
 msgstr "Püüniskursor %s"
 
-#: src/keybind.cpp:1382
+#: src/keybind.cpp:1452
 msgid "Researched EVERYTHING for you!"
 msgstr "Researched EVERYTHING for you!"
 
-#: src/keybind.cpp:1447
+#: src/keybind.cpp:1517
 #, c-format
 msgid "(Player %u) is using cheat :%s %s"
 msgstr "(Mängija %u) kasutab pettust :%s %s"
 
-#: src/keybind.cpp:1447
+#: src/keybind.cpp:1517
 msgid "Researched"
 msgstr "Uuritud"
 
-#: src/keybind.cpp:1468
+#: src/keybind.cpp:1538
 msgid "Only displaying energy bars when selected"
 msgstr "Näitab energjaribasid kui valitud"
 
-#: src/keybind.cpp:1471
+#: src/keybind.cpp:1541
 msgid "Always displaying energy bars for units"
 msgstr "Näitab alati üksuste energiaribasid"
 
-#: src/keybind.cpp:1474
+#: src/keybind.cpp:1544
 msgid "Always displaying energy bars for units and structures"
 msgstr "Näitab alati üksuste ja ehitiste energiaribasid"
 
-#: src/keybind.cpp:1496
+#: src/keybind.cpp:1566
 msgid "Demo mode off - Returning to normal game mode"
 msgstr "Demo mode off - Returning to normal game mode"
 
-#: src/keybind.cpp:1511
+#: src/keybind.cpp:1581
 msgid "Debug menu is Open"
 msgstr "Debug menüü on avatud"
 
-#: src/keybind.cpp:1548
+#: src/keybind.cpp:1618
 #, fuzzy
 msgid "Unable to locate any oil derricks!"
 msgstr "Võimetu leidma Veoautosid!"
 
-#: src/keybind.cpp:1770
+#: src/keybind.cpp:1840
 msgid "Oh, the weather outside is frightful... SNOW"
 msgstr "Oh, the weather outside is frightful... SNOW"
 
-#: src/keybind.cpp:1776
+#: src/keybind.cpp:1846
 msgid "Singing in the rain, I'm singing in the rain... RAIN"
 msgstr "Singing in the rain, I'm singing in the rain... RAIN"
 
-#: src/keybind.cpp:1782
+#: src/keybind.cpp:1852
 msgid "Forecast : Clear skies for all areas... NO WEATHER"
 msgstr "Forecast : Clear skies for all areas... NO WEATHER"
 
-#: src/keybind.cpp:1867
+#: src/keybind.cpp:1937
 msgid "Warning! This can have drastic consequences if used incorrectly in missions."
 msgstr "Warning! This can have drastic consequences if used incorrectly in missions."
 
-#: src/keybind.cpp:1869
+#: src/keybind.cpp:1939
 msgid "All enemies destroyed by cheating!"
 msgstr "Kõik vaenlased pettusega hävitatud"
 
-#: src/keybind.cpp:1910
+#: src/keybind.cpp:1980
 msgid "Destroying selected droids and structures!"
 msgstr "Hävitab valitud  üksused ja ehitised"
 
-#: src/keybind.cpp:2477
+#: src/keybind.cpp:2547
 msgid "Centered on player HQ, direction NORTH"
 msgstr "Mängija HQ Keskel, Suund PÕHI"
 
-#: src/keybind.cpp:2489
+#: src/keybind.cpp:2559
 msgid "Unable to locate HQ!"
 msgstr "Võimetu HQ leidma!"
 
-#: src/keybind.cpp:2496
+#: src/keybind.cpp:2566
 msgid "Formation speed limiting has been removed from the game due to bugs."
 msgstr "Formatsiooni kiiruse limiit eemaldati mängust vea tõttu"
 
-#: src/keybind.cpp:2545
+#: src/keybind.cpp:2615
 msgid "Vertical rotation direction: Normal"
 msgstr "Vertikaalse pöörlemise suund: Normaalne"
 
-#: src/keybind.cpp:2550
+#: src/keybind.cpp:2620
 msgid "Vertical rotation direction: Flipped"
 msgstr "Vertikaalse pöörlemise suund: Flipped"
 
-#: src/keybind.cpp:2559
+#: src/keybind.cpp:2629
 msgid "Screen shake when things die: Off"
 msgstr "Ekraani värin, kui miski sureb: Väljas"
 
-#: src/keybind.cpp:2564
+#: src/keybind.cpp:2634
 msgid "Screen shake when things die: On"
 msgstr "Ekraani värin, kui miski sureb: Sees"
 
-#: src/keybind.cpp:2614
+#: src/keybind.cpp:2684
 msgid "Sorry, but game speed cannot be changed in multiplayer."
 msgstr "Sorry, aga mängu kiirust ei saa mitmikmängus muuta."
 
-#: src/keybind.cpp:2649
-#: src/keybind.cpp:2701
+#: src/keybind.cpp:2719
+#: src/keybind.cpp:2771
 msgid "Game Speed Reset"
 msgstr "Mängu Kiirus Taastatud"
 
-#: src/keybind.cpp:2653
+#: src/keybind.cpp:2723
 #, fuzzy, c-format
 msgid "Game Speed Increased to %s"
 msgstr "Mängu Kiirus Suurendatud %3.1f"
 
-#: src/keybind.cpp:2657
+#: src/keybind.cpp:2727
 #, fuzzy, c-format
 msgid "Game Speed Reduced to %s"
 msgstr "Mängu Kiirus Vähendatud %3.1f"
 
-#: src/keybind.cpp:2713
+#: src/keybind.cpp:2783
 msgid "Radar showing friend-foe colors"
 msgstr "Radar showing friend-foe colours"
 
-#: src/keybind.cpp:2717
+#: src/keybind.cpp:2787
 msgid "Radar showing player colors"
 msgstr "Radar showing player colours"
 
-#: src/keybind.cpp:2732
+#: src/keybind.cpp:2802
 msgid "Radar showing only objects"
 msgstr "Radar näitab ainult objekte"
 
-#: src/keybind.cpp:2735
+#: src/keybind.cpp:2805
 msgid "Radar blending terrain and height"
 msgstr "Radar blending terrain and height"
 
-#: src/keybind.cpp:2738
+#: src/keybind.cpp:2808
 msgid "Radar showing terrain"
 msgstr "Radar näitab terraini"
 
-#: src/keybind.cpp:2741
+#: src/keybind.cpp:2811
 msgid "Radar showing height"
 msgstr "Radar näitab kõrgust"
 
@@ -13473,9 +13523,9 @@ msgid "KEY MAPPING"
 msgstr "NUPPUDE VASTAD"
 
 #: src/keyedit.cpp:378
-#: src/multiint.cpp:720
-#: src/multiint.cpp:1191
-#: src/multiint.cpp:1588
+#: src/multiint.cpp:761
+#: src/multiint.cpp:1230
+#: src/multiint.cpp:1638
 msgid "Return To Previous Screen"
 msgstr "Naase Eelmisele Ekraanile"
 
@@ -14022,514 +14072,534 @@ msgstr ""
 msgid "Toggle Driving Mode"
 msgstr "Toggle Tracking Camera"
 
-#: src/loop.cpp:262
-#: src/loop.cpp:278
+#: src/loop.cpp:265
+#: src/loop.cpp:281
 msgid "Could not save game!"
 msgstr "Ei suutnud mängu salvestada"
 
-#: src/mission.cpp:2040
+#: src/mission.cpp:1984
 msgid "Load Transport"
 msgstr "Laadi Transport"
 
-#: src/mission.cpp:2428
+#: src/mission.cpp:2378
 msgid "OBJECTIVE ACHIEVED by cheating!"
 msgstr "EESMÄRK SAAVUTATUD sohki tehes"
 
-#: src/mission.cpp:2428
+#: src/mission.cpp:2378
 msgid "OBJECTIVE ACHIEVED"
 msgstr "EESMÄRK SAAVUTATUD"
 
-#: src/mission.cpp:2434
+#: src/mission.cpp:2384
 msgid "OBJECTIVE FAILED--and you cheated!"
 msgstr "EESMÄRK EBAÕNNESTUNUD--ja sa tegid sohki"
 
-#: src/mission.cpp:2434
+#: src/mission.cpp:2384
 msgid "OBJECTIVE FAILED"
 msgstr "EESMÄRK EBAÕNNESTUNUD"
 
-#: src/mission.cpp:2459
-#: src/mission.cpp:2499
-#: src/mission.cpp:2611
+#: src/mission.cpp:2409
+#: src/mission.cpp:2453
+#: src/mission.cpp:2564
 msgid "Quit To Main Menu"
 msgstr "Välju Peamenüüsse"
 
-#: src/mission.cpp:2467
+#: src/mission.cpp:2417
 msgid "Continue Game"
 msgstr "Jätka Mängu"
 
-#: src/mission.cpp:2562
+#: src/mission.cpp:2447
+#: src/mission.cpp:2548
+msgid "Load Saved Game"
+msgstr "Laadi Salvestatud Mäng"
+
+#: src/mission.cpp:2516
 msgid "GAME SAVED :"
 msgstr "MÄNG SALVESTATUD!"
 
-#: src/move.cpp:2285
+#: src/move.cpp:2279
 #, c-format
 msgid "You found %u power in an oil drum."
 msgstr "Sa leidsid naftatünnist %u energiat"
 
-#: src/multigifts.cpp:173
+#: src/multigifts.cpp:217
 #, c-format
 msgid "%s Gives You A Visibility Report"
 msgstr "%s Annab Sulle Nägemis Raporti"
 
-#: src/multigifts.cpp:195
+#: src/multigifts.cpp:239
 #, c-format
 msgid "%s Gives you a %s"
 msgstr "%s Annab sulle %s"
 
-#: src/multigifts.cpp:243
+#: src/multigifts.cpp:287
 #, c-format
 msgid "Tried to give away a non-empty %s - but this is not allowed."
 msgstr "Proovisid ära anda mittetühja %s - see pole lubatud "
 
-#: src/multigifts.cpp:285
+#: src/multigifts.cpp:329
 #, c-format
 msgid "%s Gives You Technology Documents"
 msgstr "%s Annab Sulle Tehnoloogia Dokumendid"
 
-#: src/multigifts.cpp:336
+#: src/multigifts.cpp:380
 #, c-format
 msgid "%s Gives You %u Power"
 msgstr "%s Annab Sulle %u Energiat"
 
-#: src/multigifts.cpp:364
+#: src/multigifts.cpp:408
 #, c-format
 msgid "%s Requests An Alliance With You"
 msgstr "%s Taotleb Sinuga Liitlust"
 
-#: src/multigifts.cpp:373
+#: src/multigifts.cpp:417
 #, c-format
 msgid "You Invite %s To Form An Alliance"
 msgstr "Saa Kutsusid %s Liitu Sõlmima"
 
-#: src/multigifts.cpp:394
+#: src/multigifts.cpp:438
 #, c-format
 msgid "%s Breaks The Alliance With %s"
 msgstr "%s Lõpetab Liitluse %s -ga"
 
-#: src/multigifts.cpp:424
+#: src/multigifts.cpp:468
 #, c-format
 msgid "%s Forms An Alliance With %s"
 msgstr "%s Moodustab %s -ga Liitluse"
 
-#: src/multigifts.cpp:751
+#: src/multigifts.cpp:721
 #, c-format
 msgid "You Discover Blueprints For %s"
 msgstr "Sa Avastasid %s joonised"
 
-#: src/multiint.cpp:213
+#: src/multiint.cpp:214
 #, fuzzy
 msgid "Medium"
 msgstr "Kiirus: Keskmine"
 
-#: src/multiint.cpp:213
+#: src/multiint.cpp:214
 msgid "Insane"
 msgstr ""
 
-#: src/multiint.cpp:658
+#: src/multiint.cpp:699
 #: src/multilimit.cpp:190
 msgid "Accept Settings"
 msgstr "Seaded Aksepteeritud"
 
-#: src/multiint.cpp:660
-#: src/multiint.cpp:1238
+#: src/multiint.cpp:701
+#: src/multiint.cpp:1280
 msgid "Cancel"
 msgstr "Tühista"
 
-#: src/multiint.cpp:671
+#: src/multiint.cpp:712
 msgid "IP Address or Machine Name"
 msgstr "IP Address Või Masina Nimi"
 
-#: src/multiint.cpp:717
+#: src/multiint.cpp:758
 msgid "CONNECTION"
 msgstr "CONNECTION"
 
-#: src/multiint.cpp:722
+#: src/multiint.cpp:763
 msgid "Lobby"
 msgstr "Lobby"
 
-#: src/multiint.cpp:723
+#: src/multiint.cpp:764
 msgid "IP"
 msgstr "IP"
 
-#: src/multiint.cpp:947
+#: src/multiint.cpp:980
 #, fuzzy
 msgid "[Password required]"
 msgstr "*** salasõna pole vaja! ***"
 
-#: src/multiint.cpp:951
+#: src/multiint.cpp:984
 msgid "[No Tanks]"
 msgstr ""
 
-#: src/multiint.cpp:955
+#: src/multiint.cpp:988
 #, fuzzy
 msgid "[No Cyborgs]"
 msgstr "Toodab Küborge"
 
-#: src/multiint.cpp:959
+#: src/multiint.cpp:992
 msgid "[No VTOLs]"
 msgstr ""
 
-#: src/multiint.cpp:963
+#: src/multiint.cpp:996
 #, c-format
 msgid "Hosted by %s"
 msgstr ""
 
-#: src/multiint.cpp:967
+#: src/multiint.cpp:1000
 #, c-format
 msgid "Hosted by %s —%s"
 msgstr ""
 
-#: src/multiint.cpp:987
+#: src/multiint.cpp:1020
 msgid "No games are available"
 msgstr "Pole ühtki mängu."
 
-#: src/multiint.cpp:990
+#: src/multiint.cpp:1023
 msgid "Game is full"
 msgstr "Mäng on Täis"
 
-#: src/multiint.cpp:994
+#: src/multiint.cpp:1027
 msgid "You were kicked!"
 msgstr "Sind löödi välja"
 
-#: src/multiint.cpp:997
+#: src/multiint.cpp:1030
 msgid "Wrong Game Version!"
 msgstr "Vale Mängu versioon"
 
-#: src/multiint.cpp:1000
+#: src/multiint.cpp:1033
 msgid "You have an incompatible mod."
 msgstr "Sul on vastuolus mod."
 
-#: src/multiint.cpp:1004
+#: src/multiint.cpp:1037
 msgid "Host couldn't send file?"
 msgstr "Võõrustaja ei suutnud faili saata?"
 
-#: src/multiint.cpp:1008
+#: src/multiint.cpp:1041
 msgid "Incorrect Password!"
 msgstr "Vale Salasõna"
 
-#: src/multiint.cpp:1011
+#: src/multiint.cpp:1044
 msgid "Host has dropped connection!"
 msgstr "Võõrustaja lõpetas ühenduse"
 
-#: src/multiint.cpp:1015
+#: src/multiint.cpp:1048
 msgid "Connection Error"
 msgstr "Ühendus Error"
 
-#: src/multiint.cpp:1119
+#: src/multiint.cpp:1158
 msgid "Searching"
 msgstr "Otsimine"
 
-#: src/multiint.cpp:1188
+#: src/multiint.cpp:1227
 msgid "GAMES"
 msgstr "MÄNGUD"
 
-#: src/multiint.cpp:1196
+#: src/multiint.cpp:1235
 msgid "Refresh Games List"
 msgstr "Värskenda Mängulisti"
 
-#: src/multiint.cpp:1218
+#: src/multiint.cpp:1260
 msgid "Enter Password:"
 msgstr "Sisesta Salasõna:"
 
-#: src/multiint.cpp:1236
+#: src/multiint.cpp:1278
 msgid "OK"
 msgstr "OK"
 
-#: src/multiint.cpp:1354
+#: src/multiint.cpp:1396
 msgid "Tanks disabled!!"
 msgstr ""
 
-#: src/multiint.cpp:1355
+#: src/multiint.cpp:1397
 #, fuzzy
 msgid "Cyborgs disabled."
 msgstr "Uus Küborg Kasutatv"
 
-#: src/multiint.cpp:1356
+#: src/multiint.cpp:1398
 msgid "VTOLs disabled."
 msgstr ""
 
-#: src/multiint.cpp:1403
-#: src/multiint.cpp:1412
+#: src/multiint.cpp:1399
+#, fuzzy
+msgid "Satellite Uplink disabled."
+msgstr "Satelliite Uplink"
+
+#: src/multiint.cpp:1400
+#, fuzzy
+msgid "Laser Satellite disabled."
+msgstr "Laser Satelliidi Juhtkeskus"
+
+#: src/multiint.cpp:1447
+#: src/multiint.cpp:1456
 msgid "Select Game Name"
 msgstr "Sisesta Mängu Nimi"
 
-#: src/multiint.cpp:1404
+#: src/multiint.cpp:1448
 msgid "One-Player Skirmish"
 msgstr "Ühe Mängja Lahing"
 
-#: src/multiint.cpp:1415
+#: src/multiint.cpp:1459
 msgid "Select Map"
 msgstr "Vali Kaart"
 
-#: src/multiint.cpp:1423
+#: src/multiint.cpp:1470
+#, fuzzy
+msgid "Password is already set!"
+msgstr "Mängija Väjavisatud"
+
+#: src/multiint.cpp:1478
 msgid "Click to set Password"
 msgstr "Vajuta, et Salasõna sisestada"
 
-#: src/multiint.cpp:1433
-#: src/multiint.cpp:1434
+#: src/multiint.cpp:1483
+#: src/multiint.cpp:1484
 msgid "Scavengers"
 msgstr "Mässajad"
 
-#: src/multiint.cpp:1436
+#: src/multiint.cpp:1486
 msgid "No Scavengers"
 msgstr "Mässajateta"
 
-#: src/multiint.cpp:1466
+#: src/multiint.cpp:1516
 msgid "Select Player Name"
 msgstr "Sisesta Mängija nimi"
 
-#: src/multiint.cpp:1469
-#: src/multimenu.cpp:792
+#: src/multiint.cpp:1519
+#: src/multimenu.cpp:797
 msgid "Alliances"
 msgstr "Liitlus"
 
-#: src/multiint.cpp:1472
+#: src/multiint.cpp:1522
 msgid "No Alliances"
 msgstr "Liitluseta"
 
-#: src/multiint.cpp:1474
+#: src/multiint.cpp:1524
 msgid "Allow Alliances"
 msgstr "Luba Liitlus"
 
-#: src/multiint.cpp:1478
+#: src/multiint.cpp:1528
 msgid "Locked Teams"
 msgstr "Lukustatud Tiimid"
 
-#: src/multiint.cpp:1504
+#: src/multiint.cpp:1554
 msgid "Low Power Levels"
 msgstr "Madal Energia Level"
 
-#: src/multiint.cpp:1506
+#: src/multiint.cpp:1556
 msgid "Medium Power Levels"
 msgstr "Keskmine Energia Level"
 
-#: src/multiint.cpp:1508
+#: src/multiint.cpp:1558
 msgid "High Power Levels"
 msgstr "Kõrge Energia Level"
 
-#: src/multiint.cpp:1540
+#: src/multiint.cpp:1590
 msgid "Base"
 msgstr "Baas"
 
-#: src/multiint.cpp:1542
+#: src/multiint.cpp:1592
 msgid "Start with No Bases"
 msgstr "Alusta Baasideta"
 
-#: src/multiint.cpp:1544
+#: src/multiint.cpp:1594
 msgid "Start with Bases"
 msgstr "Alusta Baasidega"
 
-#: src/multiint.cpp:1546
+#: src/multiint.cpp:1596
 msgid "Start with Advanced Bases"
 msgstr "Alusta Arenenud Baasidega"
 
-#: src/multiint.cpp:1578
+#: src/multiint.cpp:1628
 msgid "Map Preview"
 msgstr "Kaarti Esitus"
 
-#: src/multiint.cpp:1580
+#: src/multiint.cpp:1630
 msgid "Click to see Map"
 msgstr "Vajuta, et Kaarti näha"
 
-#: src/multiint.cpp:1593
-#: src/multiint.cpp:1595
+#: src/multiint.cpp:1643
+#: src/multiint.cpp:1645
 msgid "Start Hosting Game"
 msgstr "Alusta Mängu Võõrustamist"
 
-#: src/multiint.cpp:1602
-#: src/multiint.cpp:1606
+#: src/multiint.cpp:1652
+#: src/multiint.cpp:1656
 msgid "Show Structure Limits"
 msgstr "Näita Ehitiste Limiite"
 
-#: src/multiint.cpp:1602
-#: src/multiint.cpp:1606
+#: src/multiint.cpp:1652
+#: src/multiint.cpp:1656
 msgid "Set Structure Limits"
 msgstr "Sea Ehitiste Limiidid"
 
-#: src/multiint.cpp:1683
+#: src/multiint.cpp:1733
 msgid "DIFFICULTY"
 msgstr ""
 
-#: src/multiint.cpp:1697
+#: src/multiint.cpp:1747
 msgid "Less aggressive"
 msgstr ""
 
-#: src/multiint.cpp:1698
+#: src/multiint.cpp:1748
 #, fuzzy
 msgid "Plays nice"
 msgstr "Mägija"
 
-#: src/multiint.cpp:1699
+#: src/multiint.cpp:1749
 msgid "No holds barred"
 msgstr ""
 
-#: src/multiint.cpp:1700
+#: src/multiint.cpp:1750
 #, fuzzy
 msgid "Starts with advantages"
 msgstr "Alusta Arenenud Baasidega"
 
-#: src/multiint.cpp:1728
+#: src/multiint.cpp:1778
 msgid "CHOOSE AI"
 msgstr ""
 
-#: src/multiint.cpp:1744
+#: src/multiint.cpp:1794
 msgid "Allow human players to join in this slot"
 msgstr ""
 
-#: src/multiint.cpp:1752
+#: src/multiint.cpp:1802
 msgid "Leave this slot unused"
 msgstr ""
 
-#: src/multiint.cpp:2204
+#: src/multiint.cpp:2254
 msgid "Team"
 msgstr "Tiim"
 
-#: src/multiint.cpp:2247
+#: src/multiint.cpp:2297
 msgid "You cannot change difficulty in a challenge"
 msgstr ""
 
-#: src/multiint.cpp:2247
+#: src/multiint.cpp:2297
 #, fuzzy
 msgid "Click to change difficulty"
 msgstr "Vajuta, et Salasõna sisestada"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 #, fuzzy
 msgid "Waiting for player"
 msgstr "Teiste mängijate ootamine"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 #, fuzzy
 msgid "Player is ready"
 msgstr "Mängija Väjavisatud"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 msgid "Click when ready"
 msgstr "Vajuta kui valmis"
 
-#: src/multiint.cpp:2269
+#: src/multiint.cpp:2319
 msgid "READY?"
 msgstr "VALMIS?"
 
-#: src/multiint.cpp:2313
+#: src/multiint.cpp:2363
 msgid "PLAYERS"
 msgstr "MÄNGIJAD"
 
-#: src/multiint.cpp:2348
+#: src/multiint.cpp:2398
 #, fuzzy
 msgid "Click to change to this slot"
 msgstr "Vajuta, et Salasõna sisestada"
 
-#: src/multiint.cpp:2376
+#: src/multiint.cpp:2426
 #, fuzzy
 msgid "Choose Team"
 msgstr "Lukustatud Tiimid"
 
-#: src/multiint.cpp:2406
+#: src/multiint.cpp:2456
 #, fuzzy
 msgid "Click to change player colour"
 msgstr "Radar showing player colours"
 
-#: src/multiint.cpp:2434
+#: src/multiint.cpp:2484
 #, fuzzy
 msgid "Click to change player position"
 msgstr "Kaitse Positsiooni"
 
-#: src/multiint.cpp:2438
+#: src/multiint.cpp:2488
 #, fuzzy
 msgid "Click to change AI"
 msgstr "Vajuta, et Salasõna sisestada"
 
-#: src/multiint.cpp:2499
+#: src/multiint.cpp:2553
 msgid "CHAT"
 msgstr "VESTLUS"
 
-#: src/multiint.cpp:2531
+#: src/multiint.cpp:2585
 msgid "All players need to have the same mods to join your game."
 msgstr "Kõigil mängijatel peab olema sama mod, et sinu mänguga liituda"
 
-#: src/multiint.cpp:2572
+#: src/multiint.cpp:2626
 msgid "Connecting to the lobby server..."
 msgstr ""
 
-#: src/multiint.cpp:2719
+#: src/multiint.cpp:2772
 #, fuzzy, c-format
 msgid "*** password [%s] is now required! ***"
 msgstr "*** salasõna on vajalik! ***"
 
-#: src/multiint.cpp:2727
+#: src/multiint.cpp:2780
 msgid "*** password is NOT required! ***"
 msgstr "*** salasõna pole vaja! ***"
 
-#: src/multiint.cpp:2942
+#: src/multiint.cpp:2996
 msgid "Sorry! Failed to host the game."
 msgstr "Kahju! Ebaõnnestusid mängu võõrustamisel."
 
-#: src/multiint.cpp:3064
+#: src/multiint.cpp:3118
 msgid "'Locked Teams' mode enabled"
 msgstr "Lukustatud Tiimid, mode lubatud"
 
-#: src/multiint.cpp:3092
-#: src/multiint.cpp:3161
-#: src/multimenu.cpp:1472
+#: src/multiint.cpp:3146
+#: src/multiint.cpp:3215
+#: src/multimenu.cpp:1492
 #, c-format
 msgid "The host has kicked %s from the game!"
 msgstr "Võõrustaja lõi %s mängust välja!"
 
-#: src/multiint.cpp:3227
+#: src/multiint.cpp:3281
 msgid "Host is Starting Game"
 msgstr "Võõrustaja Alustab Mängu"
 
-#: src/multiint.cpp:3806
+#: src/multiint.cpp:3884
 msgid "Can't connect to lobby server!"
 msgstr ""
 
-#: src/multiint.cpp:3893
+#: src/multiint.cpp:3976
 #, c-format
 msgid "Mods: %s"
 msgstr ""
 
-#: src/multiint.cpp:3900
+#: src/multiint.cpp:3983
 msgid "Mods: None!"
 msgstr ""
 
-#: src/multiint.cpp:3910
+#: src/multiint.cpp:3993
 #, fuzzy, c-format
 msgid "Version: %s"
 msgstr "Versioon %s%s%s%s"
 
-#: src/multiint.cpp:3961
+#: src/multiint.cpp:4044
 #, fuzzy, c-format
 msgid "Click to take player slot %d"
 msgstr "Radar showing player colours"
 
-#: src/multiint.cpp:3970
-#: src/multiint.cpp:4163
+#: src/multiint.cpp:4053
+#: src/multiint.cpp:4255
 msgid "Open"
 msgstr ""
 
-#: src/multiint.cpp:3970
-#: src/multiint.cpp:4164
+#: src/multiint.cpp:4053
+#: src/multiint.cpp:4256
 #, fuzzy
 msgid "Closed"
 msgstr "Sulge"
 
-#: src/multiint.cpp:4021
+#: src/multiint.cpp:4104
 #, c-format
 msgid "Sending Map: %d%% "
 msgstr "Kaarti Saatmine: %d%%"
 
-#: src/multiint.cpp:4029
+#: src/multiint.cpp:4112
 #, c-format
 msgid "Map: %d%% downloaded"
 msgstr "Kaart: %d%% allalaaditud"
 
-#: src/multiint.cpp:4055
+#: src/multiint.cpp:4138
 msgid "HOST"
 msgstr "VÕÕRUSTJA"
 
-#: src/multiint.cpp:4062
-#: src/multimenu.cpp:806
+#: src/multiint.cpp:4145
+#: src/multimenu.cpp:811
 msgid "Ping"
 msgstr "Ping"
 
@@ -14538,27 +14608,27 @@ msgstr "Ping"
 msgid "Players Still Joining"
 msgstr "Mängijad Ikka Liituvad"
 
-#: src/multijoin.cpp:263
+#: src/multijoin.cpp:256
 #, c-format
 msgid "%s has Left the Game"
 msgstr "%s Lahkus mängust"
 
-#: src/multijoin.cpp:281
+#: src/multijoin.cpp:290
 #, c-format
 msgid "File transfer has been aborted for %d."
 msgstr "%d -le Failide saatmine katkestatud."
 
-#: src/multijoin.cpp:412
+#: src/multijoin.cpp:421
 #, c-format
 msgid "%s (%u) has an incompatible mod, and has been kicked."
 msgstr "Mängijal %s (%u) on vale mod ja ta löödi mängust välja"
 
-#: src/multijoin.cpp:453
+#: src/multijoin.cpp:462
 #, fuzzy, c-format
 msgid "%s is joining the game"
 msgstr "%s Liitus Mänguga"
 
-#: src/multijoin.cpp:464
+#: src/multijoin.cpp:473
 #, fuzzy
 msgid "Server message:"
 msgstr "Süsteemi sõnum:"
@@ -14571,70 +14641,93 @@ msgstr "Kohandatakse Vaikimisi ja Naase Eelmisele Ekraanile"
 msgid "Limits reset to default values"
 msgstr "Limiidide muutmine algväärtusteks"
 
-#: src/multimenu.cpp:624
+#: src/multimenu.cpp:629
 msgid "Technology level 1"
 msgstr "Tehnoloogia level 1"
 
-#: src/multimenu.cpp:632
+#: src/multimenu.cpp:637
 msgid "Technology level 2"
 msgstr "Tehnoloogia level 2"
 
-#: src/multimenu.cpp:638
+#: src/multimenu.cpp:643
 msgid "Technology level 3"
 msgstr "Tehnoloogia level 3"
 
-#: src/multimenu.cpp:644
+#: src/multimenu.cpp:649
 msgid "Any number of players"
 msgstr "Mistahes arv mängijaid"
 
-#: src/multimenu.cpp:655
+#: src/multimenu.cpp:660
 #, fuzzy, c-format
 msgid "%d player"
 msgid_plural "%d players"
 msgstr[0] "2 mängijat"
 msgstr[1] "2 mängijat"
 
-#: src/multimenu.cpp:793
+#: src/multimenu.cpp:798
 msgid "Score"
 msgstr "Skoor"
 
-#: src/multimenu.cpp:794
+#: src/multimenu.cpp:799
 msgid "Kills"
 msgstr "Tapmisi"
 
-#: src/multimenu.cpp:795
+#: src/multimenu.cpp:800
 msgid "Units"
 msgstr "Üksusi"
 
-#: src/multimenu.cpp:810
+#: src/multimenu.cpp:815
 msgid "Structs"
 msgstr "Ehitisi"
 
-#: src/multimenu.cpp:1122
+#: src/multimenu.cpp:827
+msgid "Sent/Received per sec —"
+msgstr ""
+
+#: src/multimenu.cpp:827
+msgid "Total Sent/Received —"
+msgstr ""
+
+#: src/multimenu.cpp:832
+#, fuzzy, c-format
+msgid "Traf: %u/%u"
+msgstr "Treenitud: %u"
+
+#: src/multimenu.cpp:836
+#, c-format
+msgid "Uncompressed: %u/%u"
+msgstr ""
+
+#: src/multimenu.cpp:840
+#, c-format
+msgid "Pack: %u/%u"
+msgstr ""
+
+#: src/multimenu.cpp:1142
 msgid "Channel"
 msgstr ""
 
-#: src/multimenu.cpp:1136
+#: src/multimenu.cpp:1156
 msgid "Toggle Alliance State"
 msgstr "Vaheta Liitluse Seisundit"
 
-#: src/multimenu.cpp:1155
+#: src/multimenu.cpp:1175
 msgid "Give Visibility Report"
 msgstr "Anna Nägemis Raport"
 
-#: src/multimenu.cpp:1161
+#: src/multimenu.cpp:1181
 msgid "Leak Technology Documents"
 msgstr "Lekkita Tehnoloogia Dokumente"
 
-#: src/multimenu.cpp:1168
+#: src/multimenu.cpp:1188
 msgid "Hand Over Selected Units"
 msgstr "Anna Valitud Üksused Üle"
 
-#: src/multimenu.cpp:1174
+#: src/multimenu.cpp:1194
 msgid "Give Power To Player"
 msgstr "Anna Mängijale Energiat"
 
-#: src/multimenu.cpp:1474
+#: src/multimenu.cpp:1494
 #, c-format
 msgid "kicked %s : %s from the game, and added them to the banned list!"
 msgstr ""
@@ -14644,75 +14737,75 @@ msgstr ""
 msgid "Kicking player %s, because they tried to bypass data integrity check!"
 msgstr "Mängija %s väljalöömine, sest ta proovis infokontrollist mõõda pääseda!"
 
-#: src/multiplay.cpp:1074
+#: src/multiplay.cpp:1095
 msgid "(allies"
 msgstr "(Liitlased"
 
-#: src/multiplay.cpp:1082
+#: src/multiplay.cpp:1103
 msgid "(private to "
 msgstr "(eraviisiline"
 
-#: src/multiplay.cpp:1095
+#: src/multiplay.cpp:1116
 msgid "[invalid]"
 msgstr "[kehtetu]"
 
-#: src/multiplay.cpp:1968
+#: src/multiplay.cpp:1978
 msgid "Green"
 msgstr "Roheline"
 
-#: src/multiplay.cpp:1969
+#: src/multiplay.cpp:1979
 msgid "Orange"
 msgstr "Oranð"
 
-#: src/multiplay.cpp:1970
+#: src/multiplay.cpp:1980
 msgid "Grey"
 msgstr "Hall"
 
-#: src/multiplay.cpp:1972
+#: src/multiplay.cpp:1982
 msgid "Red"
 msgstr "Punane"
 
-#: src/multiplay.cpp:1973
+#: src/multiplay.cpp:1983
 msgid "Blue"
 msgstr "Sinine"
 
-#: src/multiplay.cpp:1974
+#: src/multiplay.cpp:1984
 msgid "Pink"
 msgstr "Roosa"
 
-#: src/multiplay.cpp:1975
+#: src/multiplay.cpp:1985
 msgid "Cyan"
 msgstr "Helesinine"
 
-#: src/multiplay.cpp:1976
+#: src/multiplay.cpp:1986
 msgid "Yellow"
 msgstr ""
 
-#: src/multiplay.cpp:1977
+#: src/multiplay.cpp:1987
 msgid "Purple"
 msgstr ""
 
-#: src/multiplay.cpp:1978
+#: src/multiplay.cpp:1988
 msgid "White"
 msgstr ""
 
-#: src/multiplay.cpp:1979
+#: src/multiplay.cpp:1989
 msgid "Bright blue"
 msgstr ""
 
-#: src/multiplay.cpp:1980
+#: src/multiplay.cpp:1990
 msgid "Neon green"
 msgstr ""
 
-#: src/multiplay.cpp:1981
+#: src/multiplay.cpp:1991
 msgid "Infrared"
 msgstr ""
 
-#: src/multiplay.cpp:1982
+#: src/multiplay.cpp:1992
 msgid "Ultraviolet"
 msgstr ""
 
-#: src/multiplay.cpp:1983
+#: src/multiplay.cpp:1993
 msgid "Brown"
 msgstr ""
 
@@ -14720,13 +14813,13 @@ msgstr ""
 msgid "We can't do that! We must be a Cyborg unit to use a Cyborg Transport!"
 msgstr ""
 
-#: src/qtscriptfuncs.cpp:1580
-#: src/scriptfuncs.cpp:3261
+#: src/qtscriptfuncs.cpp:1586
+#: src/scriptfuncs.cpp:3263
 msgid "YOU ARE VICTORIOUS!"
 msgstr "SA OLED VÕIDUKAS"
 
-#: src/qtscriptfuncs.cpp:1585
-#: src/scriptfuncs.cpp:3265
+#: src/qtscriptfuncs.cpp:1591
+#: src/scriptfuncs.cpp:3267
 msgid "YOU WERE DEFEATED!"
 msgstr "SIND VÕIDETI!"
 
@@ -14861,110 +14954,110 @@ msgstr "Totaalne Mänguaeg - %s"
 msgid "You cheated!"
 msgstr "Sa Tegid Sohki!"
 
-#: src/scriptfuncs.cpp:9371
+#: src/scriptfuncs.cpp:9379
 #, c-format
 msgid "Beacon received from %s!"
 msgstr "Signaal saadud %s -lt!"
 
-#: src/scriptfuncs.cpp:9408
+#: src/scriptfuncs.cpp:9416
 #, c-format
 msgid "Beacon %d"
 msgstr "Signaal %d"
 
-#: src/selection.cpp:422
-#: src/selection.cpp:502
+#: src/selection.cpp:415
+#: src/selection.cpp:495
 msgid "Unable to locate any repair units!"
 msgstr "Võimetu leidma remondiüksusi!"
 
-#: src/selection.cpp:425
+#: src/selection.cpp:418
 msgid "Unable to locate any Trucks!"
 msgstr "Võimetu leidma Veoautosid!"
 
-#: src/selection.cpp:428
+#: src/selection.cpp:421
 msgid "Unable to locate any Sensor Units!"
 msgstr "Võimetu leidma Sensorüksusi!"
 
-#: src/selection.cpp:431
+#: src/selection.cpp:424
 msgid "Unable to locate any Commanders!"
 msgstr "Võimetu leidma Komandöre!"
 
-#: src/selection.cpp:701
+#: src/selection.cpp:694
 #, c-format
 msgid "%u unit selected"
 msgid_plural "%u units selected"
 msgstr[0] "%u üksus valitud"
 msgstr[1] "%u üksust valitud"
 
-#: src/structure.cpp:2584
+#: src/structure.cpp:2605
 #, fuzzy
-msgid "Command Control Limit Reached - Production Halted"
+msgid "Can't build anymore units, Command Control Limit Reached - Production Halted"
 msgstr "Kontroll Limiit Saavutatud - Tootmine Peatatud"
 
-#: src/structure.cpp:5577
-#: src/structure.cpp:5602
+#: src/structure.cpp:5605
+#: src/structure.cpp:5630
 #, fuzzy, c-format
 msgid "%s - %u Unit assigned - Damage %3.0f%%"
 msgid_plural "%s - %u Units assigned - Damage %3.0f%%"
 msgstr[0] "%s - %u Üksus määratud"
 msgstr[1] "%s - %u Üksused määratud"
 
-#: src/structure.cpp:5607
-#: src/structure.cpp:5675
-#: src/structure.cpp:5690
-#: src/structure.cpp:5704
+#: src/structure.cpp:5635
+#: src/structure.cpp:5703
+#: src/structure.cpp:5718
+#: src/structure.cpp:5732
 #, c-format
 msgid "%s - Damage %3.0f%%"
 msgstr "%s - Kahju %3.0f%%"
 
-#: src/structure.cpp:5657
+#: src/structure.cpp:5685
 #, fuzzy, c-format
 msgid "%s - Connected %u of %u - Damage %3.0f%%"
 msgstr "%s - %u Ühendatud %u -st"
 
-#: src/structure.cpp:5820
-#: src/structure.cpp:5865
+#: src/structure.cpp:5849
+#: src/structure.cpp:5894
 #, c-format
 msgid "%s - Electronically Damaged"
 msgstr "%s - Elektrooniliselt Kahjustatud"
 
-#: src/structure.cpp:6116
+#: src/structure.cpp:6145
 msgid "Electronic Reward - Visibility Report"
 msgstr "Elektrooniline Autasu - Nägemis Raport"
 
-#: src/structure.cpp:6156
+#: src/structure.cpp:6185
 msgid "Factory Reward - Propulsion"
 msgstr "Tehase Auhind - Liikumissüsteem"
 
-#: src/structure.cpp:6180
+#: src/structure.cpp:6209
 msgid "Factory Reward - Body"
 msgstr "Tehase Autasu - Kere"
 
-#: src/structure.cpp:6204
+#: src/structure.cpp:6233
 msgid "Factory Reward - Weapon"
 msgstr "Tehase Autasu - Relv"
 
-#: src/structure.cpp:6213
+#: src/structure.cpp:6242
 msgid "Factory Reward - Nothing"
 msgstr "Tehase Autasu - Midagi"
 
-#: src/structure.cpp:6241
+#: src/structure.cpp:6270
 msgid "Repair Facility Award - Repair"
 msgstr "Remontimiskeskuse Autasu - Remont"
 
-#: src/structure.cpp:6248
+#: src/structure.cpp:6277
 msgid "Repair Facility Award - Nothing"
 msgstr "Remontimiskeskuse Autasu - Midagi"
 
-#: src/transporter.cpp:396
-#: src/transporter.cpp:445
+#: src/transporter.cpp:385
+#: src/transporter.cpp:434
 msgid "Launch Transport"
 msgstr "Saada Transport Teele"
 
-#: src/transporter.cpp:1407
+#: src/transporter.cpp:1380
 msgid "There is not enough room in the Transport!"
 msgstr ""
 
-#: src/transporter.cpp:1649
+#: src/transporter.cpp:1606
 msgid "Reinforcements landing"
 msgstr "Abiväed Maanduvad"
 
@@ -15357,9 +15450,6 @@ msgstr "Versioon %s%s%s%s"
 
 #~ msgid "Toggle reopening the build menu"
 #~ msgstr "Toggle reopening the build menu"
-
-#~ msgid "Player %u is cheating him/herself a new droid army of %s(s)."
-#~ msgstr "Mängija %u teeb sohki, tehes endale uue %s(de) armee."
 
 #~ msgid "Z NULL BRAIN"
 #~ msgstr "Z NULL BRAIN"
@@ -15845,9 +15935,6 @@ msgstr "Versioon %s%s%s%s"
 #~ msgid "Python Tank Killer Tracks"
 #~ msgstr "Roomikutega Python Tankitapja"
 
-#~ msgid "Load Campaign"
-#~ msgstr "Laadi Kampaania"
-
 #~ msgid "Full"
 #~ msgstr "Täis"
 
@@ -16012,9 +16099,6 @@ msgstr "Versioon %s%s%s%s"
 
 #~ msgid "LasSats firing"
 #~ msgstr "LaserSatelliidid tulistavad"
-
-#~ msgid "Satellite Uplink"
-#~ msgstr "Satelliite Uplink"
 
 #~ msgid "NASDA Central"
 #~ msgstr "NASDA Keskus"

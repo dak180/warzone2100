@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: warzone2100\n"
 "Report-Msgid-Bugs-To: warzone2100-project@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-03-19 00:49+0100\n"
-"PO-Revision-Date: 2012-02-20 21:03+0200\n"
-"Last-Translator: Ayhan GÖRGÜLÜ <ayahngorgulu45@gmail.com>\n"
+"POT-Creation-Date: 2012-08-18 12:42+0200\n"
+"PO-Revision-Date: 2012-07-04 14:19+0200\n"
+"Last-Translator: Ayhan GÖRGÜLÜ <ayhangorgulu45@gmail.com>\n"
 "Language-Team: Turkey <warzone2100-project@lists.sourceforge.net>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -363,7 +363,7 @@ msgstr "Zırhlı Mini-Roket Koruma Kulesi"
 #: data/base/messages/resmessages12.rmsg:27
 #: data/mp/messages/resmessages12.rmsg:24
 msgid "Armored hardpoint with Heavy Machinegun"
-msgstr "Ağır Makinalı Zırhlandırılmış Bağlama Noktası"
+msgstr "Zırhlı Ağır Makinalı bağlama noktası"
 
 #: data/base/messages/resmessages12.rmsg:28
 #: data/base/messages/resmessages12.rmsg:39
@@ -504,7 +504,7 @@ msgstr "Savunma gücü: Yüksek"
 #: data/base/messages/resmessages12.rmsg:38
 #: data/mp/messages/resmessages12.rmsg:34
 msgid "Armored hardpoint with Lancer AT missile"
-msgstr "Roketatar A-T füzeli Zırhlandırılmış Bağlama Noktası"
+msgstr "Zırhlı Mızrak roket bağlama noktası"
 
 #: data/base/messages/resmessages12.rmsg:48
 #: data/base/messages/resmessages23.rmsg:37
@@ -1235,7 +1235,7 @@ msgstr "Sinaptik Bağlantı; İnsanlar ile bilgisayarların birbirine bağlanmas
 #: data/base/messages/resmessages1.rmsg:17
 #: data/mp/messages/resmessages1.rmsg:15
 msgid "Cyborgs can now be researched"
-msgstr "Cyborgler şimdi araştırılabilir"
+msgstr "Sayborglar şimdi araştırılabilir"
 
 #: data/base/messages/resmessages1.rmsg:18
 #: data/mp/messages/resmessages1.rmsg:16
@@ -1253,7 +1253,7 @@ msgstr "Yeni Araştırma seçenekleri aktif"
 #: data/mp/messages/resmessages3.rmsg:63
 #: data/mp/messages/strings/resstrings.txt:35
 msgid "Cyborg Materials Improved"
-msgstr "Cyborg Materyali Geliştirildi"
+msgstr "Sayborg Materyali Geliştirildi"
 
 #: data/base/messages/resmessages1.rmsg:27
 #: data/base/messages/resmessages1.rmsg:401
@@ -1292,7 +1292,7 @@ msgstr "Kinetik zırh ve beden puanı arttırıldı"
 #: data/mp/messages/strings/resstrings.txt:38
 #: data/mp/messages/strings/resstrings.txt:48
 msgid "All Cyborgs upgraded automatically"
-msgstr "Tüm Cyborglar otomatik olarak geliştirildi"
+msgstr "Tüm Sayborglar otomatik olarak geliştirildi"
 
 #: data/base/messages/resmessages1.rmsg:37
 #: data/base/messages/resmessages1.rmsg:48
@@ -1330,12 +1330,12 @@ msgstr "Tüm Cyborglar otomatik olarak geliştirildi"
 #: data/mp/messages/strings/resstrings.txt:53
 #: data/mp/messages/strings/resstrings.txt:85
 msgid "New Cyborg Available"
-msgstr "Yeni Cyborg kullanılabilir"
+msgstr "Yeni Sayborg kullanılabilir"
 
 #: data/base/messages/resmessages1.rmsg:38
 #: data/mp/messages/resmessages1.rmsg:34
 msgid "Armed with Cyborg Machinegun"
-msgstr "Makinalı Cyborg"
+msgstr "Makinalı Sayborg"
 
 #: data/base/messages/resmessages1.rmsg:40
 #: data/base/messages/resmessages1.rmsg:51
@@ -1385,22 +1385,22 @@ msgstr "Makinalı Cyborg"
 #: data/mp/messages/strings/resstrings.txt:100
 #: data/mp/messages/strings/resstrings.txt:106
 msgid "Requires Cyborg factory to produce"
-msgstr "Üretim için Cyborg fabrikası gereklidir"
+msgstr "Üretim için Sayborg fabrikası gereklidir"
 
 #: data/base/messages/resmessages1.rmsg:49
 #: data/mp/messages/resmessages1.rmsg:44
 msgid "Armed with Cyborg Cannon"
-msgstr "Topçu Cyborg"
+msgstr "Topçu Sayborg"
 
 #: data/base/messages/resmessages1.rmsg:60
 #: data/mp/messages/resmessages1.rmsg:54
 msgid "Armed with Cyborg Flamer"
-msgstr "Alev Atıcı Cyborg"
+msgstr "Alev Atıcı Sayborg"
 
 #: data/base/messages/resmessages1.rmsg:71
 #: data/mp/messages/resmessages1.rmsg:64
 msgid "Armed with Lance Anti-Tank rocket"
-msgstr "Roket atar (A-T) Cyborg"
+msgstr "Mızrak roket (T.S) Sayborg"
 
 #: data/base/messages/resmessages1.rmsg:81
 #: data/base/messages/resmessages2.rmsg:48
@@ -1454,11 +1454,11 @@ msgstr "Zırhlı Mini Roket Pod'lu Koruma kulesi"
 #: data/base/messages/resmessages1.rmsg:115
 #: data/mp/messages/resmessages1.rmsg:104
 msgid "Armored bunker with Machinegun"
-msgstr "Makinalı Zırhlandırılmış sığınak"
+msgstr "Zırhlı makinalı sığınak"
 
 #: data/base/messages/resmessages1.rmsg:126
 msgid "Armored bunker with Lancer AT rocket"
-msgstr "Zırhlı Roketatar A-T roketli sığınak"
+msgstr "Zırhlı Mızrak roketli sığınak"
 
 #: data/base/messages/resmessages1.rmsg:137
 #: data/mp/messages/resmessages1.rmsg:124
@@ -1468,7 +1468,7 @@ msgstr "Alev atıcı zırhlandırılmış sığınak"
 #: data/base/messages/resmessages1.rmsg:148
 #: data/mp/messages/resmessages1.rmsg:134
 msgid "Armored bunker with Light Cannon"
-msgstr "Hafif topçu zırhlandırılmış sığınak"
+msgstr "Zırhlı hafif topçu sığınak"
 
 #: data/base/messages/resmessages1.rmsg:159
 #: data/mp/messages/resmessages1.rmsg:144
@@ -1587,13 +1587,13 @@ msgstr "Sadece 5 Komutanı Yönetebilir"
 #: data/mp/messages/strings/resstrings.txt:375
 #: data/mp/messages/strings/resstrings.txt:383
 msgid "Cyborg Production Improved"
-msgstr "Cyborg Üretimi Geliştirildi"
+msgstr "Sayborg Üretimi Geliştirildi"
 
 #: data/base/messages/resmessages1.rmsg:236
 #: data/base/messages/strings/names.txt:783
 #: data/mp/messages/resmessages1.rmsg:214
 msgid "Automated Cyborg Production"
-msgstr "Otomatik Cyborg Üretimi"
+msgstr "Otomatik Sayborg Üretimi"
 
 #: data/base/messages/resmessages1.rmsg:237
 #: data/base/messages/resmessages2.rmsg:292
@@ -1605,7 +1605,7 @@ msgstr "Otomatik Cyborg Üretimi"
 #: data/mp/messages/strings/resstrings.txt:377
 #: data/mp/messages/strings/resstrings.txt:385
 msgid "Increases Cyborg factory output"
-msgstr "Cyborg fabrikası üretim gücü arttırıldı"
+msgstr "Sayborg fabrikası üretim gücü arttırıldı"
 
 #: data/base/messages/resmessages1.rmsg:238
 #: data/base/messages/resmessages2.rmsg:293
@@ -1617,7 +1617,7 @@ msgstr "Cyborg fabrikası üretim gücü arttırıldı"
 #: data/mp/messages/strings/resstrings.txt:378
 #: data/mp/messages/strings/resstrings.txt:386
 msgid "All Cyborg factories upgraded automatically"
-msgstr "Tüm Cyborg Fabrikaları otomatik olarak geliştirildi"
+msgstr "Tüm Sayborg Fabrikaları otomatik olarak geliştirildi"
 
 #: data/base/messages/resmessages1.rmsg:247
 #: data/base/messages/strings/names.txt:399
@@ -1626,17 +1626,17 @@ msgstr "Tüm Cyborg Fabrikaları otomatik olarak geliştirildi"
 #: data/mp/messages/strings/names.txt:398
 #: data/mp/messages/strings/names.txt:792
 msgid "Cyborg Factory"
-msgstr "Cyborg Fabrikası"
+msgstr "Sayborg Fabrikası"
 
 #: data/base/messages/resmessages1.rmsg:248
 #: data/mp/messages/resmessages1.rmsg:225
 msgid "Produces Cyborgs"
-msgstr "Cyborgları Üretir"
+msgstr "Sayborgları Üretir"
 
 #: data/base/messages/resmessages1.rmsg:249
 #: data/mp/messages/resmessages1.rmsg:226
 msgid "Research makes additional Cyborgs available"
-msgstr "Cyborg araştırmalarını aktif eder"
+msgstr "Sayborg araştırmalarını aktif eder"
 
 #: data/base/messages/resmessages1.rmsg:257
 #: data/base/messages/resmessages2.rmsg:334
@@ -2304,7 +2304,7 @@ msgstr "Roket Hasarı Arttırıldı"
 #: data/mp/messages/resmessages23.rmsg:3
 #: data/mp/messages/resmessages3.rmsg:43
 msgid "Cyborg Propulsion Improved"
-msgstr "Cyborg Yürütücü Geliştirildi"
+msgstr "Sayborg Yürütücü Geliştirildi"
 
 #: data/base/messages/resmessages23.rmsg:5
 #: data/base/messages/resmessages2.rmsg:456
@@ -2568,7 +2568,7 @@ msgstr "Tüm DİvK Vuruş algılayıcıları otomatik olarak yükseltildi"
 #: data/mp/messages/strings/resstrings.txt:694
 #: data/mp/messages/strings/resstrings.txt:712
 msgid "AA Upgrade"
-msgstr "AA Geliştirmesi"
+msgstr "U.S. Geliştirmesi"
 
 #: data/base/messages/resmessages23.rmsg:115
 #: data/base/messages/resmessages2.rmsg:709
@@ -2585,7 +2585,7 @@ msgstr "Güdümlü roket mermiler"
 #: data/base/messages/strings/resstrings.txt:661
 #: data/mp/messages/strings/resstrings.txt:696
 msgid "Increases AA accuracy"
-msgstr "AA Hedef Tutturması Arttırıldı"
+msgstr "U.S. Hedef Tutturması Arttırıldı"
 
 #: data/base/messages/resmessages23.rmsg:117
 #: data/base/messages/resmessages2.rmsg:546
@@ -2602,7 +2602,7 @@ msgstr "AA Hedef Tutturması Arttırıldı"
 #: data/mp/messages/strings/resstrings.txt:697
 #: data/mp/messages/strings/resstrings.txt:715
 msgid "All AA weapons upgraded automatically"
-msgstr "Tüm AA silahları otomatik olarak geliştirldi"
+msgstr "Tüm U.S. silahları otomatik olarak geliştirldi"
 
 #: data/base/messages/resmessages23.rmsg:125
 #: data/base/messages/resmessages2.rmsg:598
@@ -2709,7 +2709,7 @@ msgstr "Tüm makinalılar ile değiştirilecek"
 #: data/mp/messages/resmessages3.rmsg:3
 #: data/mp/messages/strings/resstrings.txt:45
 msgid "Cyborg Thermal Armor Improved"
-msgstr "Cyborg Termal Zırhı Geliştirildi"
+msgstr "Sayborg Termal Zırhı Geliştirildi"
 
 #: data/base/messages/resmessages2.rmsg:5
 #: data/base/messages/resmessages3.rmsg:5
@@ -2752,7 +2752,7 @@ msgstr "Zırhlandırılmış Sığınak Yokedici Roket"
 #: data/mp/messages/resmessages2.rmsg:34
 #: data/mp/messages/strings/resstrings.txt:86
 msgid "Armed with Cyborg Assault Gun"
-msgstr "Zırhlandırılmış Cyborg Hücüm Silahlı"
+msgstr "Zırhlandırılmış Sayborg Hücüm Silahlı"
 
 #: data/base/messages/resmessages2.rmsg:49
 #: data/base/messages/strings/resstrings.txt:104
@@ -2766,7 +2766,7 @@ msgstr "Yüksek gerilimli bor ile desteklenmiş  beton"
 #: data/mp/messages/resmessages2.rmsg:54
 #: data/mp/messages/strings/resstrings.txt:140
 msgid "AA Site with Cyclone Flak Turret"
-msgstr "Girdap AA Uçaksavar Taretli Site"
+msgstr "Girdap Uçaksavar Taretli Site"
 
 #: data/base/messages/resmessages2.rmsg:61
 #: data/base/messages/resmessages2.rmsg:83
@@ -2792,7 +2792,7 @@ msgstr "Otomatik olarak DİvK 'ları hedef alır"
 #: data/mp/messages/resmessages2.rmsg:64
 #: data/mp/messages/strings/resstrings.txt:146
 msgid "AA Site with Hurricane Gun Turret"
-msgstr "Kasırga AA Uçaksavar Taretli Site"
+msgstr "Kasırga Uçaksavar Taretli Site"
 
 #: data/base/messages/resmessages2.rmsg:72
 #: data/base/messages/strings/resstrings.txt:127
@@ -2806,14 +2806,14 @@ msgstr "Otomatik olarak DİvK 'ları hedef alır"
 #: data/mp/messages/resmessages2.rmsg:74
 #: data/mp/messages/strings/resstrings.txt:152
 msgid "AA Site with Whirlwind Gun Turret"
-msgstr "Fırtına AA Uçaksavar Taretli Site"
+msgstr "Fırtına Uçaksavar Taretli Site"
 
 #: data/base/messages/resmessages2.rmsg:93
 #: data/base/messages/strings/resstrings.txt:114
 #: data/mp/messages/resmessages2.rmsg:84
 #: data/mp/messages/strings/resstrings.txt:134
 msgid "AA Site with Tornado Flak Turret"
-msgstr "Hortum AA Uçaksavar Taretli Site"
+msgstr "Hortum Uçaksavar Taretli Site"
 
 #: data/base/messages/resmessages2.rmsg:104
 #: data/base/messages/strings/resstrings.txt:142
@@ -2970,7 +2970,7 @@ msgstr "Yeni robotik tamir teknikleri"
 #: data/mp/messages/resmessages2.rmsg:264
 #: data/mp/messages/strings/resstrings.txt:376
 msgid "Robotic Cyborg Production"
-msgstr "Robotik Cyborg Üretimi"
+msgstr "Robotik Sayborg Üretimi"
 
 #: data/base/messages/resmessages2.rmsg:302
 #: data/base/messages/strings/resstrings.txt:366
@@ -3289,7 +3289,7 @@ msgstr "Tüm Tekerlekler otomatik olarak geliştirildi"
 #: data/mp/messages/strings/resstrings.txt:682
 #: data/mp/messages/strings/resstrings.txt:688
 msgid "New AA Turret Available"
-msgstr "Yeni AA Tareti Kullanılabilir"
+msgstr "Yeni U.S. Tareti Kullanılabilir"
 
 #: data/base/messages/resmessages2.rmsg:500
 #: data/base/messages/strings/resstrings.txt:636
@@ -3356,7 +3356,7 @@ msgstr "DİvK ların motor emisyonlarını tespit eder ve kilitlenir"
 #: data/mp/messages/resmessages3.rmsg:633
 #: data/mp/messages/strings/resstrings.txt:704
 msgid "AA Flak Upgrade"
-msgstr "AA Uçaksavar Geliştirmesi"
+msgstr "Uçaksavar Geliştirmesi"
 
 #: data/base/messages/resmessages2.rmsg:555
 #: data/base/messages/strings/resstrings.txt:670
@@ -3370,7 +3370,7 @@ msgstr "Patlayıcılığı arttırılmış Uçaksavar Mermileri"
 #: data/base/messages/strings/resstrings.txt:671
 #: data/mp/messages/strings/resstrings.txt:706
 msgid "Increases AA Flak damage"
-msgstr "AA uçaksavar hasarı arttırıldı"
+msgstr "Uçaksavar hasarı arttırıldı"
 
 #: data/base/messages/resmessages2.rmsg:557
 #: data/base/messages/resmessages3.rmsg:700
@@ -3379,21 +3379,21 @@ msgstr "AA uçaksavar hasarı arttırıldı"
 #: data/mp/messages/resmessages3.rmsg:636
 #: data/mp/messages/strings/resstrings.txt:707
 msgid "All AA flak weapons upgraded automatically"
-msgstr "Tüm AA uçaksavarlar otomatik olarak geliştirildi"
+msgstr "Tüm uçaksavarlar otomatik olarak geliştirildi"
 
 #: data/base/messages/resmessages2.rmsg:566
 #: data/base/messages/strings/resstrings.txt:678
 #: data/mp/messages/resmessages2.rmsg:514
 #: data/mp/messages/strings/resstrings.txt:713
 msgid "Recoil loaded AA ammunition hopper"
-msgstr "Geri Tepmeli AA Mühimmat Ateşleyici"
+msgstr "Geri Tepmeli U.S. Mühimmat Ateşleyici"
 
 #: data/base/messages/resmessages2.rmsg:567
 #: data/base/messages/resmessages3.rmsg:710
 #: data/base/messages/strings/resstrings.txt:679
 #: data/mp/messages/strings/resstrings.txt:714
 msgid "Increases AA ROF"
-msgstr "AA Hedef Tutturması Arttırıldı"
+msgstr "U.S. Hedef Tutturması Arttırıldı"
 
 # Gibt sicherlich einen deutschen Fachausdruck dafür, nur her damit -Kreuvf
 #: data/base/messages/resmessages2.rmsg:576
@@ -3665,7 +3665,7 @@ msgstr "Bilgisayar sistemleri artık kendini Nexus'dan daha iyi koruyacak"
 #: data/base/messages/resmessages3.rmsg:37
 #: data/mp/messages/resmessages3.rmsg:33
 msgid "New Cyborg Research Available"
-msgstr "Yeni Cyborg Araştırması Kullanılabilir"
+msgstr "Yeni Sayborg Araştırması Kullanılabilir"
 
 # Pack wie Equipment übersetzt -Kreuvf
 #: data/base/messages/resmessages3.rmsg:38
@@ -3677,12 +3677,12 @@ msgstr "Aerodinamik Zıplama Paketi"
 #: data/base/messages/resmessages3.rmsg:39
 #: data/mp/messages/resmessages3.rmsg:35
 msgid "Gives Cyborg limited flight abilities"
-msgstr "Cyborglere sınırlı olarak uçma kabiliyeti verir"
+msgstr "Sayborglara sınırlı olarak uçma kabiliyeti verir"
 
 #: data/base/messages/resmessages3.rmsg:40
 #: data/mp/messages/resmessages3.rmsg:36
 msgid "Jump Cyborgs can now be researched"
-msgstr "Zıplayan Cyborgler şimdi araştırılabilir"
+msgstr "Zıplayan Sayborglar şimdi araştırılabilir"
 
 #: data/base/messages/resmessages3.rmsg:60
 #: data/base/messages/resmessages3.rmsg:588
@@ -3739,17 +3739,17 @@ msgstr "Flaşışığı Lazerli"
 #: data/mp/messages/strings/resstrings.txt:97
 #: data/mp/messages/strings/resstrings.txt:103
 msgid "New Jump Cyborg Available"
-msgstr "Yeni Zıplayan Cyborg Kullanılabilir"
+msgstr "Yeni Zıplayan Sayborg Kullanılabilir"
 
 #: data/base/messages/resmessages3.rmsg:126
 #: data/mp/messages/resmessages3.rmsg:114
 msgid "Armed with Lancer anti-tank missile"
-msgstr "Roketatar anti-tank Füzesi"
+msgstr "Mızrak anti-tank roketi ile silahlandırılmış"
 
 #: data/base/messages/resmessages3.rmsg:137
 #: data/mp/messages/resmessages3.rmsg:124
 msgid "Armed with Cyborg assault gun"
-msgstr "Cyborg Hücüm Silahlı"
+msgstr "Sayborg Hücüm Silahlı"
 
 #: data/base/messages/resmessages3.rmsg:170
 #: data/mp/messages/resmessages3.rmsg:154
@@ -3759,7 +3759,7 @@ msgstr "Flaşışığı Lazerli"
 #: data/base/messages/resmessages3.rmsg:172
 #: data/mp/messages/resmessages3.rmsg:156
 msgid "Requires cyborg factory to produce"
-msgstr "Üretmek için Cyborg Fabrikası gerekli"
+msgstr "Üretmek için Sayborg Fabrikası gerekli"
 
 #: data/base/messages/resmessages3.rmsg:181
 #: data/mp/messages/resmessages3.rmsg:164
@@ -3953,7 +3953,7 @@ msgstr "Hasar-Tespit ve otomatik tamir sistemleri"
 #: data/base/messages/resmessages3.rmsg:491
 #: data/mp/messages/resmessages3.rmsg:446
 msgid "Enables self-repair in all Cyborgs"
-msgstr "Tüm Cyborglarda otomatik tamiri etkinleştirir"
+msgstr "Tüm Sayborglarda otomatik tamiri etkinleştirir"
 
 #: data/base/messages/resmessages3.rmsg:501
 #: data/base/messages/resmessages3.rmsg:512
@@ -4125,7 +4125,7 @@ msgstr "Lazer enerjisi üretir ve düşmana fırlatır"
 #: data/mp/messages/resmessages3.rmsg:725
 #: data/mp/messages/resmessages3.rmsg:735
 msgid "Best Targets: Cyborgs"
-msgstr "Harika Hedefler: Cyborgler"
+msgstr "Harika Hedefler: Sayborglar"
 
 #: data/base/messages/resmessages3.rmsg:808
 #: data/mp/messages/resmessages3.rmsg:734
@@ -4300,7 +4300,7 @@ msgstr "Patlayıcılığı arttırılmış batarya füzesi"
 #: data/mp/messages/resmessages3.rmsg:865
 #: data/mp/messages/resmessages3.rmsg:875
 msgid "Best Targets: Base structures and cyborgs"
-msgstr "Harika Hedefler: Üs Binaları ve Cyborglar"
+msgstr "Harika Hedefler: Üs Binaları ve Sayborglar"
 
 #: data/base/messages/resmessages3.rmsg:962
 #: data/mp/messages/resmessages3.rmsg:874
@@ -5841,7 +5841,7 @@ msgstr "Ağır Makinalı Engerek Paletler"
 #: data/base/messages/strings/names.txt:178
 #: data/mp/messages/strings/names.txt:181
 msgid "Lancer Viper Wheels"
-msgstr "Roketatar Engerek Tekerlekler"
+msgstr "Mızrak roket Engerek Tekerlekler"
 
 #: data/base/messages/strings/names.txt:179
 #: data/mp/messages/strings/names.txt:182
@@ -5899,7 +5899,7 @@ msgstr "Komuta Tareti Kobra Yarım Paletler"
 #: data/mp/messages/strings/names.txt:193
 #: data/mp/messages/strings/names.txt:1435
 msgid "Lancer Cobra Half-tracks"
-msgstr "Roketatar Kobra Yarım Paletler"
+msgstr "Mızrak roket Kobra Yarım Paletler"
 
 #: data/base/messages/strings/names.txt:191
 msgid "Mini-Rocket Artillery Cobra Half-tracks"
@@ -6015,7 +6015,7 @@ msgstr "Alev Atıcı"
 #: data/mp/messages/strings/names.txt:521
 #: data/mp/messages/strings/names.txt:535
 msgid "Lancer"
-msgstr "Roketatar"
+msgstr "Mızrak roket"
 
 #: data/base/messages/strings/names.txt:215
 #: data/base/messages/strings/names.txt:220
@@ -6029,7 +6029,7 @@ msgstr "Ağır Makinalı"
 #: data/base/messages/strings/names.txt:219
 #: data/mp/messages/strings/names.txt:222
 msgid "Cyborg Flamer"
-msgstr "Alev Atıcı Cyborg"
+msgstr "Alev Atıcı Sayborg"
 
 #: data/base/messages/strings/names.txt:222
 #: data/mp/messages/strings/names.txt:155
@@ -6040,7 +6040,7 @@ msgstr "Hücüm Silahlı"
 #: data/base/messages/strings/names.txt:226
 #: data/mp/messages/strings/names.txt:229
 msgid "Cyborg Cannon"
-msgstr "Cyborg-Geschütz"
+msgstr "Topçu Sayborg"
 
 #: data/base/messages/strings/names.txt:234
 #: data/mp/messages/strings/names.txt:237
@@ -6203,14 +6203,14 @@ msgstr "Yarım Paletler III"
 #: data/mp/messages/strings/names.txt:333
 #: data/mp/messages/strings/names.txt:699
 msgid "Cyborg Propulsion II"
-msgstr "Cyborg-Antrieb II"
+msgstr "Sayborg Yürütücü II"
 
 #: data/base/messages/strings/names.txt:331
 #: data/base/messages/strings/names.txt:694
 #: data/mp/messages/strings/names.txt:334
 #: data/mp/messages/strings/names.txt:700
 msgid "Cyborg Propulsion III"
-msgstr "Cyborg-Antrieb III"
+msgstr "Sayborg Yürütücü III"
 
 #: data/base/messages/strings/names.txt:334
 #: data/mp/messages/strings/names.txt:335
@@ -6222,7 +6222,7 @@ msgstr "Denizci"
 #: data/mp/messages/strings/names.txt:342
 #: data/mp/messages/strings/names.txt:698
 msgid "Cyborg Propulsion"
-msgstr "Cyborg Yürütücü"
+msgstr "Sayborg Yürütücü"
 
 #: data/base/messages/strings/names.txt:346
 #: data/mp/messages/strings/names.txt:347
@@ -6405,26 +6405,26 @@ msgstr "Sabitlenmiş Cehennem Fırtınası"
 #: data/base/messages/strings/names.txt:715
 #: data/mp/messages/strings/names.txt:725
 msgid "Tornado AA Flak Site"
-msgstr "Kasırga AA Uçaksavar Sitesi"
+msgstr "Kasırga Uçaksavar Sitesi"
 
 #: data/base/messages/strings/names.txt:410
 #: data/base/messages/strings/names.txt:712
 msgid "Cyclone AA Flak Site"
-msgstr "Girdap AA Uçaksavar Sitesi"
+msgstr "Girdap Uçaksavar Sitesi"
 
 #: data/base/messages/strings/names.txt:411
 #: data/base/messages/strings/names.txt:713
 #: data/mp/messages/strings/names.txt:410
 #: data/mp/messages/strings/names.txt:723
 msgid "Hurricane AA Site"
-msgstr "Fırtına AA Sitesi"
+msgstr "Fırtına U.S. Sitesi"
 
 #: data/base/messages/strings/names.txt:412
 #: data/base/messages/strings/names.txt:714
 #: data/mp/messages/strings/names.txt:411
 #: data/mp/messages/strings/names.txt:724
 msgid "Whirlwind AA Site"
-msgstr "Hortum AA Sitesi"
+msgstr "Hortum U.S. Sitesi"
 
 #: data/base/messages/strings/names.txt:414
 #: data/base/messages/strings/names.txt:726
@@ -6515,7 +6515,7 @@ msgstr "Alev Atıcı Bağlama Noktası"
 #: data/mp/messages/strings/names.txt:435
 #: data/mp/messages/strings/names.txt:779
 msgid "Lancer Hardpoint"
-msgstr "Roketatar Bağlama Noktası"
+msgstr "Mızrak roket bağlama noktası"
 
 #: data/base/messages/strings/names.txt:438
 #: data/base/messages/strings/names.txt:755
@@ -6546,7 +6546,7 @@ msgstr "Alev Atıcı Koruma Kulesi"
 #: data/mp/messages/strings/names.txt:747
 #: data/mp/messages/strings/names.txt:768
 msgid "Lancer Tower"
-msgstr "Roketatar Kulesi"
+msgstr "Mızrak roket Kulesi"
 
 #: data/base/messages/strings/names.txt:443
 #: data/mp/messages/strings/names.txt:442
@@ -6597,7 +6597,7 @@ msgstr "Alev Atıcı Sığınak"
 #: data/base/messages/strings/names.txt:737
 #: data/mp/messages/strings/names.txt:450
 msgid "Lancer Bunker"
-msgstr "Roketatar Sığınak"
+msgstr "Mızrak roketli sığınak"
 
 #: data/base/messages/strings/names.txt:454
 #: data/base/messages/strings/names.txt:456
@@ -6912,7 +6912,7 @@ msgstr "DİvK -Mini Roketi"
 #: data/base/messages/strings/names.txt:531
 #: data/mp/messages/strings/names.txt:530
 msgid "VTOL Lancer"
-msgstr "DİvK -Roketatar"
+msgstr "DİvK - Mızrak roket"
 
 #: data/base/messages/strings/names.txt:532
 #: data/mp/messages/strings/names.txt:531
@@ -7090,7 +7090,7 @@ msgstr "CAM2 ARAÇLAR"
 #: data/base/messages/strings/names.txt:632
 #: data/mp/messages/strings/names.txt:632
 msgid "CAM2 CYBORGS"
-msgstr "CAM2 CYBORGLER"
+msgstr "CAM2 SAYBORGLAR"
 
 #: data/base/messages/strings/names.txt:633
 #: data/mp/messages/strings/names.txt:633
@@ -7140,160 +7140,160 @@ msgstr "Üçüncü Seviye Füze Ateşleme Kodları"
 #: data/base/messages/strings/names.txt:655
 #: data/mp/messages/strings/names.txt:655
 msgid "Cyborg Thermal Armor"
-msgstr "Cyborg Termal Zırhı"
+msgstr "Sayborg Termal Zırhı"
 
 #: data/base/messages/strings/names.txt:656
 #: data/mp/messages/strings/names.txt:656
 msgid "Cyborg Thermal Armor Mk2"
-msgstr "Cyborg Termal Zırhı Kdm2"
+msgstr "Sayborg Termal Zırhı Kdm2"
 
 #: data/base/messages/strings/names.txt:657
 #: data/mp/messages/strings/names.txt:657
 msgid "Cyborg Thermal Armor Mk3"
-msgstr "Cyborg Termal Zırhı Kdm3"
+msgstr "Sayborg Termal Zırhı Kdm3"
 
 #: data/base/messages/strings/names.txt:658
 #: data/mp/messages/strings/names.txt:658
 msgid "Cyborg High Intensity Thermal Armor"
-msgstr "Yüksek Yoğunlukta Cyborg Termal Zırhı"
+msgstr "Yüksek Yoğunlukta Sayborg Termal Zırhı"
 
 #: data/base/messages/strings/names.txt:659
 #: data/mp/messages/strings/names.txt:659
 msgid "Cyborg High Intensity Thermal Armor Mk2"
-msgstr "Yüksek Yoğunlukta Cyborg Termal Zırhı Kdm2"
+msgstr "Yüksek Yoğunlukta Sayborg Termal Zırhı Kdm2"
 
 #: data/base/messages/strings/names.txt:660
 #: data/mp/messages/strings/names.txt:660
 msgid "Cyborg High Intensity Thermal Armor Mk3"
-msgstr "Yüksek Yoğunlukta Cyborg Termal Zırhı KDm3"
+msgstr "Yüksek Yoğunlukta Sayborg Termal Zırhı KDm3"
 
 #: data/base/messages/strings/names.txt:662
 #: data/mp/messages/strings/names.txt:662
 msgid "Cyborg Composite Alloys"
-msgstr "Cyborg Kompozit Alaşımları"
+msgstr "Sayborg Kompozit Alaşımları"
 
 #: data/base/messages/strings/names.txt:663
 #: data/mp/messages/strings/names.txt:663
 msgid "Cyborg Composite Alloys Mk2"
-msgstr "Cyborg Kompozit Alaşımları Kdm2"
+msgstr "Sayborg Kompozit Alaşımları Kdm2"
 
 #: data/base/messages/strings/names.txt:664
 #: data/mp/messages/strings/names.txt:664
 msgid "Cyborg Composite Alloys Mk3"
-msgstr "Cyborg Kompozit Alaşımları Kdm3"
+msgstr "Sayborg Kompozit Alaşımları Kdm3"
 
 #: data/base/messages/strings/names.txt:665
 #: data/mp/messages/strings/names.txt:665
 msgid "Cyborg Dense Composite Alloys"
-msgstr "Cyborg Yoğunlaştırılmış Kompozit Alaşımları"
+msgstr "Sayborg Yoğunlaştırılmış Kompozit Alaşımları"
 
 #: data/base/messages/strings/names.txt:666
 #: data/mp/messages/strings/names.txt:666
 msgid "Cyborg Dense Composite Alloys Mk2"
-msgstr "Cyborg Yoğunlaştırılmış Kompozit Alaşımları Kdm2"
+msgstr "Sayborg Yoğunlaştırılmış Kompozit Alaşımları Kdm2"
 
 #: data/base/messages/strings/names.txt:667
 #: data/mp/messages/strings/names.txt:667
 msgid "Cyborg Dense Composite Alloys Mk3"
-msgstr "Cyborg Yoğunlaştırılmış Kompozit Alaşımları Kdm3"
+msgstr "Sayborg Yoğunlaştırılmış Kompozit Alaşımları Kdm3"
 
 #: data/base/messages/strings/names.txt:668
 #: data/mp/messages/strings/names.txt:668
 msgid "Cyborg Superdense Composite Alloys"
-msgstr "Cyborg Süper Yoğun Alaşımları"
+msgstr "Sayborg Süper Yoğun Alaşımları"
 
 #: data/base/messages/strings/names.txt:669
 #: data/mp/messages/strings/names.txt:669
 msgid "Cyborg Superdense Composite Alloys Mk2"
-msgstr "Cyborg Süper Yoğun Alaşımları Kdm2"
+msgstr "Sayborg Süper Yoğun Alaşımları Kdm2"
 
 #: data/base/messages/strings/names.txt:670
 #: data/mp/messages/strings/names.txt:670
 msgid "Cyborg Superdense Composite Alloys Mk3"
-msgstr "Cyborg Süper Yoğun Alaşımları Kdm3"
+msgstr "Sayborg Süper Yoğun Alaşımları Kdm3"
 
 #: data/base/messages/strings/names.txt:673
 #: data/mp/messages/strings/names.txt:679
 msgid "Bunker Blaster Cyborg"
-msgstr "Sığınak Yokedici Cyborg"
+msgstr "Sığınak Yokedici Sayborg"
 
 #: data/base/messages/strings/names.txt:674
 #: data/mp/messages/strings/names.txt:680
 msgid "Heavy Gunner Cyborg"
-msgstr "Ağır Makinalı Cyborg"
+msgstr "Ağır Makinalı Sayborg"
 
 #: data/base/messages/strings/names.txt:675
 #: data/mp/messages/strings/names.txt:681
 msgid "Flamer Cyborg"
-msgstr "Alev Atıcı Cyborg"
+msgstr "Alev Atıcı Sayborg"
 
 #: data/base/messages/strings/names.txt:676
 #: data/mp/messages/strings/names.txt:682
 msgid "Machinegunner Cyborg"
-msgstr "Makinalı Tüfekli Cyborg"
+msgstr "Makinalı Tüfekli Sayborg"
 
 #: data/base/messages/strings/names.txt:677
 msgid "Lancer Cyborg"
-msgstr "Roketatar Cyborg"
+msgstr "Mızrak roketli Sayborg"
 
 #: data/base/messages/strings/names.txt:678
 msgid "Assault Gunner Cyborg"
-msgstr "Hücüm Silahlı Cyborg"
+msgstr "Hücüm Silahlı Sayborg"
 
 #: data/base/messages/strings/names.txt:679
 msgid "Needle Gunner Cyborg"
-msgstr "İğne Silahlı Cyborg"
+msgstr "İğne Silahlı Sayborg"
 
 #: data/base/messages/strings/names.txt:680
 msgid "Scourge Cyborg"
-msgstr "Felaket Füzeli Cyborg"
+msgstr "Felaket Füzeli Sayborg"
 
 #: data/base/messages/strings/names.txt:681
 msgid "Flashlight Gunner Cyborg"
-msgstr "Flaşışık Lazerli Cyborg"
+msgstr "Flaşışık Lazerli Sayborg"
 
 #: data/base/messages/strings/names.txt:683
 #: data/mp/messages/strings/names.txt:689
 msgid "Jump Bunker Blaster"
-msgstr "Zıplayan Sığınak Yokedici Cyborg"
+msgstr "Zıplayan Sığınak Yokedici Sayborg"
 
 #: data/base/messages/strings/names.txt:684
 #: data/mp/messages/strings/names.txt:690
 msgid "Jump Heavy Gunner"
-msgstr "Zıplayan Roketatar Cyborg"
+msgstr "Zıplayan ağır topçu Sayborg"
 
 # Das Cyborg mal des Klanges wegen hinzugefügt -Kreuvf
 #: data/base/messages/strings/names.txt:685
 #: data/mp/messages/strings/names.txt:691
 msgid "Jump Lancer"
-msgstr "Zıplayan Roketatar Cyborg"
+msgstr "Zıplayan Mızrak roketli Sayborg"
 
 #: data/base/messages/strings/names.txt:686
 #: data/mp/messages/strings/names.txt:692
 msgid "Jump Assault Gunner"
-msgstr "Zıplayan Hücüm Silahlı Cyborg"
+msgstr "Zıplayan Hücüm Silahlı Sayborg"
 
 #: data/base/messages/strings/names.txt:687
 #: data/mp/messages/strings/names.txt:693
 msgid "Jump Needle Gunner"
-msgstr "Zıplayan İğne Silahlı Cyborg"
+msgstr "Zıplayan İğne Silahlı Sayborg"
 
 # Das Cyborg mal des Klanges wegen hinzugefügt
 #: data/base/messages/strings/names.txt:688
 #: data/mp/messages/strings/names.txt:694
 msgid "Jump Scourge"
-msgstr "Zıplayan Felaket Füzeli Cyborg"
+msgstr "Zıplayan Felaket Füzeli Sayborg"
 
 #: data/base/messages/strings/names.txt:689
 #: data/mp/messages/strings/names.txt:695
 msgid "Jump Flashlight Gunner"
-msgstr "Zıplayan Flaşışık Lazerli Cyborg"
+msgstr "Zıplayan Flaşışık Lazerli Sayborg"
 
 # Pack wie Equipment übersetzt -Kreuvf
 #: data/base/messages/strings/names.txt:691
 #: data/mp/messages/strings/names.txt:697
 msgid "Cyborg Jump Pack"
-msgstr "Cyborg Zıplama Paketi"
+msgstr "Sayborg Zıplama Paketi"
 
 #: data/base/messages/strings/names.txt:697
 #: data/mp/messages/strings/names.txt:703
@@ -7432,7 +7432,7 @@ msgstr "Ağır Makinalı Koruma Kulesi"
 
 #: data/base/messages/strings/names.txt:758
 msgid "Lancer Guard Tower"
-msgstr "Roketatar Koruma Kulesi"
+msgstr "Mızrak roket Koruma Kulesi"
 
 #: data/base/messages/strings/names.txt:759
 msgid "Mini-Rocket Guard Tower"
@@ -7471,32 +7471,32 @@ msgstr "Komutan Yönetim Üssü"
 
 #: data/base/messages/strings/names.txt:784
 msgid "Automated Cyborg Production Mk2"
-msgstr "Otomatik Cyborg Üretimi Kdm2"
+msgstr "Otomatik Sayborg Üretimi Kdm2"
 
 #: data/base/messages/strings/names.txt:785
 msgid "Automated Cyborg Production Mk3"
-msgstr "Otomatik Cyborg Üretimi Kdm3"
+msgstr "Otomatik Sayborg Üretimi Kdm3"
 
 #: data/base/messages/strings/names.txt:787
 msgid "Robotic Cyborg Production Mk2"
-msgstr "Robotik Cyborg Üretimi Kdm2"
+msgstr "Robotik Sayborg Üretimi Kdm2"
 
 #: data/base/messages/strings/names.txt:788
 msgid "Robotic Cyborg Production Mk3"
-msgstr "Robotik Cyborg Üretimi Kdm3"
+msgstr "Robotik Sayborg Üretimi Kdm3"
 
 #: data/base/messages/strings/names.txt:789
 #: data/mp/messages/resmessagesall.rmsg:624
 msgid "Advanced Cyborg Production"
-msgstr "Modern Cyborg Üretimi"
+msgstr "Modern Sayborg Üretimi"
 
 #: data/base/messages/strings/names.txt:790
 msgid "Advanced Cyborg Production Mk2"
-msgstr "Modern Cyborg Üretimi Kdm2"
+msgstr "Modern Sayborg Üretimi Kdm2"
 
 #: data/base/messages/strings/names.txt:791
 msgid "Advanced Cyborg Production Mk3"
-msgstr "Modern Cyborg Üretimi Kdm3"
+msgstr "Modern Sayborg Üretimi Kdm3"
 
 #: data/base/messages/strings/names.txt:795
 msgid "Automated Factory Production Mk2"
@@ -7694,17 +7694,17 @@ msgstr "Gelişmiş DİvK Üretimi Kdm3"
 #: data/base/messages/strings/names.txt:858
 #: data/mp/messages/strings/names.txt:868
 msgid "Cyborg Self-Repair"
-msgstr "Cyborg Oto-Tamir"
+msgstr "Sayborg Oto-Tamir"
 
 #: data/base/messages/strings/names.txt:859
 #: data/mp/messages/strings/names.txt:869
 msgid "Automated Cyborg Repair Mk2"
-msgstr "Otomatik Cyborg Tamiri Kdm2"
+msgstr "Otomatik Sayborg Tamiri Kdm2"
 
 #: data/base/messages/strings/names.txt:860
 #: data/mp/messages/strings/names.txt:870
 msgid "Automated Cyborg Repair Mk3"
-msgstr "Otomatik Cyborg Tamiri Kdm3"
+msgstr "Otomatik Sayborg Tamiri Kdm3"
 
 #: data/base/messages/strings/names.txt:862
 #: data/mp/messages/strings/names.txt:872
@@ -8102,77 +8102,77 @@ msgstr "Tekerlekli Yürütücü II"
 #: data/base/messages/strings/names.txt:984
 #: data/mp/messages/strings/names.txt:996
 msgid "AA Thermal Imaging Sensor"
-msgstr "AA Termal Hedefleme Algılayıcısı"
+msgstr "U.S. Termal Hedefleme Algılayıcısı"
 
 #: data/base/messages/strings/names.txt:985
 #: data/mp/messages/strings/names.txt:997
 msgid "AA Target Acquisition Shells"
-msgstr "AA Hedef Alıcı Mermiler"
+msgstr "U.S. Hedef Alıcı Mermiler"
 
 #: data/base/messages/strings/names.txt:986
 #: data/mp/messages/strings/names.txt:998
 msgid "AA Target Prediction Computer"
-msgstr "Hedef Tespit Edici AA Bilgisayarı"
+msgstr "Hedef Tespit Edici U.S. Bilgisayarı"
 
 #: data/base/messages/strings/names.txt:987
 #: data/mp/messages/strings/names.txt:999
 msgid "AA HE Flak"
-msgstr "Patlayıcılığı arttırılmış AA Uçaksavar"
+msgstr "Patlayıcılığı arttırılmış Uçaksavar"
 
 #: data/base/messages/strings/names.txt:988
 #: data/mp/messages/strings/names.txt:1000
 msgid "AA HE Flak Mk2"
-msgstr "Patlayıcılığı arttırılmış AA Uçaksavar Kdm2"
+msgstr "Patlayıcılığı arttırılmış Uçaksavar Kdm2"
 
 #: data/base/messages/strings/names.txt:989
 #: data/mp/messages/strings/names.txt:1001
 msgid "AA HE Flak Mk3"
-msgstr "Patlayıcılığı arttırılmış AA Uçaksavar Kdm3"
+msgstr "Patlayıcılığı arttırılmış Uçaksavar Kdm3"
 
 #: data/base/messages/strings/names.txt:990
 #: data/mp/messages/strings/names.txt:1002
 msgid "AA HEAP Flak"
-msgstr "Patlayıcılığı arttırılmış Zırh Delici  AA Uçaksavar"
+msgstr "Patlayıcılığı arttırılmış Zırh Delici Uçaksavar"
 
 #: data/base/messages/strings/names.txt:991
 #: data/mp/messages/strings/names.txt:1003
 msgid "AA HEAP Flak Mk2"
-msgstr "Patlayıcılığı arttırılmış Zırh Delici  AA Uçaksavar Kdm2"
+msgstr "Patlayıcılığı arttırılmış Zırh Delici Uçaksavar Kdm2"
 
 #: data/base/messages/strings/names.txt:992
 #: data/mp/messages/strings/names.txt:1004
 msgid "AA HEAP Flak Mk3"
-msgstr "Patlayıcılığı arttırılmış Zırh Delici  AA Uçaksavar Kdm3"
+msgstr "Patlayıcılığı arttırılmış Zırh Delici Uçaksavar Kdm3"
 
 #: data/base/messages/strings/names.txt:993
 #: data/mp/messages/strings/names.txt:1005
 msgid "AA Ammunition Hopper"
-msgstr "AA Mühimmat Sıçratıcı"
+msgstr "U.S. Mühimmat Sıçratıcı"
 
 #: data/base/messages/strings/names.txt:994
 #: data/mp/messages/strings/names.txt:1006
 msgid "AA Ammunition Hopper Mk2"
-msgstr "AA Mühimmat Sıçratıcı Kdm2"
+msgstr "U.S. Mühimmat Sıçratıcı Kdm2"
 
 #: data/base/messages/strings/names.txt:995
 #: data/mp/messages/strings/names.txt:1007
 msgid "AA Ammunition Hopper Mk3"
-msgstr "AA Mühimmat Sıçratıcı Kdm3"
+msgstr "U.S. Mühimmat Sıçratıcı Kdm3"
 
 #: data/base/messages/strings/names.txt:996
 #: data/mp/messages/strings/names.txt:1008
 msgid "AA Chainfeed Loader"
-msgstr "AA Zincir Yükleme Sistemi"
+msgstr "U.S. Zincir Yükleme Sistemi"
 
 #: data/base/messages/strings/names.txt:997
 #: data/mp/messages/strings/names.txt:1009
 msgid "AA Chainfeed Loader Mk2"
-msgstr "AA Zincir Yükleme Sistemi Kdm2"
+msgstr "U.S. Zincir Yükleme Sistemi Kdm2"
 
 #: data/base/messages/strings/names.txt:998
 #: data/mp/messages/strings/names.txt:1010
 msgid "AA Chainfeed Loader Mk3"
-msgstr "AA Zincir Yükleme Sistemi Kdm3"
+msgstr "U.S. Zincir Yükleme Sistemi Kdm3"
 
 #: data/base/messages/strings/names.txt:1003
 msgid "Cluster Bombs Bay"
@@ -8803,22 +8803,22 @@ msgstr "P.A.S.H Roket Savaşbaşlığı Kdm3"
 #: data/base/messages/strings/names.txt:1176
 #: data/mp/messages/strings/names.txt:1178
 msgid "Rocket Autoloader"
-msgstr "Roketatar Otomatik Yükleyici"
+msgstr "Mızrak roket Otomatik Yükleyici"
 
 #: data/base/messages/strings/names.txt:1177
 #: data/mp/messages/strings/names.txt:1179
 msgid "Rocket Autoloader Mk2"
-msgstr "Roketatar Otomatik Yükleyici Kdm2"
+msgstr "Mızrak roket Otomatik Yükleyici Kdm2"
 
 #: data/base/messages/strings/names.txt:1178
 #: data/mp/messages/strings/names.txt:1180
 msgid "Rocket Autoloader Mk3"
-msgstr "Roketatar Otomatik Yükleyici Kdm3"
+msgstr "Mızrak roket Otomatik Yükleyici Kdm3"
 
 #: data/base/messages/strings/names.txt:1180
 #: data/mp/messages/strings/names.txt:1195
 msgid "Lancer AT Rocket"
-msgstr "Roketatar-A.T Roketi "
+msgstr "Mızrak roket-A.T Roketi "
 
 #: data/base/messages/strings/names.txt:1182
 #: data/mp/messages/strings/names.txt:1197
@@ -8975,7 +8975,7 @@ msgstr "Tanker Enkazı"
 #: data/mp/messages/strings/names.txt:1335
 #: data/mp/messages/strings/names.txt:1351
 msgid "Cyborg Laboratory"
-msgstr "Cyborg Labaratuarı"
+msgstr "Sayborg Labaratuarı"
 
 #: data/base/messages/strings/names.txt:1321
 #: data/mp/messages/strings/names.txt:1336
@@ -9060,7 +9060,7 @@ msgstr "Tamir Tareti Kobra Paletler"
 #: data/mp/messages/strings/names.txt:1451
 #: data/mp/messages/strings/names.txt:1518
 msgid "Scourge"
-msgstr "Felaket Füzeli Cyborg"
+msgstr "Felaket Füzeli Sayborg"
 
 #: data/base/messages/strings/names.txt:1437
 #: data/mp/messages/strings/names.txt:1452
@@ -9137,10 +9137,11 @@ msgstr "Zırhlandırılmış Ağır Makinalı Koruma Kulesi"
 msgid "Armored guard tower with Flamer"
 msgstr "Zırhlandırılmış Alev Atıcı Koruma Kulesi"
 
+# T.S : Tank Savar
 #: data/base/messages/strings/resstrings.txt:246
 #: data/mp/messages/strings/resstrings.txt:274
 msgid "Armored guard tower with Lancer AT Rocket"
-msgstr "Zırhlandırılmış Roketatar(A.T) Koruma Kulesi"
+msgstr "Zırhlandırılmış Mızrak roket T.S Koruma Kulesi"
 
 #: data/base/messages/strings/resstrings.txt:260
 #: data/mp/messages/strings/resstrings.txt:288
@@ -9155,7 +9156,7 @@ msgstr "Zırhlandırılmış Alev Atıcı Bağlama Noktası"
 #: data/base/messages/strings/resstrings.txt:356
 #: data/mp/messages/strings/resstrings.txt:384
 msgid "Self-Replicating Cyborg Production"
-msgstr "Kendini Kopyalayan Cyborg Üretimi"
+msgstr "Kendini Kopyalayan Sayborg Üretimi"
 
 #: data/base/messages/strings/resstrings.txt:374
 #: data/mp/messages/strings/resstrings.txt:402
@@ -9528,7 +9529,7 @@ msgstr "Bana sistemlerinizi açın."
 
 #: data/base/sequenceaudio/cam1/cam1out2.txt:2
 msgid "Let me meld with your machines and cyborgs."
-msgstr "Bana makinelerinizi ve Cyborglarinizi birleştirelim."
+msgstr "Bana makinelerinizi ve Sayborglarınızı birleştirelim."
 
 #: data/base/sequenceaudio/cam1/cam1out2.txt:4
 msgid "We will create the perfect nexus of man and machine."
@@ -9601,7 +9602,7 @@ msgstr "Bağlantı herhangi bir bilgisayara takılabilen yüksek hızda veri akt
 
 #: data/base/sequenceaudio/cam1/map1a_c.txt:10
 msgid "More importantly the development of the synaptic link made the creation of cyborgs possible. Early attempts at power suits for individual soldiers failed as they proved to be slow and unresponsive."
-msgstr "Dahada önemlisi sinaptik bağlantı Cyborg'ların yapımını sağladı. Bireysel askerler için ilk çalışmada yavaş ve tepkisiz olduğu kanıtlanmıştır."
+msgstr "Dahada önemlisi sinaptik bağlantı sayborgların yapımını sağladı. Bireysel askerler için ilk çalışmada yavaş ve tepkisiz olduğu kanıtlanmıştır."
 
 #: data/base/sequenceaudio/cam1/map1a_c.txt:12
 msgid "The synaptic link allowed soldiers to be placed in power suits that they controlled as easily as their own bodies. Power suits allowed infantry to function effectively on the battlefields of the 21st Century."
@@ -9961,7 +9962,7 @@ msgstr "Sizi selamlıyorum, Komutan."
 
 #: data/base/sequenceaudio/cam3/cam32a2.txt:4
 msgid "Enemy strike VTOLs have got us pinned down. We've managed to hold off cyborgs and tanks, but we haven't been able to make any progress along the valley."
-msgstr "Düşman Saldırı DİvK 'ları bize doğru geliyorlar. Biz cyborgları ve tankları tutmayı başardık, fakat vadi boyunca hiçbir başarıya ulaşamadık."
+msgstr "Düşman Saldırı DİvK 'ları bize doğru geliyorlar. Biz sayborgları ve tankları tutmayı başardık, fakat vadi boyunca hiçbir başarıya ulaşamadık."
 
 #: data/base/sequenceaudio/cam3/cam32a2.txt:7
 msgid "Can you try and reach us with anti-aircraft units?"
@@ -9973,7 +9974,7 @@ msgstr "Burası Takım Alfa. Tekrar ediyorum, burası takım Alfa. Bize acil yar
 
 #: data/base/sequenceaudio/cam3/cam32alp.txt:4
 msgid "We are under heavy attack from cyborgs, laser tanks, and strike VTOLs."
-msgstr "Cyborglar, Lazer Tanklar ve DİvK 'lar tarafından ağır saldırı altındayız."
+msgstr "Sayborglar, Lazer Tanklar ve DİvK 'lar tarafından ağır saldırı altındayız."
 
 #: data/base/sequenceaudio/cam3/cam32alp.txt:6
 msgid "We were trying to reach your position, but have been ambushed."
@@ -10069,7 +10070,7 @@ msgstr "Teslim olmak için 5 dakikan var yada kızartma zamanı!"
 
 #: data/base/sequenceaudio/cam3/cam3bg.txt:1
 msgid "Commander, we are under attack by NEXUS cyborgs and tanks. Please help as we...."
-msgstr "Komutan, Biz NEXUS tankları ve Cyborglari tarafından saldırı altındayız. Bize yardim edin...."
+msgstr "Komutan, Biz NEXUS tankları ve sayborgları tarafından saldırı altındayız. Bize yardim edin...."
 
 #: data/base/sequenceaudio/cam3/cam3bg.txt:3
 msgid "...cannot hold out much longer.  Repeat, please help, we cannot hold out much longer...."
@@ -10305,7 +10306,7 @@ msgstr "Mini Roketli Zırhlandırılmış Koruma Kulesi"
 
 #: data/mp/messages/resmessages1.rmsg:114
 msgid "Armored guard tower with Lancer AT rocket"
-msgstr "Roketatar A-T Zırhlandırılmış Koruma Kulesi"
+msgstr "Mızrak roket T.S Zırhlandırılmış Koruma Kulesi"
 
 #: data/mp/messages/resmessages1.rmsg:195
 #: data/mp/messages/resmessages2.rmsg:255
@@ -10314,9 +10315,9 @@ msgid "Repair Speed +100%"
 msgstr "Tamir Hızı +100%"
 
 #: data/mp/messages/resmessages1.rmsg:235
-#, fuzzy, c-format
-msgid "Factory output speed +100% per module"
-msgstr "Fabrika Üretim Hızı Her Ekde +100% artar"
+#, c-format
+msgid "Factory output speed +100%% per module"
+msgstr "Fabrika Üretim Hızı Her Ekde +100%% artar"
 
 #: data/mp/messages/resmessages1.rmsg:245
 #: data/mp/messages/resmessagesall.rmsg:615
@@ -10402,7 +10403,7 @@ msgstr "İnşa Hızı +20%"
 #: data/mp/messages/resmessages2.rmsg:495
 #: data/mp/messages/resmessages3.rmsg:625
 msgid "AA accuracy +10%"
-msgstr "AA Hedef Tutturması +10%"
+msgstr "U.S. Hedef Tutturması +10%"
 
 #: data/mp/messages/resmessages23.rmsg:123
 #: data/mp/messages/resmessages2.rmsg:563
@@ -10449,12 +10450,12 @@ msgstr "Termal Zırh +40%"
 #: data/mp/messages/resmessages2.rmsg:505
 #: data/mp/messages/resmessages3.rmsg:635
 msgid "AA Flak damage +25%"
-msgstr "AA Uçaksavar Hasarı +25%"
+msgstr "Uçaksavar Hasarı +25%"
 
 #: data/mp/messages/resmessages2.rmsg:515
 #: data/mp/messages/resmessages3.rmsg:645
 msgid "AA reload time -15%"
-msgstr "AA Yeniden Yükleme Süresi -15%"
+msgstr "U.S. Yeniden Yükleme Süresi -15%"
 
 #: data/mp/messages/resmessages2.rmsg:645
 #: data/mp/messages/resmessages3.rmsg:695
@@ -10564,7 +10565,7 @@ msgstr "A.B Kulesi düşman endirek ateş silahları yok edilene kadar ateşe de
 
 #: data/mp/messages/resmessagesall.rmsg:173
 msgid "Cyborg Transport Available"
-msgstr "Cyborg Taşıma Gemisi Kullanılabilir"
+msgstr "Sayborg Taşıma Gemisi Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:174
 #: data/mp/messages/resmessagesall.rmsg:184
@@ -10594,7 +10595,7 @@ msgstr "Plazmit Alevi Atıcılı Zırhlandırılmış Koruyucu Nokta"
 
 #: data/mp/messages/resmessagesall.rmsg:224
 msgid "Armed with Cyborg Thermite Flamer"
-msgstr "Cyborg Termik Alevi Atıcı"
+msgstr "Sayborg Termik Alevi Atıcı"
 
 #: data/mp/messages/resmessagesall.rmsg:234
 msgid "Armed with grenades"
@@ -10655,7 +10656,7 @@ msgstr "Lazer ile Ağır Hasar Verir"
 
 #: data/mp/messages/resmessagesall.rmsg:375
 msgid "Best Targets: Heavy cyborgs"
-msgstr "Harika Hedefler: Ağır Cyborglar"
+msgstr "Harika Hedefler: Ağır sayborg"
 
 #: data/mp/messages/resmessagesall.rmsg:384
 msgid "76mm twin-barrel automatic-cannon"
@@ -10723,15 +10724,15 @@ msgstr "EMP Topçusu Koruma Kulesi"
 
 #: data/mp/messages/resmessagesall.rmsg:474
 msgid "Armed with Cyborg Pulse Laser"
-msgstr "Cyborg Darbeli Lazer"
+msgstr "Sayborg Darbeli Lazer"
 
 #: data/mp/messages/resmessagesall.rmsg:484
 msgid "Armed with Cyborg Rail Gun"
-msgstr "Cyborg Demir Silahlı"
+msgstr "Sayborg Demir Silahlı"
 
 #: data/mp/messages/resmessagesall.rmsg:494
 msgid "Armed with Cyborg Scourge Missile Launcher"
-msgstr "Cyborg Felaket Füzeli"
+msgstr "Sayborg Felaket Füzeli"
 
 #: data/mp/messages/resmessagesall.rmsg:504
 msgid "Uses advanced mass driver railgun technology"
@@ -10794,7 +10795,7 @@ msgstr "SAM'li Bağlama Noktası Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:593
 msgid "Hardpoint Whirlwind AA Gun Available"
-msgstr "AA Silah'lı Bağlma Noktası Kullanılabilir"
+msgstr "U.S. SilaHlı Bağlma Noktası Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:634
 msgid "Armored EMP Mortar battery pit"
@@ -10802,11 +10803,11 @@ msgstr "EMP Havan Kuyusu"
 
 #: data/mp/messages/resmessagesall.rmsg:643
 msgid "Laser AA Gun Available"
-msgstr "Lazer AA Silahı Kullanılabilir"
+msgstr "Lazer U.S. Silahı Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:644
 msgid "Twin Medium Anti-Aircraft Laser"
-msgstr "Çift Orta AA Lazeri"
+msgstr "Çift Orta U.S. Lazeri"
 
 #: data/mp/messages/resmessagesall.rmsg:663
 msgid "Hardpoint Avenger SAM Site Available"
@@ -10814,11 +10815,11 @@ msgstr "İntikamcı SAM Bağlama Noktası Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:673
 msgid "Hardpoint Cyclone AA Gun Available"
-msgstr "Girdap AA Silahlı Bağlama Noktası Kullanılabilir"
+msgstr "Girdap U.S. Silahlı Bağlama Noktası Kullanılabilir"
 
 #: data/mp/messages/resmessagesall.rmsg:674
 msgid "Quad 80mm Anti-Aircraft machinegun"
-msgstr "Dörtlü 80mm AA Makinalı"
+msgstr "Dörtlü 80mm U.S. Makinalı"
 
 #: data/mp/messages/resmessagesall.rmsg:684
 #: data/mp/messages/resmessagesall.rmsg:694
@@ -10856,7 +10857,7 @@ msgstr "Gelişmiş Savaşcı Bilgisayar Sistemi"
 #: data/mp/messages/strings/names.txt:15
 #: data/mp/messages/strings/names.txt:673
 msgid "Cyborg Transport"
-msgstr "Cyborg Taşıma Gemisi"
+msgstr "Sayborg Taşıma Gemisi"
 
 #: data/mp/messages/strings/names.txt:144
 msgid "Light Cannon Viper Half-tracks"
@@ -10925,12 +10926,12 @@ msgstr "Cehennem Alevi Atıcı Sığınak"
 
 #: data/mp/messages/strings/names.txt:408
 msgid "Tornado AA Site"
-msgstr "Kasırga AA Sitesi"
+msgstr "Kasırga U.S. Sitesi"
 
 #: data/mp/messages/strings/names.txt:409
 #: data/mp/messages/strings/names.txt:722
 msgid "AA Flak Cannon Emplacement"
-msgstr "Sabitlenmiş AA Uçaksavar Topu"
+msgstr "Sabitlenmiş Uçaksavar Topu"
 
 #: data/mp/messages/strings/names.txt:465
 #: data/mp/messages/strings/names.txt:786
@@ -10955,7 +10956,7 @@ msgstr "Mini Roket Bataryası"
 #: data/mp/messages/strings/names.txt:544
 #: data/mp/messages/strings/names.txt:993
 msgid "AA Flak Cannon"
-msgstr "AA Uçaksavar Topu"
+msgstr "Uçaksavar Topu"
 
 #: data/mp/messages/strings/names.txt:545
 msgid "VTOL Flak Cannon"
@@ -11149,7 +11150,7 @@ msgstr "Yüksek Hız Topu Piton Paletler"
 
 #: data/mp/messages/strings/names.txt:1475
 msgid "AA Flak Cannon Python Half-tracks"
-msgstr "AA Uçaksavar Piton Yarım Paletler"
+msgstr "Uçaksavar Piton Yarım Paletler"
 
 #: data/mp/messages/strings/names.txt:1513
 msgid "Bunker Buster Cobra Hover"
@@ -11193,7 +11194,7 @@ msgstr "Savaş Mühendisi"
 
 #: data/mp/messages/strings/names.txt:1630
 msgid "Cyborg Mechanic"
-msgstr "Mekanikçi Cyborg"
+msgstr "Mekanikçi Sayborg"
 
 #: data/mp/messages/strings/names.txt:1634
 #: data/mp/messages/strings/names.txt:1635
@@ -11227,15 +11228,15 @@ msgstr "Kundakçı Havan Topu Kuyusu"
 
 #: data/mp/messages/strings/names.txt:1649
 msgid "Cyborg Superdense Thermal Armor"
-msgstr "Cyborg Süper Termal Zırhı"
+msgstr "Sayborg Süper Termal Zırhı"
 
 #: data/mp/messages/strings/names.txt:1650
 msgid "Cyborg Superdense Thermal Armor Mk2"
-msgstr "Cyborg Süper Termal Zırhı Kdm2"
+msgstr "Sayborg Süper Termal Zırhı Kdm2"
 
 #: data/mp/messages/strings/names.txt:1651
 msgid "Cyborg Superdense Thermal Armor Mk3"
-msgstr "Cyborg Süper Termal Zırhı Kdm3"
+msgstr "Sayborg Süper Termal Zırhı Kdm3"
 
 #: data/mp/messages/strings/names.txt:1653
 msgid "Vehicle Superdense Thermal Armor"
@@ -11261,21 +11262,21 @@ msgstr "Süper Ağır Silahlı"
 #: data/mp/messages/strings/names.txt:1666
 #: data/mp/messages/strings/names.txt:1667
 msgid "Super Auto-Cannon Cyborg"
-msgstr "Süper Otomatik Topçu Cyborg"
+msgstr "Süper Otomatik Topçu Sayborg"
 
 #: data/mp/messages/strings/names.txt:1669
 #: data/mp/messages/strings/names.txt:1670
 #: data/mp/messages/strings/names.txt:1671
 #: data/mp/messages/strings/names.txt:1672
 msgid "Super HPV Cyborg"
-msgstr "Süper Y.H. Topçu Cyborg"
+msgstr "Süper Y.H. Topçu Sayborg"
 
 #: data/mp/messages/strings/names.txt:1674
 #: data/mp/messages/strings/names.txt:1675
 #: data/mp/messages/strings/names.txt:1676
 #: data/mp/messages/strings/names.txt:1677
 msgid "Super Tank-Killer Cyborg"
-msgstr "Süper Tank Öldürücü Cyborg"
+msgstr "Süper Tank Öldürücü Sayborg"
 
 #: data/mp/messages/strings/names.txt:1679
 #: data/mp/messages/strings/names.txt:1680
@@ -11329,27 +11330,27 @@ msgstr "Sabitlenmiş Plazma Topu"
 
 #: data/mp/messages/strings/names.txt:1722
 msgid "Sunburst AA Rocket Array"
-msgstr "Güneş Işığı AA Roketleri"
+msgstr "Güneş Işığı U.S. Roketleri"
 
 #: data/mp/messages/strings/names.txt:1723
 msgid "Sunburst AA"
-msgstr "Güneş Işığı AA"
+msgstr "Güneş Işığı U.S."
 
 #: data/mp/messages/strings/names.txt:1724
 msgid "VTOL Sunburst AA"
-msgstr "DİvK  Güneş Işığı AA"
+msgstr "DİvK Güneş Işığı U.S."
 
 #: data/mp/messages/strings/names.txt:1725
 #: data/mp/messages/strings/names.txt:1726
 msgid "Sunburst AA Site"
-msgstr "Güneş Işığı AA Yeri"
+msgstr "Güneş Işığı U.S. Yeri"
 
 #: data/mp/messages/strings/names.txt:1728
 #: data/mp/messages/strings/names.txt:1729
 #: data/mp/messages/strings/names.txt:1730
 #: data/mp/messages/strings/names.txt:1731
 msgid "Super Pulse Laser Cyborg"
-msgstr "Süper Darbeli Lazer Cyborg"
+msgstr "Süper Darbeli Lazer Sayborg"
 
 #: data/mp/messages/strings/names.txt:1733
 #: data/mp/messages/strings/names.txt:1734
@@ -11363,7 +11364,7 @@ msgstr "Süper Demir Silahlı"
 #: data/mp/messages/strings/names.txt:1740
 #: data/mp/messages/strings/names.txt:1741
 msgid "Super Scourge Cyborg"
-msgstr "Süper Felket F. Cyborg"
+msgstr "Süper Felaket F. Sayborg"
 
 #: data/mp/messages/strings/names.txt:1743
 #: data/mp/messages/strings/names.txt:1744
@@ -11448,7 +11449,7 @@ msgstr "EMP-Havan Kuyusu"
 #: data/mp/messages/strings/names.txt:1787
 #: data/mp/messages/strings/names.txt:1789
 msgid "Stormbringer AA Laser"
-msgstr "Fırtınacı AA Lazeri"
+msgstr "Fırtına U.S. Lazeri"
 
 #: data/mp/messages/strings/names.txt:1788
 #: data/mp/messages/strings/names.txt:1790
@@ -11468,7 +11469,7 @@ msgstr "Kasırga Bağlama Noktası"
 #: data/mp/messages/strings/names.txt:1795
 #: data/mp/messages/strings/names.txt:1796
 msgid "AA Flak Cannon Hardpoint"
-msgstr "AA Uçaksavar Topu Bağlama Noktası"
+msgstr "Uçaksavar Topu Bağlama Noktası"
 
 #: data/mp/messages/strings/names.txt:1797
 #: data/mp/messages/strings/names.txt:1798
@@ -11588,11 +11589,11 @@ msgstr "Darbeli Lazer P. Devesi Paletler"
 
 #: data/mp/messages/strings/names.txt:1858
 msgid "Lancer Python Tracks"
-msgstr "Roketatar Piton Paletler"
+msgstr "Mızrak roket Piton Paletler"
 
 #: data/mp/messages/strings/names.txt:1859
 msgid "Lancer Mantis Tracks"
-msgstr "Roketatar P. Devesi Paletler"
+msgstr "Mızrak roket P. Devesi Paletler"
 
 #: data/mp/messages/strings/names.txt:1860
 msgid "Tank Killer Vengeance Tracks"
@@ -11645,7 +11646,7 @@ msgstr "DİvK Sığınak Yokedici DİvK "
 
 #: data/mp/messages/strings/names.txt:1880
 msgid "VTOL Lancer Bug VTOL"
-msgstr "DİvK Roketatar Böcek DİvK "
+msgstr "DİvK Mızrak roket Böcek DİvK "
 
 #: data/mp/messages/strings/names.txt:1881
 msgid "VTOL Hyper Velocity Cannon Bug VTOL"
@@ -11653,7 +11654,7 @@ msgstr "DİvK -Yüksek Hız Topu Böcek DİvK "
 
 #: data/mp/messages/strings/names.txt:1882
 msgid "VTOL Lancer Scorpion VTOL"
-msgstr "DİvK Roketatar Akrep DİvK "
+msgstr "DİvK Mızrak roket Akrep DİvK "
 
 #: data/mp/messages/strings/names.txt:1883
 msgid "VTOL Hyper Velocity Cannon Scorpion VTOL"
@@ -11661,7 +11662,7 @@ msgstr "DİvK  Yüksek Hız Topu Akrep DİvK "
 
 #: data/mp/messages/strings/names.txt:1884
 msgid "VTOL Lancer Mantis VTOL"
-msgstr "DİvK Roketatar P. Devesi DİvK "
+msgstr "DİvK Mızrak roket P. Devesi DİvK "
 
 #: data/mp/messages/strings/names.txt:1885
 msgid "VTOL Hyper Velocity Cannon Mantis VTOL"
@@ -11673,7 +11674,7 @@ msgstr "Tamir Tareti P. Devesi Paletler"
 
 #: data/mp/messages/strings/names.txt:1891
 msgid "Lancer Scorpion Tracks"
-msgstr "Roketatar Akrep Paletler"
+msgstr "Mızrak roket Akrep Paletler"
 
 #: data/mp/messages/strings/names.txt:1892
 msgid "Heavy Cannon Scorpion Tracks"
@@ -11681,7 +11682,7 @@ msgstr "Ağır Topçu Akrep Paletler"
 
 #: data/mp/messages/strings/names.txt:1893
 msgid "Lancer Scorpion VTOL"
-msgstr "Roketatar Akrep DİvK "
+msgstr "Mızrak roket Akrep DİvK "
 
 #: data/mp/messages/strings/names.txt:1894
 msgid "Bunker Buster Scorpion VTOL"
@@ -11705,7 +11706,7 @@ msgstr "Komuta Tareti P. Devesi Paletler"
 
 #: data/mp/messages/strings/names.txt:1901
 msgid "Lancer Cobra Tracks"
-msgstr "Roketatar Kobra Paletler"
+msgstr "Mızrak roket Kobra Paletler"
 
 #: data/mp/messages/strings/names.txt:1902
 msgid "Heavy Cannon Mantis Tracks"
@@ -11757,7 +11758,7 @@ msgstr "Sığınak Yokedici P. Devesi Paletler"
 
 #: data/mp/messages/strings/names.txt:1920
 msgid "Lancer Viper Tracks"
-msgstr "Roketatar Engerek Paletler"
+msgstr "Mızrak roket Engerek Paletler"
 
 #: data/mp/messages/strings/names.txt:1922
 msgid "Mini-Rocket Cobra Half-Tracks"
@@ -11909,29 +11910,25 @@ msgstr "Plasmit Aleci Atıcı Cezalandırıcı DİvK "
 msgid "System locale"
 msgstr "Yerel Sistem"
 
-#: lib/ivis_opengl/screen.cpp:145
-msgid "OpenGL 2.0 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
-msgstr "OpenGL 2.0 sisteminiz tarafından desteklenmiyor. Bazı şeyler yanlış görünebilir. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
+#: lib/ivis_opengl/screen.cpp:187
+msgid "OpenGL GLSL shader version 1.20 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
+msgstr "OpenGL GLSL shader version 1.20 sisteminiz tarafından desteklenmiyor. Bazı şeyler yanlış görünebilir. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
 
-#: lib/ivis_opengl/screen.cpp:152
-msgid "OpenGL 1.5/2.0 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
-msgstr "OpenGL 1.5/2.0 sisteminiz tarafından desteklenmiyor. Bazı şeyler yanlış görünebilir. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
+#: lib/ivis_opengl/screen.cpp:193
+msgid "OpenGL 1.2 + VBO + TEC is not supported by your system. The game requires this. Please upgrade your graphics drivers/hardware, if possible."
+msgstr "OpenGL1.2 + VBO + TEC sisteminiz tarafından desteklenmiyor. Oyun buna gereksinim duyar. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
 
-#: lib/ivis_opengl/screen.cpp:159
-msgid "OpenGL 1.4 + VBO extension is not supported by your system. The game requires this. Please upgrade your graphics drivers/hardware, if possible."
-msgstr "OpenGL 1.4 + VBO sisteminiz tarafından desteklenmiyor. Oyun buna gereksinim duyar. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
-
-#: lib/netplay/netplay.cpp:193
-#: lib/netplay/netplay.cpp:1052
+#: lib/netplay/netplay.cpp:204
+#: lib/netplay/netplay.cpp:1059
 msgid "Enter password here"
 msgstr "Parolayı buraya gir"
 
-#: lib/netplay/netplay.cpp:2114
+#: lib/netplay/netplay.cpp:2115
 #, c-format
 msgid "Could not resolve masterserver name (%s)!"
 msgstr "Konnte Lobbyserver-Namen nicht auflösen (%s)!"
 
-#: lib/netplay/netplay.cpp:2136
+#: lib/netplay/netplay.cpp:2137
 #, c-format
 msgid ""
 "Error connecting to the lobby server: %s.\n"
@@ -11944,7 +11941,7 @@ msgstr ""
 "Eğer bir yönlendirici kullanıyorsanız, onu UPnP veya sisteminizin \n"
 "ileri port'unu kullanabilir hale getirin."
 
-#: lib/netplay/netplay.cpp:2801
+#: lib/netplay/netplay.cpp:2810
 msgid "Failed to get a lobby response!"
 msgstr "Bekleme odası cevabı alma başarısız!"
 
@@ -11994,37 +11991,37 @@ msgid "Strategy Game"
 msgstr "Strateji Oyunu"
 
 #: src/challenge.cpp:222
-#: src/hci.cpp:918
-#: src/hci.cpp:3362
-#: src/hci.cpp:3485
-#: src/hci.cpp:3922
-#: src/hci.cpp:4926
+#: src/hci.cpp:915
+#: src/hci.cpp:3375
+#: src/hci.cpp:3498
+#: src/hci.cpp:3935
+#: src/hci.cpp:4939
 #: src/intelmap.cpp:531
 #: src/intorder.cpp:727
-#: src/loadsave.cpp:240
-#: src/multimenu.cpp:498
-#: src/multimenu.cpp:1349
-#: src/transporter.cpp:278
-#: src/transporter.cpp:359
-#: src/transporter.cpp:822
+#: src/loadsave.cpp:250
+#: src/multimenu.cpp:502
+#: src/multimenu.cpp:1369
+#: src/transporter.cpp:266
+#: src/transporter.cpp:348
+#: src/transporter.cpp:808
 msgid "Close"
 msgstr "Kapat"
 
-#: src/cheat.cpp:161
+#: src/cheat.cpp:165
 #, c-format
 msgid "%s wants to enable debug mode. Enabled: %s, Disabled: %s."
 msgstr "%s hata ayıklama modunu devreye almak istiyor. Etkin: %s, Etkin değil: %s."
 
-#: src/cheat.cpp:165
+#: src/cheat.cpp:169
 #, c-format
 msgid "%s wants to disable debug mode. Enabled: %s, Disabled: %s."
 msgstr "%s hata ayıklama modunu devre dışı bırakmak istiyor. Etkin: %s, Etkin değil: %s."
 
-#: src/cheat.cpp:171
+#: src/cheat.cpp:175
 msgid "Debug mode now enabled!"
 msgstr "Hata ayıklama modu devrede!"
 
-#: src/cheat.cpp:176
+#: src/cheat.cpp:180
 msgid "Debug mode now disabled!"
 msgstr "Hata ayıklama modu devre dışı!"
 
@@ -12170,6 +12167,10 @@ msgstr "Doku sıkıştırma devre dışı"
 #: src/clparse.cpp:267
 msgid "Only use OpenGL 1.5"
 msgstr "Sadece OpenGL 1.5'i kullan"
+
+#: src/cmddroid.cpp:110
+msgid "Commander needs a higher level to command more units"
+msgstr "Komutanlar daha fazla birim yönetmek için daha yüksek bi rütbye ihtiyaç duyar"
 
 #: src/configuration.cpp:96
 msgid "My Game"
@@ -12320,12 +12321,12 @@ msgid "Water Speed"
 msgstr "Sudaki Hızı"
 
 #: src/design.cpp:2028
-#: src/hci.cpp:4949
+#: src/hci.cpp:4962
 msgid "Tab Scroll left"
 msgstr "Tabloyu Sola Kaydır"
 
 #: src/design.cpp:2043
-#: src/hci.cpp:4964
+#: src/hci.cpp:4977
 msgid "Tab Scroll right"
 msgstr "Tabloyu Sağa Kaydır"
 
@@ -12341,34 +12342,34 @@ msgstr "Sistemler"
 msgid "Delete Template"
 msgstr "Kalıbı Sil"
 
-#: src/display3d.cpp:657
+#: src/display3d.cpp:656
 msgid "Player left"
 msgstr "Oyuncu Çıktı"
 
-#: src/display3d.cpp:661
+#: src/display3d.cpp:660
 msgid "Player dropped"
 msgstr "Oyuncu Düştü"
 
-#: src/display3d.cpp:665
-#: src/multiint.cpp:2262
+#: src/display3d.cpp:664
+#: src/multiint.cpp:2312
 msgid "Waiting for other players"
 msgstr "Diğer oyuncular bekleniyor"
 
-#: src/display3d.cpp:670
+#: src/display3d.cpp:669
 msgid "Out of sync"
 msgstr "Senkronize edilmemiş"
 
-#: src/display.cpp:1587
+#: src/display.cpp:1566
 msgid "Cannot Build. Oil Resource Burning."
 msgstr "İnşa edilemiyor. Petrol Kaynağı Yanıyor."
 
-#: src/display.cpp:1775
-#: src/display.cpp:2326
+#: src/display.cpp:1753
+#: src/display.cpp:2250
 #, c-format
 msgid "%s - Damage %d%% - Experience %.1f, %s"
 msgstr "%s - Hasar %d%% - Tecrübe %.1f, %s"
 
-#: src/display.cpp:1791
+#: src/display.cpp:1769
 #, c-format
 msgid "%s - Allied - Damage %d%% - Experience %d, %s"
 msgstr "%s - Müttefik - Hasar %d%% - Tecrübe %d, %s"
@@ -12377,641 +12378,656 @@ msgstr "%s - Müttefik - Hasar %d%% - Tecrübe %d, %s"
 msgid "Unit Lost!"
 msgstr "Birim Kaybı!"
 
-#: src/droid.cpp:1274
+#: src/droid.cpp:1276
 msgid "Structure Restored"
 msgstr "Bina Yenilendi"
 
-#: src/droid.cpp:2246
+#: src/droid.cpp:2239
 #, c-format
 msgid "Group %u selected - %u Unit"
 msgid_plural "Group %u selected - %u Units"
 msgstr[0] "Grup %u Seçildi - %u Birim"
 msgstr[1] "Grup %u Seçildi - %u Birimler"
 
-#: src/droid.cpp:2259
+#: src/droid.cpp:2252
 #, c-format
 msgid "%u unit assigned to Group %u"
 msgid_plural "%u units assigned to Group %u"
 msgstr[0] "%u Birim şu Gruba Atandı: %u "
 msgstr[1] "%u Birimler şu Gruba Atandı: %u "
 
-#: src/droid.cpp:2272
+#: src/droid.cpp:2265
 #, c-format
 msgid "Centered on Group %u - %u Unit"
 msgid_plural "Centered on Group %u - %u Units"
 msgstr[0] "%u Numaralı Grup Merkezde - %u Birim"
 msgstr[1] "%u Numaralı Grup Merkezde - %u Birimler"
 
-#: src/droid.cpp:2276
+#: src/droid.cpp:2269
 #, c-format
 msgid "Aligning with Group %u - %u Unit"
 msgid_plural "Aligning with Group %u - %u Units"
 msgstr[0] "Grup %u 'e - %u Birim atandı"
 msgstr[1] "Grup %u 'e - %u Birimler Atandı"
 
-#: src/droid.cpp:2458
+#: src/droid.cpp:2451
 msgid "Rookie"
 msgstr "Er"
 
-#: src/droid.cpp:2459
+#: src/droid.cpp:2452
 msgctxt "rank"
 msgid "Green"
 msgstr "Onbaşı"
 
-#: src/droid.cpp:2460
+#: src/droid.cpp:2453
 msgid "Trained"
 msgstr "Çavuş"
 
-#: src/droid.cpp:2461
+#: src/droid.cpp:2454
 msgid "Regular"
 msgstr "Teğmen"
 
-#: src/droid.cpp:2462
+#: src/droid.cpp:2455
 msgid "Professional"
 msgstr "Üsteğmen"
 
-#: src/droid.cpp:2463
+#: src/droid.cpp:2456
 msgid "Veteran"
 msgstr "Albay"
 
-#: src/droid.cpp:2464
+#: src/droid.cpp:2457
 msgid "Elite"
 msgstr "Korgeneral"
 
-#: src/droid.cpp:2465
+#: src/droid.cpp:2458
 msgid "Special"
 msgstr "Orgeneral"
 
-#: src/droid.cpp:2466
+#: src/droid.cpp:2459
 msgid "Hero"
 msgstr "Mareşal"
 
-#: src/droid.cpp:3424
+#: src/droid.cpp:3393
 #, c-format
 msgid "%s wanted to give you a %s but you have too many!"
 msgstr "%s Sana vermek istedi %s ama, Sende daha çok var!"
 
-#: src/droid.cpp:3428
+#: src/droid.cpp:3397
 #, c-format
 msgid "You wanted to give %s a %s but they have too many!"
 msgstr "Sen %s 'a %s vermek istedin ama, Onda  daha çok var!"
 
-#: src/frontend.cpp:107
+#: src/frontend.cpp:108
 msgid "Single Player"
 msgstr "Tek Oyuncu"
 
-#: src/frontend.cpp:108
+#: src/frontend.cpp:109
 msgid "Multi Player"
 msgstr "Çok Oyunculu"
 
-#: src/frontend.cpp:109
-#: src/frontend.cpp:186
+#: src/frontend.cpp:110
+#: src/frontend.cpp:187
 msgid "Tutorial"
 msgstr "Öğretici"
 
-#: src/frontend.cpp:110
-#: src/hci.cpp:3471
+#: src/frontend.cpp:111
+#: src/hci.cpp:3484
 msgid "Options"
 msgstr "Ayarlar"
 
-#: src/frontend.cpp:111
+#: src/frontend.cpp:112
 msgid "View Intro"
 msgstr "Oyun Videosunu İzle"
 
-#: src/frontend.cpp:113
+#: src/frontend.cpp:114
 msgid "Quit Game"
 msgstr "Oyundan Çık"
 
-#: src/frontend.cpp:114
+#: src/frontend.cpp:115
 msgid "MAIN MENU"
 msgstr "ANA MENÜ"
 
-#: src/frontend.cpp:116
-msgid "Visit our official site: http://wz2100.net"
-msgstr "Resmi internet sitemizi ziyaret edin: http://wz2100.net"
+#: src/frontend.cpp:117
+msgid "Warzone 2100 is completely free and open source (FLOSS). Official site: http://wz2100.net/"
+msgstr "Warzone 2100 tamamen ücretsiz ve açık kaynaklıdır. Resmi site: http://wz2100.net/"
 
-#: src/frontend.cpp:187
+#: src/frontend.cpp:188
 msgid "Fast Play"
 msgstr "Hızlı Oyun"
 
-#: src/frontend.cpp:188
+#: src/frontend.cpp:189
 msgid "TUTORIALS"
 msgstr "VİDEOLAR"
 
 #. TRANSLATORS: "Return", in this context, means "return to previous screen/menu"
-#: src/frontend.cpp:190
-#: src/frontend.cpp:250
-#: src/frontend.cpp:381
-#: src/frontend.cpp:451
-#: src/frontend.cpp:592
-#: src/frontend.cpp:738
-#: src/frontend.cpp:872
-#: src/frontend.cpp:1107
-#: src/frontend.cpp:1261
-#: src/frontend.cpp:1281
+#: src/frontend.cpp:191
+#: src/frontend.cpp:253
+#: src/frontend.cpp:399
+#: src/frontend.cpp:471
+#: src/frontend.cpp:612
+#: src/frontend.cpp:758
+#: src/frontend.cpp:904
+#: src/frontend.cpp:1161
+#: src/frontend.cpp:1315
+#: src/frontend.cpp:1335
 msgctxt "menu"
 msgid "Return"
 msgstr "Geri dön"
 
-#: src/frontend.cpp:244
+#: src/frontend.cpp:246
 msgid "New Campaign"
-msgstr "Yeni Oyun"
+msgstr "Yeni Seferberlik"
 
-#: src/frontend.cpp:245
+#: src/frontend.cpp:247
 msgid "Start Skirmish Game"
 msgstr "Çatışma Oyunu Başlat"
 
-#: src/frontend.cpp:246
+#: src/frontend.cpp:248
 msgid "Challenges"
 msgstr "Mücadeleler"
 
-#: src/frontend.cpp:247
-#: src/ingameop.cpp:273
-msgid "Load Game"
-msgstr "Oyun Yükle"
-
 #: src/frontend.cpp:249
+msgid "Load Campaign Game"
+msgstr "Seferlik Oyunu Yükle"
+
+#: src/frontend.cpp:250
+msgid "Load Skirmish Game"
+msgstr "Çatışma Oyunu Yükle"
+
+#: src/frontend.cpp:252
 msgid "SINGLE PLAYER"
 msgstr "TEK OYUNCU"
 
-#: src/frontend.cpp:322
-#: src/ingameop.cpp:494
-#: src/mission.cpp:2493
-#: src/mission.cpp:2594
-msgid "Load Saved Game"
-msgstr "Kayıtlı Oyun Yükle"
+#: src/frontend.cpp:257
+msgid "Campaign videos are missing! Get them from http://wz2100.net"
+msgstr "Seferberlik videolarını kaçırıyorsun! Videolar http://wz2100.net dan indir"
 
-#: src/frontend.cpp:376
+#: src/frontend.cpp:334
+#: src/ingameop.cpp:504
+msgid "Load Campaign Saved Game"
+msgstr "Seferberlik Kayıtlı Oyunu Yükle"
+
+#: src/frontend.cpp:340
+#: src/ingameop.cpp:508
+msgid "Load Skirmish Saved Game"
+msgstr "Çatışma Kayıtlı Oyunu Yükle"
+
+#: src/frontend.cpp:394
 msgid "MULTI PLAYER"
 msgstr "ÇOK OYUNCULU"
 
-#: src/frontend.cpp:378
+#: src/frontend.cpp:396
 msgid "Host Game"
 msgstr "Oyun Kur"
 
-#: src/frontend.cpp:379
+#: src/frontend.cpp:397
 msgid "Join Game"
 msgstr "Oyuna Katıl"
 
-#: src/frontend.cpp:384
+#: src/frontend.cpp:402
 msgid "TCP PORT 2100 MUST BE OPENED IN YOUR FIREWALL / ROUTER TO HOST GAMES!"
 msgstr "TCP PORT 2100 GÜVENLİK DUVARINIZDA İZİN VERİLMİŞ OLMALI / OYUN YÖNETİCİSİ OLMAK İÇİN!"
 
-#: src/frontend.cpp:444
-#: src/multiint.cpp:1398
+#: src/frontend.cpp:464
+#: src/multiint.cpp:1442
 msgid "OPTIONS"
 msgstr "AYARLAR"
 
-#: src/frontend.cpp:445
+#: src/frontend.cpp:465
 msgid "Game Options"
 msgstr "Oyun Ayarları"
 
-#: src/frontend.cpp:446
+#: src/frontend.cpp:466
 msgid "Graphics Options"
 msgstr "Grafik Ayarları"
 
-#: src/frontend.cpp:447
+#: src/frontend.cpp:467
 msgid "Video Options"
 msgstr "Video Ayarları"
 
-#: src/frontend.cpp:448
+#: src/frontend.cpp:468
 #: src/ingameop.cpp:268
 msgid "Audio Options"
 msgstr "Ses Ayarları"
 
-#: src/frontend.cpp:449
+#: src/frontend.cpp:469
 msgid "Mouse Options"
 msgstr "Fare Ayarları"
 
-#: src/frontend.cpp:450
+#: src/frontend.cpp:470
 msgid "Key Mappings"
 msgstr "Klavye Kısayolları"
 
-#: src/frontend.cpp:510
+#: src/frontend.cpp:530
 msgid "Video Playback"
 msgstr "Video Oynatma"
 
-#: src/frontend.cpp:514
-#: src/frontend.cpp:666
+#: src/frontend.cpp:534
+#: src/frontend.cpp:686
 msgid "1X"
 msgstr "1X"
 
-#: src/frontend.cpp:518
-#: src/frontend.cpp:656
+#: src/frontend.cpp:538
+#: src/frontend.cpp:676
 msgid "2X"
 msgstr "2X"
 
-#: src/frontend.cpp:522
-#: src/frontend.cpp:661
-#: src/frontend.cpp:812
-#: src/frontend.cpp:895
+#: src/frontend.cpp:542
+#: src/frontend.cpp:681
+#: src/frontend.cpp:832
+#: src/frontend.cpp:927
 msgid "Fullscreen"
 msgstr "Tam Ekran"
 
-#: src/frontend.cpp:531
+#: src/frontend.cpp:551
 msgid "Scanlines"
 msgstr "Tarama yolları"
 
-#: src/frontend.cpp:535
-#: src/frontend.cpp:556
-#: src/frontend.cpp:564
-#: src/frontend.cpp:580
-#: src/frontend.cpp:610
-#: src/frontend.cpp:628
-#: src/frontend.cpp:646
-#: src/frontend.cpp:691
-#: src/frontend.cpp:837
-#: src/frontend.cpp:847
-#: src/frontend.cpp:919
-#: src/frontend.cpp:980
-#: src/frontend.cpp:1023
-#: src/frontend.cpp:1064
-#: src/frontend.cpp:1076
-#: src/frontend.cpp:1088
-#: src/frontend.cpp:1123
-#: src/frontend.cpp:1136
-#: src/frontend.cpp:1150
+#: src/frontend.cpp:555
+#: src/frontend.cpp:576
+#: src/frontend.cpp:584
+#: src/frontend.cpp:600
+#: src/frontend.cpp:630
+#: src/frontend.cpp:648
+#: src/frontend.cpp:666
+#: src/frontend.cpp:711
+#: src/frontend.cpp:857
+#: src/frontend.cpp:867
+#: src/frontend.cpp:897
+#: src/frontend.cpp:951
+#: src/frontend.cpp:1012
+#: src/frontend.cpp:1055
+#: src/frontend.cpp:1068
+#: src/frontend.cpp:1118
+#: src/frontend.cpp:1130
+#: src/frontend.cpp:1142
+#: src/frontend.cpp:1177
+#: src/frontend.cpp:1190
+#: src/frontend.cpp:1204
 msgid "Off"
 msgstr "Kapalı"
 
-#: src/frontend.cpp:539
-#: src/frontend.cpp:681
+#: src/frontend.cpp:559
+#: src/frontend.cpp:701
 msgid "50%"
 msgstr "%50"
 
-#: src/frontend.cpp:543
-#: src/frontend.cpp:686
-#: src/multiplay.cpp:1971
+#: src/frontend.cpp:563
+#: src/frontend.cpp:706
+#: src/multiplay.cpp:1981
 msgid "Black"
 msgstr "Siyah"
 
-#: src/frontend.cpp:549
+#: src/frontend.cpp:569
 msgid "Screen Shake"
 msgstr "Ekran Sarsıntısı"
 
-#: src/frontend.cpp:552
-#: src/frontend.cpp:568
-#: src/frontend.cpp:576
-#: src/frontend.cpp:615
-#: src/frontend.cpp:633
-#: src/frontend.cpp:642
-#: src/frontend.cpp:833
-#: src/frontend.cpp:985
-#: src/frontend.cpp:1019
-#: src/frontend.cpp:1060
-#: src/frontend.cpp:1072
-#: src/frontend.cpp:1084
-#: src/frontend.cpp:1128
-#: src/frontend.cpp:1141
-#: src/frontend.cpp:1155
+#: src/frontend.cpp:572
+#: src/frontend.cpp:588
+#: src/frontend.cpp:596
+#: src/frontend.cpp:635
+#: src/frontend.cpp:653
+#: src/frontend.cpp:662
+#: src/frontend.cpp:853
+#: src/frontend.cpp:893
+#: src/frontend.cpp:1017
+#: src/frontend.cpp:1051
+#: src/frontend.cpp:1073
+#: src/frontend.cpp:1114
+#: src/frontend.cpp:1126
+#: src/frontend.cpp:1138
+#: src/frontend.cpp:1182
+#: src/frontend.cpp:1195
+#: src/frontend.cpp:1209
 msgid "On"
 msgstr "Açık"
 
-#: src/frontend.cpp:561
+#: src/frontend.cpp:581
 msgid "Subtitles"
 msgstr "Altyazılar"
 
-#: src/frontend.cpp:573
+#: src/frontend.cpp:593
 msgid "Shadows"
 msgstr "Gölgeler"
 
-#: src/frontend.cpp:584
-#: src/frontend.cpp:1288
+#: src/frontend.cpp:604
+#: src/frontend.cpp:1342
 msgid "Radar"
 msgstr "Radar"
 
-#: src/frontend.cpp:585
-#: src/frontend.cpp:698
-#: src/frontend.cpp:1289
+#: src/frontend.cpp:605
+#: src/frontend.cpp:718
+#: src/frontend.cpp:1343
 msgid "Rotating"
 msgstr "Dönüşlü"
 
-#: src/frontend.cpp:585
-#: src/frontend.cpp:698
-#: src/frontend.cpp:1289
+#: src/frontend.cpp:605
+#: src/frontend.cpp:718
+#: src/frontend.cpp:1343
 msgid "Fixed"
-msgstr "Tamir edilmiş"
+msgstr "Sabit"
 
-#: src/frontend.cpp:588
+#: src/frontend.cpp:608
 msgid "GRAPHICS OPTIONS"
 msgstr "GRAFİK AYARLARI"
 
-#: src/frontend.cpp:726
+#: src/frontend.cpp:746
 #: src/ingameop.cpp:168
 msgid "Voice Volume"
 msgstr "Ses Düzeyi"
 
-#: src/frontend.cpp:730
+#: src/frontend.cpp:750
 #: src/ingameop.cpp:173
 msgid "FX Volume"
 msgstr "Ses Efekti"
 
-#: src/frontend.cpp:734
+#: src/frontend.cpp:754
 #: src/ingameop.cpp:178
 msgid "Music Volume"
 msgstr "Müzik Sesi"
 
-#: src/frontend.cpp:741
+#: src/frontend.cpp:761
 msgid "AUDIO OPTIONS"
 msgstr "SES AYARLARI"
 
-#: src/frontend.cpp:805
+#: src/frontend.cpp:825
 msgid "* Takes effect on game restart"
 msgstr "* Ayarlar oyun tekrar başlatıldığında etkili olacaktır."
 
-#: src/frontend.cpp:808
+#: src/frontend.cpp:828
 msgid "Graphics Mode*"
 msgstr "Grafik Modu*"
 
-#: src/frontend.cpp:816
-#: src/frontend.cpp:890
+#: src/frontend.cpp:836
+#: src/frontend.cpp:922
 msgid "Windowed"
 msgstr "Pencere"
 
-#: src/frontend.cpp:820
+#: src/frontend.cpp:840
 msgid "Resolution*"
 msgstr "Çözünürlük*"
 
-#: src/frontend.cpp:825
+#: src/frontend.cpp:845
 msgid "Texture size"
 msgstr "Yazı Boyutu"
 
-#: src/frontend.cpp:829
+#: src/frontend.cpp:849
 msgid "Vertical sync"
 msgstr "Dikey senk."
 
-#: src/frontend.cpp:864
-#: src/frontend.cpp:925
+#: src/frontend.cpp:884
+#: src/frontend.cpp:957
 msgid "Unsupported"
 msgstr "Desteklenmez"
 
-#: src/frontend.cpp:869
+#: src/frontend.cpp:889
+msgid "Shaders"
+msgstr "Shader"
+
+#: src/frontend.cpp:901
 msgid "VIDEO OPTIONS"
 msgstr "VIDEO AYARLARI"
 
-#: src/frontend.cpp:1057
+#: src/frontend.cpp:1111
 msgid "Reverse Rotation"
 msgstr "Tersine Döndür"
 
-#: src/frontend.cpp:1068
+#: src/frontend.cpp:1122
 msgid "Trap Cursor"
 msgstr "İmleci Yakala"
 
-#: src/frontend.cpp:1081
+#: src/frontend.cpp:1135
 msgid "Switch Mouse Buttons"
 msgstr "Fare Düşmelerini Değiştir"
 
-#: src/frontend.cpp:1093
+#: src/frontend.cpp:1147
 msgid "Rotate Screen"
 msgstr "Ekranı Çevir"
 
-#: src/frontend.cpp:1096
-#: src/frontend.cpp:1169
+#: src/frontend.cpp:1150
+#: src/frontend.cpp:1223
 msgid "Middle Mouse"
 msgstr "Orta Fare Tuşu"
 
-#: src/frontend.cpp:1100
-#: src/frontend.cpp:1164
+#: src/frontend.cpp:1154
+#: src/frontend.cpp:1218
 msgid "Right Mouse"
 msgstr "Sağ Fare Tuşu"
 
-#: src/frontend.cpp:1104
+#: src/frontend.cpp:1158
 msgid "MOUSE OPTIONS"
 msgstr "FARE AYARLARI"
 
-#: src/frontend.cpp:1204
-#: src/frontend.cpp:1282
+#: src/frontend.cpp:1258
+#: src/frontend.cpp:1336
 msgid "Language"
 msgstr "Lisan"
 
-#: src/frontend.cpp:1208
-#: src/frontend.cpp:1286
+#: src/frontend.cpp:1262
+#: src/frontend.cpp:1340
 msgid "Difficulty"
 msgstr "Zorluk"
 
-#: src/frontend.cpp:1212
-#: src/frontend.cpp:1293
-#: src/frontend.cpp:1325
-#: src/multiint.cpp:213
+#: src/frontend.cpp:1266
+#: src/frontend.cpp:1347
+#: src/frontend.cpp:1379
+#: src/multiint.cpp:214
 msgid "Easy"
 msgstr "Kolay"
 
-#: src/frontend.cpp:1215
-#: src/frontend.cpp:1296
-#: src/frontend.cpp:1317
+#: src/frontend.cpp:1269
+#: src/frontend.cpp:1350
+#: src/frontend.cpp:1371
 msgid "Normal"
 msgstr "Normal"
 
-#: src/frontend.cpp:1219
-#: src/frontend.cpp:1299
-#: src/frontend.cpp:1321
-#: src/multiint.cpp:213
+#: src/frontend.cpp:1273
+#: src/frontend.cpp:1353
+#: src/frontend.cpp:1375
+#: src/multiint.cpp:214
 msgid "Hard"
 msgstr "Zor"
 
-#: src/frontend.cpp:1224
-#: src/frontend.cpp:1287
+#: src/frontend.cpp:1278
+#: src/frontend.cpp:1341
 msgid "Scroll Speed"
 msgstr "Kaydırma hızı"
 
-#: src/frontend.cpp:1228
-#: src/frontend.cpp:1283
-#, fuzzy
+#: src/frontend.cpp:1282
+#: src/frontend.cpp:1337
 msgid "Unit Colour:"
-msgstr "Birim Rengi (T.O)"
+msgstr "Birim Rengi:"
 
-#: src/frontend.cpp:1248
-#: src/frontend.cpp:1284
-#, fuzzy
+#: src/frontend.cpp:1302
+#: src/frontend.cpp:1338
 msgid "Campaign"
-msgstr "Yeni Oyun"
+msgstr "Seferberlik"
 
-#: src/frontend.cpp:1258
-#: src/frontend.cpp:1285
-#, fuzzy
+#: src/frontend.cpp:1312
+#: src/frontend.cpp:1339
 msgid "Skirmish/Multiplayer"
-msgstr "Çok Oyunculu"
+msgstr "Çatışma/Çok oyunculu"
 
-#: src/frontend.cpp:1264
-#: src/frontend.cpp:1280
+#: src/frontend.cpp:1318
+#: src/frontend.cpp:1334
 msgid "GAME OPTIONS"
 msgstr "OYUN AYARLARI"
 
-#: src/frontend.cpp:1425
-#: src/multiint.cpp:2526
+#: src/frontend.cpp:1479
+#: src/multiint.cpp:2580
 msgid "Mod: "
 msgstr "Mod: "
 
-#: src/hci.cpp:1232
+#: src/hci.cpp:1234
 msgid "MAP SAVED!"
 msgstr "HARİTAN KAYDEDİLDİ!"
 
-#: src/hci.cpp:1554
-#: src/loop.cpp:255
-#: src/loop.cpp:271
+#: src/hci.cpp:1561
+#: src/loop.cpp:258
+#: src/loop.cpp:274
 msgid "GAME SAVED: "
 msgstr "OYUN KAYDEDİLDİ :"
 
-#: src/hci.cpp:1969
+#: src/hci.cpp:1983
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new structure: %s."
 msgstr "Oyuncu %u Yeni binasını (debug menü) inşa etti: %s."
 
-#: src/hci.cpp:1984
+#: src/hci.cpp:1998
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new feature: %s."
 msgstr "Oyuncu %u  (debug menü) yeni doğal maddesini oluşturdu: %s."
 
-#: src/hci.cpp:2006
+#: src/hci.cpp:2021
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new droid: %s."
 msgstr "Oyuncu %u  (debug menü) Yeni birimini oluşturdu: %s."
 
-#: src/hci.cpp:2019
+#: src/hci.cpp:2034
 #, c-format
 msgid "Player %u is cheating (debug menu) him/herself a new droid."
 msgstr "Oyuncu %u (debug menü) Yeni birimini oluşturdu."
 
 # Commander kann als Eigenname im Deutschen allerdings mit deutschem Plural stehen bleiben -Kreuvf
-#: src/hci.cpp:3282
+#: src/hci.cpp:3295
 msgid "Commanders (F6)"
 msgstr "Komutanlar (F6)"
 
-#: src/hci.cpp:3295
+#: src/hci.cpp:3308
 msgid "Intelligence Display (F5)"
 msgstr "Görev Ekranı (F5)"
 
-#: src/hci.cpp:3308
+#: src/hci.cpp:3321
 msgid "Manufacture (F1)"
 msgstr "Üretim (F1)"
 
-#: src/hci.cpp:3321
+#: src/hci.cpp:3334
 msgid "Design (F4)"
 msgstr "Tasarım (F4)"
 
-#: src/hci.cpp:3334
+#: src/hci.cpp:3347
 msgid "Research (F2)"
 msgstr "Araştırma (F2)"
 
-#: src/hci.cpp:3347
+#: src/hci.cpp:3360
 msgid "Build (F3)"
 msgstr "İnşa (F3)"
 
-#: src/hci.cpp:3418
-#: src/multiint.cpp:1502
-#: src/multimenu.cpp:799
+#: src/hci.cpp:3431
+#: src/multiint.cpp:1552
+#: src/multimenu.cpp:804
 msgid "Power"
 msgstr "Güç"
 
-#: src/hci.cpp:3509
+#: src/hci.cpp:3522
 msgid "Map:"
 msgstr "Harita:"
 
-#: src/hci.cpp:3522
+#: src/hci.cpp:3535
 msgid "Load"
 msgstr "Yükle"
 
-#: src/hci.cpp:3523
+#: src/hci.cpp:3536
 msgid "Load Map File"
 msgstr "Harita Dosyası Yükle"
 
-#: src/hci.cpp:3534
+#: src/hci.cpp:3547
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/hci.cpp:3535
+#: src/hci.cpp:3548
 msgid "Save Map File"
 msgstr "Harita dosyası kaydet"
 
-#: src/hci.cpp:3547
+#: src/hci.cpp:3560
 msgid "New"
 msgstr "Yeni"
 
-#: src/hci.cpp:3548
+#: src/hci.cpp:3561
 msgid "New Blank Map"
 msgstr "Yeni Boş Harita"
 
-#: src/hci.cpp:3596
+#: src/hci.cpp:3609
 msgid "Tile"
 msgstr "Harita Ö."
 
-#: src/hci.cpp:3597
+#: src/hci.cpp:3610
 msgid "Place tiles on map"
 msgstr "Haritaya yeni öğeler yerleştir"
 
-#: src/hci.cpp:3610
+#: src/hci.cpp:3623
 msgid "Unit"
 msgstr "Birim"
 
-#: src/hci.cpp:3611
+#: src/hci.cpp:3624
 msgid "Place Unit on map"
 msgstr "Haritaya yeni birimler yerleştir"
 
-#: src/hci.cpp:3619
+#: src/hci.cpp:3632
 msgid "Struct"
 msgstr "Bina"
 
-#: src/hci.cpp:3620
+#: src/hci.cpp:3633
 msgid "Place Structures on map"
 msgstr "Haritaya yeni binalar yerleştir"
 
 # gemäß: http://dict.leo.org/ende?search=Feat -Kreuvf
-#: src/hci.cpp:3628
+#: src/hci.cpp:3641
 msgid "Feat"
 msgstr "Özellik"
 
-#: src/hci.cpp:3629
+#: src/hci.cpp:3642
 msgid "Place Features on map"
 msgstr "Haritaya Özel Öğeler ekle"
 
-#: src/hci.cpp:3643
+#: src/hci.cpp:3656
 msgid "Pause"
 msgstr "Durdur"
 
-#: src/hci.cpp:3644
+#: src/hci.cpp:3657
 msgid "Pause or unpause the game"
 msgstr "Oyunu durdur yada başlat"
 
-#: src/hci.cpp:3662
+#: src/hci.cpp:3675
 msgid "Align height of all map objects"
 msgstr "Tüm harita yüksekliğini objelere uygun hale getir"
 
-#: src/hci.cpp:3675
+#: src/hci.cpp:3688
 msgid "Edit"
 msgstr "Düzenle"
 
-#: src/hci.cpp:3676
+#: src/hci.cpp:3689
 msgid "Start Edit Mode"
 msgstr "Düzenleme Modunu Aç"
 
-#: src/hci.cpp:3690
+#: src/hci.cpp:3703
 #: src/ingameop.cpp:113
 #: src/ingameop.cpp:257
 #: src/ingameop.cpp:261
 msgid "Quit"
 msgstr "Çıkış"
 
-#: src/hci.cpp:3691
+#: src/hci.cpp:3704
 msgid "Exit Game"
 msgstr "Oyundan Çık"
 
-#: src/hci.cpp:3717
+#: src/hci.cpp:3730
 msgid "Current Player:"
 msgstr "Geçerli Oyuncu:"
 
-#: src/hci.cpp:3999
+#: src/hci.cpp:4012
 msgid "Progress Bar"
 msgstr "İlerleme Çubuğu"
 
-#: src/hci.cpp:4851
+#: src/hci.cpp:4864
 msgid "Factory Delivery Point"
 msgstr "Fabrika Teslim Noktası"
 
-#: src/hci.cpp:4869
+#: src/hci.cpp:4882
 msgid "Loop Production"
 msgstr "Üretimi Tekrarla"
 
-#: src/hci.cpp:5193
+#: src/hci.cpp:5206
 msgid "Ally progress"
 msgstr "Müttefik ilerlemesi"
 
@@ -13026,35 +13042,47 @@ msgid "WARNING: You're the host. If you quit, the game ends for everyone!"
 msgstr "DİKKAT: Sen Kurucusun. Eğer oyundan çıkarsan , oyun herkes için bitmiş olacak!"
 
 #: src/ingameop.cpp:187
-#: src/ingameop.cpp:522
+#: src/ingameop.cpp:538
 msgid "Tactical UI (Target Origin Icon): Show"
 msgstr "Taktiksel UI (Hedef Kaynak Simgesi): Göster"
 
 #: src/ingameop.cpp:192
-#: src/ingameop.cpp:526
+#: src/ingameop.cpp:542
 msgid "Tactical UI (Target Origin Icon): Hide"
 msgstr "Taktiksel UI (Hedef Kaynak Simgesi): Gizle"
 
 #: src/ingameop.cpp:275
-#: src/ingameop.cpp:498
-#: src/mission.cpp:2480
-#: src/mission.cpp:2597
+#: src/ingameop.cpp:282
+msgid "Load Game"
+msgstr "Oyun Yükle"
+
+#: src/ingameop.cpp:277
+#: src/ingameop.cpp:284
+#: src/mission.cpp:2551
 msgid "Save Game"
 msgstr "Oyunu Kaydet"
 
-#: src/ingameop.cpp:339
+#: src/ingameop.cpp:349
 msgid "Host has quit the game!"
 msgstr "Kurucu oyundan çıktı!"
 
-#: src/ingameop.cpp:345
+#: src/ingameop.cpp:355
 msgid "The game can't continue without the host."
 msgstr "Oyun Kurucu olmadan devam edemez."
 
-#: src/ingameop.cpp:351
+#: src/ingameop.cpp:361
 msgid "-->  QUIT  <--"
 msgstr "-->  ÇIKIŞ  <--"
 
-#: src/init.cpp:423
+#: src/ingameop.cpp:512
+msgid "Save Campaign Game"
+msgstr "Seferberlik Oyununu Kaydet"
+
+#: src/ingameop.cpp:516
+msgid "Save Skirmish Game"
+msgstr "Çatışma Oyunu Kaydet"
+
+#: src/init.cpp:421
 #, c-format
 msgid ""
 "The required mod could not be loaded: %s\n"
@@ -13086,7 +13114,7 @@ msgid "Need more resources!"
 msgstr "Daha fazla kaynak lazım!"
 
 #: src/intelmap.cpp:242
-#: src/keybind.cpp:1327
+#: src/keybind.cpp:1397
 msgid "PAUSED"
 msgstr "DURDURULDU"
 
@@ -13199,7 +13227,7 @@ msgstr "Fabrika Üretimine Ata"
 
 #: src/intorder.cpp:185
 msgid "Assign Cyborg Factory Production"
-msgstr "Cyborg Fabrikası Üretimine Ata"
+msgstr "Sayborg Fabrikası Üretimine Ata"
 
 #: src/intorder.cpp:186
 msgid "Assign Fire Support"
@@ -13213,258 +13241,271 @@ msgstr "DİvK  Fabrikası Üretimine Ata"
 msgid "Circle"
 msgstr "Daire Çiz"
 
-#: src/keybind.cpp:137
+#: src/keybind.cpp:138
 msgid "Sorry, that cheat is disabled in multiplayer games."
 msgstr "Üzgünüm bu hile Çok oyunculu oyunda devre dışıdır."
 
-#: src/keybind.cpp:143
+#: src/keybind.cpp:171
 msgid "Warning! This cheat is buggy.  We recommend to NOT use it."
 msgstr "Tehlike! Bu hile hatalıdır. Onu kullanmamanızı öneririz."
 
-#: src/keybind.cpp:227
+#: src/keybind.cpp:228
+msgid "Ouch! Droid's health is down 20%!"
+msgstr "Auv! Droid'in canı  20%'nin altında!"
+
+#: src/keybind.cpp:244
+msgid "Ouch! Structure's health is down 20%!"
+msgstr "Auv! Binanın canı  20%'nin altında!"
+
+#: src/keybind.cpp:299
 msgid "Lets us see what you see!"
 msgstr "Hadi ne görüyorsan bizde görelim!"
 
-#: src/keybind.cpp:229
+#: src/keybind.cpp:301
 msgid "Fine, weapon & sensor display is off!"
 msgstr "İyi, Silah & algılayıcı ışıkları kapalı!"
 
-#: src/keybind.cpp:402
-#: src/keybind.cpp:432
-#: src/keybind.cpp:449
-#: src/keybind.cpp:493
-#: src/keybind.cpp:601
-#: src/keybind.cpp:641
-#: src/keybind.cpp:747
-#: src/keybind.cpp:1274
-#: src/keybind.cpp:1381
-#: src/keybind.cpp:1510
-#: src/keybind.cpp:1868
-#: src/keybind.cpp:1909
+#: src/keybind.cpp:423
+#, c-format
+msgid "Player %u is cheating a new droid army of: %s."
+msgstr "Oyuncu %u, %s droid ordusunu hile ile kuruyor."
+
+#: src/keybind.cpp:461
+#: src/keybind.cpp:491
+#: src/keybind.cpp:508
+#: src/keybind.cpp:552
+#: src/keybind.cpp:661
+#: src/keybind.cpp:701
+#: src/keybind.cpp:807
+#: src/keybind.cpp:1344
+#: src/keybind.cpp:1451
+#: src/keybind.cpp:1580
+#: src/keybind.cpp:1938
+#: src/keybind.cpp:1979
 #, c-format
 msgid "(Player %u) is using cheat :%s"
 msgstr "(Player %u) şu hileyi kullandı: %s"
 
-#: src/keybind.cpp:403
+#: src/keybind.cpp:462
 msgid "Hard as nails!!!"
 msgstr "Koçum Benim. Demir Gibi Sağlam!!!"
 
-#: src/keybind.cpp:417
+#: src/keybind.cpp:476
 msgid "Takings thing easy!"
 msgstr "Herşeyi kolaya al!"
 
-#: src/keybind.cpp:433
+#: src/keybind.cpp:492
 msgid "1000 big ones!!!"
 msgstr "1000 Büyük güç!!!"
 
 # Ursprünglich kenne ich das nur als Cheat aus StarCraft und das sollte imho nicht übersetzt werden -Kreuvf
-#: src/keybind.cpp:450
+#: src/keybind.cpp:509
 msgid "Power overwhelming"
 msgstr "Sonsuz güç"
 
-#: src/keybind.cpp:465
+#: src/keybind.cpp:524
 msgid "Back to normality!"
 msgstr "Normale Dön!"
 
-#: src/keybind.cpp:478
+#: src/keybind.cpp:537
 msgid "Getting tricky!"
 msgstr "Hileli olmaya başlıyor!"
 
-#: src/keybind.cpp:494
+#: src/keybind.cpp:553
 msgid "Twice as nice!"
 msgstr "Çift iyidir!"
 
-#: src/keybind.cpp:505
+#: src/keybind.cpp:564
 msgid "FPS display is enabled."
 msgstr "FPS-Görünüşü aktif."
 
-#: src/keybind.cpp:509
+#: src/keybind.cpp:568
 msgid "FPS display is disabled."
 msgstr "FPS-Görünüşü devre dışı."
 
-#: src/keybind.cpp:566
+#: src/keybind.cpp:626
 #, c-format
 msgid "(Player %u) is using a cheat :Num Droids: %d  Num Structures: %d  Num Features: %d"
 msgstr "(Oyuncu %u) Şu hileyi kullanıyor: Draid sayısı: %d Bina Sayısı: %d  Özel Öğe Sayısı: %d"
 
-#: src/keybind.cpp:602
+#: src/keybind.cpp:662
 msgid "Infinite power disabled"
 msgstr "Sonsuz güç devre dışı"
 
-#: src/keybind.cpp:602
+#: src/keybind.cpp:662
 msgid "Infinite power enabled"
 msgstr "Sonsuz güç devrede"
 
-#: src/keybind.cpp:642
+#: src/keybind.cpp:702
 msgid "All items made available"
 msgstr "Herşey kullanılabilir oldu"
 
-#: src/keybind.cpp:748
+#: src/keybind.cpp:808
 msgid "Fog on"
 msgstr "Sis açık"
 
-#: src/keybind.cpp:748
+#: src/keybind.cpp:808
 msgid "Fog off"
 msgstr "Sis kapalı"
 
-#: src/keybind.cpp:1159
+#: src/keybind.cpp:1229
 #, c-format
 msgid "Warning!  This cheat can cause dire problems later on! [%s]"
 msgstr "Dikkat! Bu hile daha kötü sorunlara sebep olabilir! [%s]"
 
-#: src/keybind.cpp:1159
+#: src/keybind.cpp:1229
 msgid "Ending Mission."
 msgstr "Görev sonlandırılıyor."
 
-#: src/keybind.cpp:1275
+#: src/keybind.cpp:1345
 msgid "God Mode ON"
 msgstr "Tanrı Modu AÇIK"
 
-#: src/keybind.cpp:1275
+#: src/keybind.cpp:1345
 msgid "God Mode OFF"
 msgstr "Tanrı Modu KAPALI"
 
-#: src/keybind.cpp:1287
+#: src/keybind.cpp:1357
 msgid "View Aligned to North"
 msgstr "Görüntü Kuzeye sabitlendi"
 
-#: src/keybind.cpp:1296
+#: src/keybind.cpp:1366
 #, c-format
 msgid "Trap cursor %s"
 msgstr "İmleci Yakala %s"
 
-#: src/keybind.cpp:1382
+#: src/keybind.cpp:1452
 msgid "Researched EVERYTHING for you!"
 msgstr "HERŞEY senin için araştırıldı!"
 
-#: src/keybind.cpp:1447
+#: src/keybind.cpp:1517
 #, c-format
 msgid "(Player %u) is using cheat :%s %s"
 msgstr "(Oyuncu %u) şu hileyi kullanıyor: %s %s"
 
-#: src/keybind.cpp:1447
+#: src/keybind.cpp:1517
 msgid "Researched"
 msgstr "Araştırıldı"
 
-#: src/keybind.cpp:1468
+#: src/keybind.cpp:1538
 msgid "Only displaying energy bars when selected"
 msgstr "Hayat Puanı çubuğu sadece seçildiğinde gösterilecek"
 
-#: src/keybind.cpp:1471
+#: src/keybind.cpp:1541
 msgid "Always displaying energy bars for units"
 msgstr "Birimlerin Hayat Puanı çubukları her zaman gösterilecek"
 
-#: src/keybind.cpp:1474
+#: src/keybind.cpp:1544
 msgid "Always displaying energy bars for units and structures"
 msgstr "Binaların Hayat Puanı çubukları her zaman gösterilecek"
 
-#: src/keybind.cpp:1496
+#: src/keybind.cpp:1566
 msgid "Demo mode off - Returning to normal game mode"
 msgstr "Demo modu devre dışı - Normal oyun moduna dönülüyor"
 
-#: src/keybind.cpp:1511
+#: src/keybind.cpp:1581
 msgid "Debug menu is Open"
 msgstr "Debug-Menüsü açıldı"
 
-#: src/keybind.cpp:1548
+#: src/keybind.cpp:1618
 msgid "Unable to locate any oil derricks!"
 msgstr "Yerel Petrol Pompaları Devre Dışı!"
 
 # Let it snow, let it snow, let it snow..
 # Von daher sollte das unübersetzt bleiben -Kreuvf
-#: src/keybind.cpp:1770
+#: src/keybind.cpp:1840
 msgid "Oh, the weather outside is frightful... SNOW"
 msgstr "Vay canına, dışarda hava korkunç.. KAR"
 
 # Das Lied ist im Original Englisch --> bleibt unübersetzt -Kreuvf
-#: src/keybind.cpp:1776
+#: src/keybind.cpp:1846
 msgid "Singing in the rain, I'm singing in the rain... RAIN"
 msgstr "Yağmurda şarkı söyle, Ben yağmurda şarkı söylüyorum... YAĞMUR"
 
-#: src/keybind.cpp:1782
+#: src/keybind.cpp:1852
 msgid "Forecast : Clear skies for all areas... NO WEATHER"
 msgstr "Hava Durumu: Yer yerde gökyüzü temiz...YAĞIŞ YOK"
 
-#: src/keybind.cpp:1867
+#: src/keybind.cpp:1937
 msgid "Warning! This can have drastic consequences if used incorrectly in missions."
 msgstr "Dikkat! Misyonların yanlış kullanılmasının ciddi etkileri olabilir."
 
-#: src/keybind.cpp:1869
+#: src/keybind.cpp:1939
 msgid "All enemies destroyed by cheating!"
 msgstr "Tüm düşmanların hile ile yok edildi!"
 
-#: src/keybind.cpp:1910
+#: src/keybind.cpp:1980
 msgid "Destroying selected droids and structures!"
 msgstr "Seçili Birimler ve Birimler Yok Ediliyor!"
 
-#: src/keybind.cpp:2477
+#: src/keybind.cpp:2547
 msgid "Centered on player HQ, direction NORTH"
 msgstr "Görüntü Merkezi: Genel Merkez, Yön: KUZEY"
 
-#: src/keybind.cpp:2489
+#: src/keybind.cpp:2559
 msgid "Unable to locate HQ!"
 msgstr "Yerel Genel Merkez Devre Dışı!"
 
-#: src/keybind.cpp:2496
+#: src/keybind.cpp:2566
 msgid "Formation speed limiting has been removed from the game due to bugs."
 msgstr "Hata nedeniyle formasyon hız limiti kaldırıldı."
 
-#: src/keybind.cpp:2545
+#: src/keybind.cpp:2615
 msgid "Vertical rotation direction: Normal"
 msgstr "Dikey Yön: Normal"
 
-#: src/keybind.cpp:2550
+#: src/keybind.cpp:2620
 msgid "Vertical rotation direction: Flipped"
 msgstr "Dikey Yön: Saygısız"
 
-#: src/keybind.cpp:2559
+#: src/keybind.cpp:2629
 msgid "Screen shake when things die: Off"
 msgstr "Bişeyler öldüğünde ekran sarsıntısı: Kapalı"
 
-#: src/keybind.cpp:2564
+#: src/keybind.cpp:2634
 msgid "Screen shake when things die: On"
 msgstr "Bişeyler öldüğünde ekran sarsıntısı: Açık"
 
-#: src/keybind.cpp:2614
+#: src/keybind.cpp:2684
 msgid "Sorry, but game speed cannot be changed in multiplayer."
 msgstr "Üzgünüm, fakat oyun hızı çoklu oyunculu oyunlarda değiştirilemez"
 
-#: src/keybind.cpp:2649
-#: src/keybind.cpp:2701
+#: src/keybind.cpp:2719
+#: src/keybind.cpp:2771
 msgid "Game Speed Reset"
 msgstr "Oyun Hızı Sıfırlandı"
 
-#: src/keybind.cpp:2653
+#: src/keybind.cpp:2723
 #, c-format
 msgid "Game Speed Increased to %s"
 msgstr "Oyun hızı %s'a yükseltildi"
 
-#: src/keybind.cpp:2657
+#: src/keybind.cpp:2727
 #, c-format
 msgid "Game Speed Reduced to %s"
 msgstr "Oyun hızı %s'a düşürüldü"
 
-#: src/keybind.cpp:2713
+#: src/keybind.cpp:2783
 msgid "Radar showing friend-foe colors"
 msgstr "Radar Dost-Düşman haritasını gösterecek"
 
-#: src/keybind.cpp:2717
+#: src/keybind.cpp:2787
 msgid "Radar showing player colors"
 msgstr "Radar oyuncu renklerini gösterecek"
 
-#: src/keybind.cpp:2732
+#: src/keybind.cpp:2802
 msgid "Radar showing only objects"
 msgstr "Radar sadece nesneleri gösterecek"
 
-#: src/keybind.cpp:2735
+#: src/keybind.cpp:2805
 msgid "Radar blending terrain and height"
 msgstr "Radar bölge ve yüksekliği gösterecek"
 
-#: src/keybind.cpp:2738
+#: src/keybind.cpp:2808
 msgid "Radar showing terrain"
 msgstr "Radar bölgeyi gösterecek"
 
-#: src/keybind.cpp:2741
+#: src/keybind.cpp:2811
 msgid "Radar showing height"
 msgstr "Radar yüksekliği gösterecek"
 
@@ -13473,9 +13514,9 @@ msgid "KEY MAPPING"
 msgstr "KLAVYE KISAYOLLARI"
 
 #: src/keyedit.cpp:378
-#: src/multiint.cpp:720
-#: src/multiint.cpp:1191
-#: src/multiint.cpp:1588
+#: src/multiint.cpp:761
+#: src/multiint.cpp:1230
+#: src/multiint.cpp:1638
 msgid "Return To Previous Screen"
 msgstr "Bir Önceki Ekrana Dön"
 
@@ -13821,7 +13862,7 @@ msgstr "Tüm Savaş Birimlerini Seç"
 
 #: src/keymap.cpp:430
 msgid "Select all Cyborgs"
-msgstr "Tüm Cyborgları seç"
+msgstr "Tüm Sayborgları seç"
 
 #: src/keymap.cpp:431
 msgid "Select all Heavily Damaged Units"
@@ -13865,7 +13906,7 @@ msgstr "Benzer Tüm Birimleri Seç"
 
 #: src/keymap.cpp:445
 msgid "Select all Combat Cyborgs"
-msgstr "Tüm Savaş Cyborglarını seç"
+msgstr "Tüm Savaş Sayborglarını seç"
 
 #: src/keymap.cpp:446
 msgid "Select all Engineers"
@@ -13909,7 +13950,7 @@ msgstr "Sonraki Güç Jeneratörü"
 
 #: src/keymap.cpp:459
 msgid "Select next Cyborg Factory"
-msgstr "Sonraki Cyborg Fabrikası"
+msgstr "Sonraki Sayborg Fabrikası"
 
 #: src/keymap.cpp:462
 msgid "Toggle Debug Mappings"
@@ -13995,501 +14036,520 @@ msgstr "Bir oyun objesini izle"
 msgid "Toggle Driving Mode"
 msgstr "Sürüş Moduna"
 
-#: src/loop.cpp:262
-#: src/loop.cpp:278
+#: src/loop.cpp:265
+#: src/loop.cpp:281
 msgid "Could not save game!"
 msgstr "Oyun Kaydedilemedi!"
 
-#: src/mission.cpp:2040
+#: src/mission.cpp:1984
 msgid "Load Transport"
 msgstr "Taşımaya Yükle"
 
-#: src/mission.cpp:2428
+#: src/mission.cpp:2378
 msgid "OBJECTIVE ACHIEVED by cheating!"
 msgstr "GÖREV BAŞARILI--hileci seni!"
 
-#: src/mission.cpp:2428
+#: src/mission.cpp:2378
 msgid "OBJECTIVE ACHIEVED"
 msgstr "GÖREV BAŞARILI"
 
-#: src/mission.cpp:2434
+#: src/mission.cpp:2384
 msgid "OBJECTIVE FAILED--and you cheated!"
 msgstr "GÖREV BAŞARISIZ--ve sen hile yaptın!"
 
-#: src/mission.cpp:2434
+#: src/mission.cpp:2384
 msgid "OBJECTIVE FAILED"
 msgstr "GÖREV BAŞARISIZ"
 
-#: src/mission.cpp:2459
-#: src/mission.cpp:2499
-#: src/mission.cpp:2611
+#: src/mission.cpp:2409
+#: src/mission.cpp:2453
+#: src/mission.cpp:2564
 msgid "Quit To Main Menu"
 msgstr "Ana Menüye Dön"
 
-#: src/mission.cpp:2467
+#: src/mission.cpp:2417
 msgid "Continue Game"
 msgstr "Oyuna Devam"
 
-#: src/mission.cpp:2562
+#: src/mission.cpp:2447
+#: src/mission.cpp:2548
+msgid "Load Saved Game"
+msgstr "Kayıtlı Oyun Yükle"
+
+#: src/mission.cpp:2516
 msgid "GAME SAVED :"
 msgstr "OYUN KAYDEDİLDİ :"
 
-#: src/move.cpp:2285
+#: src/move.cpp:2279
 #, c-format
 msgid "You found %u power in an oil drum."
 msgstr "Sen %u güç varili buldun."
 
-#: src/multigifts.cpp:173
+#: src/multigifts.cpp:217
 #, c-format
 msgid "%s Gives You A Visibility Report"
 msgstr "%s İsimli Oyuncu Sana Bir Görülebilirlik Raporu verdi."
 
-#: src/multigifts.cpp:195
+#: src/multigifts.cpp:239
 #, c-format
 msgid "%s Gives you a %s"
 msgstr "%s İsimli Oyuncu Sana %s  İsimli Birimlerinden Verdi."
 
-#: src/multigifts.cpp:243
+#: src/multigifts.cpp:287
 #, c-format
 msgid "Tried to give away a non-empty %s - but this is not allowed."
 msgstr "Boş olmamayı denedim %s  -ama buna izin yok."
 
-#: src/multigifts.cpp:285
+#: src/multigifts.cpp:329
 #, c-format
 msgid "%s Gives You Technology Documents"
 msgstr "%s İsimli Oyuncu Sana Teknoloji Dökümanlarını Verdi"
 
-#: src/multigifts.cpp:336
+#: src/multigifts.cpp:380
 #, c-format
 msgid "%s Gives You %u Power"
 msgstr "%s İsimli Oyuncu,  Sana %u Kadar Güç Bağışladı."
 
-#: src/multigifts.cpp:364
+#: src/multigifts.cpp:408
 #, c-format
 msgid "%s Requests An Alliance With You"
 msgstr "%s İsimli Oyuncu Sana İttifak Olmayı Teklif Etti."
 
-#: src/multigifts.cpp:373
+#: src/multigifts.cpp:417
 #, c-format
 msgid "You Invite %s To Form An Alliance"
 msgstr " Sen, %s İsimli Oyuncuya İttifak Daveti Gönderdin."
 
-#: src/multigifts.cpp:394
+#: src/multigifts.cpp:438
 #, c-format
 msgid "%s Breaks The Alliance With %s"
 msgstr "%s İsimli Oyuncu %s ile Anlaşmayı Bozdu."
 
-#: src/multigifts.cpp:424
+#: src/multigifts.cpp:468
 #, c-format
 msgid "%s Forms An Alliance With %s"
 msgstr "%s İsimli Oyuncu %s  ile Anlaşma İmzaladı."
 
-#: src/multigifts.cpp:751
+#: src/multigifts.cpp:721
 #, c-format
 msgid "You Discover Blueprints For %s"
 msgstr "Sen %s 'in kalıntılarını keşfettin"
 
-#: src/multiint.cpp:213
+#: src/multiint.cpp:214
 msgid "Medium"
 msgstr "Orta"
 
-#: src/multiint.cpp:213
+#: src/multiint.cpp:214
 msgid "Insane"
 msgstr "Deli"
 
-#: src/multiint.cpp:658
+#: src/multiint.cpp:699
 #: src/multilimit.cpp:190
 msgid "Accept Settings"
 msgstr "Ayarları Kabul et"
 
-#: src/multiint.cpp:660
-#: src/multiint.cpp:1238
+#: src/multiint.cpp:701
+#: src/multiint.cpp:1280
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/multiint.cpp:671
+#: src/multiint.cpp:712
 msgid "IP Address or Machine Name"
 msgstr "IP-Adresi yada Makine İsmi"
 
-#: src/multiint.cpp:717
+#: src/multiint.cpp:758
 msgid "CONNECTION"
 msgstr "BAĞLANTI"
 
-#: src/multiint.cpp:722
+#: src/multiint.cpp:763
 msgid "Lobby"
 msgstr "Bekleme Odası"
 
-#: src/multiint.cpp:723
+#: src/multiint.cpp:764
 msgid "IP"
 msgstr "IP"
 
-#: src/multiint.cpp:947
+#: src/multiint.cpp:980
 msgid "[Password required]"
 msgstr "[Şifre gerekli]"
 
-#: src/multiint.cpp:951
+#: src/multiint.cpp:984
 msgid "[No Tanks]"
 msgstr "[Tanklar yok]"
 
-#: src/multiint.cpp:955
+#: src/multiint.cpp:988
 msgid "[No Cyborgs]"
-msgstr "[Cyborg yok]"
+msgstr "[Sayborg yok]"
 
-#: src/multiint.cpp:959
+#: src/multiint.cpp:992
 msgid "[No VTOLs]"
 msgstr "[DİvK'lar yok]"
 
-#: src/multiint.cpp:963
+#: src/multiint.cpp:996
 #, c-format
 msgid "Hosted by %s"
 msgstr "%s tarafından kuruldu"
 
-#: src/multiint.cpp:967
+#: src/multiint.cpp:1000
 #, c-format
 msgid "Hosted by %s —%s"
 msgstr "%s —%s tarafından kuruldu"
 
-#: src/multiint.cpp:987
+#: src/multiint.cpp:1020
 msgid "No games are available"
 msgstr "Geçerli oyun yok"
 
-#: src/multiint.cpp:990
+#: src/multiint.cpp:1023
 msgid "Game is full"
 msgstr "Oyun Dolu"
 
-#: src/multiint.cpp:994
+#: src/multiint.cpp:1027
 msgid "You were kicked!"
 msgstr "Oyundan Atıldın!"
 
-#: src/multiint.cpp:997
+#: src/multiint.cpp:1030
 msgid "Wrong Game Version!"
 msgstr "Yanlış Oyun Sürümü!"
 
-#: src/multiint.cpp:1000
+#: src/multiint.cpp:1033
 msgid "You have an incompatible mod."
 msgstr "Uyumsuz bir mod."
 
-#: src/multiint.cpp:1004
+#: src/multiint.cpp:1037
 msgid "Host couldn't send file?"
 msgstr "Kurucu dosya gönderebilir mi?"
 
-#: src/multiint.cpp:1008
+#: src/multiint.cpp:1041
 msgid "Incorrect Password!"
 msgstr "Geçersiz Şifre!"
 
-#: src/multiint.cpp:1011
+#: src/multiint.cpp:1044
 msgid "Host has dropped connection!"
 msgstr "Kurucu Bağlantıyı Kesti"
 
-#: src/multiint.cpp:1015
+#: src/multiint.cpp:1048
 msgid "Connection Error"
 msgstr "Bağlantı Hatası"
 
-#: src/multiint.cpp:1119
+#: src/multiint.cpp:1158
 msgid "Searching"
 msgstr "Araştırılıyor..."
 
-#: src/multiint.cpp:1188
+#: src/multiint.cpp:1227
 msgid "GAMES"
 msgstr "OYUNLAR"
 
-#: src/multiint.cpp:1196
+#: src/multiint.cpp:1235
 msgid "Refresh Games List"
 msgstr "Oyun Listesini Yenile"
 
-#: src/multiint.cpp:1218
+#: src/multiint.cpp:1260
 msgid "Enter Password:"
 msgstr "Şifreyi gir:"
 
-#: src/multiint.cpp:1236
+#: src/multiint.cpp:1278
 msgid "OK"
 msgstr "TAMAM"
 
-#: src/multiint.cpp:1354
+#: src/multiint.cpp:1396
 msgid "Tanks disabled!!"
 msgstr "Tanklar Devre Dışı!!"
 
-#: src/multiint.cpp:1355
+#: src/multiint.cpp:1397
 msgid "Cyborgs disabled."
-msgstr "Cyborg'lar Devre Dışı"
+msgstr "Sayborglar devre dışı"
 
-#: src/multiint.cpp:1356
+#: src/multiint.cpp:1398
 msgid "VTOLs disabled."
 msgstr "DİvK 'lar Devre Dışı"
 
-#: src/multiint.cpp:1403
-#: src/multiint.cpp:1412
+#: src/multiint.cpp:1399
+#, fuzzy
+msgid "Satellite Uplink disabled."
+msgstr "Uydu Yer-Üssü Merkezi"
+
+#: src/multiint.cpp:1400
+#, fuzzy
+msgid "Laser Satellite disabled."
+msgstr "Lazer Uydusu Komuta Merkezi"
+
+#: src/multiint.cpp:1447
+#: src/multiint.cpp:1456
 msgid "Select Game Name"
 msgstr "Oyun İsmi Seç"
 
-#: src/multiint.cpp:1404
+#: src/multiint.cpp:1448
 msgid "One-Player Skirmish"
 msgstr "Tek Kişilik Çatışma"
 
-#: src/multiint.cpp:1415
+#: src/multiint.cpp:1459
 msgid "Select Map"
 msgstr "Harita Seç"
 
-#: src/multiint.cpp:1423
+#: src/multiint.cpp:1470
+msgid "Password is already set!"
+msgstr "Şifre zaten ayarlanmış!"
+
+#: src/multiint.cpp:1478
 msgid "Click to set Password"
 msgstr "Parolayı kurmak için tıkla"
 
-#: src/multiint.cpp:1433
-#: src/multiint.cpp:1434
+#: src/multiint.cpp:1483
+#: src/multiint.cpp:1484
 msgid "Scavengers"
 msgstr "Çöpçüler var"
 
-#: src/multiint.cpp:1436
+#: src/multiint.cpp:1486
 msgid "No Scavengers"
 msgstr "Çöpçüler yok"
 
-#: src/multiint.cpp:1466
+#: src/multiint.cpp:1516
 msgid "Select Player Name"
 msgstr "Oyuncu İsmi Seç"
 
-#: src/multiint.cpp:1469
-#: src/multimenu.cpp:792
+#: src/multiint.cpp:1519
+#: src/multimenu.cpp:797
 msgid "Alliances"
 msgstr "Müttefiklikler"
 
-#: src/multiint.cpp:1472
+#: src/multiint.cpp:1522
 msgid "No Alliances"
 msgstr "Müttefiklik yok"
 
-#: src/multiint.cpp:1474
+#: src/multiint.cpp:1524
 msgid "Allow Alliances"
 msgstr "Müttefiklikleri Göster"
 
 # festgelegt ungleich fest -Kreuvf
-#: src/multiint.cpp:1478
+#: src/multiint.cpp:1528
 msgid "Locked Teams"
 msgstr "Takım Kilidi"
 
-#: src/multiint.cpp:1504
+#: src/multiint.cpp:1554
 msgid "Low Power Levels"
 msgstr "Düşük güç seviyesi"
 
-#: src/multiint.cpp:1506
+#: src/multiint.cpp:1556
 msgid "Medium Power Levels"
 msgstr "Orta güç seviyesi"
 
-#: src/multiint.cpp:1508
+#: src/multiint.cpp:1558
 msgid "High Power Levels"
 msgstr "Yüksek güç seviyesi"
 
-#: src/multiint.cpp:1540
+#: src/multiint.cpp:1590
 msgid "Base"
 msgstr "Üs"
 
-#: src/multiint.cpp:1542
+#: src/multiint.cpp:1592
 msgid "Start with No Bases"
 msgstr "Üs olmadan başla."
 
-#: src/multiint.cpp:1544
+#: src/multiint.cpp:1594
 msgid "Start with Bases"
 msgstr "Üsler ile başla."
 
-#: src/multiint.cpp:1546
+#: src/multiint.cpp:1596
 msgid "Start with Advanced Bases"
 msgstr "Gelişmiş üsler ile başla."
 
-#: src/multiint.cpp:1578
+#: src/multiint.cpp:1628
 msgid "Map Preview"
 msgstr "Haritayı Gör"
 
-#: src/multiint.cpp:1580
+#: src/multiint.cpp:1630
 msgid "Click to see Map"
 msgstr "Haritayı görmek için tıkla"
 
-#: src/multiint.cpp:1593
-#: src/multiint.cpp:1595
+#: src/multiint.cpp:1643
+#: src/multiint.cpp:1645
 msgid "Start Hosting Game"
 msgstr "Oyunu kurulumunu başlat"
 
-#: src/multiint.cpp:1602
-#: src/multiint.cpp:1606
+#: src/multiint.cpp:1652
+#: src/multiint.cpp:1656
 msgid "Show Structure Limits"
 msgstr "Bina limitlerini göster"
 
-#: src/multiint.cpp:1602
-#: src/multiint.cpp:1606
+#: src/multiint.cpp:1652
+#: src/multiint.cpp:1656
 msgid "Set Structure Limits"
 msgstr "Bina limitlerini ayarla"
 
-#: src/multiint.cpp:1683
+#: src/multiint.cpp:1733
 msgid "DIFFICULTY"
 msgstr "ZORLUK"
 
-#: src/multiint.cpp:1697
+#: src/multiint.cpp:1747
 msgid "Less aggressive"
 msgstr "Daha az agresif"
 
-#: src/multiint.cpp:1698
+#: src/multiint.cpp:1748
 msgid "Plays nice"
 msgstr "Güzel çalış"
 
-#: src/multiint.cpp:1699
+#: src/multiint.cpp:1749
 msgid "No holds barred"
 msgstr "Hiçbir tutar engellenmedi"
 
-#: src/multiint.cpp:1700
+#: src/multiint.cpp:1750
 msgid "Starts with advantages"
 msgstr "Avantajlar ile başlar"
 
-#: src/multiint.cpp:1728
+#: src/multiint.cpp:1778
 msgid "CHOOSE AI"
 msgstr "Y.Z SEÇ"
 
-#: src/multiint.cpp:1744
+#: src/multiint.cpp:1794
 msgid "Allow human players to join in this slot"
 msgstr "İnsan oyuncuların bu slota girmesi için izin ver"
 
-#: src/multiint.cpp:1752
+#: src/multiint.cpp:1802
 msgid "Leave this slot unused"
 msgstr "Bu slotu kullanılmaz olarak belirle"
 
-#: src/multiint.cpp:2204
+#: src/multiint.cpp:2254
 msgid "Team"
 msgstr "Takım"
 
-#: src/multiint.cpp:2247
+#: src/multiint.cpp:2297
 msgid "You cannot change difficulty in a challenge"
 msgstr "Mücadele modunda zorluğu değiştiremezsin"
 
-#: src/multiint.cpp:2247
+#: src/multiint.cpp:2297
 msgid "Click to change difficulty"
 msgstr "Zorluğu değiştirmek için tıkla"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 msgid "Waiting for player"
 msgstr "Diğer oyuncular bekleniyor"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 msgid "Player is ready"
 msgstr "Oyuncu hazır"
 
-#: src/multiint.cpp:2262
+#: src/multiint.cpp:2312
 msgid "Click when ready"
 msgstr "Hazırsan tıkla"
 
-#: src/multiint.cpp:2269
+#: src/multiint.cpp:2319
 msgid "READY?"
 msgstr "HAZIR?"
 
-#: src/multiint.cpp:2313
+#: src/multiint.cpp:2363
 msgid "PLAYERS"
 msgstr "OYUNCULAR"
 
-#: src/multiint.cpp:2348
+#: src/multiint.cpp:2398
 msgid "Click to change to this slot"
 msgstr "Bu slotu değiştirmek için tıkla"
 
-#: src/multiint.cpp:2376
+#: src/multiint.cpp:2426
 msgid "Choose Team"
 msgstr "Takım seç"
 
-#: src/multiint.cpp:2406
+#: src/multiint.cpp:2456
 msgid "Click to change player colour"
 msgstr "Oyuncu renklerini değiştirmek için tıkla"
 
-#: src/multiint.cpp:2434
+#: src/multiint.cpp:2484
 msgid "Click to change player position"
 msgstr "Oyun pozisyonunu ayarlarını değiştirmek için tıkla"
 
-#: src/multiint.cpp:2438
+#: src/multiint.cpp:2488
 msgid "Click to change AI"
 msgstr "Yapay zekayı ayarlamak için tıkla"
 
-#: src/multiint.cpp:2499
+#: src/multiint.cpp:2553
 msgid "CHAT"
 msgstr "SOHBET"
 
-#: src/multiint.cpp:2531
+#: src/multiint.cpp:2585
 msgid "All players need to have the same mods to join your game."
 msgstr "Tüm oyuncular oyununa girebilmek için aynı moda ihtiyaç duyar."
 
-#: src/multiint.cpp:2572
+#: src/multiint.cpp:2626
 msgid "Connecting to the lobby server..."
 msgstr "Bekleme odası sunucusuna bağlanılıyor..."
 
-#: src/multiint.cpp:2719
+#: src/multiint.cpp:2772
 #, c-format
 msgid "*** password [%s] is now required! ***"
 msgstr "*** Şifre [%s] şimdi isteniyor ! ***"
 
-#: src/multiint.cpp:2727
+#: src/multiint.cpp:2780
 msgid "*** password is NOT required! ***"
 msgstr "*** Şifreye gerek yok! ***"
 
-#: src/multiint.cpp:2942
+#: src/multiint.cpp:2996
 msgid "Sorry! Failed to host the game."
 msgstr "Üzgünüm! Oyun kurulurken bir hata oldu."
 
 # festgelegt ungleich fest -Kreuvf
-#: src/multiint.cpp:3064
+#: src/multiint.cpp:3118
 msgid "'Locked Teams' mode enabled"
 msgstr "\"Takım Kilidi\"-Modu Aktif"
 
-#: src/multiint.cpp:3092
-#: src/multiint.cpp:3161
-#: src/multimenu.cpp:1472
+#: src/multiint.cpp:3146
+#: src/multiint.cpp:3215
+#: src/multimenu.cpp:1492
 #, c-format
 msgid "The host has kicked %s from the game!"
 msgstr "Kurucu %s isimli oyuncuyu oyundan attı!"
 
-#: src/multiint.cpp:3227
+#: src/multiint.cpp:3281
 msgid "Host is Starting Game"
 msgstr "Kurucu oyunu başlatıyor"
 
-#: src/multiint.cpp:3806
+#: src/multiint.cpp:3884
 msgid "Can't connect to lobby server!"
 msgstr "Bekleme odası sunucusuna bağlanılamıyor!"
 
-#: src/multiint.cpp:3893
+#: src/multiint.cpp:3976
 #, c-format
 msgid "Mods: %s"
 msgstr "Mod: %s"
 
-#: src/multiint.cpp:3900
+#: src/multiint.cpp:3983
 msgid "Mods: None!"
 msgstr "Mod: Yok!"
 
-#: src/multiint.cpp:3910
+#: src/multiint.cpp:3993
 #, c-format
 msgid "Version: %s"
 msgstr "Sürüm: %s"
 
-#: src/multiint.cpp:3961
+#: src/multiint.cpp:4044
 #, c-format
 msgid "Click to take player slot %d"
 msgstr "Oyuncu slotu %d almak için tıkla "
 
-#: src/multiint.cpp:3970
-#: src/multiint.cpp:4163
+#: src/multiint.cpp:4053
+#: src/multiint.cpp:4255
 msgid "Open"
 msgstr "Aç"
 
-#: src/multiint.cpp:3970
-#: src/multiint.cpp:4164
+#: src/multiint.cpp:4053
+#: src/multiint.cpp:4256
 msgid "Closed"
 msgstr "Kapandı"
 
-#: src/multiint.cpp:4021
+#: src/multiint.cpp:4104
 #, c-format
 msgid "Sending Map: %d%% "
 msgstr "Harita Gönderiliyor: %d%%"
 
-#: src/multiint.cpp:4029
+#: src/multiint.cpp:4112
 #, c-format
 msgid "Map: %d%% downloaded"
 msgstr "Harita: %d%% indirildi"
 
-#: src/multiint.cpp:4055
+#: src/multiint.cpp:4138
 msgid "HOST"
 msgstr "KURUCU"
 
-#: src/multiint.cpp:4062
-#: src/multimenu.cpp:806
+#: src/multiint.cpp:4145
+#: src/multimenu.cpp:811
 msgid "Ping"
 msgstr "Ping"
 
@@ -14498,27 +14558,27 @@ msgstr "Ping"
 msgid "Players Still Joining"
 msgstr "Oyuncular hâlâ katılmakta "
 
-#: src/multijoin.cpp:263
+#: src/multijoin.cpp:256
 #, c-format
 msgid "%s has Left the Game"
 msgstr "%s Oyundan çıktı"
 
-#: src/multijoin.cpp:281
+#: src/multijoin.cpp:290
 #, c-format
 msgid "File transfer has been aborted for %d."
 msgstr "Dosya transferi iptal %d "
 
-#: src/multijoin.cpp:412
+#: src/multijoin.cpp:421
 #, c-format
 msgid "%s (%u) has an incompatible mod, and has been kicked."
 msgstr "%s (%u) uyumsuz bir mod.Ve oyundan atıldı"
 
-#: src/multijoin.cpp:453
+#: src/multijoin.cpp:462
 #, c-format
 msgid "%s is joining the game"
 msgstr "%s Oyuna katılıyor"
 
-#: src/multijoin.cpp:464
+#: src/multijoin.cpp:473
 msgid "Server message:"
 msgstr "Sunucu iletisi:"
 
@@ -14530,70 +14590,93 @@ msgstr "Varsayılana Ayarla ve Önceki Ekrana Dön"
 msgid "Limits reset to default values"
 msgstr "Sınırları varsayılana sıfırla"
 
-#: src/multimenu.cpp:624
+#: src/multimenu.cpp:629
 msgid "Technology level 1"
 msgstr "Teknoloji seviyesi 1"
 
-#: src/multimenu.cpp:632
+#: src/multimenu.cpp:637
 msgid "Technology level 2"
 msgstr "Teknoloji seviyesi 2"
 
-#: src/multimenu.cpp:638
+#: src/multimenu.cpp:643
 msgid "Technology level 3"
 msgstr "Teknoloji seviyesi 3"
 
-#: src/multimenu.cpp:644
+#: src/multimenu.cpp:649
 msgid "Any number of players"
 msgstr "Oyuncu herhangi bir sayı alacak"
 
-#: src/multimenu.cpp:655
+#: src/multimenu.cpp:660
 #, c-format
 msgid "%d player"
 msgid_plural "%d players"
 msgstr[0] "%d oyuncu"
 msgstr[1] "%d oyuncular"
 
-#: src/multimenu.cpp:793
+#: src/multimenu.cpp:798
 msgid "Score"
 msgstr "Puan Durumu"
 
-#: src/multimenu.cpp:794
+#: src/multimenu.cpp:799
 msgid "Kills"
 msgstr "Öldürme"
 
-#: src/multimenu.cpp:795
+#: src/multimenu.cpp:800
 msgid "Units"
 msgstr "Birimler"
 
-#: src/multimenu.cpp:810
+#: src/multimenu.cpp:815
 msgid "Structs"
 msgstr "Binalar"
 
-#: src/multimenu.cpp:1122
+#: src/multimenu.cpp:827
+msgid "Sent/Received per sec —"
+msgstr "Gönderme/ Her saniye alınan —"
+
+#: src/multimenu.cpp:827
+msgid "Total Sent/Received —"
+msgstr "Toplam gönderme/Alınan —"
+
+#: src/multimenu.cpp:832
+#, c-format
+msgid "Traf: %u/%u"
+msgstr "Buluşturucu: %u/%u"
+
+#: src/multimenu.cpp:836
+#, c-format
+msgid "Uncompressed: %u/%u"
+msgstr "Sıkıştırılmamış: %u/%u"
+
+#: src/multimenu.cpp:840
+#, c-format
+msgid "Pack: %u/%u"
+msgstr "Paket: %u/%u"
+
+#: src/multimenu.cpp:1142
 msgid "Channel"
 msgstr "Kanal"
 
-#: src/multimenu.cpp:1136
+#: src/multimenu.cpp:1156
 msgid "Toggle Alliance State"
 msgstr "İlişki durumunu görebilirsiniz"
 
-#: src/multimenu.cpp:1155
+#: src/multimenu.cpp:1175
 msgid "Give Visibility Report"
 msgstr "Görünürlük raporu ver"
 
-#: src/multimenu.cpp:1161
+#: src/multimenu.cpp:1181
 msgid "Leak Technology Documents"
 msgstr "Teknoloji dökümanı bırak"
 
-#: src/multimenu.cpp:1168
+#: src/multimenu.cpp:1188
 msgid "Hand Over Selected Units"
 msgstr "Seçili birimleri bağışla"
 
-#: src/multimenu.cpp:1174
+#: src/multimenu.cpp:1194
 msgid "Give Power To Player"
 msgstr "Oyuncuya güç ver"
 
-#: src/multimenu.cpp:1474
+#: src/multimenu.cpp:1494
 #, c-format
 msgid "kicked %s : %s from the game, and added them to the banned list!"
 msgstr "%s : %s oyundan atıldı ve engelli listesine kaydedildi!"
@@ -14603,89 +14686,89 @@ msgstr "%s : %s oyundan atıldı ve engelli listesine kaydedildi!"
 msgid "Kicking player %s, because they tried to bypass data integrity check!"
 msgstr "Oyuncu atılıyor %s veri bütünlüğünü korumak için!"
 
-#: src/multiplay.cpp:1074
+#: src/multiplay.cpp:1095
 msgid "(allies"
 msgstr "(Müttefikler"
 
-#: src/multiplay.cpp:1082
+#: src/multiplay.cpp:1103
 msgid "(private to "
-msgstr "(bir direk"
+msgstr "(doğrudan"
 
-#: src/multiplay.cpp:1095
+#: src/multiplay.cpp:1116
 msgid "[invalid]"
 msgstr "[gereksiz]"
 
-#: src/multiplay.cpp:1968
+#: src/multiplay.cpp:1978
 msgid "Green"
 msgstr "Yeşil"
 
-#: src/multiplay.cpp:1969
+#: src/multiplay.cpp:1979
 msgid "Orange"
 msgstr "Turuncu"
 
-#: src/multiplay.cpp:1970
+#: src/multiplay.cpp:1980
 msgid "Grey"
 msgstr "Gri"
 
-#: src/multiplay.cpp:1972
+#: src/multiplay.cpp:1982
 msgid "Red"
 msgstr "Kırmızı"
 
-#: src/multiplay.cpp:1973
+#: src/multiplay.cpp:1983
 msgid "Blue"
 msgstr "Koyu Mavi"
 
-#: src/multiplay.cpp:1974
+#: src/multiplay.cpp:1984
 msgid "Pink"
 msgstr "Pembe"
 
-#: src/multiplay.cpp:1975
+#: src/multiplay.cpp:1985
 msgid "Cyan"
 msgstr "Mavi"
 
-#: src/multiplay.cpp:1976
+#: src/multiplay.cpp:1986
 msgid "Yellow"
 msgstr "Sarı"
 
-#: src/multiplay.cpp:1977
+#: src/multiplay.cpp:1987
 msgid "Purple"
 msgstr "Mor"
 
-#: src/multiplay.cpp:1978
+#: src/multiplay.cpp:1988
 msgid "White"
 msgstr "Beyaz"
 
-#: src/multiplay.cpp:1979
+#: src/multiplay.cpp:1989
 msgid "Bright blue"
 msgstr "Açık Mavi"
 
-#: src/multiplay.cpp:1980
+#: src/multiplay.cpp:1990
 msgid "Neon green"
 msgstr "Neon yeşili"
 
-#: src/multiplay.cpp:1981
+#: src/multiplay.cpp:1991
 msgid "Infrared"
 msgstr "Kızılötesi"
 
-#: src/multiplay.cpp:1982
+#: src/multiplay.cpp:1992
 msgid "Ultraviolet"
 msgstr "Morötesi"
 
-#: src/multiplay.cpp:1983
+#: src/multiplay.cpp:1993
 msgid "Brown"
 msgstr "Kahverengi"
 
 #: src/order.cpp:803
 msgid "We can't do that! We must be a Cyborg unit to use a Cyborg Transport!"
-msgstr "Bunu Yapamıyoruz! Biz Cyborg Taşıma Gemisi'ni kullanmak için bir Cyborg birimine sahip olmalıyız!"
+msgstr "Bunu Yapamıyoruz! Biz Sayborg Taşıma Gemisi'ni kullanmak için bir Sayborg birimine sahip olmalıyız!"
 
-#: src/qtscriptfuncs.cpp:1580
-#: src/scriptfuncs.cpp:3261
+#: src/qtscriptfuncs.cpp:1586
+#: src/scriptfuncs.cpp:3263
 msgid "YOU ARE VICTORIOUS!"
 msgstr "KAZANDIN!"
 
-#: src/qtscriptfuncs.cpp:1585
-#: src/scriptfuncs.cpp:3265
+#: src/qtscriptfuncs.cpp:1591
+#: src/scriptfuncs.cpp:3267
 msgid "YOU WERE DEFEATED!"
 msgstr "YENİLDİN!"
 
@@ -14820,117 +14903,117 @@ msgstr "Toplam Oyun Zamanı - %s"
 msgid "You cheated!"
 msgstr "Hile Yaptın!"
 
-#: src/scriptfuncs.cpp:9371
+#: src/scriptfuncs.cpp:9379
 #, c-format
 msgid "Beacon received from %s!"
 msgstr "Sinyal alındı: %s !"
 
-#: src/scriptfuncs.cpp:9408
+#: src/scriptfuncs.cpp:9416
 #, c-format
 msgid "Beacon %d"
 msgstr "Sinyal %d"
 
-#: src/selection.cpp:422
-#: src/selection.cpp:502
+#: src/selection.cpp:415
+#: src/selection.cpp:495
 msgid "Unable to locate any repair units!"
 msgstr "Hiç tamir birimi bulunamadı!"
 
-#: src/selection.cpp:425
+#: src/selection.cpp:418
 msgid "Unable to locate any Trucks!"
 msgstr "Hiç Kamyon birimi bulunamadı!"
 
-#: src/selection.cpp:428
+#: src/selection.cpp:421
 msgid "Unable to locate any Sensor Units!"
 msgstr "Hiç Algılayıcı birimi bulunamadı!"
 
-#: src/selection.cpp:431
+#: src/selection.cpp:424
 msgid "Unable to locate any Commanders!"
 msgstr "Hiç Komutan birimi bulunamadı!"
 
-#: src/selection.cpp:701
+#: src/selection.cpp:694
 #, c-format
 msgid "%u unit selected"
 msgid_plural "%u units selected"
 msgstr[0] "%u Birim seçildi"
 msgstr[1] "%u Birimler seçildi"
 
-#: src/structure.cpp:2584
-msgid "Command Control Limit Reached - Production Halted"
-msgstr "Kontrol Limitine Ulaştın - Üretim Durduruldu"
+#: src/structure.cpp:2605
+msgid "Can't build anymore units, Command Control Limit Reached - Production Halted"
+msgstr "Daha fazla birim inşa edilemiyor, Kontrol Limitine Ulaştın - Üretim Durduruldu"
 
 # nix Gruppe! -Kreuvf
-#: src/structure.cpp:5577
-#: src/structure.cpp:5602
+#: src/structure.cpp:5605
+#: src/structure.cpp:5630
 #, c-format
 msgid "%s - %u Unit assigned - Damage %3.0f%%"
 msgid_plural "%s - %u Units assigned - Damage %3.0f%%"
 msgstr[0] "%s - %u Birim atandı - Hasar %3.0f%%"
 msgstr[1] "%s - %u Birimler atandı - Hasar %3.0f%%"
 
-#: src/structure.cpp:5607
-#: src/structure.cpp:5675
-#: src/structure.cpp:5690
-#: src/structure.cpp:5704
+#: src/structure.cpp:5635
+#: src/structure.cpp:5703
+#: src/structure.cpp:5718
+#: src/structure.cpp:5732
 #, c-format
 msgid "%s - Damage %3.0f%%"
 msgstr "%s - Hasar %3.0f%%"
 
-#: src/structure.cpp:5657
+#: src/structure.cpp:5685
 #, c-format
 msgid "%s - Connected %u of %u - Damage %3.0f%%"
 msgstr "%s - Bağlandı %u de %u - Hasar %3.0f%%"
 
-#: src/structure.cpp:5820
-#: src/structure.cpp:5865
+#: src/structure.cpp:5849
+#: src/structure.cpp:5894
 #, c-format
 msgid "%s - Electronically Damaged"
 msgstr "%s - Elektronik Hasar Aldı"
 
 # Reward ist zwar nicht Beute, aber im Krieg erbeutet man eben Dinge -Kreuvf
-#: src/structure.cpp:6116
+#: src/structure.cpp:6145
 msgid "Electronic Reward - Visibility Report"
 msgstr "Elektronik Ödül - Görünebilirlik Raporu"
 
-#: src/structure.cpp:6156
+#: src/structure.cpp:6185
 msgid "Factory Reward - Propulsion"
 msgstr "Fabrika Ödülü - Yürütücü"
 
-#: src/structure.cpp:6180
+#: src/structure.cpp:6209
 msgid "Factory Reward - Body"
 msgstr "Fabrika Ödülü - Beden"
 
-#: src/structure.cpp:6204
+#: src/structure.cpp:6233
 msgid "Factory Reward - Weapon"
 msgstr "Fabrika Ödülü - Silah"
 
-#: src/structure.cpp:6213
+#: src/structure.cpp:6242
 msgid "Factory Reward - Nothing"
 msgstr "Fabrika Ödülü - Sıfır"
 
-#: src/structure.cpp:6241
+#: src/structure.cpp:6270
 msgid "Repair Facility Award - Repair"
 msgstr "Tamir Tesisi Ödülü - Tamir"
 
-#: src/structure.cpp:6248
+#: src/structure.cpp:6277
 msgid "Repair Facility Award - Nothing"
 msgstr "Tamir Tesisi Ödülü - Sıfır"
 
-#: src/transporter.cpp:396
-#: src/transporter.cpp:445
+#: src/transporter.cpp:385
+#: src/transporter.cpp:434
 msgid "Launch Transport"
 msgstr "Taşımayı Başlat"
 
-#: src/transporter.cpp:1407
+#: src/transporter.cpp:1380
 msgid "There is not enough room in the Transport!"
 msgstr "Taşıma Gemisinde yeterince yer yok!"
 
-#: src/transporter.cpp:1649
+#: src/transporter.cpp:1606
 msgid "Reinforcements landing"
 msgstr "Destek kuvvetler iniyor"
 
 #: src/version.cpp:131
 msgid " (modified locally)"
-msgstr " (duzenlenmis yerel)"
+msgstr " (yerellestirilmis)"
 
 #: src/version.cpp:138
 msgid " - DEBUG"
@@ -14947,6 +15030,12 @@ msgstr " - %s İnşa"
 #, c-format
 msgid "Version %s-%s%s%s%s"
 msgstr "Sürüm %s-%s%s%s%s"
+
+#~ msgid "OpenGL 2.0 is not supported by your system. Some things may look wrong. Please upgrade your graphics driver/hardware, if possible."
+#~ msgstr "OpenGL 2.0 sisteminiz tarafından desteklenmiyor. Bazı şeyler yanlış görünebilir. Lütfen grafik sürücünüzü/donanımınızı yükseltin, mümkünse."
+
+#~ msgid "Visit our official site: http://wz2100.net"
+#~ msgstr "Resmi internet sitemizi ziyaret edin: http://wz2100.net"
 
 #~ msgid "Unit Colour (SP)"
 #~ msgstr "Birim Rengi (T.O)"
@@ -15252,9 +15341,6 @@ msgstr "Sürüm %s-%s%s%s%s"
 
 #~ msgid "Infinite Production"
 #~ msgstr "Sınırsız Üretim"
-
-#~ msgid "Player %u is cheating him/herself a new droid army of %s(s)."
-#~ msgstr "Oyuncu %u droid ordusunu hile ile kuruyor %s."
 
 #~ msgid "You found %u power in an oil drum"
 #~ msgstr "Sen %u güç varili buldun."
@@ -15864,9 +15950,6 @@ msgstr "Sürüm %s-%s%s%s%s"
 #~ msgid "Python Tank Killer Tracks"
 #~ msgstr "Piton Tank Öldürücü Paletler"
 
-#~ msgid "Load Campaign"
-#~ msgstr "Bölüm Yükle"
-
 #~ msgid "Full"
 #~ msgstr "Dolu"
 
@@ -16031,9 +16114,6 @@ msgstr "Sürüm %s-%s%s%s%s"
 
 #~ msgid "LasSats firing"
 #~ msgstr "Lazer uyduları ateşleniyor"
-
-#~ msgid "Satellite Uplink"
-#~ msgstr "Uydu Yer-Üssü Merkezi"
 
 #~ msgid "NASDA Central"
 #~ msgstr "NASDA Merkezi"

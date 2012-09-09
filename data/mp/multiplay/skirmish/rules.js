@@ -92,13 +92,6 @@ function eventGameInit()
 		"R-Wpn-Rocket-Damage01",
 		"R-Defense-WallTower01");
 
-	if (baseType == CAMP_CLEAN)
-	{
-		// No HQ, so no design or radar
-		setMiniMap(false);
-		setDesign(false);
-	}
-
 	for (var playnum = 0; playnum < maxPlayers; playnum++)
 	{
 		enableResearch("R-Sys-Sensor-Turret01", playnum);
@@ -125,7 +118,7 @@ function eventGameInit()
 				    || (s.stattype != WALL && s.stattype != DEFENSE && s.stattype != GATE
 				        && s.stattype != RESOURCE_EXTRACTOR))
 				{
-					removeStruct(s);
+					removeObject(s, false);
 				}
 			}
 		}
@@ -144,7 +137,7 @@ function eventGameInit()
 				if ((playerData[playnum].difficulty != INSANE && (s.stattype == WALL || s.stattype == DEFENSE))
 				    || s.stattype == GATE || s.stattype == CYBORG_FACTORY || s.stattype == COMMAND_CONTROL)
 				{
-					removeStruct(s);
+					removeObject(s, false);
 				}
 			}
 		}
@@ -157,6 +150,20 @@ function eventGameInit()
 			}
 		}
 	}
+
+	// Disabled by default
+	setMiniMap(false);
+	setDesign(false);
+	// This is the only template that should be enabled before design is allowed
+	enableTemplate("ConstructionDroid");
+
+	var structlist = enumStruct(me, HQ);
+	for (var i = 0; i < structlist.length; i++)
+	{
+		// Simulate build events to enable minimap/unit design when an HQ exists
+		eventStructureBuilt(structlist[i]);
+	}
+
 	hackNetOn();
 	setTimer("checkEndConditions", 100);
 }
@@ -229,7 +236,7 @@ function checkEndConditions()
 // Base Under Attack
 function eventAttacked(victimObj, attackerObj)
 {
-	if (gameTime > lastHitTime + 10)
+	if (gameTime > lastHitTime + 5000)
 	{
 		lastHitTime = gameTime;
 		if (victimObj.type == STRUCTURE)
@@ -257,6 +264,6 @@ function eventDestroyed(victim)
 	if (victim.player == selectedPlayer && victim.type == STRUCTURE && victim.stattype == HQ)
 	{
 		setMiniMap(false); // hide minimap if HQ is destroyed
-		//setDesign(false); // and disallow design
+		setDesign(false); // and disallow design
 	}
 }

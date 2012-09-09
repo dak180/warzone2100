@@ -56,15 +56,14 @@ extern void screenDumpToDisk(const char* path);
 
 extern int wz_texture_compression;
 
-extern bool opengl_fallback_mode;
 
 extern void screenDoDumpToDiskIfRequired(void);
 
 void screen_enableMapPreview(char *name, int width, int height, Vector2i *playerpositions);
 void screen_disableMapPreview(void);
 bool screen_getMapPreview(void);
+void screen_EnableMissingFunctions();
 
-void screen_EnableVBO();
 struct OPENGL_DATA
 {
 	char vendor[256];
