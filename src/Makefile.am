@@ -5,7 +5,7 @@ AM_CXXFLAGS = $(WZ_CXXFLAGS) $(QT4_CFLAGS)
 .PHONY: autorevision.h
 
 autorevision.h autorevision.cache:
-	cd $(top_srcdir) && ./build_tools/autorevision -t h -o $(abs_builddir)/autorevision.cache > $(abs_builddir)/autorevision.h.new
+	cd $(top_srcdir) && ./3rdparty/autorevision/autorevision -t h -o $(abs_builddir)/autorevision.cache > $(abs_builddir)/autorevision.h.new
 	cmp -s autorevision.h.new autorevision.h || mv -f autorevision.h.new autorevision.h
 
 CLEANFILES = \
